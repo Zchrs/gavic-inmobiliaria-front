@@ -390,8 +390,23 @@
   font-size: 4.2rem;
   font-weight: 900;
   line-height: 5.9rem;
-  /* color: var(--text-primary); */
+  /* color: var(--text-tertiary); */
   /* font-family: var(--font-secondary); */
+  @media (max-width: 800px) {
+    font-size: 3rem;
+  }
+}
+.h2-extra {
+  font-size: 7rem;
+  font-weight: 600;
+  line-height: 5.9rem;
+  color: var(--text-tertiary);
+  font-family: var(--font-primary);
+  text-shadow: 
+  black 1px 1px 1px, 
+  black 2px 2px 1px, 
+  black -1px -1px 1px,
+  black -2px -2px 1px;
   @media (max-width: 800px) {
     font-size: 3rem;
   }

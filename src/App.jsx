@@ -1,6 +1,7 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { HomeLayout, 
+import { 
+  HomeLayout, 
   About, 
   CommerceIndustry, 
   Contact, 
@@ -13,18 +14,26 @@ import { HomeLayout,
   PrivacyPolicy, 
   QualityPolicy, 
   Values, 
-  Vision } from "../index";
+  Vision, 
+  PropertyList,
+  Leases,
+  Sales,
+  Register} from "../index";
 
 function App() {
   return (
     <section className="body">
       <HashRouter future={{ v7_startTransition: true, v7_revalidate: true }}>
         <Routes>
-          <Route exact path="/*" element={<HomeLayout />} />
-          <Route exact path="about" element={<About />} />
+          <Route exact path="/*" element={<HomeLayout />}>
+          <Route exact path="about-us" element={<About />} />
           <Route exact path="mision" element={<Mision />} />
           <Route exact path="vision" element={<Vision />} />
           <Route exact path="immovables" element={<Immovables />} />
+          <Route exact path="sales" element={<Sales/>} />
+          <Route exact path="leases" element={<Leases/>} />
+          <Route exact path="list-your-property" element={<PropertyList/>} />
+          <Route exact path="register" element={<Register/>} />
           <Route exact path="values" element={<Values />} />
           <Route exact path="quality-policy" element={<QualityPolicy />} />
           <Route exact path="coverage" element={<Coverage />} />
@@ -38,6 +47,7 @@ function App() {
             path="superintendency-of-industria-and-commerce"
             element={<CommerceIndustry />}
           />
+          </Route>
         </Routes>
       </HashRouter>
     </section>

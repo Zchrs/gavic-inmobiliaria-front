@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import { AppRouter } from "../../index";
+import { AppRouter, Footer, Header } from "../../index";
 
 export const HomeLayout = () => {
   return (
     <LayoutHome>
       <header className="homelayout-header">
-
+        <Header />
       </header>
       <section className="homelayout-container">
         <AppRouter />
       </section>
       <footer className="homelayout-footer">
-
+        <Footer />
       </footer>
     </LayoutHome>
   );
