@@ -801,7 +801,7 @@ export const BaseButton = ({
       align-items: center;
       gap: 4px;
       background: var(--bg-secondary);
-      border-radius: 10px;
+      border-radius: 5px;
       color: white;
       width: fit-content;
       height: 100%;

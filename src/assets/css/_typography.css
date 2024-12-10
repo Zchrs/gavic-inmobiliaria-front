@@ -411,8 +411,15 @@
     font-size: 3rem;
   }
 }
-.h2-extra-simple {
+.h2-extra-medium {
   font-size: 5rem;
+  font-weight: 400;
+  line-height: 5.9rem;
+  color: var(--text-dark);
+  font-family: var(--font-primary);
+}
+.h2-extra-simple {
+  font-size: 3rem;
   font-weight: 400;
   line-height: 5.9rem;
   color: var(--text-dark);

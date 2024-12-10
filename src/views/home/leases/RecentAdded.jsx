@@ -9,7 +9,7 @@ import Loader from "../../../components/Loader"
 export const RecentAdded = () => {
   return (
     <AddedRecent className="pd-laterals-mini">
-      <h2 className="recently-h2 h2-extra-simple">Añadidos recientemente</h2>
+      <h2 className="recently-h2 h2-extra-medium">Añadidos recientemente</h2>
         <div className="recently">
   
           {
@@ -56,8 +56,22 @@ const AddedRecent = styled.div`
     display: grid;
     width: 100%;
     height: 100%;
+    position: relative;
+    &::before{
+      clip-path: polygon(0 0, 30% 0, 31% 5%, 69% 5%, 70% 0, 100% 0, 100% 100%, 67% 100%, 65% 96%, 37% 96%, 35% 100%, 0 100%);
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+          width: 100%;
+          height: 100%;
+          background: var(--bg-secondary);
+        }
     
     .recently{
+      position: relative;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 20px;
@@ -66,7 +80,6 @@ const AddedRecent = styled.div`
         padding-bottom: 50px;
         &-h2{
           text-align: center;
-          margin: 100px 0;
         }
     }
 `

@@ -7,7 +7,7 @@ import { BaseButton } from "../../components/BaseButton";
 import Select from 'react-select'
 import { useState } from "react";
 import { BaseInputSelect } from "../../components/BaseInputSelect";
-import { RecentAdded } from "../../../index";
+import { RecentAdded, Services } from "../../../index";
 
 export const Home = () => {
   const [selectedSector, setSelectedSector] = useState("");
@@ -133,6 +133,7 @@ export const Home = () => {
 
         </div>
         <RecentAdded />
+        <Services />
       </div>
     </HoMe>
   );
@@ -148,6 +149,7 @@ const HoMe = styled.div`
     display: grid;
     width: 100%;
     height: 100%;
+    gap: 50px;
     &-banner {
       position: relative;
       display: grid;

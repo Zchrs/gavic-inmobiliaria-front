@@ -432,12 +432,12 @@ export const mobilePhones = [
        ]
     },
 ]
-export const alimentsGrains = [
+export const services = [
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Frijol nacional',
+        title: 'Arrendamientos',
         description: `Frijol rojo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
-        img: 'frijol',
+        img: 'arrendamiento',
         price: '$9,999.00',
         previousPrice: '$11,999.00',
         sellingsText: 'Vendidos',
@@ -453,9 +453,9 @@ export const alimentsGrains = [
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Garbanzo nacional',
+        title: 'Ventas',
         description: `Garbanzo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
-        img: 'garbanzo',
+        img: 'ventas',
         price: '$9,999.00',
         previousPrice: '$11,999.00',
         sellingsText: 'Vendidos',
@@ -471,9 +471,9 @@ export const alimentsGrains = [
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Lenteja nacional',
+        title: 'Hipoteca',
         description: `Lenteja nacional hidropondica en bolsa nacional de la más alta calidad, 100% orgánicas.`,
-        img: 'lenteja',
+        img: 'hipoteca',
         price: '$9,999.00',
         previousPrice: '$11,999.00',
         sellingsText: 'Vendidos',
@@ -487,41 +487,6 @@ export const alimentsGrains = [
             'lenteja'
        ]
     },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Arveja nacional',
-        description: `Arveja nacional hidropondica en bolsa nacional de la más alta calidad, 100% orgánicas.`,
-        img: 'arveja',
-        price: '$9,999.00',
-        previousPrice: '$11,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'arveja',
-            'arveja',
-            'arveja',
-            'arveja',
-            'arveja'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Maíz nacional',
-        description: `Maíz nacional de la más alta calidad, 100% orgánicos.`,
-        img: 'maiz',
-        price: '$9,999.00',
-        previousPrice: '$11,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'maiz',
-            'maiz',
-            'maiz',
-            'maiz',
-            'maiz'
-       ]
-    },
+
 ]
 
