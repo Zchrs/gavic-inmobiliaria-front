@@ -417,6 +417,9 @@
   line-height: 5.9rem;
   color: var(--text-dark);
   font-family: var(--font-primary);
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+  }
 }
 .h2-extra-simple {
   font-size: 3rem;
@@ -424,6 +427,7 @@
   line-height: 5.9rem;
   color: var(--text-dark);
   font-family: var(--font-primary);
+
 }
 /* H1 */
 

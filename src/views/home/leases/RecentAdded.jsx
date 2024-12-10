@@ -8,9 +8,9 @@ import Loader from "../../../components/Loader"
 
 export const RecentAdded = () => {
   return (
-    <AddedRecent className="pd-laterals-mini">
+    <AddedRecent className="pd-laterals-mini ">
       <h2 className="recently-h2 h2-extra-medium">Añadidos recientemente</h2>
-        <div className="recently">
+        <div className="recently pd-top-bottom">
   
           {
           // Loader ? (
@@ -58,16 +58,23 @@ const AddedRecent = styled.div`
     height: 100%;
     position: relative;
     &::before{
-      clip-path: polygon(0 0, 30% 0, 31% 5%, 69% 5%, 70% 0, 100% 0, 100% 100%, 67% 100%, 65% 96%, 37% 96%, 35% 100%, 0 100%);
-          content: "";
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          margin: auto;
-          width: 100%;
-          height: 100%;
-          background: var(--bg-secondary);
+      clip-path: polygon(0 0, 26% 0, 28% 5%, 72% 5%, 74% 0, 100% 0, 100% 100%, 67% 100%, 65% 96%, 37% 96%, 35% 100%, 0 100%);
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-secondary);
+      
+      @media (max-width: 1024px) {
+            clip-path: polygon(0 0, 8% 0, 12% 2%, 88% 2%, 93% 0, 100% 0, 100% 100%, 75% 100%, 72% 98.5%, 28% 98.5%, 25% 100%, 0 100%);
+          }
+      @media (max-width: 380px) {
+            clip-path: polygon(0 0, 5% 0, 9% 2%, 91% 2%, 95% 0, 100% 0, 100% 100%, 75% 100%, 72% 98.5%, 28% 98.5%, 25% 100%, 0 100%);
+          }
         }
     
     .recently{
@@ -77,7 +84,11 @@ const AddedRecent = styled.div`
         gap: 20px;
         width: 100%;
         height: 100%;
-        padding-bottom: 50px;
+        
+        @media (max-width: 1024px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
         &-h2{
           text-align: center;
         }

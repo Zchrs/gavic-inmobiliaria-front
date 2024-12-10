@@ -39,95 +39,110 @@ export const BaseInputSelect = ({
         </label>
         {isSelect ? (
           <Select
-            id={id}
-            name={name}
-            value={options.find(option => option.value === value)} // Esto es para controlar el valor seleccionado
-            onChange={handleSelectChange}
-            onBlur={onBlur}
-            options={options}
-            placeholder={placeholder || "Seleccione una opción"}
-            styles={{
-                control: (base) => ({
-                  ...base,
-                  borderRadius: 5, // Bordes redondeados
-                  fontSize: '16px', // Tamaño de fuente
-                  padding: '5px', // Espaciado dentro del control
-                  borderColor: '#DDE4ED', // Color del borde
-                  height: '50px',
-                  width: '220px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  textAlign: 'left',
-                  position: 'relative',
-                  justifyContent: 'space-between',
-                  
-                  '&:hover': {
-                    borderColor: '#5E9CC8', // Color del borde al pasar el ratón
-                  },
-                  '&:focus': {
-                    borderColor: '#5E9CC8', // Color del borde al estar enfocado
-                  },
-                }),
-                option: (base, state) => ({
-                  ...base,
-                  backgroundColor: state.isFocused ? '#f1f1f1' : '#fff', // Color de fondo al estar enfocado
-                  color: '#333', // Color del texto
-                  padding: '5px', // Espaciado dentro de las opciones
-                  fontSize: '16px', // Tamaño de fuente
-                  cursor: 'pointer',
-                  height: '40px',
-                  width: '100%',
-                  display: 'grid',
-                  alignItems: 'center',
-                  
-                  
-                  
-                  '&:hover': {
-                    backgroundColor: '#F0F0F0', // Color al pasar el ratón
-                  },
-                }),
-                menu: (base) => ({
-                  ...base,
-                  borderRadius: 8, // Bordes redondeados
-                  marginTop: '5px', // Espaciado encima del menú
-                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', // Sombra alrededor del menú
-                  height: '200px',
-                  overflowY: 'hidden',
-                  overflowX: 'hidden',
-                  
-                }),
-                singleValue: (base) => ({
-                  ...base,
-                  color: '#333', // Color del valor seleccionado
-                  fontSize: '16px', // Tamaño de fuente
-                  padding: '5px 0',
-                }),
-                placeholder: (base) => ({
-                  ...base,
-                  fontSize: '16px', // Tamaño de fuente del placeholder
-                  color: '#BDBDBD', // Color del placeholder
-                  padding: '5px 0',
-                }),
-                dropdownIndicator: (base) => ({
-                  ...base,
-                  color: '#618627', // Color del icono del desplegable
-                  position: 'absolute',
-                  right: '-5px',
-                    top: '0',
-                    bottom: '0',
-                    margin: 'auto',
-                    width: 'fit-content',
-                    height: 'fit-content',
-                  '&:hover': {
-                    color: '#7bac2b', // Color del icono al pasar el ratón
-                  },
-                }),
-                indicatorSeparator: (base) => ({
-                  ...base,
-                  display: 'none',
-                }),
-              }}
-          />
+          id={id}
+          name={name}
+          value={options.find(option => option.value === value)} // Esto es para controlar el valor seleccionado
+          onChange={handleSelectChange}
+          onBlur={onBlur}
+          options={options}
+          placeholder={placeholder || "Seleccione una opción"}
+          styles={{
+            control: (base) => ({
+              ...base,
+              borderRadius: 5,
+              fontSize: '16px',
+              padding: '5px',
+              borderColor: '#DDE4ED',
+              height: '50px',
+              width: '220px',
+              display: 'flex',
+              alignItems: 'center',
+              textAlign: 'left',
+              position: 'relative',
+              justifyContent: 'space-between',
+        
+              '&:hover': {
+                borderColor: '#5E9CC8',
+              },
+              '&:focus': {
+                borderColor: '#5E9CC8',
+              },
+        
+              // Media query para pantallas pequeñas
+              '@media (max-width: 1024px)': {
+                fontSize: '14px',
+                height: '40px',
+                width: '200px',
+              },
+              '@media (max-width: 800px)': {
+                fontSize: '14px',
+                height: '40px',
+                width: '160px',
+              },
+            }),
+            option: (base, state) => ({
+              ...base,
+              backgroundColor: state.isFocused ? '#f1f1f1' : '#fff',
+              color: '#333',
+              padding: '5px',
+              fontSize: '16px',
+              cursor: 'pointer',
+              height: '40px',
+              width: '100%',
+              display: 'grid',
+              alignItems: 'center',
+        
+              '&:hover': {
+                backgroundColor: '#F0F0F0',
+              },
+            }),
+            menu: (base) => ({
+              ...base,
+              borderRadius: 8,
+              marginTop: '5px',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+              height: '200px',
+              overflowY: 'hidden',
+              overflowX: 'hidden',
+            }),
+            singleValue: (base) => ({
+              ...base,
+              color: '#333',
+              fontSize: '16px',
+              padding: '5px 0',
+        
+              // Media query para pantallas pequeñas
+              '@media (max-width: 600px)': {
+                fontSize: '14px',
+              },
+            }),
+            placeholder: (base) => ({
+              ...base,
+              fontSize: '16px',
+              color: '#BDBDBD',
+              padding: '5px 0',
+            }),
+            dropdownIndicator: (base) => ({
+              ...base,
+              color: '#618627',
+              position: 'absolute',
+              right: '-5px',
+              top: '0',
+              bottom: '0',
+              margin: 'auto',
+              width: 'fit-content',
+              height: 'fit-content',
+        
+              '&:hover': {
+                color: '#7bac2b',
+              },
+            }),
+            indicatorSeparator: (base) => ({
+              ...base,
+              display: 'none',
+            }),
+          }}
+        />
         ) : isTextarea ? (
           <textarea
             {...(placeholder && { placeholder })}

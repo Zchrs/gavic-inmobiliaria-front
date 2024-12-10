@@ -85,8 +85,14 @@ const FooTer = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
+    @media (max-width: 920px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
     &-logo{
       filter: brightness(1%) invert(50%) ;
+      @media (max-width: 1024px) {
+        width: 150px;
+      }
     }
     &-links{
       display: grid;

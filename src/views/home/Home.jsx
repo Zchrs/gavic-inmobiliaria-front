@@ -164,6 +164,10 @@ const HoMe = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        @media (max-width: 800px) {
+          height: 100%;
+          object-fit: cover;
+        }
       }
       &-search {
         display: grid;
@@ -174,6 +178,14 @@ const HoMe = styled.div`
         gap: 5px;
         align-items: center;
         margin: auto;
+        @media (max-width: 1024px) {
+          padding: 0px 10px;
+          margin: 0;
+        }
+        @media (max-width: 800px) {
+          padding: 0px 10px;
+          margin: 0;
+        }
 
         &-inside{
         border-radius: 5px;
@@ -188,6 +200,11 @@ const HoMe = styled.div`
           div{
             display: grid;
             align-items: center;
+          }
+
+          @media (max-width: 800px) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
           }
         }
       }

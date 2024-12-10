@@ -11,9 +11,7 @@ export const leases = [
         id: `${uuidv4(v4options.random)}`,
         title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'laptop-gaming-rog',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -32,9 +30,7 @@ export const leases = [
         id: `${uuidv4(v4options.random)}`,
         title: 'Laptop gamer 2',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'laptop-gaming-victus',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -54,8 +50,7 @@ export const leases = [
         title: 'Laptop gamer 3',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'laptop',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -75,8 +70,7 @@ export const leases = [
         title: 'Laptop gamer 4',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'laptop-gamer-lenovo',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -96,8 +90,7 @@ export const leases = [
         title: 'Laptop gamer 5',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'laptop-asus',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -117,8 +110,7 @@ export const leases = [
         title: 'Laptop gamer 5',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'laptop-asus',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -138,8 +130,27 @@ export const leases = [
         title: 'Laptop gamer 5',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
+        img: 'laptop-asus',
+        price: '$777,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae. 
+`,
         img: 'laptop-asus',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -159,8 +170,7 @@ export const leases = [
         title: 'Laptop gamer 5',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'laptop-asus',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -180,29 +190,7 @@ export const leases = [
         title: 'Laptop gamer 5',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
-        img: 'laptop-asus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'laptop-asus',
         price: '$777,999.00',
         previousPrice: '$999,999.00',
@@ -224,8 +212,7 @@ export const clothingChilds = [
         title: 'Conjunto niño looney tunes blanco/verde',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'conjunto9',
         price: '$39,999.00',
         previousPrice: '$45,999.00',
@@ -245,8 +232,7 @@ export const clothingChilds = [
         title: 'Conjunto dragon ball super mouse blanco/azul',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'conjunto2',
         price: '$39,999.00',
         previousPrice: '$45,999.00',
@@ -266,8 +252,7 @@ export const clothingChilds = [
         title: 'Conjunto niño bob esponja blanco/azul',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'conjunto10',
         price: '$39,999.00',
         previousPrice: '$45,999.00',
@@ -287,8 +272,7 @@ export const clothingChilds = [
         title: 'Conjunto niño mickey mouse rojo/blanco',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'conjunto8',
         price: '$39,999.00',
         previousPrice: '$45,999.00',
@@ -308,8 +292,7 @@ export const clothingChilds = [
         title: 'Conjunto niño los pitufos blanco/azul',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-         Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'conjunto6',
         price: '$39,999.00',
         previousPrice: '$45,999.00',
@@ -332,7 +315,7 @@ export const mobilePhones = [
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 's23-ultra',
         price: '$999,999.00',
         previousPrice: '$777,999.00',
@@ -353,7 +336,7 @@ export const mobilePhones = [
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'moto-g-84',
         price: '$999,999.00',
         previousPrice: '$777,999.00',
@@ -374,7 +357,7 @@ export const mobilePhones = [
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'zflip',
         price: '$999,999.00',
         previousPrice: '$777,999.00',
@@ -395,7 +378,7 @@ export const mobilePhones = [
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'huawei-y-91',
         price: '$999,999.00',
         previousPrice: '$777,999.00',
@@ -416,7 +399,7 @@ export const mobilePhones = [
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
-         velit odit labore laboriosam iste officiis.`,
+`,
         img: 'iphone-14-pro',
         price: '$999,999.00',
         previousPrice: '$777,999.00',
@@ -439,8 +422,7 @@ export const services = [
         description: `Frijol rojo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'arrendamiento',
         price: '$9,999.00',
-        previousPrice: '$11,999.00',
-        sellingsText: 'Vendidos',
+gsText: 'V',
         sellings: '999',
         url: '/products/productId',
         thumbnails: [
@@ -457,8 +439,7 @@ export const services = [
         description: `Garbanzo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'ventas',
         price: '$9,999.00',
-        previousPrice: '$11,999.00',
-        sellingsText: 'Vendidos',
+gsText: 'V',
         sellings: '999',
         url: '/products/productId',
         thumbnails: [
@@ -475,8 +456,7 @@ export const services = [
         description: `Lenteja nacional hidropondica en bolsa nacional de la más alta calidad, 100% orgánicas.`,
         img: 'hipoteca',
         price: '$9,999.00',
-        previousPrice: '$11,999.00',
-        sellingsText: 'Vendidos',
+gsText: 'V',
         sellings: '999',
         url: '/products/productId',
         thumbnails: [
