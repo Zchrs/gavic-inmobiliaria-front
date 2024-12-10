@@ -18,8 +18,15 @@ export const getImg = (route, url, extension = 'svg') => {
   }
 
   export const formatPrice = (price) => {
+    if (price === undefined || price === null) {
+      return "0"; // Devuelve un valor predeterminado si price no es válido
+    }
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
+
+  // export const formatPrice = (price) => {
+  //   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  // };
 
   
   // export const socialMedia = {

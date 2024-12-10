@@ -5,6 +5,12 @@
     padding: 0 12px;
   }
 }
+.pd-laterals-mini {
+  padding: 0 50px;
+  @media (max-width: 1025px) {
+    padding: 0 12px;
+  }
+}
 
 .pd-top-bottom {
   padding: 25px 0;

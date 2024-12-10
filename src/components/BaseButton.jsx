@@ -38,8 +38,8 @@ export const BaseButton = ({
             {svg && (
               <svg xmlns="http://www.w3.org/2000/svg" width="18.571" height="18.711" viewBox="0 0 18.571 18.711">
               <g id="ic-actions-search" transform="translate(-2.969 -2.4)">
-                  <circle id="Elipse_12" data-name="Elipse 12" cx="7" cy="7" r="7" transform="translate(6.79 3.15)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"></circle>
-                  <line id="Línea_50" data-name="Línea 50" x1="4.88" y2="4.88" transform="translate(4.03 15.17)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5"></line>
+                  <circle id="Elipse_12" dataname="Elipse 12" cx="7" cy="7" r="7" transform="translate(6.79 3.15)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="bevel" strokeWidth="1.5"></circle>
+                  <line id="Línea_50" dataname="Línea 50" x1="4.88" y2="4.88" transform="translate(4.03 15.17)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="bevel" strokeWidth="1.5"></line>
               </g>
           </svg>
             )}
