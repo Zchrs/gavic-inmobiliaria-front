@@ -98,12 +98,17 @@ const FooTer = styled.div`
         &:hover{
           color: var(--text-secondary-soft);
         }
-      }
-      &-h2{
-        color: var(--text-secondary-soft);
-      }
-      &-img{
-        width: 40px;
+        }
+        &-h2{
+          color: var(--text-secondary-soft);
+          }
+          &-img{
+            width: 40px;
+            filter: grayscale(100%);
+            transition: all ease .5s;
+            &:hover{
+              filter: grayscale(0%);
+            }
       }
     }
     &-copyright{

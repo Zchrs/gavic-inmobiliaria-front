@@ -7,6 +7,7 @@ import { BaseButton } from "../../components/BaseButton";
 import Select from 'react-select'
 import { useState } from "react";
 import { BaseInputSelect } from "../../components/BaseInputSelect";
+import { RecentAdded } from "../../../index";
 
 export const Home = () => {
   const [selectedSector, setSelectedSector] = useState("");
@@ -131,6 +132,7 @@ export const Home = () => {
           </div>
 
         </div>
+        <RecentAdded />
       </div>
     </HoMe>
   );
