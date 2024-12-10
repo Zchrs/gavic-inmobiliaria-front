@@ -27,6 +27,12 @@ const LayoutHome = styled.section`
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    &-header {
+      display: grid;
+      top : 0;
+      z-index: 200;
+      background: var(--bg-tertiary);
+    }
     &-content {
       display: grid;
     }

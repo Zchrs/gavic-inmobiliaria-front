@@ -44,6 +44,7 @@ export const Header = () => {
         `;
       } else {
         header.style.cssText = `
+        background: var(--bg-tertiary);
           position: relative;
         `;
       }

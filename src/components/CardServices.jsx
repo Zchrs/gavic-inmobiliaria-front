@@ -376,9 +376,9 @@ display: grid;
         margin: 0;
         padding: 150px;
         transition: all ease 0.4s;
-
+        
         @media (max-width: 500px) {
-          max-height: 250px;
+          padding: 100px;
         }
       }
     }
