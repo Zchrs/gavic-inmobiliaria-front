@@ -160,6 +160,7 @@ export const useRoutesDashAdvisors = () => {
 export const useRoutesHome = () => {
 
   return [
+    { name: "home", route: "/", text: "Inicio" },
     { name: "tyc", route: "/tyc", text: "Términos y condiciones" },
     { name: "about us", route: "/about-us", text: "Sobre nosotros" },
     { name: "mision", route: "/mision", text: "Misión" },

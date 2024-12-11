@@ -86,7 +86,7 @@ export const BaseButton = ({
       line-height: 120%;
     }
 
-    &.little-red {
+    &.little-secondary {
       display: grid;
       width: 100%;
       height: 100%;
@@ -98,9 +98,9 @@ export const BaseButton = ({
            padding: 10px 32px;
            width: fit-content;
            height: fit-content;
-           background: #990000;
+           background: var(--bg-secondary);
            color: white;
-           border-radius: 10px;
+           border-radius: 5px;
            font-weight: 600;
            font-size: 17px;
            transition: all ease .3s;

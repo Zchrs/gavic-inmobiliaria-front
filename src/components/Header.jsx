@@ -1,13 +1,11 @@
-import { Link, NavLink } from "react-router-dom"
-import styled from "styled-components"
-import { getImg } from "../../globalActions"
+import { Link, NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { getImg, scrollTop } from "../../globalActions";
 import { useRoutesHome } from "../routes/routes";
 import { useEffect, useMemo } from "react";
-
+import { BaseButton } from "./BaseButton";
 
 export const Header = () => {
-
-
   let contador = 0;
   const showHideMenu = () => {
     let navMenu = document.getElementById("menu");
@@ -28,13 +26,12 @@ export const Header = () => {
         `;
       }
     }
-  }
-  
+  };
 
   useEffect(() => {
     let header = document.getElementById("header");
     const menuFixed = () => {
-      if (window.scrollY > 50 ) {
+      if (window.scrollY > 50) {
         header.style.cssText = `
           background: var(--bg-tertiary);
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -56,36 +53,81 @@ export const Header = () => {
     };
   }, []);
 
+  const handleFunctions = () => {
+    scrollTop();
+    showHideMenu();
+  }
+
   const routes = useRoutesHome();
 
   const hdrRoutes = useMemo(() => {
-      const selectedNames = ["leases", "immovables", "list your property", "sales", "register"]; // Nombres a incluir
-      return routes.filter((route) => selectedNames.includes(route.name));
-    }, [routes]);
+    const selectedNames = [
+      "home",
+      "leases",
+      "immovables",
+      "list your property",
+      "sales",
+      "register",
+    ]; // Nombres a incluir
+    return routes.filter((route) => selectedNames.includes(route.name));
+  }, [routes]);
 
-    const headerRoutes = hdrRoutes;
+  const headerRoutes = hdrRoutes;
 
   return (
     <HeaDer id="header">
       <div className="header">
         <div className="header-logo">
-          <Link to={"/"}><img className="header-logo-img" src={getImg('svg', 'logo', 'svg')} alt="logo" /></Link>
+          <Link to={"/"}>
+            <img
+              className="header-logo-img"
+              src={getImg("svg", "logo", "svg")}
+              alt="logo"
+            />
+          </Link>
         </div>
         <div className="header-menu" onClick={showHideMenu}>
-        <Link to={"/"}><img className="header-logo-img" src={getImg('svg', 'menu', 'svg')} alt="logo" /></Link>
+          <Link to={"/"}>
+            <img
+              className="header-logo-img"
+              src={getImg("svg", "menu", "svg")}
+              alt="logo"
+            />
+          </Link>
         </div>
-        <div  id="menu" className="header-links">
-        {headerRoutes.map((item, index) => (
-            <NavLink onClick={showHideMenu} className="header-links-a" to={item.route} key={index}>
+        <div id="menu" className="header-links">
+          {headerRoutes.map((item, index) => (
+            <NavLink
+              onClick={handleFunctions}
+              className={({ isActive }) =>
+                `${isActive ? "header-links-a-active" : "header-links-a"}`
+              }
+              to={item.route}
+              key={index}>
               {item.text}
             </NavLink>
           ))}
+                <div className="header-btns">
+                  <BaseButton
+                    classs={"button little-secondary"}
+                    textLabel={true}
+                    label={"Iniciar sesión"}
+                    // handleClick={whatsapp}
+                  />
+                  <BaseButton
+                    classs={"button little-secondary"}
+                    textLabel={true}
+                    label={"Registrarse"}
+                    // handleClick={whatsapp}
+                  />
+              
         </div>
-
+        </div>
       </div>
+
     </HeaDer>
-  )
-}
+  );
+};
 
 const HeaDer = styled.div`
   display: grid;
@@ -100,11 +142,22 @@ const HeaDer = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+
+    &-btns{
+      display: none;
+      @media (max-width: 1024px) {
+        padding: 0;
+      display: flex;
+      width: 100%;
+      height: fit-content;
+      justify-content: space-between;
+              }
+    }
       &-menu{
         display: none;
         @media (max-width: 1024px) {
           display: grid;
-          width: 45px;
+          width: 35px;
         }
       }
     &-links{
@@ -121,23 +174,46 @@ const HeaDer = styled.div`
         &:hover{
           color: var(--text-primary);
         }
+        &:hover::before {
+           width: 100%;
+         }
+  
+         &-active {
+           font-size: 18px;
+           font-weight: 500;
+           width: fit-content;
+           color: var(--text-primary);
+           border-bottom: 3px solid var(--bg-primary);
+           @media (max-width: 1024px) {
+            margin: auto;
+            margin-top: -50px;
+             font-size: 25px;
+             color: var(--text-tertiary);
+             border-bottom: 3px solid var(--bg-tertiary);
+           }
+          }
       }
+      
       @media (max-width: 1024px) {
         width: 100%;
         height: 100%;
         background: var(--bg-secondary-semi);
-        top: 100px;
+        top: 90px;
         left: 0;
         transform: translate(-100%);
         position: fixed;
         display: grid;
-        place-content: center;
-        justify-content: center;
+        padding: 150px 0 50px 0;
         z-index: 100;
+        align-items: start;
+        
         &-a{
-        font-size: 18px;
+        margin: -50px auto;
+        font-size: 25px;
         font-weight: 300;
         width: fit-content;
+        height: fit-content;
+        padding: 0;
         color: var(--text-tertiary);
         &:hover{
           color: var(--text-primary);
@@ -151,7 +227,7 @@ const HeaDer = styled.div`
       &-img{
         width: 100%;
       }
-      @media (max-width: 800px) {
+      @media (max-width: 1024px) {
         width: 100px;
         &-img{
           width: 100%;
@@ -159,16 +235,6 @@ const HeaDer = styled.div`
         
       }
     }
-    &-mobile{
-      display: none;
-      @media (max-width: 1024px) {
-        position: fixed;
-        display: flex;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-      }
-    }
+
   }
 `
