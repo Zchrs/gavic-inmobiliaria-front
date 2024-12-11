@@ -1,5 +1,5 @@
 :root {
-    --primary: #618627;
+    --primary: #008800;
     --primary-semi: #709d48;
     --primary-light: #94b378;
     --primary-semi-soft: #b3c8a1;
@@ -18,7 +18,7 @@
     --dark: black;
   
     /* TEXT COLORS */
-    --text-primary: #618627;
+    --text-primary: #008800;
     --text-primary-semi: #709d48;
     --text-primary-light: #94b378;
     --text-primary-semi-soft: #b3c8a1;
@@ -37,7 +37,7 @@
     --text-dark: black;
   
     /* BACKGROUNDS */
-    --bg-primary: #618627;
+    --bg-primary: #008800;
     --bg-primary-semi: #709d48;
     --bg-primary-light: #94b378;
     --bg-primary-semi-soft: #b3c8a1;

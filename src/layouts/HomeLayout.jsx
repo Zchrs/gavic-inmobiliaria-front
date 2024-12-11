@@ -22,9 +22,11 @@ const LayoutHome = styled.section`
   height: 100%;
   min-height: 100vh;
   align-items: start;
+  max-width: 1920px;
+  margin: auto;
   .homelayout {
     display: grid;
-    width: 100%;
+    max-width: 1920px;
     height: 100%;
     min-height: 100vh;
     &-header {
@@ -34,6 +36,7 @@ const LayoutHome = styled.section`
       background: var(--bg-tertiary);
     }
     &-content {
+      align-items: start;
       display: grid;
       background: var(--bg-tertiary);
     }

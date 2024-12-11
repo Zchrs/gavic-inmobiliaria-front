@@ -1,65 +1,84 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
-import { getFile } from '../../globalActions';
+import { Link } from "react-router-dom";
+import { getFile, getImg } from "../../globalActions";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const BaseButton = ({ 
-  label, 
-  icon, 
-  link, 
-  img, 
-  svg, 
-  classs, 
-  textLabel, 
+export const BaseButton = ({
+  label,
+  icon,
+  link,
+  img,
+  svg,
+  classs,
+  textLabel,
   handleClick,
   disabled,
   onMouseEnter,
   onMouseLeave,
   target,
-  onSubmit
- }) => {
-    return (
-        <ButtonBase>
-      <button 
-      disabled={disabled} 
-      onClick={handleClick} 
-      className={`${classs} ${disabled ? 'disabled' : ''}`}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onSubmit={onSubmit}
-      {...(target & { target })}
-      >
-          <Link className="button__a" to={link} rel="noopener" target={target}>
-            {img && (
-              <img src={getFile('svg', `${icon}`, 'svg')} alt="" />
-            )}
-            {svg && (
-              <svg xmlns="http://www.w3.org/2000/svg" width="18.571" height="18.711" viewBox="0 0 18.571 18.711">
+  onSubmit,
+}) => {
+  return (
+    <ButtonBase>
+      <button
+        disabled={disabled}
+        onClick={handleClick}
+        className={`${classs} ${disabled ? "disabled" : ""}`}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onSubmit={onSubmit}
+        {...(target & { target })}>
+        <Link className="button__a" to={link} rel="noopener" target={target}>
+          {img && <img src={getImg("svg", `${icon}`, "svg")} alt="" />}
+          {svg && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18.571"
+              height="18.711"
+              viewBox="0 0 18.571 18.711">
               <g id="ic-actions-search" transform="translate(-2.969 -2.4)">
-                  <circle id="Elipse_12" dataname="Elipse 12" cx="7" cy="7" r="7" transform="translate(6.79 3.15)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="bevel" strokeWidth="1.5"></circle>
-                  <line id="Línea_50" dataname="Línea 50" x1="4.88" y2="4.88" transform="translate(4.03 15.17)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="bevel" strokeWidth="1.5"></line>
+                <circle
+                  id="Elipse_12"
+                  dataname="Elipse 12"
+                  cx="7"
+                  cy="7"
+                  r="7"
+                  transform="translate(6.79 3.15)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="bevel"
+                  strokeWidth="1.5"></circle>
+                <line
+                  id="Línea_50"
+                  dataname="Línea 50"
+                  x1="4.88"
+                  y2="4.88"
+                  transform="translate(4.03 15.17)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="bevel"
+                  strokeWidth="1.5"></line>
               </g>
-          </svg>
-            )}
-            {link && (
-              <span className="button__span">
-                {label}
-              </span>
-            )}
-            {textLabel && (<span>{label}</span>)}
-            </Link>
+            </svg>
+          )}
+          {link && <span className="button__span">{label}</span>}
+          {textLabel && <span>{label}</span>}
+        </Link>
       </button>
-        </ButtonBase>
-    );
-  };
+    </ButtonBase>
+  );
+};
 
-  const ButtonBase = styled.div`
-    background: transparent;
-    display: grid;
-    
-    .button {
+const ButtonBase = styled.div`
+  background: transparent;
+  display: grid;
+
+  .button {
     background: transparent;
     cursor: pointer;
     outline: none;
@@ -69,10 +88,6 @@ export const BaseButton = ({
     margin: 0;
     padding: 0;
 
-
-
-
-  
     &.little-red-md {
       display: flex;
       width: fit-content;
@@ -92,54 +107,54 @@ export const BaseButton = ({
       height: 100%;
       align-items: center;
       justify-content: center;
-         a{
-           gap: 5px;
-           display: flex;
-           padding: 10px 32px;
-           width: fit-content;
-           height: fit-content;
-           background: var(--bg-secondary);
-           color: white;
-           border-radius: 5px;
-           font-weight: 600;
-           font-size: 17px;
-           transition: all ease .3s;
-           text-decoration: none;
-           img{
-             filter: brightness(500%);
-             width: 13%;
-           }
-           &:hover{
-             background: #477c46;
-           }
-           span{
-             width: fit-content;
-             background: transparent;
-           }
+      a {
+        gap: 5px;
+        display: flex;
+        padding: 10px 32px;
+        width: fit-content;
+        height: fit-content;
+        background: var(--bg-secondary);
+        color: white;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 17px;
+        transition: all ease 0.3s;
+        text-decoration: none;
+        img {
+          filter: brightness(500%);
+          width: 13%;
+        }
+        &:hover {
+          background: #477c46;
+        }
+        span {
+          width: fit-content;
+          background: transparent;
+        }
 
-           @media (max-width: 800px) {
-            padding: 5px 17px;
-           }
-         }
+        @media (max-width: 800px) {
+          padding: 5px 17px;
+        }
+      }
 
-         p{
-          margin: 0;
-          padding: 0;
-         }
-         
-         &.disabled {
-        cursor:default;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      &.disabled {
+        cursor: default;
         z-index: 50;
         opacity: 0.6;
-        transition: all ease .4s;
-        
-        a{
-          cursor:not-allowed;
+        transition: all ease 0.4s;
+
+        a {
+          cursor: not-allowed;
           background: gray;
         }
 
-        &:hover{
-          a{
+        &:hover {
+          a {
             background: gray;
           }
         }
@@ -158,12 +173,12 @@ export const BaseButton = ({
       line-height: 120%;
     }
     &.little-red-md {
-   display: grid;
-   width: fit-content;
-   height: fit-content;
-      a{
-       justify-content: center;
-       align-items: center;
+      display: grid;
+      width: fit-content;
+      height: fit-content;
+      a {
+        justify-content: center;
+        align-items: center;
         gap: 5px;
         display: flex;
         padding: 16px;
@@ -175,27 +190,26 @@ export const BaseButton = ({
         font-weight: 800;
         font-size: 17px;
         line-height: 120%;
-        transition: all ease .3s;
+        transition: all ease 0.3s;
         text-decoration: none;
-        img{
+        img {
           filter: brightness(500%);
           width: 13%;
         }
-        &:hover{
+        &:hover {
           background: #df898b;
         }
-        span{
+        span {
           width: fit-content;
           background: transparent;
         }
-
       }
     }
     &.mini-red {
       display: flex;
       width: 100%;
       height: fit-content;
-      a{
+      a {
         text-align: center;
         text-decoration: none;
         gap: 5px;
@@ -209,32 +223,40 @@ export const BaseButton = ({
         font-weight: 800;
         font-size: 15px;
         line-height: 120%;
-        transition: all ease .3s;
-        img{
+        transition: all ease 0.3s;
+        img {
           filter: brightness(500%);
           width: 13%;
         }
-        &:hover{
+        &:hover {
           background: #df898b;
         }
-        span{
+        span {
           width: fit-content;
           background: transparent;
         }
-
       }
     }
     &.full-red {
       display: grid;
       width: 100%;
       height: 100%;
-      clip-path: polygon(3% 0, 97% 0, 100% 20%, 100% 80%, 97% 100%, 3% 100%, 0 80%, 0 20%);
+      clip-path: polygon(
+        3% 0,
+        97% 0,
+        100% 20%,
+        100% 80%,
+        97% 100%,
+        3% 100%,
+        0 80%,
+        0 20%
+      );
       position: relative;
       background: var(--bg-primary);
-      a{
+      a {
         text-decoration: none;
-       justify-content: center;
-       align-items: center;
+        justify-content: center;
+        align-items: center;
         gap: 5px;
         display: flex;
         padding: 10px 16px;
@@ -246,41 +268,48 @@ export const BaseButton = ({
         font-weight: 800;
         font-size: 17px;
         line-height: 120%;
-        transition: all ease .3s;
-        img{
+        transition: all ease 0.3s;
+        img {
           filter: brightness(500%);
           width: 13%;
         }
-        &:hover{
+        &:hover {
           background: #df898b;
         }
-        span{
+        span {
           width: fit-content;
         }
-
       }
-      &::before{
+      &::before {
         display: block;
-    position: absolute;
-    content: "";
-    clip-path: polygon(3% 0, 97% 0, 100% 20%, 100% 80%, 97% 100%, 3% 100%, 0 80%, 0 20%);
+        position: absolute;
+        content: "";
+        clip-path: polygon(
+          3% 0,
+          97% 0,
+          100% 20%,
+          100% 80%,
+          97% 100%,
+          3% 100%,
+          0 80%,
+          0 20%
+        );
 
-    top: 1px;
-    left: 1px;
-    width: 99%;
-    height: 95%;
-    background: var(--bg-4th);
-    z-index: 400;
-}
-
+        top: 1px;
+        left: 1px;
+        width: 99%;
+        height: 95%;
+        background: var(--bg-4th);
+        z-index: 400;
+      }
     }
 
     &.full-black {
       display: grid;
       width: 100%;
       height: 100%;
-      
-      a{
+
+      a {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -293,23 +322,23 @@ export const BaseButton = ({
         font-weight: 500;
         font-size: 17px;
         line-height: 120%;
-        transition: all ease .3s;
+        transition: all ease 0.3s;
 
-        img{
+        img {
           filter: brightness(500%);
           width: 15%;
           margin: 0;
           padding: 0;
-  
+
           @media (max-width: 550px) {
             width: 12%;
           }
         }
-  
-        &:hover{
+
+        &:hover {
           background: rgb(43, 42, 42);
         }
-        p{
+        p {
           height: fit-content;
           // border: #007a5a 1px solid;
           color: white;
@@ -322,8 +351,8 @@ export const BaseButton = ({
       display: grid;
       width: 100%;
       height: 100%;
-      
-      a{
+
+      a {
         text-decoration: none;
         display: grid;
         place-items: center;
@@ -336,11 +365,11 @@ export const BaseButton = ({
         font-weight: 500;
         font-size: 15px;
         line-height: 120%;
-        transition: all ease .3s;
+        transition: all ease 0.3s;
         @media (max-width: 550px) {
           padding: 14px;
         }
-        img{
+        img {
           margin: auto;
           filter: brightness(500%);
           width: 55%;
@@ -348,13 +377,11 @@ export const BaseButton = ({
             width: 40%;
           }
         }
-  
-        &:hover{
+
+        &:hover {
           background: #990000;
         }
-
       }
-      
     }
     &.full-red-bullet {
       display: grid;
@@ -363,23 +390,23 @@ export const BaseButton = ({
       overflow: hidden;
 
       &.disabled {
-        cursor:default;
+        cursor: default;
         z-index: 50;
         opacity: 0.6;
-        transition: all ease .4s;
-        
-        a{
-          cursor:not-allowed;
+        transition: all ease 0.4s;
+
+        a {
+          cursor: not-allowed;
           background: gray;
         }
 
-        &:hover{
-          a{
+        &:hover {
+          a {
             background: gray;
           }
         }
       }
-      a{
+      a {
         position: relative;
         overflow: hidden;
         text-decoration: none;
@@ -395,29 +422,28 @@ export const BaseButton = ({
         font-weight: 600;
         font-size: 17px;
         line-height: 120%;
-        transition: all ease .3s;
+        transition: all ease 0.3s;
         margin-top: 20px;
         @media (max-width: 550px) {
           padding: 16px;
         }
-        
-              img{
-                filter: brightness(500%);
-                width: 18%;
-              }
-        
-              &:hover{
-                background: #007a5a;
-              }
 
+        img {
+          filter: brightness(500%);
+          width: 18%;
+        }
+
+        &:hover {
+          background: #007a5a;
+        }
       }
     }
-  
+
     &.full-outline {
       display: grid;
       width: 100%;
-        height: 100%;
-      a{
+      height: 100%;
+      a {
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -426,33 +452,41 @@ export const BaseButton = ({
         width: 100%;
         height: 100%;
         background: transparent;
-        border: black 1px solid;
-        color: black;
-        border-radius: 50px;
+        border: var(--bg-tertiary) 1px solid;
+        color: var( --text-tertiary);
+        border-radius: 5px;
         padding: 7px 16px;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 17px;
         line-height: 120%;
+        @media (max-width: 820px) {
+          font-size: 14px;
+        }
 
-        p{
+        p {
           color: black;
           margin: 0;
           padding: 0;
         }
+        span{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+        }
 
-        img{
-          width: 13%;
-          filter: brightness(10%);
+        img {
+          width: 15%;
+          filter: brightness(500%);
         }
       }
-
     }
     &.outline-white {
       display: grid;
       width: fit-content;
       height: 100%;
 
-      a{
+      a {
         text-decoration: none;
         z-index: 10;
         display: flex;
@@ -468,36 +502,36 @@ export const BaseButton = ({
         font-size: 14px;
         line-height: 120%;
 
-        :hover{
+        :hover {
           color: white;
           border: white 1px solid;
 
-          span{
+          span {
             border: none;
           }
         }
 
-        img{
+        img {
           width: 13%;
           filter: brightness(10%);
         }
       }
-      
-      :hover{
-          color: white;
-          border: white 1px solid;
 
-          span{
-            border: none;
-          }
+      :hover {
+        color: white;
+        border: white 1px solid;
+
+        span {
+          border: none;
         }
+      }
     }
 
-    &.full-gold {
+    &.full-primary {
       display: grid;
-      width: fit-content;
-      height: fit-content;
-      a{
+      width: 100%;
+      height: 100%;
+      a {
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -505,34 +539,42 @@ export const BaseButton = ({
         justify-content: center;
         width: 100%;
         height: 100%;
-        background: #a4883e;
+        background: var(--bg-primary);
         border: none;
         color: white;
         border-radius: 7px;
         padding: 12px 16px;
-        font-weight: 800;
+        font-weight: 400;
         font-size: 17px;
         line-height: 120%;
+        &:hover{
+          background: var(--bg-primary-semi);
+        }
 
-        p{
+        p {
           font-weight: 400;
           margin: 0;
           padding: 0;
         }
+        span{
+          display: grid;
+          align-items: center;
+          width: fit-content;
+          margin: auto;
+        }
 
-        img{
-          width: 13%;
+        img {
+          width: 14%;
           filter: brightness(500%);
         }
       }
-
     }
-    &.full-blue {
+    &.full-secondary {
       display: grid;
       width: 100%;
       height: fit-content;
 
-      a{
+      a {
         font-size: 16px;
         text-decoration: none;
         display: flex;
@@ -541,36 +583,35 @@ export const BaseButton = ({
         justify-content: center;
         width: 100%;
         height: 100%;
-        background: #1B6B84;
+        background: var(--bg-secondary);
         border: none;
         color: white;
         border-radius: 7px;
         padding: 10px 8px;
         font-weight: 800;
         line-height: 120%;
-        transition: all ease .3s;
+        transition: all ease 0.3s;
 
-        p{
+        p {
           font-weight: 400;
           margin: 0;
           padding: 0;
         }
 
-        img{
+        img {
           width: 10%;
           filter: brightness(500%);
         }
-        &:hover{
+        &:hover {
           background: #15586b;
         }
       }
-
     }
     &.full-outline-white {
       display: grid;
       width: 100%;
       height: 100%;
-      a{
+      a {
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -587,17 +628,16 @@ export const BaseButton = ({
         font-size: 17px;
         line-height: 120%;
 
-        img{
+        img {
           width: 14%;
         }
       }
-
     }
     &.full-outline-white-small {
       display: grid;
       width: 100%;
       height: 100%;
-      a{
+      a {
         margin: auto;
         text-decoration: none;
         display: flex;
@@ -615,11 +655,10 @@ export const BaseButton = ({
         font-size: 17px;
         line-height: 120%;
 
-        img{
+        img {
           width: 14%;
         }
       }
-
     }
     &.full-outline-soft {
       display: grid;
@@ -635,7 +674,7 @@ export const BaseButton = ({
       gap: 8px;
       padding: 8px;
       margin: 0;
-  
+
       img {
         margin: 0;
         padding: 0;
@@ -700,17 +739,25 @@ export const BaseButton = ({
     }
     &.small-outline {
       display: grid;
-      justify-content: center;
       width: fit-content;
-      height: fit-content;
-      background: transparent;
-      border: 1px solid #990000;
-      color: #621415;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 17px;
-      line-height: 120%;
-      padding: 16px;
+      height: 100%;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: fit-content;
+        background: transparent;
+        border: 1px solid var(--bg-tertiary);
+        color: var(--text-tertiary);
+        border-radius: 5px;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 120%;
+        padding: 5px 15px;
+      }
     }
     &.small-outline-md {
       display: grid;
@@ -726,7 +773,7 @@ export const BaseButton = ({
       line-height: 120%;
       padding: 8px 16px;
     }
-  
+
     &.no-border {
       border: none;
       width: fit-content;
@@ -738,7 +785,7 @@ export const BaseButton = ({
       line-height: 120%;
       padding: 16px;
     }
-  
+
     &.no-border-font {
       border: none;
       width: fit-content;
@@ -753,7 +800,7 @@ export const BaseButton = ({
       width: 100%;
       height: 100%;
       background: transparent;
-      a{
+      a {
         text-decoration: none;
         display: grid;
         align-items: center;
@@ -768,17 +815,16 @@ export const BaseButton = ({
         line-height: 2;
         font-size: 16px;
         cursor: pointer;
-        &:hover{
+        &:hover {
           background: #18803e;
         }
       }
-  
+
       img {
         margin-top: -2px;
       }
-
     }
-  
+
     &.red {
       justify-content: center;
       display: grid;
@@ -806,19 +852,19 @@ export const BaseButton = ({
       width: fit-content;
       height: 100%;
       line-height: 140%;
-      transition: all ease .3s;
-      a{
+      transition: all ease 0.3s;
+      a {
         font-weight: 400;
         font-size: 17px;
         display: flex;
         gap: 5px;
         color: white;
         align-items: center;
-        padding: 5px 25px;
+        padding: 5px 15px;
         z-index: 100;
         width: fit-content;
         height: fit-content;
-        
+
         @media (max-width: 500px) {
           padding: 5px 10px;
           font-size: 13px;
@@ -831,10 +877,10 @@ export const BaseButton = ({
       img {
         margin-top: -2px;
       }
-      &:hover{
-        transition: all ease .3s;
+      &:hover {
+        transition: all ease 0.3s;
         background: #ef4a4d;
-        a{
+        a {
           text-shadow: black 1px 1px 1px;
         }
       }
@@ -852,9 +898,9 @@ export const BaseButton = ({
       font-weight: 400;
       font-size: 15px;
       line-height: 140%;
-      transition: all ease .3s;
+      transition: all ease 0.3s;
 
-      a{
+      a {
         display: block;
         width: 100%;
         height: 100%;
@@ -872,13 +918,12 @@ export const BaseButton = ({
       img {
         margin-top: -2px;
       }
-      &:hover{
+      &:hover {
         background: #ec33362a;
-        a{
+        a {
           text-shadow: rgba(108, 105, 105, 0.738) 1px 1px 1px;
         }
       }
-
     }
     &.small {
       align-items: center;
@@ -913,9 +958,9 @@ export const BaseButton = ({
       text-align: center;
       padding: 8px 12px;
       gap: 8px;
-      border: #621415 1px solid;
-      color: #990000;
-      border-radius: 1000px;
+      border: var(--bg-tertiary) 1px solid;
+      color: var(--text-tertiary);
+      border-radius: 5px;
       font-weight: 800;
       font-size: 17px;
       line-height: 120%;
@@ -945,7 +990,7 @@ export const BaseButton = ({
     &__a {
       color: inherit;
     }
-  
+
     &.little-red-xl {
       display: flex;
       width: 100%;
@@ -975,51 +1020,50 @@ export const BaseButton = ({
       line-height: 140%;
     }
 
-    &.delete{
+    &.delete {
       display: grid;
       width: 100%;
       height: 100%;
       align-items: center;
       justify-content: center;
-         a{
-           gap: 5px;
-           display: flex;
-           align-items: center;
-           padding: 10px;
-           width: 100%;
-           height: 100%;
-           background: #990000;
-           color: white;
-           border-radius: 7px;
-           font-weight: 400;
-           font-size: 12px;
-           transition: all ease .3s;
-           text-decoration: none;
-           border: none;
-           outline: none;
-           img{
-             filter: brightness(500%);
-             width: 13%;
-           }
-           &:hover{
-             background: #990000;
-           }
-           span{
-             width: fit-content;
-           }
-   
-         }
-         p{
-          margin: 0;
-          padding: 0;
-         }
+      a {
+        gap: 5px;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        background: #990000;
+        color: white;
+        border-radius: 7px;
+        font-weight: 400;
+        font-size: 12px;
+        transition: all ease 0.3s;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        img {
+          filter: brightness(500%);
+          width: 13%;
+        }
+        &:hover {
+          background: #990000;
+        }
+        span {
+          width: fit-content;
+        }
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
     }
-    &.update{
+    &.update {
       display: grid;
       width: 100%;
       height: 100%;
-         a{
-          font-size: 11px;
+      a {
+        font-size: 11px;
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -1027,30 +1071,29 @@ export const BaseButton = ({
         justify-content: center;
         width: 100%;
         height: 100%;
-        background: #1B6B84;
+        background: #1b6b84;
         border: none;
         color: white;
         border-radius: 7px;
         padding: 10px 8px;
         line-height: 120%;
-        transition: all ease .3s;
-           img{
-             filter: brightness(500%);
-             width: 13%;
-           }
-           &:hover{
-             background: #15586b;
-             color: white;
-           }
-           span{
-             width: fit-content;
-           }
-   
-         }
-         p{
-          margin: 0;
-          padding: 0;
-         }
+        transition: all ease 0.3s;
+        img {
+          filter: brightness(500%);
+          width: 13%;
+        }
+        &:hover {
+          background: #15586b;
+          color: white;
+        }
+        span {
+          width: fit-content;
+        }
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
     }
   }
-  `
+`;

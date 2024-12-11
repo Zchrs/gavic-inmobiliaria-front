@@ -1,7 +1,212 @@
-
+import styled from "styled-components";
+import { useState } from "react";
+import { BaseInputSelect, BaseButton, CardLeases } from "../../../../index";
+import { leases } from "../../../../apiEmulated";
 
 export const Immovables = () => {
+  const [selectedWant, setSelectedWant] = useState("");
+  const [selectedSector, setSelectedSector] = useState("");
+  const [selectedBudget, setSelectedBudget] = useState("");
+  const [selectedProperty, setSelectedProperty] = useState("");
+  const [selectedCode, setSelectedCode] = useState("");
+
+  const handleWant = (e) => {
+    console.log("Sector seleccionado:", e.target.value);
+    setSelectedWant(e.target.value); // Actualizar el estado con la opción seleccionada
+  };
+  const handleSector = (e) => {
+    console.log("Sector seleccionado:", e.target.value);
+    setSelectedSector(e.target.value); // Actualizar el estado con la opción seleccionada
+  };
+  const handleProperty = (p) => {
+    setSelectedProperty(p.target.value); // Actualizar el estado con la opción seleccionada
+  };
+  const handleBudget = (b) => {
+    setSelectedBudget(b.target.value); // Actualizar el estado con la opción seleccionada
+  };
+  const handleCode = (c) => {
+    setSelectedCode(c.target.value); // Actualizar el estado con la opción seleccionada
+  };
+
   return (
-    <div>Immovables</div>
-  )
-}
+    <ImmoVables>
+      <div className="immovables">
+        <div className="immovables-header">
+          <div>
+            <BaseInputSelect
+              placeholder="Quiero"
+              isSmallSelect={true}
+              options={[
+                { value: "Comprar", label: "Comprar" },
+                { value: "Arrendar", label: "Arrendar" },
+              ]}
+              name="want"
+              value={selectedWant}
+              onChange={handleWant}
+            />
+          </div>
+          <div>
+            <BaseInputSelect
+              placeholder="Sector"
+              isSelect={true}
+              options={[
+                { value: "Aranjuez", label: "Aranjuez" },
+                { value: "Araucaria", label: "Araucaria" },
+                { value: "Blanquizal", label: "Blanquizal" },
+                { value: "Belén", label: "Belén" },
+                { value: "Castilla", label: "Castilla" },
+                { value: "Caicedo", label: "Caicedo" },
+                { value: "El picacho", label: "El picacho" },
+                { value: "El salvador", label: "El salvador" },
+              ]}
+              name="budget"
+              value={selectedSector}
+              onChange={handleSector}
+            />
+          </div>
+          <div>
+            <BaseInputSelect
+              placeholder="Tipo de inmueble"
+              isSelect={true}
+              name="property"
+              value={selectedProperty}
+              onChange={handleProperty}
+              options={[
+                { value: "option1", label: "Casa" },
+                { value: "option2", label: "Apartamento" },
+                { value: "option3", label: "Apartaestudio" },
+                { value: "option4", label: "Local" },
+                { value: "option5", label: "Casa Local" },
+                { value: "option6", label: "Finca" },
+                { value: "option7", label: "Casa Finca" },
+                { value: "option8", label: "Oficina" },
+              ]}
+            />
+          </div>
+          <div>
+            <BaseInputSelect
+              placeholder="Presupuesto"
+              isSelect={true}
+              name="budget"
+              value={selectedBudget}
+              onChange={handleBudget}
+              options={[
+                { value: "option1", label: "$1000 - $5000" },
+                { value: "option2", label: "$5000 - $10,000" },
+                { value: "option3", label: "Más de $10,000" },
+                { value: "option4", label: "Más de $10,000" },
+                { value: "option5", label: "Más de $10,000" },
+                { value: "option6", label: "Más de $10,000" },
+                { value: "option7", label: "Más de $10,000" },
+              ]}
+            />
+          </div>
+          <div>
+            <BaseInputSelect
+              placeholder="Código"
+              classs={"inputs normal"}
+              name="code"
+              value={selectedCode}
+              onChange={handleCode}
+              options={[
+                { value: "option1", label: "Código 1" },
+                { value: "option2", label: "Código 2" },
+                { value: "option3", label: "Código 3" },
+              ]}
+            />
+          </div>
+          <div className="flex-s">
+            <BaseButton
+              classs={"button full-outline"}
+              textLabel={true}
+              label={"Limpiar"}
+              img={true}
+              icon={"trash"}
+            />
+
+            <BaseButton
+              classs={"button small-gray"}
+              textLabel={true}
+              label={"Buscar"}
+              svg={true}
+              // handleClick={whatsapp}
+            />
+          </div>
+        </div>
+        <div className="immovables-content grid-5fr">
+          {
+            // Loader ? (
+            //   <p>Sin datos</p>
+            // ) : leases.length === 0 ? (
+            //   <p>Sin datos</p>
+            // ) : (
+            leases.map((itemL) => (
+              <CardLeases
+                key={itemL.id}
+                productLink={`/products/${itemL.id}`}
+                addToWish={"addwishlist-red"}
+                addTocart={"addcart-red"}
+                img={"default"}
+                sellingsText={true}
+                sellings={"999"}
+                priceText={true}
+                price={itemL.price}
+                productInfo={itemL}
+                classs={"productcard background"}
+                // onClick={() => handleSetProductClick(itemL)}
+                // prodHover={() => handleSetProductClick(itemL)}
+                jpg="true"
+                description={itemL.description}
+                beforePrice={itemL.previousPrice}
+                title={itemL.title}
+                thumbnails={itemL.thumbnails}
+                // products="portatiles"
+                // ratingss={true}
+                // ratings={ratings}
+                product_id={itemL.id}
+              />
+              // ))
+            ))
+          }
+        </div>
+      </div>
+    </ImmoVables>
+  );
+};
+
+const ImmoVables = styled.div`
+  display: grid;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  align-items: start;
+
+  .immovables {
+    display: grid;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    gap: 24px;
+    @media (max-width: 1024px) {
+      padding: 12px;
+    }
+
+    &-header {
+      display: flex;
+      gap: 10px;
+      background: var(--bg-primary);
+      padding: 24px;
+      border-radius: 5px 5px 0px 0px;
+      @media (max-width: 1024px) {
+        padding: 12px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    &-content {
+      display: grid;
+    }
+  }
+`;

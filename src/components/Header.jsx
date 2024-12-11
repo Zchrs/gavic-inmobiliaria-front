@@ -167,12 +167,23 @@ const HeaDer = styled.div`
       display: flex;
       gap: 50px;
       &-a{
+        position: relative;
         font-size: 18px;
         font-weight: 300;
         width: fit-content;
         color: var(--text-dark);
         &:hover{
           color: var(--text-primary);
+        }
+        &::before {
+          transition: all ease .5s;
+          content: "";
+          height: 3px;
+          width: 0%;
+          background: var(--bg-primary);
+          position: absolute;
+          bottom: -3px;
+          left: 0;
         }
         &:hover::before {
            width: 100%;

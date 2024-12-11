@@ -92,6 +92,7 @@ const AddedRecent = styled.div`
         &-h2{
           margin-top: -30px;
           text-align: center;
+          font-weight: 600;
         }
     }
 `

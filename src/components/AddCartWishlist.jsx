@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { getFile } from "../../globalActions";
+import { getFile, getImg } from "../../globalActions";
 import styled from "styled-components";
 
 export const AddCartWishlist = ({
@@ -25,14 +25,14 @@ export const AddCartWishlist = ({
       <div>
         <button onClick={onclick} onSubmit={onSubmit} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
           {addWish && (
-              <img src={getFile("svg", `addwishlist-red`, "svg")} alt="" />
+              <img src={getImg("svg", `addwishlist-red`, "svg")} alt="" />
           )}
         </button>
       </div>
       <div>
         <button onClick={onclick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
           {addCart && (
-              <img src={getFile("svg", `addcart-red`, "svg")} alt="" />
+              <img src={getImg("svg", `favorites`, "svg")} alt="" />
           )}
         </button>
       </div>
@@ -44,6 +44,7 @@ const CartWishlist = styled.button`
   z-index: 20;
   border: none;
   outline: none;
+  background: transparent;
 
 
   button{
@@ -52,7 +53,7 @@ const CartWishlist = styled.button`
     position: absolute;
     border: none;
     outline: none;
-    background: black;
+    background: var(--bg-primary);
     border-radius: 50%;
     cursor: pointer;
     position: absolute;
@@ -69,7 +70,7 @@ const CartWishlist = styled.button`
         transition: all ease 0.3s;
         position: absolute;
         width: 100%;
-        filter: brightness(500%);
+        filter: invert(100%) brightness(500%);
       }
       &:active{
         border: none;

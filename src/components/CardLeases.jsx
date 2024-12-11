@@ -272,10 +272,10 @@ display: grid;
     position: relative;
     display: grid;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 5px;
     align-content: space-between;
     gap: 2px;
-    padding: 10px 8px;
+    padding: 0px 0px 10px 0;
     transition: all ease 0.9s;
     &:hover {
       transform: scale(1.12);
@@ -371,7 +371,7 @@ display: grid;
       padding: 0;
       align-items: start;
       overflow: hidden;
-      border-radius: 8px 8px 0px 0px;
+      border-radius: 5px 5px 0px 0px;
       
       img {
         border-radius: 0px;
