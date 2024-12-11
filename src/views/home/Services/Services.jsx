@@ -45,11 +45,27 @@ const SerVices = styled.div`
     width: 100%;
     height: 100%;
     position: relative;
-    padding-bottom: 100px;
     .h2{
+      margin-top: -30px;
       font-weight: 600;
           text-align: center;
           color: var(--text-dark);
+        }
+        &::before{
+      clip-path: polygon(0 0, 35% 0, 37% 8%, 63% 8%, 65% 0, 100% 0, 100% 100%, 75% 100%, 65% 96%, 37% 96%, 35% 100%, 0 100%);
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary);
+      
+      @media (max-width: 1024px) {
+        clip-path: polygon(0 0, 25% 0, 29% 3%, 71% 3%, 75% 0, 100% 0, 100% 100%, 75% 100%, 72% 98.5%, 100% 100%, 25% 100%, 0 100%);
+          }
         }
     
     .services{
@@ -57,6 +73,7 @@ const SerVices = styled.div`
       width: 100%;
       height: 100%;
       background: var(--bg-primary);
+      z-index: 10;
 
       &-recently{
         position: relative;
@@ -66,6 +83,7 @@ const SerVices = styled.div`
           height: 100%;
           @media (max-width: 800px) {
             grid-template-columns: 1fr;
+            
           }
       }
     }

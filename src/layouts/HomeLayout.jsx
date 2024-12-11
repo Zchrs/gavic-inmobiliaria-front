@@ -7,7 +7,7 @@ export const HomeLayout = () => {
       <header className="homelayout-header">
         <Header />
       </header>
-      <section className="homelayout-container">
+      <section className="homelayout-content">
         <AppRouter />
       </section>
       <footer className="homelayout-footer">
@@ -35,6 +35,7 @@ const LayoutHome = styled.section`
     }
     &-content {
       display: grid;
+      background: var(--bg-tertiary);
     }
     &-footer {
       display: grid;

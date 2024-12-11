@@ -144,12 +144,14 @@ const HoMe = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  background: var(--bg-tertiary);
 
   .home {
     display: grid;
     width: 100%;
     height: 100%;
     gap: 50px;
+    background: var(--bg-tertiary);
     &-banner {
       position: relative;
       display: grid;

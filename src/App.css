@@ -13,11 +13,11 @@
 }
 
 html{
-  background: transparent;
+  background: white;
 }
 
 .body{
-  background: transparent;
+  background: white;
   align-items: start;
   display: grid;
   width: 100%;

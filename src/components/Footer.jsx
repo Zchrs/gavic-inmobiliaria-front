@@ -78,13 +78,15 @@ const FooTer = styled.div`
   display: grid;
   width: 100%;
   height: fit-content;
-  background: var(--bg-secondary);
-
+  background: var(--bg-tertiary);
+  margin-top: 100px;
+  
   .footer{
     gap: 50px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
+    background: var(--bg-secondary);
     @media (max-width: 920px) {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -122,6 +124,7 @@ const FooTer = styled.div`
       text-align: center;
       align-items: center;
       border-top: 1px solid var(--bg-secondary-semi);
+      background: var(--bg-secondary);
       p{
         padding: 20px;
         color: var(--text-secondary-light);
