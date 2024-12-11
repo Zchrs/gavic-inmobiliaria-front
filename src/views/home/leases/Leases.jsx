@@ -37,7 +37,6 @@ export const Leases = () => {
               placeholder="Quiero"
               isSmallSelect={true}
               options={[
-                { value: "Comprar", label: "Comprar" },
                 { value: "Arrendar", label: "Arrendar" },
               ]}
               name="want"
@@ -187,7 +186,7 @@ const LeaSes = styled.div`
     width: 100%;
     height: 100%;
     padding: 25px;
-    gap: 24px;
+    gap: 72px;
     @media (max-width: 1024px) {
       padding: 12px;
     }

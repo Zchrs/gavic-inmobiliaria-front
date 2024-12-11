@@ -158,6 +158,7 @@ const HoMe = styled.div`
       align-items: center;
       width: 100%;
       height: 550px;
+      margin-bottom: 50px;
       
       &-img {
         position: absolute;

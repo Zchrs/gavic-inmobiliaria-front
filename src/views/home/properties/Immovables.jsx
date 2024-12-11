@@ -187,7 +187,7 @@ const ImmoVables = styled.div`
     width: 100%;
     height: 100%;
     padding: 25px;
-    gap: 24px;
+    gap: 72px;
     @media (max-width: 1024px) {
       padding: 12px;
     }

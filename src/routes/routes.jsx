@@ -166,9 +166,9 @@ export const useRoutesHome = () => {
     { name: "mision", route: "/mision", text: "Misión" },
     { name: "vision", route: "/vision", text: "Visión" },
     { name: "immovables", route: "/immovables", text: "Propiedades" },
-    { name: "leases", route: "/leases", text: "Arrendamientos" },
     { name: "list your property", route: "/List-your-property", text: "Consigna tu inmueble" },
-    { name: "sales", route: "/sales", text: "Ventas" },
+    { name: "leases", route: "/leases", text: "Arrendamiento" },
+    { name: "sales", route: "/sales", text: "Venta" },
     { name: "register", route: "/register", text: "Registro" },
     { name: "login", route: "/login", text: "Iniciar sesión" },
     {

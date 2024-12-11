@@ -63,9 +63,9 @@ export const Header = () => {
   const hdrRoutes = useMemo(() => {
     const selectedNames = [
       "home",
-      "leases",
-      "immovables",
       "list your property",
+      "immovables",
+      "leases",
       "sales",
       "register",
     ]; // Nombres a incluir
