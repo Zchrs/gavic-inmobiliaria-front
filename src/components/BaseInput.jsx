@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { CSSProperties } from 'react';
 import { useState } from 'react';
-import { getFile } from '../../globalActions';
+import { getFile, getImg } from '../../globalActions';
 import Select from 'react-select';
 import styled from 'styled-components';
 
@@ -91,8 +91,8 @@ export const BaseInput = ({
                 <img
                   src={
                     showPassword
-                      ? getFile("svg", "hide-icon", "svg")
-                      : getFile("svg", "show-icon", "svg")
+                      ? getImg("svg", "hide-icon", "svg")
+                      : getImg("svg", "show-icon", "svg")
                   }
                   alt={showPassword ? "Hide" : "Show"}
                   className="eye-icon"
@@ -122,7 +122,7 @@ const InputBase = styled.div`
       outline: none;
       input {
         border: 1px solid rgb(153, 0, 0);
-        border-radius: 7px;
+        border-radius: 5px;
       }
       img {
         width: 70%;
@@ -139,7 +139,7 @@ const InputBase = styled.div`
         height: 130px;
         font-size: 14px;
         font-weight: 500;
-        border-radius: 7px;
+        border-radius: 5px;
         outline: none;
         color: black;
         font-weight: 400;
@@ -159,11 +159,14 @@ const InputBase = styled.div`
         background: white;
         font-size: 16px;
         font-weight: 500;
-        border-radius: 7px;
+        border-radius: 5px;
         outline: none;
         color: black;
         font-weight: 400;
         position: relative;
+      }
+      &:focus{
+        padding: 10px 16px;
       }
     }
 
@@ -202,7 +205,7 @@ const InputBase = styled.div`
         position: relative;
         background: white;
         border: #818080 1px solid;
-        padding: 12px 16px;
+        padding: 10px 16px;
         color: black;
         font-size: 16px;
         font-weight: 400;
@@ -228,7 +231,7 @@ const InputBase = styled.div`
 
     input {
       position: relative;
-      padding: 12px 16px;
+      padding: 10px 16px;
       background: transparent;
       border: 1px solid #dde4ed;
       border-radius: 12px;

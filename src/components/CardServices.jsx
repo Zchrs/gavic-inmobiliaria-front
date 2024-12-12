@@ -357,6 +357,7 @@ display: grid;
     }
 
     &__h2 {
+      padding-bottom: 30px;
       text-align: center;
       color: white;
       transition: all ease 0.5s;

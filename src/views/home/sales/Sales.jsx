@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { BaseInputSelect, BaseButton, CardLeases } from "../../../../index";
 import styled from "styled-components";
 import { leases } from "../../../../apiEmulated";
 import { values } from "../../../sectors/dataSectors";
+import Loader from "../../../components/Loader";
 
 
 export const Sales = () => {
@@ -11,6 +13,7 @@ export const Sales = () => {
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedProperty, setSelectedProperty] = useState("");
   const [selectedCode, setSelectedCode] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const handleWant = (e) => {
     console.log("Sector seleccionado:", e.target.value);
@@ -126,11 +129,11 @@ export const Sales = () => {
         </div>
         <div className="sales-content grid-5fr">
           {
-            // Loader ? (
-            //   <p>Sin datos</p>
-            // ) : sales.length === 0 ? (
-            //   <p>Sin datos</p>
-            // ) : (
+            loading ? (
+              <Loader />
+            ) : leases.length === 0 ? (
+              <p>Sin datos</p>
+            ) : (
             leases.map((itemL) => (
               <CardLeases
                 key={itemL.id}
@@ -156,7 +159,7 @@ export const Sales = () => {
                 // ratings={ratings}
                 product_id={itemL.id}
               />
-              // ))
+              )
             ))
           }
         </div>
@@ -186,7 +189,7 @@ const SaLes = styled.div`
     &-header {
       display: flex;
       gap: 10px;
-      background: var(--bg-secondary-semi-soft);
+      background: #ff7300;
       padding: 24px;
       border-radius: 5px 5px 0px 0px;
       @media (max-width: 1024px) {

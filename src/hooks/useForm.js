@@ -21,9 +21,9 @@ export const initialFormAdmin = {
 };
 
 export const initialForm = {
+  country: "",
   name: "",
   lastname: "",
-  country: "",
   phone: "",
   email: "",
   password: "",
@@ -88,14 +88,13 @@ export const useForm = (initialForm, validateForm) => {
     };
   };
 
-  const handleCountryChange = (label, e) => {
-    if (!label) {
-      setSelectedCountry(label); // Llama a la función proporcionada con el país seleccionado
-      setSelected(label);
+  const handleCountryChange = (options) => {
+    if (!options) {
+      setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
     } else {
       setForm({
         ...form,
-        country: label.label,
+        country: options.target.value,
       });
     }
   };

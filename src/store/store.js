@@ -6,7 +6,7 @@ import { productReducer} from "../reducers/productReducer";
 
 import { authReducer, authReducerAdmin, authReducerAdvisor  } from "../reducers/authReducer";
 import { uxReducer } from "../reducers/uxReducer";
-import i18n from "../translates/i18n";
+// import i18n from "../translates/i18n";
 import cartReducer from "../reducers/cartReducer";
 import {thunk} from "redux-thunk";
 // import userReducer from "../reducers/userReducer";
@@ -38,5 +38,5 @@ export const store = createStore(
   enhancers
 );
 
-export { i18n }
+// export { i18n }
 

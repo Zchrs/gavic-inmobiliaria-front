@@ -3,10 +3,12 @@ import styled from "styled-components"
 import { CardLeases } from "../../../components/CardLeases"
 import {leases} from "../../../../apiEmulated"
 import Loader from "../../../components/Loader"
+import { useState } from "react"
 
 
 
 export const RecentAdded = () => {
+  const [loading, setLoading] = useState(false)
   return (
     <AddedRecent>
       <div className="addrecent">
@@ -14,11 +16,11 @@ export const RecentAdded = () => {
         <div className="addrecent-contain">
             <div className="recently pd-top-bottom">
               {
-              // Loader ? (
-              //   <p>Sin datos</p>
-              // ) : leases.length === 0 ? (
-              //   <p>Sin datos</p>
-              // ) : (
+              loading ? (
+                <Loader />
+              ) : leases.length === 0 ? (
+                <p>Sin datos</p>
+              ) : (
                 leases.map((itemL) => (
                   <CardLeases
                     key={itemL.id}
@@ -44,8 +46,8 @@ export const RecentAdded = () => {
                     // ratings={ratings}
                     product_id={itemL.id}
                   />
-                // ))
-              ))}
+                ))
+              )}
         
             </div>
         </div>

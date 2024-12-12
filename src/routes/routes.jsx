@@ -169,8 +169,9 @@ export const useRoutesHome = () => {
     { name: "list your property", route: "/List-your-property", text: "Consigna tu inmueble" },
     { name: "leases", route: "/leases", text: "Arrendamiento" },
     { name: "sales", route: "/sales", text: "Venta" },
-    { name: "register", route: "/register", text: "Registro" },
-    { name: "login", route: "/login", text: "Iniciar sesión" },
+
+    { name: "register", route: "/auth/register", text: "Registro" },
+    { name: "login", route: "/auth/login", text: "Iniciar sesión" },
     {
       name: "values",
       route: "/values",
