@@ -77,7 +77,7 @@ export const BaseInputSelect = ({
              },
   
             //  Media query para pantallas grandes
-             '@media (min-width: 1025px)': {
+             '@media (min-width: 980px)': {
                fontSize: '14px',
                width: '200px',
              },
@@ -92,12 +92,12 @@ export const BaseInputSelect = ({
              backgroundColor: state.isFocused ? '#f1f1f1' : '#fff',
              color: '#333',
              padding: '5px',
-             fontSize: '16px',
+             fontSize: '15px',
              cursor: 'pointer',
              height: '40px',
              width: '100%',
              display: 'grid',
-             alignItems: 'center',
+             textAlign: 'left',
   
              '&:hover': {
                backgroundColor: '#F0F0F0',

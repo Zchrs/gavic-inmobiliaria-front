@@ -8,23 +8,13 @@ import Select from 'react-select'
 import { useState } from "react";
 import { BaseInputSelect } from "../../components/BaseInputSelect";
 import { RecentAdded, Services } from "../../../index";
+import { values } from "../../sectors/dataSectors";
 
 export const Home = () => {
   const [selectedSector, setSelectedSector] = useState("");
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedProperty, setSelectedProperty] = useState("");
   const [selectedCode, setSelectedCode] = useState("");
-
-  const options = [
-    { value: 'Aranjuez', label: 'Aranjuez' },
-    { value: 'Araucaria', label: 'Araucaria' },
-    { value: 'Blanquizal', label: 'Blanquizal' },
-    { value: 'Belén', label: 'Belén' },
-    { value: 'Castilla', label: 'Castilla' },
-    { value: 'Caicedo', label: 'Caicedo' },
-    { value: 'El picacho', label: 'El picacho' },
-    { value: 'El salvador', label: 'El salvador' }
-  ]
 
   const handleSector = (e) => {
     console.log("Sector seleccionado:", e.target.value);
@@ -61,7 +51,7 @@ export const Home = () => {
                 <BaseInputSelect
                 placeholder="Sector"
                 isSelect={true}
-                options={options}
+                options={values}
                 name="budget"
                     value={selectedSector}
                     onChange={handleSector}
@@ -185,7 +175,7 @@ const HoMe = styled.div`
           padding: 0px 10px;
           margin: 0;
         }
-        @media (max-width: 800px) {
+        @media (max-width: 820px) {
           padding: 0px 10px;
           margin: 0;
         }
@@ -205,7 +195,8 @@ const HoMe = styled.div`
             align-items: center;
           }
 
-          @media (max-width: 800px) {
+          @media (max-width: 820px) {
+            width: 100%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
           }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BaseInputSelect, BaseButton, CardLeases } from "../../../../index";
 import styled from "styled-components";
 import { leases } from "../../../../apiEmulated";
+import { values } from "../../../sectors/dataSectors";
 
 
 export const Leases = () => {
@@ -48,16 +49,7 @@ export const Leases = () => {
             <BaseInputSelect
               placeholder="Sector"
               isSelect={true}
-              options={[
-                { value: "Aranjuez", label: "Aranjuez" },
-                { value: "Araucaria", label: "Araucaria" },
-                { value: "Blanquizal", label: "Blanquizal" },
-                { value: "Belén", label: "Belén" },
-                { value: "Castilla", label: "Castilla" },
-                { value: "Caicedo", label: "Caicedo" },
-                { value: "El picacho", label: "El picacho" },
-                { value: "El salvador", label: "El salvador" },
-              ]}
+              options={values}
               name="budget"
               value={selectedSector}
               onChange={handleSector}

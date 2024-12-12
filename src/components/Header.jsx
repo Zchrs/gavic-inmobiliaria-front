@@ -4,12 +4,13 @@ import { getImg, scrollTop } from "../../globalActions";
 import { useRoutesHome } from "../routes/routes";
 import { useEffect, useMemo } from "react";
 import { BaseButton } from "./BaseButton";
+// import { ScreenResolution } from "./ScreenResolution";
 
 export const Header = () => {
   let contador = 0;
   const showHideMenu = () => {
     let navMenu = document.getElementById("menu");
-    if (window.innerWidth < 1025) {
+    if (window.innerWidth < 920) {
       if (contador === 0) {
         contador = 1;
         navMenu.style.cssText = `
@@ -86,7 +87,7 @@ export const Header = () => {
             />
           </Link>
         </div>
-        <div className="header-menu" onClick={showHideMenu}>
+        <div className="header-menu" onClick={handleFunctions}>
           <Link to={"/"}>
             <img
               className="header-logo-img"
@@ -124,7 +125,7 @@ export const Header = () => {
         </div>
         </div>
       </div>
-
+      {/* <ScreenResolution /> */}
     </HeaDer>
   );
 };
@@ -145,7 +146,7 @@ const HeaDer = styled.div`
 
     &-btns{
       display: none;
-      @media (max-width: 1024px) {
+      @media (max-width: 920px) {
         padding: 0;
       display: flex;
       width: 100%;
@@ -155,7 +156,7 @@ const HeaDer = styled.div`
     }
       &-menu{
         display: none;
-        @media (max-width: 1024px) {
+        @media (max-width: 920px) {
           display: grid;
           width: 35px;
         }
@@ -174,6 +175,9 @@ const HeaDer = styled.div`
         color: var(--text-dark);
         &:hover{
           color: var(--text-primary);
+          @media (max-width: 920px) {
+            color: var(--text-tertiary);
+          }
         }
         &::before {
           transition: all ease .5s;
@@ -184,6 +188,9 @@ const HeaDer = styled.div`
           position: absolute;
           bottom: -3px;
           left: 0;
+          @media (max-width: 920px) {
+            background: var(--bg-tertiary);
+          }
         }
         &:hover::before {
            width: 100%;
@@ -195,8 +202,9 @@ const HeaDer = styled.div`
            width: fit-content;
            color: var(--text-primary);
            border-bottom: 3px solid var(--bg-primary);
-           @media (max-width: 1024px) {
+           @media (max-width: 920px) {
             margin: auto;
+            height: fit-content;
             margin-top: -50px;
              font-size: 25px;
              color: var(--text-tertiary);
@@ -204,12 +212,21 @@ const HeaDer = styled.div`
            }
           }
       }
-      
+
       @media (max-width: 1024px) {
+        gap: 20px;
+        &-a{
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+      
+      @media (max-width: 920px) {
         width: 100%;
         height: 100%;
         background: var(--bg-secondary-semi);
         top: 90px;
+        gap: 5px;
         left: 0;
         transform: translate(-100%);
         position: fixed;
@@ -225,9 +242,9 @@ const HeaDer = styled.div`
         width: fit-content;
         height: fit-content;
         padding: 0;
-        color: var(--text-tertiary);
+        color: var(--text-secondary-semi-soft);
         &:hover{
-          color: var(--text-primary);
+          color: var(--text-tertiary);
         }
       }
       }
@@ -238,7 +255,7 @@ const HeaDer = styled.div`
       &-img{
         width: 100%;
       }
-      @media (max-width: 1024px) {
+      @media (max-width: 920px) {
         width: 100px;
         &-img{
           width: 100%;

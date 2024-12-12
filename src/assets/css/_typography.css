@@ -418,6 +418,9 @@
   color: var(--text-dark);
   font-family: var(--font-primary);
   @media (max-width: 1024px) {
+    font-size: 5.5rem;
+  }
+  @media (max-width: 920px) {
     font-size: 3rem;
   }
 }
