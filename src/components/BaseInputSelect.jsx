@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import Select from 'react-select'; // Importamos react-select
-import { getFile } from '../../globalActions';
-import styled from 'styled-components';
+import { useState } from "react";
+import Select from "react-select"; // Importamos react-select
+import { getFile } from "../../globalActions";
+import styled from "styled-components";
 
 export const BaseInputSelect = ({
   textLabel,
@@ -107,7 +107,7 @@ export const BaseInputSelect = ({
              ...base,
              borderRadius: 8,
              marginTop: '5px',
-             boxShadow: '0 2px 10px var(--bg-secondary)',
+             boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
              height: '200px',
              overflowY: 'hidden',
              overflowX: 'hidden',
@@ -211,7 +211,7 @@ export const BaseInputSelect = ({
               ...base,
               borderRadius: 8,
               marginTop: '5px',
-              boxShadow: '0 2px 10px var(--bg-secondary)',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
               height: 'fit-content',
               overflowY: 'hidden',
               overflowX: 'hidden',
@@ -417,6 +417,7 @@ const InputBaseSel = styled.div`
       font-size: 14px;
       line-height: 140%;
       color: #295170;
+      margin-top: 10px;
 
       span {
         position: absolute;

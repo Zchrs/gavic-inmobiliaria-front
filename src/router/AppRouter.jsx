@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { 
   About, 
+  AuthHome, 
   CommerceIndustry, 
   Contact, 
   Coverage, 
@@ -9,6 +10,7 @@ import {
   Home, 
   Immovables, 
   Leases, 
+  Login, 
   Mision, 
   Pqrs, 
   PrivacyPolicy, 
@@ -17,7 +19,8 @@ import {
   Register, 
   Sales, 
   Values, 
-  Vision } from "../../index";
+  Vision 
+} from "../../index";
 
 
 export const AppRouter = () => {
@@ -44,5 +47,24 @@ export const AppRouter = () => {
           <Route exact path="superintendency-of-industria-and-commerce" element={<CommerceIndustry />} />
           
         </Routes>
+    );
+  };
+  export const AuthRouter = () => {
+    // const dispatch = useDispatch();
+      
+    // useEffect(() => {
+    //   dispatch(startChecking());
+    // }, [dispatch]);
+
+    return (
+      <Routes>
+        <Route exact path="/*" element={ 
+            <AuthHome />
+      } />
+      
+        <Route exact path="login" element={<Login />} />
+        <Route exact path="register" element={<Register />} />
+        
+      </Routes>
     );
   };

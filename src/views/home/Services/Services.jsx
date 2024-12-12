@@ -4,21 +4,24 @@ import { CardLeases } from "../../../components/CardLeases"
 import {services} from "../../../../apiEmulated"
 import Loader from "../../../components/Loader"
 import { CardServices } from "../../../components/CardServices"
+import { useState } from "react"
 
 
 
 export const Services = () => {
+  const [loading, setLoading] = useState(false)
   return (
     <SerVices>
       <h2 className="h2-extra-medium h2">Servicios</h2>
         <div className="services">
           <div className="services-recently">
             {
-            // Loader ? (
-            //   <p>Sin datos</p>
-            // ) : leases.length === 0 ? (
-            //   <p>Sin datos</p>
-            // ) : (
+            loading ? (
+              <Loader/>
+            ) : services.length === 0 ? (
+              <p>Sin datos</p>
+            ) : (
+              
               services.map((itemL) => (
                 <CardServices
                   key={itemL.id}
@@ -31,8 +34,10 @@ export const Services = () => {
                   // onClick={() => handleSetProductClick(itemL)}
                   // prodHover={() => handleSetProductClick(itemL)}
                 />
-              // ))
-            ))}
+              )
+              
+            ))
+            }
           
           </div>
         </div>
