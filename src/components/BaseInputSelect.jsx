@@ -59,10 +59,11 @@ export const BaseInputSelect = ({
              ...base,
              borderRadius: 5,
              fontSize: '16px',
-             padding: '5px',
+             padding: '0',
              borderColor: '#DDE4ED',
              height: 'fit-content',
              width: '100%',
+            minWidth: '200px',
              display: 'flex',
              alignItems: 'center',
              textAlign: 'left',
@@ -77,10 +78,10 @@ export const BaseInputSelect = ({
              },
   
             //  Media query para pantallas grandes
-             '@media (min-width: 980px)': {
-               fontSize: '14px',
-               width: '200px',
-             },
+            //  '@media (min-width: 980px)': {
+            //    fontSize: '14px',
+            //    width: '200px',
+            //  },
             //  '@media (max-width: 800px)': {
             //    fontSize: '14px',
             //    height: '40px',
@@ -166,7 +167,7 @@ export const BaseInputSelect = ({
               ...base,
               borderRadius: 5,
               fontSize: '16px',
-              padding: '5px',
+              padding: '0',
               borderColor: '#DDE4ED',
               height: 'fit-content',
               width: '100%',

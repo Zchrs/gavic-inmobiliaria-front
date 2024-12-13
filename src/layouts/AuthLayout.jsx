@@ -23,8 +23,11 @@ export const AuthLayout = () => {
 
   return (
     <AuthLayOut>
-        <img className="authlayout-background" loading="lazy" src={getImg('svg', 'auth', 'webp')} alt="" />
+        <img className="background" loading="lazy" src={getImg('svg', 'auth', 'webp')} alt="" />
       <section className="authlayout">
+        <div className="authlayout-logo">
+            <img src={getImg('svg', 'logo', 'svg')} alt="logo" />
+        </div>
         <div className="authlayout-container">
         <div className="authlayout-container-group">
           <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/auth/register"}>Registrarme</NavLink>
@@ -42,32 +45,70 @@ display: grid;
 width: 100%;
 height: fit-content;
 
+.background{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        object-fit: cover;
+    }
+    
 .authlayout{
-    display: grid;
+    display: flex;
     width: 100%;
     max-width: 1920px;
-    height: fit-content;
-    padding: 20px 0 0 0;
-
-    &-background{
+    height: 100%;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;
+    gap: 100px;
+    overflow: hidden;
+    &::before{
+        content: '';
       position: absolute;
       top: 0;
       left: 0;
+      width: 55%;
       height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
+      background: var(--bg-primary);
+      clip-path: polygon(0 0, 100% 0, 73% 100%, 0% 100%);
+    }
+
+    &-logo{
+        display: grid;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        img{
+            width: 70%;
+            filter: invert(100%) brightness(500%);
+        }
     }
     
     &-container{
-      margin: auto;
         position: relative;
+        align-items: center;
         display: grid;
-        width: 40%;
+        width: 70%;
         height: fit-content;
-        align-self: baseline;
-        /* border: #EC3337 1px solid; */
-        
-        
+        padding: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+        &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-tertiary);
+            opacity: 0.7;
+            backdrop-filter: blur(10px);
+            
+        }
         
         @media (max-width: 980px) {
           padding: 25px 12px;
@@ -75,32 +116,25 @@ height: fit-content;
         }
         
         @media (max-width: 300px) {
-            grid-row: 2 / 3;
             padding: 25 12px;
             
         }
 
         &-group{
-          width: 100%;
+          width: 80%;
             align-self: baseline;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             align-self: baseline;
-            // border: #EC3337 1px solid;
+            z-index: 20;
             gap: 40px;
     
             a{
               padding-left: 10px;
-                
-                color: var(--text-tertiary);
+                font-size: 20px;
+                color: var(--text-dark);
                 cursor: pointer;
-                font-size: 18px;
-                font-weight: 500;
-                text-shadow: 
-                black 1px 1px 1px,
-                black -1px -1px 1px
-                ;
 
                 @media (max-width: 380px) {
                     font-size: 17px;
@@ -116,10 +150,6 @@ height: fit-content;
         background: #727376;
     }
     .active{
-      text-shadow: none;
-      color: var(--text-dark);
-      border-radius: 5px 5px 0 0 ;
-      background: var(--bg-tertiary);
         border-bottom: var(--bg-primary) 3px solid;
         a{
             color: #EC3337;
@@ -131,15 +161,14 @@ height: fit-content;
 .auth{
     animation: smooth .5s ease;
     position: relative;
-    padding: 25px 0;
-    margin: 0 auto;
+    margin: auto;
     gap: 25px;
     display: grid;
-    width: 100%;
+    width: 80%;
     height: fit-content;
-    align-self: baseline;
-    background: var(--bg-tertiary);
+    align-items: center;
     border-radius: 0 0 5px 5px;
+   
     // border: #EC3337 1px solid;
 
     @media (max-width: 550px) {
@@ -157,7 +186,6 @@ height: fit-content;
         display: grid;
         gap: 15px;
         margin: 0;
-        padding: 0 25px;
         align-self: baseline;
 
         .a{
@@ -209,9 +237,9 @@ height: fit-content;
           margin: auto;
           top: 12px;
           left: 0;
-          width: 70%;
+          width: 100%;
           height: 1px;
-          background: #f5f1f1;
+          background: var(--bg-secondary);
         }
 
 
@@ -220,10 +248,11 @@ height: fit-content;
             margin: 0 auto;
             padding: 0 15px;
             width: fit-content;
-            background: #f5f1f1;
+            background: var(--bg-secondary);
             border-radius: 20px;
             text-align: center;
-            color: black;
+            font-weight: 300;
+            color: var(--text-tertiary);
             
         }
     }
