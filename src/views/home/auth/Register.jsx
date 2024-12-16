@@ -76,7 +76,7 @@ export const Register = () => {
   
   
     if (!form.country) {
-      country.style.cssText = "border: red 1px solid;";
+      country.style.cssText = "border: red 1px solid; border-radius: 5px;";
       errors.country = "Debes seleccionar el país";
     } else {
       country.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";

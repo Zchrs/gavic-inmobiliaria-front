@@ -1,6 +1,6 @@
 
 import { AuthRouter } from "../router/AppRouter";
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 // import { useTranslation } from 'react-i18next';
 // import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
@@ -24,6 +24,7 @@ export const AuthLayout = () => {
   return (
     <AuthLayOut>
         <img className="background" loading="lazy" src={getImg('svg', 'auth', 'webp')} alt="" />
+        <Link to={"/"} className="backhome">Volver al inicio</Link>
       <section className="authlayout">
         <div className="authlayout-logo">
             <img src={getImg('svg', 'logo', 'svg')} alt="logo" />
@@ -44,7 +45,15 @@ const AuthLayOut = styled.section`
 display: grid;
 width: 100%;
 height: fit-content;
-
+.backhome{
+  width: fit-content;
+  height: fit-content;
+  z-index: 20;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: var(--text-tertiary);
+}
 .background{
         position: absolute;
         top: 0;
@@ -74,6 +83,38 @@ height: fit-content;
       background: var(--bg-primary);
       clip-path: polygon(0 0, 100% 0, 73% 100%, 0% 100%);
     }
+    @media (max-width: 920px) {
+      display: grid;
+      padding: 20px;
+      gap: 50px;
+      &::before{
+          content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-primary);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        display: none;
+      }
+    }
+    @media (max-width: 399px) {
+      display: grid;
+      padding: 20px;
+      gap: 50px;
+      &::before{
+          content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-primary);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        display: none;
+      }
+    }
 
     &-logo{
         display: grid;
@@ -86,6 +127,16 @@ height: fit-content;
             width: 70%;
             filter: invert(100%) brightness(500%);
         }
+        @media (max-width: 920px) {
+          width: fit-content;
+          height: fit-content;
+          img{
+            width:80%;
+            margin: auto;
+            padding: 0;
+          }
+        }
+        
     }
     
     &-container{
@@ -111,12 +162,14 @@ height: fit-content;
         }
         
         @media (max-width: 980px) {
+          margin-top: -200px; 
           padding: 25px 12px;
           width: 100%;  
         }
         
-        @media (max-width: 300px) {
-            padding: 25 12px;
+        @media (max-width: 399px) {
+          margin-top: -50px; 
+            padding: 25px 12px;
             
         }
 
@@ -136,11 +189,11 @@ height: fit-content;
                 color: var(--text-dark);
                 cursor: pointer;
 
-                @media (max-width: 380px) {
-                    font-size: 17px;
+                @media (max-width: 399px) {
+                    font-size: 16px;
                     margin: 0;
                 }
-            }
+              }
         }
     }
     &-footer{
@@ -244,12 +297,16 @@ height: fit-content;
 
 
         h3{
+          display: grid;
+          align-items: center;
             z-index: 10;
-            margin: 0 auto;
+            margin: auto;
             padding: 0 15px;
             width: fit-content;
+            height: fit-content;
             background: var(--bg-secondary);
             border-radius: 20px;
+            font-size: 14px;
             text-align: center;
             font-weight: 300;
             color: var(--text-tertiary);

@@ -83,7 +83,7 @@ export const useRoutesDashAdmin = () => {
     },
     {
       name: "pending aproval",
-      route: "properties-pending-approval",
+      route: "pending-approval-properties",
       text: "Pendientes de aprobación",
     },
     {
@@ -95,6 +95,16 @@ export const useRoutesDashAdmin = () => {
       name: "user verify",
       route: "verify-profile",
       text: "Verificación de usuarios",
+    },
+    {
+      name: "finances",
+      route: "finances",
+      text: "Finanzas",
+    },
+    {
+      name: "clients",
+      route: "clients",
+      text: "Usuarios",
     },
   ];
 };

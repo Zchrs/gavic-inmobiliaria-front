@@ -87,7 +87,7 @@ export const Login = () => {
         {errors.email && <p className="warnings-form">{errors.password}</p>}
       </div>
       <Link className="a">Olvidé mi contraseña</Link>
-      <BaseButton handleClick={handleLogin} classs={"button full-red-bullet"} textLabel={true} label="Iniciar sesión" />
+      <BaseButton handleClick={handleLogin} classs={"button full-secondary"} textLabel={true} label="Iniciar sesión" />
     </form>
     <div className="auth-gruop2">
       <h3>Continuar con</h3>

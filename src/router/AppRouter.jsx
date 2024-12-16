@@ -1,23 +1,39 @@
 import { Route, Routes } from "react-router-dom";
 import { 
-  About, 
+  About,
+  AdminHome, 
+  Advisors, 
+  Approved, 
   AuthHome, 
+  Clients, 
   CommerceIndustry, 
+  Comunications, 
   Contact, 
   Coverage, 
   DataTreathment, 
+  Finances, 
+  ForRentPropertiesw, 
   HelpCenter, 
   Home, 
   Immovables, 
+  LeasedProperties, 
   Leases, 
   Login, 
   Mision, 
+  Pending, 
   Pqrs, 
   PrivacyPolicy, 
   PropertyList, 
   QualityPolicy, 
+  RecentProperties, 
   Register, 
+  Rejected, 
+  Reports, 
   Sales, 
+  Settings, 
+  Statics, 
+  UserStatuses, 
+  Validations, 
   Values, 
   Vision 
 } from "../../index";
@@ -66,5 +82,37 @@ export const AppRouter = () => {
         <Route exact path="register" element={<Register />} />
         
       </Routes>
+    );
+  };
+
+  export const DashboardAdminRouter = () => {
+
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //   dispatch(startCheckingAdmin());
+    // }, [dispatch]);
+      
+    
+    return (
+      <>
+      <Routes>
+            <Route path="/*" element={<AdminHome />} />
+            <Route exact path="leased-properties" element={<LeasedProperties />} />
+            <Route exact path="properties-for-rent" element={<ForRentPropertiesw />} />
+            <Route exact path="recent-properties" element={<RecentProperties />} />
+            <Route exact path="comunications" element={<Comunications />} />
+            <Route exact path="finances" element={<Finances />} />
+            <Route exact path="reports" element={<Reports />} />
+            <Route exact path="statics" element={<Statics />} />
+            <Route exact path="pending-upload-properties" element={<Pending />} />
+            <Route exact path="aproved-properties" element={<Approved />} />
+            <Route exact path="rejected-properties" element={<Rejected />} />
+            <Route exact path="clients" element={<Clients />} />
+            <Route exact path="validations" element={<Validations />} />
+            <Route exact path="user-status" element={<UserStatuses/>} />
+            <Route exact path="clients/advivosrs" element={<Advisors/>} />
+            <Route exact path="settings" element={<Settings/>} />
+      </Routes>
+      </>
     );
   };

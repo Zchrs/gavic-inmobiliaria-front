@@ -1363,6 +1363,11 @@ acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
   integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
 
+ag-charts-react@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-react/-/ag-charts-react-11.0.0.tgz#98b100cb71e7aba257188953548a6d276d30867b"
+  integrity sha512-EGM9d/4mexJET6ZlpvCMk2GhfmqFr04Pf1YzS6f9wYAr4HN9TQK3S+FV55MivPpEsII6LP0a3C0q2PF50u4pIw==
+
 ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"

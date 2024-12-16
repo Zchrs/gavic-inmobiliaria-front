@@ -132,6 +132,7 @@ const InputBase = styled.div`
     &.outline {
       position: relative;
       outline: none;
+      
 
       textarea {
         border: 1px solid #ec333632;
@@ -164,6 +165,7 @@ const InputBase = styled.div`
         color: black;
         font-weight: 400;
         position: relative;
+        border: 1px solid var(--bg-secondary-semi-soft);
       }
       &:focus{
         padding: 10px 16px;

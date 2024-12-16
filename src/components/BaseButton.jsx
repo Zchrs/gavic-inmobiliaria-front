@@ -205,7 +205,7 @@ const ButtonBase = styled.div`
         }
       }
     }
-    &.mini-red {
+    &.mini-primary-soft {
       display: flex;
       width: 100%;
       height: fit-content;
@@ -217,10 +217,10 @@ const ButtonBase = styled.div`
         padding: 7px 16px;
         height: 100%;
         width: 100%;
-        background: #990000;
+        background: #7c8e74;
         color: white;
         border-radius: 50px;
-        font-weight: 800;
+        font-weight: 500;
         font-size: 15px;
         line-height: 120%;
         transition: all ease 0.3s;
@@ -229,9 +229,10 @@ const ButtonBase = styled.div`
           width: 13%;
         }
         &:hover {
-          background: #df898b;
+          background: var(--bg-primary);
         }
         span {
+          margin: auto;
           width: fit-content;
           background: transparent;
         }
@@ -587,8 +588,8 @@ const ButtonBase = styled.div`
         border: none;
         color: white;
         border-radius: 7px;
-        padding: 10px 8px;
-        font-weight: 800;
+        padding: 12px 16px;
+        font-weight: 500;
         line-height: 120%;
         transition: all ease 0.3s;
 

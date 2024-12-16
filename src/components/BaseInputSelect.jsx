@@ -60,10 +60,9 @@ export const BaseInputSelect = ({
              borderRadius: 5,
              fontSize: '16px',
              padding: '0',
-             borderColor: '#DDE4ED',
-             height: 'fit-content',
+             borderColor: 'var(--bg-secondary-semi-soft)',
+             height: '100%',
              width: '100%',
-            minWidth: '200px',
              display: 'flex',
              alignItems: 'center',
              textAlign: 'left',
@@ -77,16 +76,19 @@ export const BaseInputSelect = ({
                borderColor: '#5E9CC8',
              },
   
-            //  Media query para pantallas grandes
-            //  '@media (min-width: 980px)': {
-            //    fontSize: '14px',
-            //    width: '200px',
-            //  },
-            //  '@media (max-width: 800px)': {
-            //    fontSize: '14px',
-            //    height: '40px',
-            //    width: '160px',
-            //  },
+             '@media (min-width: 1280px) and (max-width: 1920px)': {
+              fontSize: '14px',
+              minWidth: '230px',
+            },
+             '@media (min-width: 1024px) and (max-width: 1279px)': {
+              fontSize: '14px',
+              minWidth: '200px',
+            },
+             '@media (max-width: 980px)': {
+               fontSize: '14px',
+               height: '40px',
+               width: '100%',
+             },
            }),
            option: (base, state) => ({
              ...base,
@@ -169,7 +171,7 @@ export const BaseInputSelect = ({
               fontSize: '16px',
               padding: '0',
               borderColor: '#DDE4ED',
-              height: 'fit-content',
+              height: '100%',
               width: '100%',
               display: 'flex',
               alignItems: 'center',
@@ -182,16 +184,19 @@ export const BaseInputSelect = ({
               '&:focus': {
                 borderColor: '#5E9CC8',
               },
-              // Media query para pantallas grandes
-              '@media (min-width: 1360px)': {
+              '@media (min-width: 1280px) and (max-width: 1920px)': {
                 fontSize: '14px',
-                width: '200px',
+                minWidth: '230px',
               },
-              // '@media (max-width: 800px)': {
-              //   fontSize: '14px',
-              //   height: '40px',
-              //   width: '160px',
-              // },
+               '@media (min-width: 1024px) and (max-width: 1279px)': {
+                fontSize: '14px',
+                minWidth: '200px',
+              },
+               '@media (max-width: 980px)': {
+                 fontSize: '14px',
+                 height: '40px',
+                 width: '100%',
+               },
             }),
             option: (base, state) => ({
               ...base,
