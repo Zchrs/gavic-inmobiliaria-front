@@ -56,13 +56,16 @@
     --bg-light: #d9d9cd;
     --bg-dark: black;
 
-    --deg-primary: linear-gradient(90deg, #0A6E9A 0%, #2695c5 100%);
+    --deg-primary: linear-gradient(180deg, #008800 0%, #709d48 100%);
+    --deg-secondary: linear-gradient(180deg, #626961 0%, #50574f 100%);
+    --deg-tertiary: linear-gradient(180deg, #ecece2 0%, #c3c5ba 100%);
+    --deg-fourty: linear-gradient(180deg, #98ac91 0%, #6b7e68 100%);
     --deg-transparent: linear-gradient(90deg, #0A6E9A 0%, #2695c580 100%);
   
     /* SHADOWS */
     --ds-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    --ds-s: 0px 1px 2px -1px rgba(16, 24, 40, 0.1), 0px 1px 3px rgba(16, 24, 40, 0.1);
-    --ds-m: 0px 2px 4px -2px rgba(16, 24, 40, 0.1), 0px 4px 6px -1px rgba(16, 24, 40, 0.1);
+    --ds-s: 0px 0px 3px -1px black, 0px 0px 3px black;
+    --ds-m: 0px 0px 3px -1px black, 0px 0px 3px -1px black;
     --ds-l: 0px 4px 6px -4px rgba(16, 24, 40, 0.1), 0px 10px 15px -3px rgba(16, 24, 40, 0.1);
     --ds-xl: 0px 8px 10px -6px rgba(16, 24, 40, 0.1), 0px 20px 25px -5px rgba(16, 24, 40, 0.1);
     --ds-xxl: 0px 40px 100px -12px rgba(16, 24, 40, 0.1);

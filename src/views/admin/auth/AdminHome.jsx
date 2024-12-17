@@ -11,7 +11,7 @@ export const AdminHome = () => {
           <div className="adminhome-left-container">
             <div className="adminhome-left-container-card">
               <h2>Usuarios nuevos</h2>
-              <DonutChart width="100%" height="100%" type="donut" />
+              <DonutChart width="100%" height="100%" type="donut" serie={[44, 55, 41]} />
               <BaseButton textLabel={true} label={"Ver detalle"} classs={"button mini-primary-soft"} />
             </div>
             <div className="adminhome-left-container-card">
@@ -158,6 +158,10 @@ const HomeAdmin = styled.section`
     align-items: start;
     height: fit-content;
     gap: 5px;
+    @media (max-width: 980px){
+      display: grid;
+      grid-template-columns: 1fr;
+    }
 
     &-left{
       display: grid;
@@ -168,26 +172,41 @@ const HomeAdmin = styled.section`
         display: flex;
         gap: 2px;
         
+        @media (max-width: 820px) {
+        display: grid;
+        grid-template-columns: 1fr;
+        }
         &-card{
           display: grid;
           height: fit-content;
           padding: 24px;
-          background: #50574f;
+          background: var(--deg-secondary);
+          box-shadow: var(--ds-s);
           align-items: center;
           align-content: center;
           gap: 10px;
           color: white;
           &:nth-child(1){
-            /* width: 50%; */
-            border-radius: 25px 5px 25px 25px ;
+            border-radius: 15px 5px 15px 15px ;
+            @media (max-width: 820px) {
+              border-radius: 25px 25px 0px 0px ;
+              
+            }
           }
           &:nth-child(2){
-            border-radius: 5px 5px 25px 25px ;
-            /* width: 100%; */
+            display: grid;
+            align-content: center;
+            border-radius: 5px 5px 15px 15px ;
+            
+            @media (max-width: 820px) {
+              border-radius: 0;
+            }
           }
           &:nth-child(3){
-            border-radius: 5px 25px 25px 25px ;
-            /* width: 90%; */
+            border-radius: 5px 15px 15px 15px ;
+            @media (max-width: 820px) {
+              border-radius: 0px 0px 25px 25px ;
+            }
           }
           &-titles{
             width: fit-content;
@@ -205,21 +224,34 @@ const HomeAdmin = styled.section`
         display: flex;
         width: 100%;
         gap: 10px;
+        @media (max-width: 820px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        }
         &-card{
           height: 100%;
           padding: 24px;
-          color: white;
-          border-radius: 25px;
+          color: black;
+          border-radius: 15px;
           align-content: space-between;
+          background: var(--deg-tertiary);
+          box-shadow: var(--ds-s);
+          
           &:nth-child(1){
-            background: #cdcfc2;
             width: 60%;
+            @media (max-width: 820px) {
+              width: 100%;
+            }
           }
           &:nth-child(2){
-            background: #7a8a70;
+            background: var(--deg-fourty);
+            box-shadow: var(--ds-m);
           }
           &:nth-child(3){
-            background: #cdcfc2;
+            @media (max-width: 820px) {
+              margin: auto;
+              width: 205%;
+            }
           }
         }
       }
@@ -230,15 +262,23 @@ const HomeAdmin = styled.section`
         width: 100%;
         height: fit-content;
         padding: 24px;
-        border-radius: 25px;
-        background: #50574f;
+        border-radius: 15px;
+        background: var(--deg-secondary);
+        box-shadow: var(--ds-m);
+
+        @media (max-width: 820px) {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
 
           &-card{
             display: grid;
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: #cdcfc2;
+            background: var(--deg-tertiary);
+            box-shadow: var(--ds-m);
           }
       }
     }
@@ -250,23 +290,28 @@ const HomeAdmin = styled.section`
       &-card{
         display: grid;
         height: fit-content;
-        background: #d7d8ca;
+        background: var(--deg-tertiary);
+        box-shadow: var(--ds-s);
         align-content: space-between;
-        border-radius: 25px;
+        border-radius: 15px;
         padding: 24px;
         gap: 10px;
         
         &-medium{
           display: flex;
           gap: 10px;
+          @media (max-width: 820px) {
+        display: grid;
+        }
           &-card{
             display: grid;
             width: 100%;
             height: 100%;
-            background: #50574f;
+            background: var(--deg-secondary);
+        box-shadow: var(--ds-s);
             gap: 5px;
             padding: 24px;
-            border-radius: 25px;
+            border-radius: 15px;
           }
         }
       }
@@ -275,8 +320,9 @@ const HomeAdmin = styled.section`
         height: 100%;
         padding: 24px;
         display: grid;
-        border-radius: 25px;
-        background: #d7d8ca;
+        border-radius: 15px;
+        background: var(--deg-tertiary);
+        box-shadow: var(--ds-s);
         gap: 10px;
       }
       &-footer{
@@ -285,14 +331,16 @@ const HomeAdmin = styled.section`
         gap: 10px;
         display: flex;
         &-card{
-          border-radius: 25px;
+          border-radius: 15px;
           display: grid;
           padding: 24px;
           &:nth-child(1){
-            background: #d7d8ca;
+            background: var(--deg-tertiary);
+            box-shadow: var(--ds-s);
           }
           &:nth-child(2){
-            background: #50574f;
+            background: var(--deg-secondary);
+        box-shadow: var(--ds-s);
           }
         }
       }
