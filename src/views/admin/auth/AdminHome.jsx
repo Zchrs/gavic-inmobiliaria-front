@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { DonutChart, GradientChart, SimpleChart } from "../../../components/MultiChart"
+import { CandlesChart, DonutChart, GradientChart, SimpleChart } from "../../../components/MultiChart"
 import { BaseButton } from "../../../components/BaseButton"
 
 
@@ -43,17 +43,11 @@ export const AdminHome = () => {
             </p>
             </div>
             <div className="adminhome-left-mediumcontainer-card">
-                          <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-              Corrupti soluta laboriosam harum ex architecto distinctio! Saepe, 
-              inventore culpa cumque minima eveniet debitis,
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-              Corrupti soluta laboriosam harum ex architecto distinctio! Saepe, 
-              inventore culpa cumque minima eveniet debitis,
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-              Corrupti soluta laboriosam harum ex architecto distinctio! Saepe, 
-              inventore culpa cumque minima eveniet debitis,
-            </p>
+              <h2>Finanzas</h2>
+              <CandlesChart />
+              <div className="adminhome-left-mediumcontainer-card-btn">
+                <BaseButton textLabel={true} label={"Ver detalle"} classs={"button mini-primary-soft"} />
+              </div>
             </div>
             <div className="adminhome-left-mediumcontainer-card">
                           <p>
@@ -237,6 +231,9 @@ const HomeAdmin = styled.section`
           background: var(--deg-tertiary);
           box-shadow: var(--ds-s);
           
+          &-btn{
+            z-index: 200;
+          }
           &:nth-child(1){
             width: 60%;
             @media (max-width: 820px) {
@@ -244,6 +241,10 @@ const HomeAdmin = styled.section`
             }
           }
           &:nth-child(2){
+            display: grid;
+            gap: 20px;
+            height: fit-content;
+            color: white;
             background: var(--deg-fourty);
             box-shadow: var(--ds-m);
           }
@@ -263,6 +264,7 @@ const HomeAdmin = styled.section`
         height: fit-content;
         padding: 24px;
         border-radius: 15px;
+        z-index: 100;
         background: var(--deg-secondary);
         box-shadow: var(--ds-m);
 
@@ -330,6 +332,7 @@ const HomeAdmin = styled.section`
         height: fit-content;
         gap: 10px;
         display: flex;
+        
         &-card{
           border-radius: 15px;
           display: grid;
