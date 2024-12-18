@@ -35,7 +35,8 @@ export const HeaderAdmin = () => {
                 background: var(--bg-tertiary);
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                position: fixed;
-               z-index: 200;
+               z-index: 10000;
+               width: 90%;
                top: 0px;
               `;
       } else {
@@ -134,6 +135,7 @@ const AdminHeader = styled.header`
     align-items: center;
     grid-template-columns: 10% 30% 30% 30%;
     border-radius: 50px;
+    z-index: 500;
     gap: 5px;
     @media (max-width: 980px) {
       display: none;
@@ -194,7 +196,7 @@ const AdminHeader = styled.header`
       padding: 0;
       @media (max-width: 980px) {
         display: grid;
-
+        z-index: 1000;
         &-header {
           width: 100%;
           background: var(--bg-tertiary);
@@ -205,7 +207,7 @@ const AdminHeader = styled.header`
           gap: 10px;
           height: fit-content;
           border-radius: 10px;
-          z-index: 100;
+          z-index: 1000;
           color: black;
 
           &-menu {
@@ -236,6 +238,7 @@ const AdminHeader = styled.header`
           position: fixed;
           width: 100%;
           height: 100%;
+          z-index: 900;
           top: 50px;
           left: 0;
           background: var(--bg-secondary);

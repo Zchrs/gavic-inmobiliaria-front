@@ -296,16 +296,19 @@ export const CandlesChart = () => {
         toolbar: {
           show: true,
           tools: {
-            download: true, // Botón para descargar el gráfico
+            download: true,
             selection: true,
             zoom: true,
             zoomin: true,
             zoomout: true,
           },
-          offsetX: -10, // Ajusta la posición horizontal del menú
-          offsetY: 0,   // Ajusta la posición vertical del menú
+          offsetX: -10,
+          offsetY: -10,
+          style: {
+            colors: ["#000000"], // Cambia el color de los íconos del menú a negro
+            color: "#000000", // Cambia los íconos del menú a negro
+          },
         },
-      
       },
       plotOptions: {
         bar: {
@@ -323,7 +326,7 @@ export const CandlesChart = () => {
         offsetY: -20,
         style: {
           fontSize: "12px",
-          colors: ["#ffffff"],
+          colors: ["#000000"],
         },
       },
       xaxis: {
@@ -331,8 +334,8 @@ export const CandlesChart = () => {
         position: "top",
         labels: {
           style: {
-            colors: Array(7).fill("#ffffff"), // Color blanco para los días de la semana
-            fontSize: "12px",    // Tamaño de la fuente
+            colors: Array(7).fill("#000000"),
+            fontSize: "12px",
           },
         },
         axisBorder: {
@@ -343,16 +346,6 @@ export const CandlesChart = () => {
         },
         crosshairs: {
           show: false,
-          fill: {
-            type: "gradient",
-            gradient: {
-              colorFrom: "#D8E3F0",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.5,
-            },
-          },
         },
       },
       yaxis: {
@@ -363,25 +356,42 @@ export const CandlesChart = () => {
           show: false,
         },
         labels: {
-          show: false,
+          show: true,
+          style: {
+            colors: ["#000000"], // Color de las etiquetas del eje Y
+          },
           formatter: function (val) {
             return val + "%";
+          },
+        },
+      },
+      grid: {
+        show: true, // Habilita las líneas de la cuadrícula
+        borderColor: "#000000", // Color negro para las líneas horizontales
+        strokeDashArray: 0, // Líneas sólidas
+        xaxis: {
+          lines: {
+            show: false, // Deshabilita las líneas verticales
+          },
+        },
+        yaxis: {
+          lines: {
+            show: true, // Habilita las líneas horizontales
           },
         },
       },
       tooltip: {
         enabled: true,
         style: {
-          fontSize: "14px", // Tamaño de la fuente del tooltip
+          fontSize: "14px",
         },
-        theme: "dark", // Estilo del tooltip (puedes usar "light", "dark", o "custom")
+        theme: "dark",
         x: {
           show: true,
-          formatter: (val) => `Día: ${val}`, // Texto personalizado
-          
+          formatter: (val) => `Día: ${val}`,
         },
         y: {
-          formatter: (val) => `${val}%`, // Formato del valor
+          formatter: (val) => `${val}%`,
         },
         marker: {
           show: true,
@@ -394,111 +404,267 @@ export const CandlesChart = () => {
   });
 
   return (
-    <Chart>
-    <div id="chart">
+    <CandleArea>
+      <div id="candlechart">
         <ReactApexChart
           options={state.options}
           series={state.series}
           type="bar"
-          height="260%"
+          height="280%"
           width={"100%"}
         />
       </div>
-    </Chart>
+    </CandleArea>
   );
 };
 
-// export const CandlesChart = () => {
-//   const [state, setState] = useState({
-//     series: [
-//       {
-//         name: "Ventas semanales",
-//         data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2],
-//       },
-//     ],
-//     options: {
-//       chart: {
-//         type: "bar",
-//         toolbar: {
-//           show: true,
-//           tools: {
-//             download: true,
-//             selection: true,
-//             zoom: true,
-//             zoomin: true,
-//             zoomout: true,
-//           },
-//         },
-//       },
-//       plotOptions: {
-//         bar: {
-//           borderRadius: 10,
-//           dataLabels: {
-//             position: "top",
-//           },
-//         },
-//       },
-//       dataLabels: {
-//         enabled: true,
-//         formatter: (val) => `${val}%`,
-//         offsetY: -20,
-//         style: {
-//           fontSize: "12px",
-//           colors: ["#ffffff"],
-//         },
-//       },
-//       xaxis: {
-//         categories: ["Lun", "Mar", "Mie", "Jue", "Vie", "Sáb", "Dom"],
-//         position: "top",
-//         axisBorder: { show: false },
-//         axisTicks: { show: false },
-//         labels: {
-//           show: true,
-//           style: {
-//             colors: ["#ffffff"], // Cambia el color de las etiquetas a blanco
-//           },
-//         },
-//     },
-//       yaxis: {
-//         axisBorder: { show: false },
-//         axisTicks: { show: false },
-        
-//         labels: {
-//           show: true,
-//           style: {
-//             colors: ["#ffffff"], // Cambia el color de las etiquetas a blanco
-//           },
-//         },
-//       },
-//       tooltip: {
-//         enabled: true,
-//         style: { fontSize: "14px" },
-//       },
-//     },
-//   });
+export const AreaChart = () => {
 
-//   return (
-//     <Chart>
-//       <div id="chart">
-//         <ReactApexChart
-//           options={state.options}
-//           series={state.series}
-//           type="bar"
-//           height="250%"
-//           width="100%"
-//         />
-//       </div>
-//     </Chart>
-//   );
-// };
+  const series = {
+    monthDataSeries1: {
+      prices: [0, 1000, 3000, 3600, 4700, 5800, 9000, 9100, 9200, 9400],
+      dates: [
+        "2024-01-01",
+        "2024-01-02",
+        "2024-01-03",
+        "2024-01-04",
+        "2024-01-05",
+        "2024-01-06",
+        "2024-01-07",
+        "2024-01-08",
+        "2024-01-09",
+        "2024-01-10",
+      ],
+    },
+  };
+
+  const [state, setState] = useState({
+    
+      series: [{
+        name: "STOCK ABC",
+        data: series.monthDataSeries1.prices
+      }],
+      options: {
+        chart: {
+          type: 'area',
+          zoom: {
+            enabled: false
+          },
+          toolbar: {
+            show: true,
+            tools: {
+              download: true, // Botón para descargar el gráfico
+              selection: true,
+              zoom: true,
+              zoomin: true,
+              zoomout: true,
+            },
+            offsetX: -10, // Ajusta la posición horizontal del menú
+            offsetY: -10,   // Ajusta la posición vertical del menú
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        
+        // title: {
+        //   text: 'Fundamental Analysis of Stocks',
+        //   align: 'left'
+        // },
+        // subtitle: {
+        //   text: 'Price Movements',
+        //   align: 'left'
+        // },
+
+        labels: series.monthDataSeries1.dates,
+        xaxis: {
+          type: 'datetime',
+          labels: {
+            style: {
+              colors: Array(7).fill("#ffffff"), // Color blanco para los días de la semana
+              fontSize: "12px",    // Tamaño de la fuente
+            },
+          },
+          crosshairs: {
+            show: false,
+          },
+        },
+        yaxis: {
+          opposite: true,
+          labels: {
+            style: {
+              colors: Array(7).fill("#ffffff"), // Color blanco para los días de la semana
+              fontSize: "12px",    // Tamaño de la fuente
+            },
+          },
+        },
+        legend: {
+          horizontalAlign: 'left'
+        },
+        tooltip: {
+          enabled: true,
+          style: {
+            fontSize: "10px", // Tamaño de la fuente del tooltip
+          },
+          theme: "dark", // Estilo del tooltip (puedes usar "light", "dark", o "custom")
+          x: {
+            show: true,
+            formatter: (val) => `Día: ${val}`, // Texto personalizado
+            
+          },
+          y: {
+            formatter: (val) => `${val}%`, // Formato del valor
+          },
+          marker: {
+            show: true,
+          },
+          onDatasetHover: {
+            highlightDataSeries: true,
+          },
+        },
+      },
+    
+    
+  });
+
+  
+
+  return (
+    <Chart>
+      <div id="areachart">
+          <ReactApexChart options={state.options} series={state.series} type="area" height="240%" />
+        </div>
+    </Chart>
+  );
+}
+
+const CandleArea = styled.div`
+  .apexcharts-toolbar {
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 3px;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    svg{
+      filter: brightness(0%);
+    }
+}
+#chart{
+  display: grid;
+  width: fit-content !important;
+  height: 160px !important;
+  padding-bottom: 24px;
+
+}
+#areachart{
+  display: grid;
+  width: fit-content !important;
+  height: 150px !important;
+  padding-bottom: 24px;
+
+}
+#candlechart{
+  display: grid;
+  width: fit-content !important;
+  height: 146px !important;
+  padding-bottom: 24px;
+}
+
+  .apexcharts-tooltip {
+    height: fit-content !important;
+    width: fit-content !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+.apexcharts-tooltip-active{
+  width: fit-content !important;
+  height: fit-content !important;
+  background: transparent;
+}
+.apexcharts-theme-dark{
+  display: grid;
+  width: fit-content !important;
+  height: fit-content !important;
+}
+.apexcharts-theme-light{
+  display: grid;
+  width: fit-content !important;
+  height: fit-content !important;
+  background: transparent;
+}
+.apexcharts-menu {
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    /* border: 1px solid #ddd; */
+    border-radius: 3px;
+    right: 0px;
+    opacity: 0;
+    transition: .15s ease all;
+    pointer-events: none;
+    &-open{
+      height: fit-content;
+      width: fit-content;
+      text-align: center;
+
+    }
+    &-item{
+      color: black;
+      &:hover{
+        font-weight: 700;
+      }
+    }
+}
+.apexcharts-legend{
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+  .chart-container {
+    margin: 0;
+    padding: 0;
+  width: fit-content !important;
+  height: fit-content !important;
+  
+}
+
+.apexcharts-canvas{
+  display: grid;
+    height: fit-content !important;
+    background: transparent !important;
+}
+
+`
 
 const Chart = styled.div`
 #chart{
   display: grid;
   width: fit-content !important;
-  height: 200px !important;
+  height: 160px !important;
   padding-bottom: 24px;
 
+}
+#areachart{
+  display: grid;
+  width: fit-content !important;
+  height: 150px !important;
+  padding-bottom: 24px;
+
+}
+#candlechart{
+  display: grid;
+  width: fit-content !important;
+  height: 146px !important;
+  padding-bottom: 24px;
 }
 
   .apexcharts-tooltip {
@@ -542,7 +708,7 @@ const Chart = styled.div`
     background: #fff;
     position: absolute;
     top: 100%;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 3px;
     right: 0px;
     opacity: 0;
@@ -552,13 +718,19 @@ const Chart = styled.div`
       height: fit-content;
       width: fit-content;
       text-align: center;
+
+    }
+    &-item{
+      color: black;
+      &:hover{
+        font-weight: 700;
+      }
     }
 }
 .apexcharts-legend{
   width: 100% !important;
   height: 100% !important;
   padding: 0 !important;
-  overflow: hidden;
 }
   .chart-container {
     margin: 0;
@@ -571,5 +743,6 @@ const Chart = styled.div`
 .apexcharts-canvas{
   display: grid;
     height: fit-content !important;
+    background: transparent !important;
 }
 `;

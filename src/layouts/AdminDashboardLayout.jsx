@@ -42,7 +42,7 @@ const DashboardAdmin = styled.section`
       width: 100%;
       height: 50px;
       /* background: black; */
-      z-index: 60;
+      z-index: 1000;
     }
     &-content{
       display: grid;

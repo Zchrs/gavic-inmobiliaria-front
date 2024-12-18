@@ -57,9 +57,11 @@
     --bg-dark: black;
 
     --deg-primary: linear-gradient(180deg, #008800 0%, #709d48 100%);
-    --deg-secondary: linear-gradient(180deg, #626961 0%, #50574f 100%);
+    --deg-secondary: linear-gradient(180deg, #727871 0%, #50574f 100%);
     --deg-tertiary: linear-gradient(180deg, #ecece2 0%, #c3c5ba 100%);
     --deg-fourty: linear-gradient(180deg, #98ac91 0%, #6b7e68 100%);
+    --deg-fift: linear-gradient(180deg, #767c76 0%, #5b5f5b 100%);
+    --deg-six: linear-gradient(180deg, #8b9a86 0%, #586755 100%);
     --deg-transparent: linear-gradient(90deg, #0A6E9A 0%, #2695c580 100%);
   
     /* SHADOWS */

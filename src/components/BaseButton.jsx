@@ -132,7 +132,127 @@ const ButtonBase = styled.div`
           background: transparent;
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 600px) {
+          padding: 5px 17px;
+        }
+      }
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      &.disabled {
+        cursor: default;
+        z-index: 50;
+        opacity: 0.6;
+        transition: all ease 0.4s;
+
+        a {
+          cursor: not-allowed;
+          background: gray;
+        }
+
+        &:hover {
+          a {
+            background: gray;
+          }
+        }
+      }
+    }
+    &.little-primary-gradient {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      a {
+        gap: 5px;
+        display: flex;
+        padding: 6px 25px;
+        width: 100%;
+        height: fit-content;
+        background: var(--deg-fourty);
+        color: white;
+        border-radius: 50px;
+        font-weight: 400;
+        font-size: 15px;
+        transition: all ease 0.3s;
+        text-decoration: none;
+        img {
+          filter: brightness(500%);
+          width: 13%;
+        }
+        &:hover {
+          background: var(--deg-six);
+          font-weight: 600;
+        }
+        span {
+          width: fit-content;
+          background: transparent;
+        }
+
+        @media (max-width: 600px) {
+          padding: 5px 17px;
+        }
+      }
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      &.disabled {
+        cursor: default;
+        z-index: 50;
+        opacity: 0.6;
+        transition: all ease 0.4s;
+
+        a {
+          cursor: not-allowed;
+          background: gray;
+        }
+
+        &:hover {
+          a {
+            background: var(--deg-six);
+          }
+        }
+      }
+    }
+    &.little-secondary-gradient {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      a {
+        gap: 5px;
+        display: flex;
+        padding: 6px 32px;
+        width: 100%;
+        height: fit-content;
+        background: var(--deg-secondary);
+        color: white;
+        border-radius: 50px;
+        font-weight: 400;
+        font-size: 17px;
+        transition: all ease 0.3s;
+        text-decoration: none;
+        img {
+          filter: brightness(500%);
+          width: 13%;
+        }
+        &:hover {
+          background: var(--deg-fift);
+          font-weight: 600;
+        }
+        span {
+          width: fit-content;
+          background: transparent;
+        }
+
+        @media (max-width: 600px) {
           padding: 5px 17px;
         }
       }
