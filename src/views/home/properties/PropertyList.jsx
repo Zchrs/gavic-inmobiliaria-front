@@ -473,6 +473,9 @@ const ListProperty = styled.section`
       height: fit-content;
       width: 40%;
       gap: 10px;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
   .wizard-card-footer {
