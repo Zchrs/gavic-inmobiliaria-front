@@ -101,6 +101,65 @@ const ButtonBase = styled.div`
       line-height: 120%;
     }
 
+    &.little-primary {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      a {
+        gap: 5px;
+        display: flex;
+        padding: 10px 32px;
+        width: fit-content;
+        height: fit-content;
+        background: var(--bg-primary);
+        color: white;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 17px;
+        transition: all ease 0.3s;
+        text-decoration: none;
+        img {
+          filter: brightness(500%);
+          width: 13%;
+        }
+        &:hover {
+          background: #477c46;
+        }
+        span {
+          width: fit-content;
+          background: transparent;
+        }
+
+        @media (max-width: 600px) {
+          padding: 5px 17px;
+        }
+      }
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      &.disabled {
+        cursor: default;
+        z-index: 50;
+        opacity: 0.6;
+        transition: all ease 0.4s;
+
+        a {
+          cursor: not-allowed;
+          background: gray;
+        }
+
+        &:hover {
+          a {
+            background: gray;
+          }
+        }
+      }
+    }
     &.little-secondary {
       display: grid;
       width: 100%;
