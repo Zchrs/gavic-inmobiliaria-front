@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import FormWizard from "react-form-wizard-component";
-import { BaseButton, BaseInput } from "../../../../index";
+import { BaseButton, BaseInput, BaseInputSelect } from "../../../../index";
 import styled from "styled-components";
 import "react-form-wizard-component/dist/style.css";
-
+import { DropZone } from "../../../components/DropZone";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0); // Estado para el paso actual
@@ -43,7 +43,6 @@ const MultiStepForm = () => {
             <p>{index + 1}</p>
           </div>
         ))}
-        
       </div>
 
       {/* Línea de progreso */}
@@ -59,163 +58,327 @@ const MultiStepForm = () => {
       {/* Contenido del paso actual */}
       <div className="step-content">
         {currentStep === 0 && (
-          
-<div className="listproperty-contain">
-             <div className="listproperty-titles">
-               <h2 className="h2-extra-medium">Consigna tu inmueble</h2>
-               <h3 className="l-bold">
-                 Gracias por confiar en nuestros servicios, para consignar tu
-                 inmueble es necesario que tengas los siguientes documentos
-                 escaneados o en formato digital.
-               </h3>
-               <ol className="listproperty-titles-ol">
-                 <li>Fotocopia de tu cédula</li>
-                 <li>Impuesto predial</li>
-                 <li>Última cuenta de servicios públicos</li>
-               </ol>
-             </div>
-           </div>
-          
-        )}
-        {currentStep === 1 && (
-  <div className="listproperty-contain">
-      <div className="listproperty-titles">
-                 <h2 className="h2-extra-medium">Información del propietario</h2>
-                 <h3>Primero debes ingresar algunos datos del propietario del inmueble.</h3>
-                 </div>
-    <div className="listproperty-form">
-                 <div>
-                         <BaseInput
-                         classs={"inputs outline"}
-                         placeholder="Nombre"
-                         name="name"
-                         id="name"
-                         // value={form.name}
-                 // onBlur={handleBlur}
-                 // onChange={handleChange}
-                 // required
-                         />
-                         {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
-                       </div>
-                 <div>
-                         <BaseInput
-                         classs={"inputs outline"}
-                         placeholder="Número de cédula"
-                         name="docId"
-                         id="docId"
-                         // value={form.name}
-                 // onBlur={handleBlur}
-                 // onChange={handleChange}
-                 // required
-                 isNumber
-                         />
-                         {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
-                       </div>
-                 <div>
-                       <BaseInput
-                         classs={"inputs outline"}
-                         placeholder="Correo electrónico"
-                         id="email"
-                         name="email"
-                         // value={form.email}
-                         // onBlur={handleBlur}
-                         // onChange={handleChange}
-                         isEmail
-                       />
-                       {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
-                     </div>
-                     <div>
-                         <BaseInput
-                         classs={"inputs outline"}
-                         placeholder="Número de teléfono"
-                         name="phone"
-                         id="phone"
-                         // value={form.name}
-                 // onBlur={handleBlur}
-                 // onChange={handleChange}
-                 // required
-                 isNumber
-                         />
-                         {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
-                       </div>
-               </div>
-  </div>
-        )}
-        {currentStep === 2 && (
-           <div className="listproperty-contain">
-                            <div className="listproperty-titles">
-                              <h2 className="h2-extra-medium">Información del encargado</h2>
-                              <h3>Esta información es opcional en caso de que exista una persona encargada del inmueble.</h3>
-                            </div>
-             <div className="listproperty-form">
-                            <div>
-                                    <BaseInput
-                                    classs={"inputs outline"}
-                                    placeholder="Nombre completo"
-                                    name="name"
-                                    id="name"
-                                    // value={form.name}
-                            // onBlur={handleBlur}
-                            // onChange={handleChange}
-                            // required
-                                    />
-                                    {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
-                                  </div>
-                            <div>
-                                    <BaseInput
-                                    classs={"inputs outline"}
-                                    placeholder="Número de cédula"
-                                    name="docId"
-                                    id="docId"
-                                    // value={form.name}
-                            // onBlur={handleBlur}
-                            // onChange={handleChange}
-                            // required
-                            isNumber
-                                    />
-                                    {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
-                                  </div>
-                            <div>
-                                  <BaseInput
-                                    classs={"inputs outline"}
-                                    placeholder="Correo electrónico"
-                                    id="email"
-                                    name="email"
-                                    // value={form.email}
-                                    // onBlur={handleBlur}
-                                    // onChange={handleChange}
-             
-                                    isEmail
-                                  />
-                                  {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
-                                </div>
-                                <div>
-                                    <BaseInput
-                                    classs={"inputs outline"}
-                                    placeholder="Número de teléfono"
-                                    name="phone"
-                                    id="phone"
-                                    // value={form.name}
-                            // onBlur={handleBlur}
-                            // onChange={handleChange}
-                            // required
-                            isNumber
-                                    />
-                                    {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
-                                  </div>
-                          </div>
-           </div>
-        )}
-        {currentStep === 3 && (
-          <div>
-            <h2>Paso 4: Finalización</h2>
-            <p>¡Felicidades! Has completado todos los pasos.</p>
+          <div className="listproperty-contain">
+            <div className="listproperty-titles">
+              <h2 className="h2-extra-medium">Consigna tu inmueble</h2>
+              <h3 className="l-bold">
+                Gracias por confiar en nuestros servicios, para consignar tu
+                inmueble es necesario que tengas los siguientes documentos
+                escaneados o en formato digital.
+              </h3>
+              <ol className="listproperty-titles-ol">
+                <li>Fotocopia de tu cédula</li>
+                <li>Impuesto predial</li>
+                <li>Última cuenta de servicios públicos</li>
+              </ol>
+            </div>
           </div>
         )}
+        {currentStep === 1 && (
+          <div className="listproperty-contain">
+            <div className="listproperty-titles">
+              <h2 className="h2-extra-medium">Información del propietario</h2>
+              <h3>
+                Primero debes ingresar algunos datos del propietario del
+                inmueble.
+              </h3>
+            </div>
+            <div className="listproperty-form">
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Nombre"
+                  name="name"
+                  id="name"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+              </div>
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Número de cédula"
+                  name="docId"
+                  id="docId"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                  isNumber
+                />
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+              </div>
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Correo electrónico"
+                  id="email"
+                  name="email"
+                  // value={form.email}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  isEmail
+                />
+                {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
+              </div>
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Número de teléfono"
+                  name="phone"
+                  id="phone"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                  isNumber
+                />
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+              </div>
+            </div>
+          </div>
+        )}
+        {currentStep === 2 && (
+          <div className="listproperty-contain">
+            <div className="listproperty-titles">
+              <h2 className="h2-extra-medium">Información del encargado</h2>
+              <h3>
+                Esta información es opcional en caso de que exista una persona
+                encargada del inmueble.
+              </h3>
+            </div>
+            <div className="listproperty-form">
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Nombre completo"
+                  name="name"
+                  id="name"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+              </div>
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Número de cédula"
+                  name="docId"
+                  id="docId"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                  isNumber
+                />
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+              </div>
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Correo electrónico"
+                  id="email"
+                  name="email"
+                  // value={form.email}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+
+                  isEmail
+                />
+                {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
+              </div>
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Número de teléfono"
+                  name="phone"
+                  id="phone"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                  isNumber
+                />
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+              </div>
+            </div>
+          </div>
+        )}
+        {currentStep === 3 && (
+                    <div className="listproperty-contain">
+                    <div className="listproperty-titles">
+                      <h2 className="h2-extra-medium">Información del Inmueble</h2>
+                      <h3>
+                        Esta información es obligatria para la descripción del inmueble 
+                        visible al público en la app web
+                      </h3>
+                    </div>
+                    <div className="listproperty-form">
+                        <div className="flex-s">
+                          <BaseInputSelect 
+                          classs={"inputs outline"}
+                          id="typeOffer"
+                          placeholder="Oferta"
+                          isSmallSelect={true}
+                          name="typeOffer"
+                          // value={form.country}
+                          // onChange={handleCountryChange}
+                          // handleBlur={handleBlur}
+                          options={[
+                            { value: "Vender", label: "Vender" },
+                            { value: "Arrendar", label: "Arrendar" },
+                          ]}
+                          textLabel={true}
+                          required
+                          />
+                          <BaseInputSelect 
+                          classs={"inputs outline"}
+                          id="typeProperty"
+                          placeholder="Tipo de propiedad"
+                          isSelect={true}
+                          name="typeProperty"
+                          // value={form.country}
+                          // onChange={handleCountryChange}
+                          // handleBlur={handleBlur}
+                          options={[
+                            { value: "option1", label: "Apartamento" },
+                            { value: "option1", label: "Apartaestudio" },
+                            { value: "option3", label: "Bodega" },
+                            { value: "option4", label: "Casa" },
+                            { value: "option5", label: "Casa Finca" },
+                            { value: "option6", label: "Casa Local" },
+                            { value: "option7", label: "Finca" },
+                            { value: "option8", label: "Local" },
+                            { value: "option9", label: "Oficina" },
+                            { value: "option10", label: "Terreno" },
+                          ]}
+                          textLabel={true}
+                          required
+                          />
+                        </div>
+                        <div className="flex-s">
+                        <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Matrícula inmobiliaria"
+                  name="registrationNumber"
+                  id="registrationNumber"
+                  isNumber
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Municipio"
+                  name="city"
+                  id="city"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                        </div>
+                        <div className="flex-s">
+                        <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Barrio"
+                  name="district"
+                  id="district"
+                  isNumber
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Dirección"
+                  name="address"
+                  id="address"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                        </div>
+                        <div className="flex-s">
+                        <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="Nombre del edificio o unidad"
+                  name="nameBuilding"
+                  id="nameBuilding"
+                  isNumber
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                                <BaseInput
+                  classs={"inputs outline"}
+                  placeholder="comodidades"
+                  name="amenities"
+                  id="amenities"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                />
+                        </div>
+                      </div>
+                    </div>
+        )}
         {currentStep === 4 && (
-          <div>
-            <h2>Paso 4: Finalización</h2>
-            <p>¡Felicidades! Has completado todos los pasos.</p>
+          <div className="listproperty-contain">
+          <div className="listproperty-titles">
+            <h2 className="h2-extra-medium">Adjuntar documentos</h2>
+          </div>
+          <div className="listproperty-form">
+            <div>
+              <label className="l-light" htmlFor="img_url">Copia de la cédula</label>
+               <DropZone
+                  // onBlur={handleBlur}
+                  id="nID_url"
+                  name="nID_url"
+                  type="file"
+                  // onChange={handleImageChange}
+                  // setImages={handleSetImage}
+                />
+            </div>
+             <div>
+             <label className="l-light" htmlFor="img_url">Copia de impuesto predial</label>
+               <DropZone
+                  // onBlur={handleBlur}
+                  id="tax_url"
+                  name="tax_url"
+                  type="file"
+                  // onChange={handleImageChange}
+                  // setImages={handleSetImage}
+                />
+             </div>
+             <div>
+             <label className="l-light" htmlFor="img_url">Ultima cuenta de servicios públicos</label>
+               <DropZone
+                  // onBlur={handleBlur}
+                  id="sPublic_url"
+                  name="sPublic_url"
+                  type="file"
+                  // onChange={handleImageChange}
+                  // setImages={handleSetImage}
+                />
+             </div>
+            </div>
+          </div>
+        )}
+        {currentStep === 5 && (
+          <div className="listproperty-titles">
+            <h2 className="h2-extra-medium">Finalización</h2>
+            <h3>Todo listo! haz clic en completar para enviar los datos</h3>
           </div>
         )}
       </div>
@@ -223,13 +386,28 @@ const MultiStepForm = () => {
       {/* Botones de navegación */}
       <div className="navigation-buttons">
         {currentStep > 0 && (
-          <BaseButton handleClick={handlePrevious} classs={"button little-secondary"} textLabel={true} label={"Atrás"} />
+          <BaseButton
+            handleClick={handlePrevious}
+            classs={"button little-secondary"}
+            textLabel={true}
+            label={"Atrás"}
+          />
         )}
         {currentStep < totalSteps - 1 && (
-          <BaseButton handleClick={handleNext} classs={"button little-primary"} textLabel={true} label={"Siguiente"} />
+          <BaseButton
+            handleClick={handleNext}
+            classs={"button little-primary"}
+            textLabel={true}
+            label={"Siguiente"}
+          />
         )}
         {currentStep === totalSteps - 1 && (
-          <BaseButton handleClick={handleComplete} classs={"button little-primary"} textLabel={true} label={"completar"} />
+          <BaseButton
+            handleClick={handleComplete}
+            classs={"button little-primary"}
+            textLabel={true}
+            label={"completar"}
+          />
         )}
       </div>
     </div>
@@ -263,11 +441,11 @@ const ListProperty = styled.section`
       width: 70%;
       margin: auto;
       gap: 10px;
-      h2{
+      h2 {
         color: var(--text-primary);
         font-weight: 700;
       }
-      h3{
+      h3 {
         color: var(--text-dark);
         font-weight: 600;
         font-size: 22px;
@@ -289,13 +467,12 @@ const ListProperty = styled.section`
       border: 1px solid var(--bg-black);
       gap: 10px;
     }
-    &-form{
+    &-form {
       margin: auto;
       display: grid;
       height: fit-content;
       width: 40%;
       gap: 10px;
-
     }
   }
   .wizard-card-footer {
@@ -379,36 +556,36 @@ const ListProperty = styled.section`
     font-size: 24px;
     background: var(--bg-dark) !important;
     border: none;
-
   }
   .wizard-icon-container {
     background: transparent !important;
     color: black !important;
   }
-  [class^="ti-"], [class*=" ti-"] {
-    font-family: 'themify';
+  [class^="ti-"],
+  [class*=" ti-"] {
+    font-family: "themify";
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
     line-height: 1;
     color: white;
-}
- .ti{
-  span{
-    background: transparent;
   }
+  .ti {
+    span {
+      background: transparent;
+    }
 
-  &-user, &-info, &-settings, &-check &::before
-  {
-    width: fit-content;
-    height: fit-content;
-    background: none !important;
-    background-color: transparent !important;
-}
-
-}
-
+    &-user,
+    &-info,
+    &-settings,
+    &-check &::before {
+      width: fit-content;
+      height: fit-content;
+      background: none !important;
+      background-color: transparent !important;
+    }
+  }
 
   .stepTitle {
     color: var(--text-dark);
@@ -425,95 +602,118 @@ const ListProperty = styled.section`
     background: transparent;
   }
 
+  .step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
 
+  .step {
+    width: 40px;
+    height: 35px;
+    line-height: 40px;
+    clip-path: polygon(
+      20% 0,
+      80% 0,
+      100% 20%,
+      100% 80%,
+      80% 100%,
+      20% 100%,
+      0 80%,
+      0 20%
+    );
+    position: relative;
+    background: #ccc;
+    color: var(--text-dark);
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;
+    &::before {
+      content: "";
+      margin: auto;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 60%;
+      background: var(--bg-tertiary);
+      clip-path: polygon(
+        20% 0,
+        80% 0,
+        100% 20%,
+        100% 80%,
+        80% 100%,
+        20% 100%,
+        0 80%,
+        0 20%
+      );
+      z-index: -1;
+    }
+  }
 
-.step-indicator {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
+  .step.completed {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 60%;
+      background: var(--bg-tertiary);
+      clip-path: polygon(
+        20% 0,
+        80% 0,
+        100% 20%,
+        100% 80%,
+        80% 100%,
+        20% 100%,
+        0 80%,
+        0 20%
+      );
+      z-index: -1;
+    }
+    background: green;
+    z-index: 10;
+  }
 
-.step {
-  width: 40px;
-  height: 35px;
-  line-height: 40px;
-  clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
-  position: relative;
-  background: #ccc;
-  color: var(--text-dark);
-  font-weight: bold;
-  text-align: center;
-  z-index: 10;
-  &::before{
-    content: "";
+  .step.active {
+    color: var(--text-dark);
+    background: var(--bg-primary-semi);
+    z-index: 10;
+  }
+
+  /* Línea de progreso */
+  .progress-bar-container {
+    top: -40px;
+    width: 100%;
+    height: 6px;
+    background-color: #ccc;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: var(--bg-primary);
+    transition: width 0.3s ease-in-out;
+  }
+
+  .step-content {
+    margin-bottom: 20px;
+  }
+
+  .navigation-buttons {
+    display: flex;
+    width: fit-content;
+    gap: 10px;
     margin: auto;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 60%;
-    background: var(--bg-tertiary);
-    clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
-    z-index: -1;
   }
-}
 
-.step.completed {
-  &::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60%;
-    height: 60%;
-    background: var(--bg-tertiary);
-    clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
-    z-index: -1;
+  .navigation-buttons button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
   }
-  background: green;
-  z-index: 10;
-}
-
-.step.active {
-  color: var(--text-dark);
-  background: var(--bg-primary-semi);
-  z-index: 10;
-}
-
-/* Línea de progreso */
-.progress-bar-container {
-  top: -40px;
-  width: 100%;
-  height: 6px;
-  background-color: #ccc;
-  position: relative;
-  border-radius: 2px;
-  overflow: hidden;
-  
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: var(--bg-primary);
-  transition: width 0.3s ease-in-out;
-}
-
-.step-content {
-  margin-bottom: 20px;
-}
-
-.navigation-buttons {
-display: flex;
-width: fit-content;
-gap: 10px;
-margin: auto;
-}
-
-
-.navigation-buttons button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
 `;
