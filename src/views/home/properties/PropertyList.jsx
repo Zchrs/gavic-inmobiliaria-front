@@ -41,6 +41,12 @@ const MultiStepForm = () => {
                 ? "active"
                 : ""
             }`}>
+            
+            {(index <= currentStep) && (
+              <div className="locationicon">
+                <i className={`fas fa-location-dot icon green-icon`}></i>
+              </div>
+            )}
             <i className={`fas ${index < currentStep ? 'fa-check' : 'fa-circle'} icon`}></i>
           </div>
         ))}
@@ -627,26 +633,18 @@ const ListProperty = styled.section`
   }
 
   .step {
+    position: relative;
     width: 40px;
     height: 35px;
     line-height: 40px;
-    clip-path: polygon(
-      20% 0,
-      80% 0,
-      100% 20%,
-      100% 80%,
-      80% 100%,
-      20% 100%,
-      0 80%,
-      0 20%
-    );
+
     position: relative;
-    background: #ccc;
+    background: transparent;
     color: var(--text-dark);
     font-weight: bold;
     text-align: center;
     z-index: 10;
-    /* &::before {
+     &::before {
       content: "";
       margin: auto;
       bottom: 0;
@@ -654,9 +652,10 @@ const ListProperty = styled.section`
       position: absolute;
       top: 0;
       left: 0;
-      width: 60%;
-      height: 60%;
-      background: var(--bg-tertiary);
+      width: 100%;
+      height: 100%;
+
+      background: #ccc;
       clip-path: polygon(
         20% 0,
         80% 0,
@@ -668,18 +667,18 @@ const ListProperty = styled.section`
         0 20%
       );
       z-index: -1;
-    } */
+    } 
   }
 
   .step.completed {
-    /* &::before {
+     &::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 60%;
-      height: 60%;
-      background: var(--bg-tertiary);
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary);
       clip-path: polygon(
         20% 0,
         80% 0,
@@ -691,8 +690,8 @@ const ListProperty = styled.section`
         0 20%
       );
       z-index: -1;
-    } */
-    background: green;
+    } 
+    background: transparent;
     z-index: 10;
 
   }
@@ -710,8 +709,28 @@ const ListProperty = styled.section`
 }
   .step.active {
     color: var(--text-tertiary);
-    background: var(--bg-primary-semi);
+    background: transparent;
     z-index: 10;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary-semi);
+      clip-path: polygon(
+        20% 0,
+        80% 0,
+        100% 20%,
+        100% 80%,
+        80% 100%,
+        20% 100%,
+        0 80%,
+        0 20%
+      );
+      z-index: -1;
+    }
   }
 
   /* Línea de progreso */
@@ -754,10 +773,22 @@ const ListProperty = styled.section`
     gap: 10px;
     margin: auto;
     padding-top: 50px;
-    color: var(--text-black);
     line-height: 1.1;
+    color: var(--text-black);
     img{
       width: 50px;
     }
   }
+  .locationicon{
+    z-index: 10;
+    position: absolute;
+    height: 40px; 
+    top: -82%;
+    color: var(--text-primary);
+  }
+ .green-icon {
+  transition: all 0.3s ease;
+    z-index: 10;
+  color: var(--text-primary);
+}
 `;
