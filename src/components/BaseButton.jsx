@@ -1148,6 +1148,7 @@ const ButtonBase = styled.div`
       height: fit-content;
     }
     &.rounded {
+      z-index: -1;
       background: url(@/assets/images/icon-arrow-down-white.svg);
       width: 40px;
       height: 40px;
