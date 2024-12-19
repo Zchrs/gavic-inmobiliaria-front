@@ -5,6 +5,8 @@ import { BaseButton, BaseInput, BaseInputSelect } from "../../../../index";
 import styled from "styled-components";
 import "react-form-wizard-component/dist/style.css";
 import { DropZone } from "../../../components/DropZone";
+import { getImg } from "../../../../globalActions";
+import { Link } from "react-router-dom";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0); // Estado para el paso actual
@@ -58,19 +60,22 @@ const MultiStepForm = () => {
       {/* Contenido del paso actual */}
       <div className="step-content">
         {currentStep === 0 && (
-          <div className="listproperty-contain">
-            <div className="listproperty-titles">
-              <h2 className="h2-extra-medium">Consigna tu inmueble</h2>
-              <h3 className="l-bold">
-                Gracias por confiar en nuestros servicios, para consignar tu
-                inmueble es necesario que tengas los siguientes documentos
-                escaneados o en formato digital.
-              </h3>
-              <ol className="listproperty-titles-ol">
-                <li>Fotocopia de tu cédula</li>
-                <li>Impuesto predial</li>
-                <li>Última cuenta de servicios públicos</li>
-              </ol>
+          <div>
+            <div className="listproperty-contain">
+              <div className="listproperty-titles">
+                <h2 className="h2-extra-medium">Consigna tu inmueble</h2>
+                <h3 className="l-bold">
+                  Gracias por confiar en nuestros servicios, para consignar tu
+                  inmueble es necesario que tengas los siguientes documentos
+                  escaneados o en formato digital.
+                </h3>
+                <ol className="listproperty-titles-ol">
+                  <li>Fotocopia de tu cédula</li>
+                  <li>Impuesto predial</li>
+                  <li>Última cuenta de servicios públicos</li>
+                </ol>
+              </div>
+                {/* Imagen debajo del contenido del paso 0 */}
             </div>
           </div>
         )}
@@ -384,32 +389,43 @@ const MultiStepForm = () => {
       </div>
 
       {/* Botones de navegación */}
-      <div className="navigation-buttons">
-        {currentStep > 0 && (
-          <BaseButton
-            handleClick={handlePrevious}
-            classs={"button little-secondary"}
-            textLabel={true}
-            label={"Atrás"}
-          />
-        )}
-        {currentStep < totalSteps - 1 && (
-          <BaseButton
-            handleClick={handleNext}
-            classs={"button little-primary"}
-            textLabel={true}
-            label={"Siguiente"}
-          />
-        )}
-        {currentStep === totalSteps - 1 && (
-          <BaseButton
-            handleClick={handleComplete}
-            classs={"button little-primary"}
-            textLabel={true}
-            label={"completar"}
-          />
-        )}
+      
+        <div className="navigation-buttons">
+          {currentStep > 0 && (
+            <BaseButton
+              handleClick={handlePrevious}
+              classs={"button little-secondary"}
+              textLabel={true}
+              label={"Atrás"}
+            />
+          )}
+          {currentStep < totalSteps - 1 && (
+            <BaseButton
+              handleClick={handleNext}
+              classs={"button little-primary"}
+              textLabel={true}
+              label={"Siguiente"}
+            />
+          )}
+          {currentStep === totalSteps - 1 && (
+            <BaseButton
+              handleClick={handleComplete}
+              classs={"button little-primary"}
+              textLabel={true}
+              label={"completar"}
+            />
+          )}
       </div>
+      {currentStep === 0 && (
+  <Link className="whatsapp">
+
+    <img
+      src={getImg("svg","whatsapp", "svg")}
+      alt="Descripción de la imagen"
+    />
+    <h3>O si prefieres, Contacta uno de nuestros agentes para consignar tu inmueble</h3>
+  </Link>
+)}
     </div>
   );
 };
@@ -718,5 +734,19 @@ const ListProperty = styled.section`
   .navigation-buttons button:disabled {
     background: #ccc;
     cursor: not-allowed;
+  }
+  .whatsapp{
+    border: 1px solid var(--bg-black);
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: auto;
+    padding-top: 50px;
+    color: var(--text-black);
+    line-height: 1.1;
+    img{
+      width: 50px;
+    }
   }
 `;
