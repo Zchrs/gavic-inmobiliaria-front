@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import FormWizard from "react-form-wizard-component";
 import { BaseButton, BaseInput, BaseInputSelect } from "../../../../index";
 import styled from "styled-components";
-import "react-form-wizard-component/dist/style.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { DropZone } from "../../../components/DropZone";
 import { getImg } from "../../../../globalActions";
 import { Link } from "react-router-dom";
@@ -42,7 +41,7 @@ const MultiStepForm = () => {
                 ? "active"
                 : ""
             }`}>
-            <p>{index + 1}</p>
+            <i className={`fas ${index < currentStep ? 'fa-check' : 'fa-circle'} icon`}></i>
           </div>
         ))}
       </div>
@@ -647,7 +646,7 @@ const ListProperty = styled.section`
     font-weight: bold;
     text-align: center;
     z-index: 10;
-    &::before {
+    /* &::before {
       content: "";
       margin: auto;
       bottom: 0;
@@ -669,11 +668,11 @@ const ListProperty = styled.section`
         0 20%
       );
       z-index: -1;
-    }
+    } */
   }
 
   .step.completed {
-    &::before {
+    /* &::before {
       content: "";
       position: absolute;
       top: 0;
@@ -692,13 +691,25 @@ const ListProperty = styled.section`
         0 20%
       );
       z-index: -1;
-    }
+    } */
     background: green;
     z-index: 10;
-  }
 
+  }
+  .step.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: var(--text-tertiary);
+}
+.step.completed .icon {
+  color: var(--text-tertiary);
+}
   .step.active {
-    color: var(--text-dark);
+    color: var(--text-tertiary);
     background: var(--bg-primary-semi);
     z-index: 10;
   }
