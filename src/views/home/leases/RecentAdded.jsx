@@ -1,14 +1,23 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components"
-import { CardLeases } from "../../../components/CardLeases"
-import {leases} from "../../../../apiEmulated"
-import Loader from "../../../components/Loader"
+import { leases } from "../../../../apiEmulated"
+import { Loader, CardLeases, Pagination } from "../../../../index"
 import { useState } from "react"
 
 
 
 export const RecentAdded = () => {
   const [loading, setLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const totalPages = Math.ceil(leases.length / itemsPerPage);
+
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedLeases = leases.slice(startIndex, startIndex + itemsPerPage);
+
+
   return (
     <AddedRecent>
       <div className="addrecent">
@@ -21,7 +30,7 @@ export const RecentAdded = () => {
               ) : leases.length === 0 ? (
                 <p>Sin datos</p>
               ) : (
-                leases.map((itemL) => (
+                selectedLeases.map((itemL) => (
                   <CardLeases
                     key={itemL.id}
                     productLink={`/products/${itemL.id}`}
@@ -49,6 +58,14 @@ export const RecentAdded = () => {
                 ))
               )}
         
+            </div>
+            <div className="addrecent-contain-pagination">
+            <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          colorText="addrecent-contain-pagination-text"
+        />
             </div>
         </div>
       </div>
@@ -81,6 +98,7 @@ const AddedRecent = styled.div`
         }
       
       &-contain{
+        position: relative;
       display: grid;
       width: 100%;
       height: 100%;
@@ -113,6 +131,20 @@ const AddedRecent = styled.div`
         @media (max-width: 820px) {
           grid-template-columns: repeat(2, 1fr);
         }
+    }
+    &-pagination{
+      position: absolute;
+      display: grid;
+      width: fit-content;
+      margin: auto;
+      height: fit-content;  
+      bottom: 60px;
+      left: 0;
+      right: 0;
+
+      &-text{
+        color: var(--text-tertiary);
+      }
     }
   }}
 `

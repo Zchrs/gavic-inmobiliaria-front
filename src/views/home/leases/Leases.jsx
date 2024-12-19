@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { BaseInputSelect, BaseButton, CardLeases } from "../../../../index";
+import { BaseInputSelect, BaseButton, CardLeases, Loader } from "../../../../index";
 import styled from "styled-components";
 import { leases } from "../../../../apiEmulated";
 import { values } from "../../../sectors/dataSectors";
-import Loader from "../../../components/Loader";
 
 
 export const Leases = () => {

@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components"
-import { CardLeases } from "../../../components/CardLeases"
 import {services} from "../../../../apiEmulated"
-import Loader from "../../../components/Loader"
-import { CardServices } from "../../../components/CardServices"
+import {Loader, CardServices} from "../../../../index"
 import { useState } from "react"
 
 

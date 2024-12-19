@@ -2,7 +2,7 @@
 import { Spinner } from "./Spinner";
 
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div className="loader">
       <span><Spinner /></span>
@@ -10,4 +10,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+

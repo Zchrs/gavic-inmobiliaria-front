@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { CSSProperties } from 'react';
 import { useState } from 'react';
-import { getFile, getImg } from '../../globalActions';
-import Select from 'react-select';
+import PropTypes from 'prop-types';
+import { getImg } from '../../globalActions';
 import styled from 'styled-components';
 
 export const BaseInput = ({
@@ -22,6 +21,7 @@ export const BaseInput = ({
   isPassword,
   isSelect, // Nuevo prop para determinar si es un select
   options = [], // Lista de opciones para el select
+  isDate, // Nuevo prop para determinar si es un input de fecha
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -38,20 +38,20 @@ export const BaseInput = ({
         </label>
         {isSelect ? (
           <select
-          className='select'
-          id={id}
-          name={name}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-        >
-          <option value="" disabled>
-            {placeholder || "Seleccione una opción"}
-          </option>
-          {options.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
+            className='select'
+            id={id}
+            name={name}
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+          >
+            <option value="" disabled>
+              {placeholder || "Seleccione una opción"}
             </option>
+            {options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
             ))}
           </select>
         ) : isTextarea ? (
@@ -79,6 +79,8 @@ export const BaseInput = ({
                   ? "email"
                   : isNumber
                   ? "number"
+                  : isDate
+                  ? "date"
                   : "text"
               }
             />
@@ -104,6 +106,25 @@ export const BaseInput = ({
       </div>
     </InputBase>
   );
+};
+
+BaseInput.propTypes = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  classs: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  required: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
+  isTextarea: PropTypes.bool,
+  isNumber: PropTypes.bool,
+  isEmail: PropTypes.bool,
+  isPassword: PropTypes.bool,
+  isSelect: PropTypes.bool,
+  options: PropTypes.array,
+  isDate: PropTypes.bool,
 };
 
 

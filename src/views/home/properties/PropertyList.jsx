@@ -124,6 +124,20 @@ const MultiStepForm = () => {
               <div>
                 <BaseInput
                   classs={"inputs outline"}
+                  placeholder="Fecha de expedición"
+                  name="expId"
+                  id="expId"
+                  // value={form.name}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // required
+                  isDate
+                />
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+              </div>
+              <div>
+                <BaseInput
+                  classs={"inputs outline"}
                   placeholder="Correo electrónico"
                   id="email"
                   name="email"

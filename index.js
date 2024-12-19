@@ -43,7 +43,8 @@ export { BaseInput } from "./src/components/BaseInput";
 export { BaseInputSelect } from "./src/components/BaseInputSelect";
 export { Rating } from "./src/components/Rating";
 export { Spinner } from "./src/components/Spinner";
-// export { Success } from "./src/components/Success";
+export { Loader } from "./src/components/Loader";
+export { Pagination } from "./src/components/Pagination";
 export { ScreenResolution } from "./src/components/ScreenResolution";
 
 

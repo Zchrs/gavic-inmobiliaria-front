@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { useState } from "react";
-import { BaseInputSelect, BaseButton, CardLeases } from "../../../../index";
+import { BaseInputSelect, BaseButton, CardLeases, Loader } from "../../../../index";
 import { leases } from "../../../../apiEmulated";
 import { values } from "../../../sectors/dataSectors";
-import Loader from "../../../components/Loader";
+
 
 export const Immovables = () => {
   const [selectedWant, setSelectedWant] = useState("");

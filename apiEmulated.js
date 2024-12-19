@@ -205,6 +205,206 @@ export const leases = [
             'laptop-asus'
        ]
     },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 5',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
+`,
+        img: 'laptop-asus',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        thumbnails: [
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus',
+            'laptop-asus'
+       ]
+    },
 ]
 export const clothingChilds = [
     {
