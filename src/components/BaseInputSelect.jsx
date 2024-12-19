@@ -114,7 +114,7 @@ export const BaseInputSelect = ({
              height: '200px',
              overflowY: 'scroll',
              overflowX: 'hidden',
-             zIndex: '50',
+             zIndex: '200',
            }),
            singleValue: (base) => ({
              ...base,
@@ -221,7 +221,7 @@ export const BaseInputSelect = ({
               height: 'fit-content',
               overflowY: 'hidden',
               overflowX: 'hidden',
-              zIndex: '50',
+              zIndex: '200',
             }),
             singleValue: (base) => ({
               ...base,
@@ -419,6 +419,7 @@ const InputBaseSel = styled.div`
     }
 
     label {
+      z-index: -1;
       font-weight: 400;
       font-size: 14px;
       line-height: 140%;
