@@ -4,7 +4,7 @@ export const Values = () => {
   return (
     <div className="sectionsabout">
       <div className="sectionsabout-container">
-        <div className="sectionsabout-contain">
+        <div className="sectionsabout-contain flex-reverse">
           <div className="sectionsabout-contain-grid">
         <h2>Valores</h2>
           <div className="sectionsabout-contain-overflow">

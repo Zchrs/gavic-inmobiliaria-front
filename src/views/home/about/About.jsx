@@ -138,6 +138,7 @@ const AbOut = styled.div`
       color: var(--text-tertiary);
       @media (max-width: 980px) {
         padding: 190px 20px;
+        flex-direction: column;
       }
       &-grid {
         display: grid;
@@ -178,5 +179,13 @@ const AbOut = styled.div`
   }
   .bg-secondary{
     background: var(--bg-secondary);
+  }
+  .flex-reverse{
+    display: flex;
+    @media (max-width: 720px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    
   }
 `;

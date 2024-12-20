@@ -4,7 +4,7 @@ export const QualityPolicy = () => {
   return (
     <div className="sectionsabout">
       <div className="sectionsabout-container">
-        <div className="sectionsabout-contain">
+        <div className="sectionsabout-contain flex-reverse">
           <div className="sectionsabout-contain-grid">
             <h2>POLÍTICA DE CALIDAD</h2>
             <p>
