@@ -10,9 +10,11 @@ export { AppRouter } from "./src/router/AppRouter";
 
 export { Home } from "./src/views/home/Home";
 export { About } from "./src/views/home/about/About";
+export { HomeAbout } from "./src/views/home/about/HomeAbout";
 export { Mision } from "./src/views/home/about/Mision";
 export { Vision } from "./src/views/home/about/Vision";
 export { Values } from "./src/views/home/about/Values";
+export { Targets } from "./src/views/home/about/Targets";
 export { QualityPolicy } from "./src/views/home/about/QualityPolicy";
 export { Immovables } from "./src/views/home/properties/Immovables";
 export { Coverage } from "./src/views/home/coverage/Coverage";

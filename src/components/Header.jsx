@@ -81,8 +81,10 @@ export const Header = () => {
         <div className="header-logo">
           <Link to={"/"}>
             <img
+            loading="lazy"
               className="header-logo-img"
               src={getImg("svg", "logo", "svg")}
+              onClick={scrollTop}
               alt="logo"
             />
           </Link>
@@ -90,6 +92,7 @@ export const Header = () => {
         <div className="header-menu" onClick={handleFunctions}>
           <Link to={"/"}>
             <img
+            loading="lazy"
               className="header-logo-img"
               src={getImg("svg", "menu", "svg")}
               alt="logo"

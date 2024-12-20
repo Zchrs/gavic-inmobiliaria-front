@@ -5,13 +5,14 @@ export const Pagination = ({
     currentPage, 
     totalPages, 
     onPageChange, 
-    colorText 
+    colorText,
+    arrowPrev,
+    arrowNext 
 }) => {
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
     }
-    
   };
 
   const handleNextPage = () => {
@@ -22,13 +23,13 @@ export const Pagination = ({
 
   return (
     <PaginationContainer>
-      <button className='button' onClick={handlePreviousPage} disabled={currentPage === 1}>
+      <button className={arrowPrev} onClick={handlePreviousPage} disabled={currentPage === 1}>
         
       </button>
       <span className={colorText}>
         Página {currentPage} de {totalPages}
       </span>
-      <button className='button' onClick={handleNextPage} disabled={currentPage === totalPages}>
+      <button className={arrowNext} onClick={handleNextPage} disabled={currentPage === totalPages}>
         
       </button>
     </PaginationContainer>
@@ -39,6 +40,8 @@ Pagination.propTypes = {
   totalPages: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   colorText: PropTypes.string.isRequired,
+  arrowPrev: PropTypes.string.isRequired,
+  arrowNext: PropTypes.string.isRequired
 };
 
 
@@ -51,6 +54,7 @@ const PaginationContainer = styled.div`
   width: 250px;
   height: fit-content;
   outline: none;
+  margin: auto;
   .button {
       position: relative;
       cursor: pointer;
@@ -93,13 +97,109 @@ const PaginationContainer = styled.div`
         clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
     }
     }
-  }
-  span{
-    text-align: center;
-    width: fit-content;
-  }
+    &.bg-light{
+        position: relative;
+    cursor: pointer;
+    background: transparent;
+    width: 23px;
+    height: 27px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-tertiary);
+        clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
+    }
+    &:last-child{
+        position: relative;
+    cursor: pointer;
+    background: transparent;
+    width: 23px;
+    height: 27px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-tertiary);
+        transform: rotate(180deg);
+        clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
+    }
+    }
+    &:disabled {
+    cursor: not-allowed;
+    width: 23px;
+    height: 27px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-secondary-semi-soft);
+        clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
+    }
+    }
+    }
 
-  .button:disabled {
+    &.bg-dark{
+        position: relative;
+    cursor: pointer;
+    background: transparent;
+    width: 23px;
+    height: 27px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-dark);
+        clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
+    }
+    &:last-child{
+        position: relative;
+    cursor: pointer;
+    background: transparent;
+    width: 23px;
+    height: 27px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-dark);
+        transform: rotate(180deg);
+        clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
+    }
+    }
+    }
+    &:disabled {
+    cursor: not-allowed;
+    width: 23px;
+    height: 27px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-secondary-semi-soft);
+        clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
+    }
+    }
+
+    :disabled {
     position: relative;
     cursor: pointer;
     background: transparent;
@@ -118,4 +218,17 @@ const PaginationContainer = styled.div`
         clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0);
     }
   }
+}
+
+.dark{
+    color: var(--text-dark);
+    text-align: center;
+    width: fit-content;
+}
+.light{
+    color: var(--text-tertiary);
+    text-align: center;
+    width: fit-content;
+}
+
 `;

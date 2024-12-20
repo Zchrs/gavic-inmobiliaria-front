@@ -1,10 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { BaseInputSelect, BaseButton, CardLeases, Loader } from "../../../../index";
+import {
+  BaseInputSelect,
+  BaseButton,
+  CardLeases,
+  Loader,
+  Pagination,
+} from "../../../../index";
 import styled from "styled-components";
 import { leases } from "../../../../apiEmulated";
 import { values } from "../../../sectors/dataSectors";
-
 
 export const Leases = () => {
   const [selectedWant, setSelectedWant] = useState("");
@@ -12,7 +17,14 @@ export const Leases = () => {
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedProperty, setSelectedProperty] = useState("");
   const [selectedCode, setSelectedCode] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+
+  const totalPages = Math.ceil(leases.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedLeases = leases.slice(startIndex, startIndex + itemsPerPage);
 
   const handleWant = (e) => {
     console.log("Sector seleccionado:", e.target.value);
@@ -33,15 +45,13 @@ export const Leases = () => {
   };
   return (
     <LeaSes>
-            <div className="leases">
+      <div className="leases">
         <div className="leases-header">
           <div>
             <BaseInputSelect
               placeholder="Quiero"
               isSmallSelect={true}
-              options={[
-                { value: "Arrendar", label: "Arrendar" },
-              ]}
+              options={[{ value: "Arrendar", label: "Arrendar" }]}
               name="want"
               value={selectedWant}
               onChange={handleWant}
@@ -127,13 +137,12 @@ export const Leases = () => {
           </div>
         </div>
         <div className="leases-content grid-5fr">
-          {
-            loading ? (
-              <Loader />
-            ) : leases.length === 0 ? (
-              <p>Sin datos</p>
-            ) : (
-            leases.map((itemL) => (
+          {loading ? (
+            <Loader />
+          ) : selectedLeases.length === 0 ? (
+            <p>Sin datos</p>
+          ) : (
+            selectedLeases.map((itemL) => (
               <CardLeases
                 key={itemL.id}
                 productLink={`/products/${itemL.id}`}
@@ -158,14 +167,23 @@ export const Leases = () => {
                 // ratings={ratings}
                 product_id={itemL.id}
               />
-              )
             ))
-          }
+          )}
         </div>
       </div>
+      <div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          colorText="dark"
+          arrowPrev="button bg-dark"
+          arrowNext="button bg-dark"
+        />
+      </div>
     </LeaSes>
-  )
-}
+  );
+};
 
 const LeaSes = styled.div`
   display: grid;

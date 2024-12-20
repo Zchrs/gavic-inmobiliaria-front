@@ -507,7 +507,7 @@ const ListProperty = styled.section`
       display: grid;
       height: fit-content;
       width: 40%;
-      gap: 10px;
+      gap: 5px;
       @media (max-width: 768px) {
         width: 100%;
       }

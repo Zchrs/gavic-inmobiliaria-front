@@ -5,6 +5,114 @@ import PropTypes from 'prop-types';
 import { getImg } from '../../globalActions';
 import styled from 'styled-components';
 
+// export const BaseInput = ({
+//   label,
+//   placeholder,
+//   classs,
+//   id,
+//   name,
+//   value,
+//   required,
+//   onChange,
+//   onBlur,
+//   isTextarea,
+//   isNumber,
+//   isEmail,
+//   isPassword,
+//   isSelect, // Nuevo prop para determinar si es un select
+//   options = [], // Lista de opciones para el select
+//   isDate, // Nuevo prop para determinar si es un input de fecha
+// }) => {
+//   const [showPassword, setShowPassword] = useState(false);
+//   const [isEmpty, setIsEmpty] = useState(!value);
+
+//   const togglePasswordVisibility = () => {
+//     setShowPassword(!showPassword);
+//   };
+
+//   return (
+//     <InputBase>
+//       <div className={classs}>
+//         <label htmlFor={id}>
+//           {required && <span>*</span>}
+//           {label}
+//         </label>
+//         {isSelect ? (
+//           <select
+//             className='select'
+//             id={id}
+//             name={name}
+//             value={value}
+//             onChange={onChange}
+//             onBlur={onBlur}
+//           >
+//             <option value="" disabled>
+//               {placeholder || "Seleccione una opción"}
+//             </option>
+//             {options.map((option, index) => (
+//               <option key={index} value={option.value}>
+//                 {option.label}
+//               </option>
+//             ))}
+//           </select>
+//         ) : isTextarea ? (
+//           <textarea
+//             {...(placeholder && { placeholder })}
+//             id={id}
+//             name={name}
+//             value={value}
+//             onChange={onChange}
+//             onBlur={onBlur}
+//           />
+//         ) : (
+//           <>
+//             {isEmpty && isDate && (
+//               <span className="placeholder">{placeholder}</span>
+//             )}
+//             <input
+//               {...(placeholder && { placeholder })}
+//               id={id}
+//               name={name}
+//               value={value}
+//               onChange={onChange}
+//               onBlur={onBlur}
+//               type={
+//                 isPassword && !showPassword
+//                   ? "password"
+//                   : isEmail
+//                   ? "email"
+//                   : isNumber
+//                   ? "number"
+//                   : isDate
+//                   ? "date"
+//                   : "text"
+//               }
+//             />
+
+//             {isPassword && (
+//               <div
+//                 type="button"
+//                 className="inputs-show-hide-pass"
+//                 onClick={togglePasswordVisibility}
+//               >
+//                 <img
+//                   src={
+//                     showPassword
+//                       ? getImg("svg", "hide-icon", "svg")
+//                       : getImg("svg", "show-icon", "svg")
+//                   }
+//                   alt={showPassword ? "Hide" : "Show"}
+//                   className="eye-icon"
+//                 />
+//               </div>
+//             )}
+//           </>
+//         )}
+//       </div>
+//     </InputBase>
+//   );
+// };
+
 export const BaseInput = ({
   label,
   placeholder,
@@ -19,9 +127,9 @@ export const BaseInput = ({
   isNumber,
   isEmail,
   isPassword,
-  isSelect, // Nuevo prop para determinar si es un select
-  options = [], // Lista de opciones para el select
-  isDate, // Nuevo prop para determinar si es un input de fecha
+  isSelect,
+  options = [],
+  isDate,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -38,7 +146,7 @@ export const BaseInput = ({
         </label>
         {isSelect ? (
           <select
-            className='select'
+            className="select"
             id={id}
             name={name}
             value={value}
@@ -65,8 +173,10 @@ export const BaseInput = ({
           />
         ) : (
           <>
+            {isDate && !value && (
+              <span className="date-placeholder">{placeholder}</span>
+            )}
             <input
-              {...(placeholder && { placeholder })}
               id={id}
               name={name}
               value={value}
@@ -83,7 +193,10 @@ export const BaseInput = ({
                   ? "date"
                   : "text"
               }
+              className={isDate && !value ? "input-with-placeholder" : ""}
+              placeholder={isDate ? "" : placeholder}
             />
+
             {isPassword && (
               <div
                 type="button"

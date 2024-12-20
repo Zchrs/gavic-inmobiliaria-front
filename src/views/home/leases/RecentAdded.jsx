@@ -64,7 +64,9 @@ export const RecentAdded = () => {
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
-          colorText="addrecent-contain-pagination-text"
+          colorText="light"
+          arrowPrev="button bg-light"
+          arrowNext="button bg-light"
         />
             </div>
         </div>

@@ -37,7 +37,9 @@ import {
   UserStatuses,
   Advisors,
   Settings,
-  AdminDashboardLayout} from "../index";
+  AdminDashboardLayout,
+  Targets,
+  } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
@@ -48,16 +50,19 @@ function App() {
         <Provider store={store}>
           <Routes>
             <Route exact path="/*" element={<HomeLayout />}>
-            <Route exact path="about-us" element={<About />} />
-            <Route exact path="mision" element={<Mision />} />
-            <Route exact path="vision" element={<Vision />} />
+            <Route exact path="about" element={<About />} />
+              <Route exact path="mision" element={<Mision />} />
+              <Route exact path="vision" element={<Vision />} />
+              <Route exact path="values" element={<Values />} />
+              <Route exact path="Targets" element={<Targets />} />
+              <Route exact path="quality-policy" element={<QualityPolicy />} />
+            
+
             <Route exact path="immovables" element={<Immovables />} />
             <Route exact path="sales" element={<Sales/>} />
             <Route exact path="leases" element={<Leases/>} />
             <Route exact path="list-your-property" element={<PropertyList/>} />
             <Route exact path="register" element={<Register/>} />
-            <Route exact path="values" element={<Values />} />
-            <Route exact path="quality-policy" element={<QualityPolicy />} />
             <Route exact path="coverage" element={<Coverage />} />
             <Route exact path="helpcenter" element={<HelpCenter />} />
             <Route exact path="contact" element={<Contact />} />
@@ -96,6 +101,7 @@ function App() {
               <Route exact path="clients/advivosrs" element={<Advisors/>} />
               <Route exact path="settings" element={<Settings/>} />
           </Route>
+
           </Routes>
         </Provider>
       </HashRouter>

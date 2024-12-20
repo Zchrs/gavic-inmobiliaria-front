@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { useState } from "react";
-import { BaseInputSelect, BaseButton, CardLeases, Loader } from "../../../../index";
+import { BaseInputSelect, BaseButton, CardLeases, Loader, Pagination } from "../../../../index";
 import { leases } from "../../../../apiEmulated";
 import { values } from "../../../sectors/dataSectors";
 
@@ -13,6 +13,16 @@ export const Immovables = () => {
   const [selectedProperty, setSelectedProperty] = useState("");
   const [selectedCode, setSelectedCode] = useState("");
   const [loading, setLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+
+  const totalPages = Math.ceil(leases.length / itemsPerPage);
+
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedImmovables = leases.slice(startIndex, startIndex + itemsPerPage);
+
+
 
   const handleWant = (e) => {
     console.log("Sector seleccionado:", e.target.value);
@@ -132,10 +142,10 @@ export const Immovables = () => {
           {
             loading ? (
               <Loader />
-            ) : leases.length === 0 ? (
+            ) : selectedImmovables.length === 0 ? (
               <p>Sin datos</p>
             ) : (
-            leases.map((itemL) => (
+              selectedImmovables.map((itemL) => (
               <CardLeases
                 key={itemL.id}
                 productLink={`/products/${itemL.id}`}
@@ -165,6 +175,16 @@ export const Immovables = () => {
           }
         </div>
       </div>
+                  <div>
+                  <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+                colorText="dark"
+                arrowPrev="button bg-dark"
+                arrowNext="button bg-dark"
+              />
+                  </div>
     </ImmoVables>
   );
 };

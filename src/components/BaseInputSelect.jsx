@@ -112,8 +112,7 @@ export const BaseInputSelect = ({
              marginTop: '5px',
              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
              height: '200px',
-             overflowY: 'scroll',
-             overflowX: 'hidden',
+             overflow: 'hidden',
              zIndex: '200',
            }),
            singleValue: (base) => ({

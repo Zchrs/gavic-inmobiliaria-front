@@ -172,9 +172,11 @@ export const useRoutesHome = () => {
   return [
     { name: "home", route: "/", text: "Inicio" },
     { name: "tyc", route: "/tyc", text: "Términos y condiciones" },
+    { name: "about", route: "about/#about", text: "Sobre nosotros" },
+    { name: "targets", route: "/about/#targets", text: "Objetivos generales" },
+    { name: "vision", route: "/about/#vision", text: "Visión" },
     { name: "about us", route: "/about-us", text: "Sobre nosotros" },
-    { name: "mision", route: "/mision", text: "Misión" },
-    { name: "vision", route: "/vision", text: "Visión" },
+    { name: "mision", route: "/about/#mision", text: "Misión" },
     { name: "immovables", route: "/immovables", text: "Propiedades" },
     { name: "list your property", route: "/List-your-property", text: "Consigna tu inmueble" },
     { name: "leases", route: "/leases", text: "Arrendamiento" },
@@ -184,10 +186,10 @@ export const useRoutesHome = () => {
     { name: "login", route: "/auth/login", text: "Iniciar sesión" },
     {
       name: "values",
-      route: "/values",
+      route: "about/#values",
       text: "Valores",
     },
-    { name: "quality policy", route: "/quality-policy", text: "Política de calidad" },
+    { name: "quality policy", route: "about/#qap", text: "Política de calidad" },
     {
       name: "coverage",
       route: "/coverage",

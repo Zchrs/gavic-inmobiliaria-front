@@ -36,6 +36,7 @@ export const Home = () => {
         <div className="home-banner">
 
           <img
+          loading="lazy"
             className="home-banner-img"
             src={getImg("jpg", "interior", "jpeg")}
             alt="banner"

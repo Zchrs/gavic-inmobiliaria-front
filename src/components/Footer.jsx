@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useRoutesHome } from "../../index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getImg } from "../../globalActions";
 
@@ -9,7 +9,7 @@ export const Footer = () => {
     const routes = useRoutesHome();
 
     const abtRoutes = useMemo(() => {
-        const selectedNames = ["about us", "mision", "vision", "values"]; // Nombres a incluir
+        const selectedNames = ["about",  "targets", "mision", "vision", "values"]; // Nombres a incluir
         return routes.filter((route) => selectedNames.includes(route.name));
       }, [routes]);
 
@@ -29,19 +29,42 @@ export const Footer = () => {
 
       const helpRoutes = hlpRoutes;
       
+      const navigate = useNavigate();
+
+      const handleScrollToSection = (route) => {
+        // Extrae el hash (#mision, #vision, etc.)
+        const [path, hash] = route.split("#");
+    
+        // Navega al path base si es necesario
+        if (path) {
+          navigate(path);
+        }
+    
+        // Desplázate a la sección especificada por el hash
+        if (hash) {
+          setTimeout(() => {
+            const section = document.getElementById(hash);
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 0); // Delay necesario para asegurar que el DOM se haya cargado
+        }
+      };
 
   return (
     <FooTer>
       <div className="footer pd-full">
         <div>
-          <img className="footer-logo" src={getImg('svg', 'logo', 'svg')} alt="logo" />
+          <img loading="lazy" className="footer-logo" src={getImg('svg', 'logo', 'svg')} alt="logo" />
         </div>
         <div className="footer-links">
           <h2 className="footer-links-h2">Corporativo</h2>
           {aboutRoutes.map((route, index) => (
-            <Link className="footer-links-a" to={route.route} key={index}>
+            <div className="footer-links-a" 
+            onClick={() => handleScrollToSection(route.route)}
+             key={index}>
               {route.text}
-            </Link>
+            </div>
           ))}
         </div>
         <div className="footer-links">
@@ -61,10 +84,10 @@ export const Footer = () => {
           ))}
         </div>
         <div className="flex">
-          <Link className="footer-links-img"><img src={getImg('svg', 'instagram', 'svg')} alt="instagram-logo" /></Link>
-          <Link className="footer-links-img"><img src={getImg('svg', 'facebook', 'svg')} alt="facebook-logo" /></Link>
-          <Link className="footer-links-img"><img src={getImg('svg', 'linkedin', 'svg')} alt="linkedin-logo" /></Link>
-          <Link className="footer-links-img"><img src={getImg('svg', 'twitter', 'svg')} alt="twitter-logo" /></Link>
+          <Link className="footer-links-img"><img loading="lazy" src={getImg('svg', 'instagram', 'svg')} alt="instagram-logo" /></Link>
+          <Link className="footer-links-img"><img loading="lazy" src={getImg('svg', 'facebook', 'svg')} alt="facebook-logo" /></Link>
+          <Link className="footer-links-img"><img loading="lazy" src={getImg('svg', 'linkedin', 'svg')} alt="linkedin-logo" /></Link>
+          <Link className="footer-links-img"><img loading="lazy" src={getImg('svg', 'twitter', 'svg')} alt="twitter-logo" /></Link>
         </div>
       </div>
       <div className="footer-copyright">
@@ -101,10 +124,14 @@ const FooTer = styled.div`
       border-left: 1px solid var(--bg-secondary-semi);
       text-align: center;
       &-a{
+        cursor: pointer;
         color: var(--text-secondary-light);
         font-weight: 300;
         &:hover{
           color: var(--text-secondary-soft);
+        }
+        &:target{
+          margin-top: -200px;
         }
         }
         &-h2{
