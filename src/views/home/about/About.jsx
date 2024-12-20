@@ -134,7 +134,7 @@ const AbOut = styled.div`
       gap: 50px;
       display: flex;
       align-items: center;
-      padding: 200px 250px;
+      padding: 200px 200px;
       color: var(--text-tertiary);
       @media (max-width: 980px) {
         padding: 190px 20px;
@@ -159,14 +159,20 @@ const AbOut = styled.div`
         margin: auto;
         padding: 10px 0;
       }
+      &-border{
+        display: grid;
+        padding: 10px;
+        border: 1px solid var(--bg-tertiary);
+        border-radius: 50%;
+      }
     }
 
-    img {
-      width: 30%;
+    &-img {
+      width: 50%;
       filter: invert(100%);
-    }
+   
   }
-
+  }
   .bg-primary{
     background: var(--bg-primary);
   }
