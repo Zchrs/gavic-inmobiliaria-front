@@ -130,9 +130,7 @@ const FooTer = styled.div`
         &:hover{
           color: var(--text-secondary-soft);
         }
-        &:target{
-          margin-top: -200px;
-        }
+
         }
         &-h2{
           color: var(--text-secondary-soft);

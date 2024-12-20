@@ -80,11 +80,14 @@ export const BaseInputSelect = ({
               fontSize: '14px',
               minWidth: '230px',
             },
-             '@media (min-width: 1024px) and (max-width: 1279px)': {
+             '@media (min-width: 921px) and (max-width: 1279px)': {
               fontSize: '14px',
-              minWidth: '200px',
+              minWidth: '100%',
+              maxWidth: '200px',
+              height: '40px',
+              width: '200px',
             },
-             '@media (max-width: 980px)': {
+             '@media (max-width: 920px)': {
                fontSize: '14px',
                height: '40px',
                width: '100%',

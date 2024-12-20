@@ -63,7 +63,6 @@ const AbOut = styled.div`
     position: relative;
     width: 100%;
     align-content: start;
-    gap: 10px;
     height: fit-content;
     color: white;
     padding: 0;
@@ -76,8 +75,10 @@ const AbOut = styled.div`
       height: fit-content;
       place-content: center;
       padding: 190px 250px;
-      margin-bottom: 100px;
-      @media (max-width: 980px) {
+      @media (max-width: 1024px) {
+        padding: 190px 100px;
+      }
+      @media (max-width: 820px) {
         padding: 190px 20px;
       }
       &-img {
@@ -100,7 +101,6 @@ const AbOut = styled.div`
 
     &-text-overlay {
       display: grid;
-      gap: 100px;
       border-radius: 10px;
       color: black;
       h1 {
@@ -109,8 +109,12 @@ const AbOut = styled.div`
       }
 
       p {
-        margin: 10px 0 0;
-        font-size: 16px;
+        margin: 8px 0 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      strong{
+        font-size: 22px;
       }
     }
   }
@@ -130,20 +134,25 @@ const AbOut = styled.div`
       align-items: center;
     }
     &-contain {
-      height: fit-content;
+      height: 700px;
       gap: 50px;
       display: flex;
       align-items: center;
       padding: 200px 200px;
       color: var(--text-tertiary);
-      @media (max-width: 980px) {
+      @media (max-width: 1024px) {
+        height: 900px;
+        padding: 190px 100px;
+      }
+      @media (max-width: 820px) {
+        height: 900px;
         padding: 190px 20px;
         flex-direction: column;
       }
       &-grid {
         display: grid;
         align-items: center;
-        height: fit-content;
+        height: 900px;
         p {
           font-weight: 300;
         }
