@@ -27,6 +27,18 @@ export const HeaderAdmin = () => {
     }
   };
 
+  const hideMenu = () =>{
+    let navMenu = document.getElementById("menu-admin");
+    {
+      contador = 0;
+      navMenu.style.cssText = `
+              opacity: 0;
+              transform: translateX(-120%);
+              transition: all ease .5s;
+            `;
+    }
+  }
+
   useEffect(() => {
     let header = document.getElementById("header-admin");
     const menuFixed = () => {
@@ -70,26 +82,28 @@ export const HeaderAdmin = () => {
         </div>
         <div className="headeradmin-group">
           <Link to={"properties"} className="headeradmin-group-a">Propiedades</Link>
-          <Link className="headeradmin-group-a">Ventas</Link>
+          <Link to={"sales"} className="headeradmin-group-a">Ventas</Link>
         </div>
         <div className="headeradmin-group">
           <Link to={"statics"} className="headeradmin-group-a btnhead">Estadísticas</Link>
           <Link to={"users"} className="headeradmin-group-a">Clientes</Link>
         </div>
         <div className="headeradmin-group">
-          <Link className="headeradmin-group-a">Finanzas</Link>
-          <Link className="headeradmin-group-a">Comunicaciones</Link>
+          <Link to={"finances"} className="headeradmin-group-a">Finanzas</Link>
+          <Link to={"comunications"} className="headeradmin-group-a">Comunicaciones</Link>
         </div>
       </div>
       <div className="headeradmin-mobile">
         <div id="header-admin" className="headeradmin-mobile-header">
           <div>
-            <img
-              className="headeradmin-mobile-header-logo"
-              onClick={handleFunctions}
-              src={getImg("svg", "logo", "svg")}
-              alt=""
-            />
+            <Link to={"/admin/dashboard"}>
+              <img
+              onClick={hideMenu}
+                className="headeradmin-mobile-header-logo"
+                src={getImg("svg", "logo", "svg")}
+                alt=""
+              />
+            </Link>
           </div>
           <div>
             <img
@@ -110,15 +124,14 @@ export const HeaderAdmin = () => {
           </div>
         </div>
         <div id="menu-admin" className="headeradmin-mobile-links">
-          <Link to={"/admin/dashboard"}>Inicio</Link>
-          <Link to={"properties"}>Propiedades</Link>
-          <Link>Servicios</Link>
-          <Link to={"users"}>Clientes</Link>
-          <Link to={"statics"}>Estadísticas</Link>
-          <Link>Finanzas</Link>
-          <Link>Clientes nuevos</Link>
-          <Link>Comunicaciones</Link>
-          <Link>Listar servicios</Link>
+          <Link onClick={handleFunctions} to={"/admin/dashboard"}>Inicio</Link>
+          <Link onClick={handleFunctions} to={"properties"}>Propiedades</Link>
+          <Link onClick={handleFunctions}>Servicios</Link>
+          <Link onClick={handleFunctions} to={"users"}>Clientes</Link>
+          <Link onClick={handleFunctions} to={"statics"}>Estadísticas</Link>
+          <Link to={"comunications"} onClick={handleFunctions}>Finanzas</Link>
+          <Link onClick={handleFunctions} to={"comunications"}>Comunicaciones</Link>
+          <Link onClick={handleFunctions}>Listar servicios</Link>
         </div>
       </div>
     </AdminHeader>

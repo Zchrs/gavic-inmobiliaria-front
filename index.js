@@ -71,6 +71,7 @@ export { Pending } from "./src/views/admin/properties/properties-status/Pending"
 export { Approved } from "./src/views/admin/properties/properties-status/Approved";
 export { Rejected } from "./src/views/admin/properties/properties-status/Rejected";
 export { Properties } from "./src/views/admin/properties/Properties";
+export { DetailSales } from "./src/views/admin/Sales/DetailSales";
 
 
 

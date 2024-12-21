@@ -11,12 +11,12 @@ import {
   Contact, 
   Coverage, 
   DataTreathment, 
+  DetailSales, 
   Finances, 
   ForRentPropertiesw, 
   HelpCenter, 
   Home, 
   Immovables, 
-  LeasedProperties, 
   Leases, 
   Login, 
   Mision, 
@@ -99,7 +99,7 @@ export const AppRouter = () => {
       <>
       <Routes>
             <Route path="/*" element={<AdminHome />} />
-            <Route exact path="leased-properties" element={<LeasedProperties />} />
+            <Route exact path="sales" element={<DetailSales />} />
             <Route exact path="properties-for-rent" element={<ForRentPropertiesw />} />
             <Route exact path="recent-properties" element={<RecentProperties />} />
             <Route exact path="comunications" element={<Comunications />} />

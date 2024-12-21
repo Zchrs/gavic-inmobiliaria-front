@@ -22,7 +22,6 @@ import {
   // PublicRoute,
   Login,
   AuthLayout,
-  LeasedProperties,
   ForRentPropertiesw,
   RecentProperties,
   Comunications,
@@ -41,6 +40,7 @@ import {
   Targets,
   Users,
   Properties,
+  DetailSales,
   } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -87,7 +87,7 @@ function App() {
             </Route>
 
             <Route path="/admin/dashboard/*" element={<AdminDashboardLayout />} >
-              <Route exact path="leased-properties" element={<LeasedProperties />} />
+              <Route exact path="sales" element={<DetailSales />} />
               <Route exact path="properties-for-rent" element={<ForRentPropertiesw />} />
               <Route exact path="recent-properties" element={<RecentProperties />} />
               <Route exact path="comunications" element={<Comunications />} />
