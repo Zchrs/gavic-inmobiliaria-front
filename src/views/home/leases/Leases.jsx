@@ -8,7 +8,7 @@ import {
   Pagination,
 } from "../../../../index";
 import styled from "styled-components";
-import { leases } from "../../../../apiEmulated";
+import { leases, propertyTypes } from "../../../../apiEmulated";
 import { values } from "../../../sectors/dataSectors";
 
 export const Leases = () => {
@@ -74,16 +74,7 @@ export const Leases = () => {
               name="property"
               value={selectedProperty}
               onChange={handleProperty}
-              options={[
-                { value: "option1", label: "Casa" },
-                { value: "option2", label: "Apartamento" },
-                { value: "option3", label: "Apartaestudio" },
-                { value: "option4", label: "Local" },
-                { value: "option5", label: "Casa Local" },
-                { value: "option6", label: "Finca" },
-                { value: "option7", label: "Casa Finca" },
-                { value: "option8", label: "Oficina" },
-              ]}
+              options={propertyTypes}
             />
           </div>
           <div>

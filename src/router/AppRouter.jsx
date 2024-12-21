@@ -20,9 +20,9 @@ import {
   Leases, 
   Login, 
   Mision, 
-  Pending, 
   Pqrs, 
   PrivacyPolicy, 
+  Properties, 
   PropertyList, 
   QualityPolicy, 
   RecentProperties, 
@@ -33,6 +33,7 @@ import {
   Settings, 
   Statics, 
   Targets, 
+  Users, 
   UserStatuses, 
   Validations, 
   Values, 
@@ -105,10 +106,11 @@ export const AppRouter = () => {
             <Route exact path="finances" element={<Finances />} />
             <Route exact path="reports" element={<Reports />} />
             <Route exact path="statics" element={<Statics />} />
-            <Route exact path="pending-upload-properties" element={<Pending />} />
+            <Route exact path="properties" element={<Properties />} />
             <Route exact path="aproved-properties" element={<Approved />} />
             <Route exact path="rejected-properties" element={<Rejected />} />
             <Route exact path="clients" element={<Clients />} />
+            <Route exact path="Users" element={<Users />} />
             <Route exact path="validations" element={<Validations />} />
             <Route exact path="user-status" element={<UserStatuses/>} />
             <Route exact path="clients/advivosrs" element={<Advisors/>} />

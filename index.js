@@ -48,24 +48,29 @@ export { Spinner } from "./src/components/Spinner";
 export { Loader } from "./src/components/Loader";
 export { Pagination } from "./src/components/Pagination";
 export { ScreenResolution } from "./src/components/ScreenResolution";
+export { Table } from "./src/components/Table";
 
 
 export { Statics } from "./src/views/admin/statics/Statics";
 export { Reports } from "./src/views/admin/reports/Reports";
+export { Users } from "./src/views/admin/users/Users";
 export { Clients } from "./src/views/admin/users/Clients";
 export { Advisors } from "./src/views/admin/users/Advisors";
+export { PendingAdvisors } from "./src/views/admin/users/PendingAdvisors";
+export { PendingClients } from "./src/views/admin/users/PendingClients";
 export { UserStatuses } from "./src/views/admin/users/UserStatuses";
 export { Comunications } from "./src/views/admin/comunications/Comunications";
 export { Finances } from "./src/views/admin/finances/Finances";
 export { Memberships } from "./src/views/admin/memberships/Memberships";
-export { RecentProperties } from "./src/views/admin/properties-recent/RecentProperties";
+export { RecentProperties } from "./src/views/admin/properties/properties-recent/RecentProperties";
 export { Settings } from "./src/views/admin/settings/Settings";
 export { Validations } from "./src/views/admin/Validations/Validations";
-export { ForRentPropertiesw } from "./src/views/admin/properties-for-rent/ForRentPropertiesw";
+export { ForRentPropertiesw } from "./src/views/admin/properties/properties-for-rent/ForRentPropertiesw";
 export { LeasedProperties } from "./src/views/admin/leased/LeasedProperties";
-export { Pending } from "./src/views/admin/properties-status/Pending";
-export { Approved } from "./src/views/admin/properties-status/Approved";
-export { Rejected } from "./src/views/admin/properties-status/Rejected";
+export { Pending } from "./src/views/admin/properties/properties-status/Pending";
+export { Approved } from "./src/views/admin/properties/properties-status/Approved";
+export { Rejected } from "./src/views/admin/properties/properties-status/Rejected";
+export { Properties } from "./src/views/admin/properties/Properties";
 
 
 

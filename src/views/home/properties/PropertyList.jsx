@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { DropZone } from "../../../components/DropZone";
 import { getImg } from "../../../../globalActions";
 import { Link } from "react-router-dom";
+import { propertyTypes } from "../../../../apiEmulated";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0); // Estado para el paso actual
@@ -269,18 +270,7 @@ const MultiStepForm = () => {
                           // value={form.country}
                           // onChange={handleCountryChange}
                           // handleBlur={handleBlur}
-                          options={[
-                            { value: "option1", label: "Apartamento" },
-                            { value: "option1", label: "Apartaestudio" },
-                            { value: "option3", label: "Bodega" },
-                            { value: "option4", label: "Casa" },
-                            { value: "option5", label: "Casa Finca" },
-                            { value: "option6", label: "Casa Local" },
-                            { value: "option7", label: "Finca" },
-                            { value: "option8", label: "Local" },
-                            { value: "option9", label: "Oficina" },
-                            { value: "option10", label: "Terreno" },
-                          ]}
+                          options={propertyTypes}
                           textLabel={true}
                           required
                           />

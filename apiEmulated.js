@@ -1600,3 +1600,59 @@ export const countries = [
         label: "Zimbabwe"
       }
 ]
+
+export const propertyTypes = [
+  { value: "option1", label: "Apartamento" },
+  { value: "option1", label: "Apartaestudio" },
+  { value: "option3", label: "Bodega" },
+  { value: "option4", label: "Casa" },
+  { value: "option5", label: "Casa Finca" },
+  { value: "option6", label: "Casa Local" },
+  { value: "option7", label: "Finca" },
+  { value: "option8", label: "Local" },
+  { value: "option9", label: "Oficina" },
+  { value: "option10", label: "Terreno" },
+]
+
+  export const advisors = [
+    { Nombre: 'Juan Pérez', Correo: 'juan@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Ana Gómez', Correo: 'ana@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Asesor', Estado: 'Activo' },
+  ];
+  export const clients = [
+    { Nombre: 'Juan Pérez', Correo: 'juan@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Ana Gómez', Correo: 'ana@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luisasdfasdfasdfasdfasd@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+    { Nombre: 'Luis Martínez', Correo: 'luis@example.com', Rol: 'Cliente', Estado: 'Activo' },
+  ];

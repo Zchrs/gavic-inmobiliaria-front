@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import {
   AreaChart,
@@ -6,8 +7,22 @@ import {
   SimpleChart,
 } from "../../../components/MultiChart";
 import { BaseButton } from "../../../components/BaseButton";
+import { getImg } from "../../../../globalActions";
+import { useState } from "react";
 
 export const AdminHome = () => {
+  const [series, setSeries ] = useState(
+    {
+      series: [
+        {
+          name: "Ventas del día",
+          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2],
+        },
+      ],
+    }
+  )
+
+
   return (
     <HomeAdmin>
       <div className="adminhome">
@@ -97,7 +112,7 @@ export const AdminHome = () => {
         <div className="adminhome-right">
           <div className="adminhome-right-card">
             <h2>Finanzas</h2>
-            <CandlesChart />
+            <CandlesChart series={series.series} />
             <div className="flex-s z-index">
               <BaseButton
                 textLabel={true}
@@ -134,23 +149,29 @@ export const AdminHome = () => {
             </div>
           </div>
           <div className="adminhome-right-content">
-            <h2>Comunicaciones</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-              soluta laboriosam harum ex architecto distinctio! Saepe, inventore
-              culpa cumque minima eveniet debitis, Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Corrupti soluta laboriosam harum ex
-              architecto distinctio! Saepe, inventore culpa cumque minima
-              eveniet debitis, Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Corrupti soluta laboriosam harum ex architecto
-              distinctio! Saepe, inventore culpa cumque minima eveniet debitis,
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-              soluta laboriosam harum ex architecto distinctio! Saepe, inventore
-              culpa cumque minima eveniet debitis, Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Corrupti soluta laboriosam harum ex
-              architecto distinctio! Saepe, inventore culpa cumque minima
-              eveniet debitis,
-            </p>
+              <h2>Comunicaciones</h2>
+            <div className="adminhome-right-content-inside">
+                <div>
+                  <img className="adminhome-right-content-img" src={getImg("svg", "sms", "svg")} alt="" />
+                  <h3>Enviar sms</h3>
+                </div>
+                <div>
+                  <img className="adminhome-right-content-img" src={getImg("svg", "email", "svg")} alt="" />
+                  <h3>Enviar email</h3>
+                </div>
+            </div>
+            <div className="flex-s z-index">
+              <BaseButton
+                textLabel={true}
+                label={"Ver detalle"}
+                classs={"button little-secondary-gradient"}
+              />
+              <BaseButton
+                textLabel={true}
+                label={"Ver detalle"}
+                classs={"button little-secondary-gradient"}
+              />
+            </div>
           </div>
           <div className="adminhome-right-footer">
             <div className="adminhome-right-footer-card">
@@ -344,14 +365,55 @@ const HomeAdmin = styled.section`
         }
       }
       &-content {
+        display: grid;
         width: 100%;
         height: 100%;
         padding: 24px;
-        display: grid;
         border-radius: 15px;
         background: var(--deg-tertiary);
         box-shadow: var(--ds-s);
         gap: 10px;
+        
+        &-img{
+          display: grid;
+          margin: auto;
+          width: 80%;
+          filter: invert(100%);
+          height: fit-content;
+        }
+        &-inside{
+          place-content: center;
+          text-align: center;
+          padding: 20px 0;
+          display: flex;
+          gap: 30px;
+          height: fit-content;
+          div{
+            display: grid;
+            gap: 5px;
+            cursor: pointer;
+            width: fit-content;
+            height: fit-content;
+            background: var(--deg-secondary);
+            color: var(--text-tertiary);
+            padding: 20px;
+            border-radius: 14px;
+            margin: 0;
+            transition: all ease .5s;
+            h3{
+              font-weight: 400;
+            }
+            &:hover{
+              background: var(--deg-fift);
+              color: var(--text-tertiary);
+              box-shadow: var(--ds-l);
+/* 
+              .adminhome-right-content-img{
+                filter: invert(50%);
+              } */
+            }
+          }
+        }
       }
       &-footer {
         width: 100%;

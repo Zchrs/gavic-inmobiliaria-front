@@ -152,7 +152,7 @@ const AbOut = styled.div`
       &-grid {
         display: grid;
         align-items: center;
-        height: 900px;
+        height: fit-content;
         p {
           font-weight: 300;
         }

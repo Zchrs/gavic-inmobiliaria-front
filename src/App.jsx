@@ -39,6 +39,8 @@ import {
   Settings,
   AdminDashboardLayout,
   Targets,
+  Users,
+  Properties,
   } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -96,10 +98,12 @@ function App() {
               <Route exact path="aproved-properties" element={<Approved />} />
               <Route exact path="rejected-properties" element={<Rejected />} />
               <Route exact path="clients" element={<Clients />} />
+              <Route exact path="Users" element={<Users />} />
               <Route exact path="validations" element={<Validations />} />
               <Route exact path="user-status" element={<UserStatuses/>} />
               <Route exact path="clients/advivosrs" element={<Advisors/>} />
               <Route exact path="settings" element={<Settings/>} />
+              <Route exact path="properties" element={<Properties />} />
           </Route>
 
           </Routes>

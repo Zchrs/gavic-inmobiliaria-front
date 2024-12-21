@@ -187,7 +187,7 @@ export const SimpleChart = () => {
       stroke: {
         width: 0.8,
       },
-      labels: ["Team A", "Team B", "Team C"],
+      labels: ["Arrendadas", "Vendidas", "Recientes"],
       responsive: [
         {
           breakpoint: 100,
@@ -282,14 +282,8 @@ export const ApexChart = ({ options, series }) => {
   );
 };
 
-export const CandlesChart = () => {
+export const CandlesChart = ({ series }) => {
   const [state, setState] = useState({
-    series: [
-      {
-        name: "Ventas semanales",
-        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2],
-      },
-    ],
     options: {
       chart: {
         type: "bar",
@@ -367,7 +361,7 @@ export const CandlesChart = () => {
       },
       grid: {
         show: true, // Habilita las líneas de la cuadrícula
-        borderColor: "#000000", // Color negro para las líneas horizontales
+        borderColor: "#a8aba8", // Color negro para las líneas horizontales
         strokeDashArray: 0, // Líneas sólidas
         xaxis: {
           lines: {
@@ -408,7 +402,7 @@ export const CandlesChart = () => {
       <div id="candlechart">
         <ReactApexChart
           options={state.options}
-          series={state.series}
+          series={series}
           type="bar"
           height="280%"
           width={"100%"}

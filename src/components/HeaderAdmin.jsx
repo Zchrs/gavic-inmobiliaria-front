@@ -34,6 +34,7 @@ export const HeaderAdmin = () => {
         header.style.cssText = `
                 background: var(--bg-tertiary);
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin: auto;
                position: fixed;
                z-index: 10000;
                width: 90%;
@@ -65,15 +66,15 @@ export const HeaderAdmin = () => {
           <Link className="headeradmin-group-a">
             <img  className="headeradmin-group-icons" src={getImg("svg", "settings", "svg")} alt="" />
           </Link>
-          <Link className="headeradmin-group-a">link</Link>
+          <Link to={"/admin/dashboard"} className="headeradmin-group-a">Inicio</Link>
         </div>
         <div className="headeradmin-group">
-          <Link className="headeradmin-group-a">Arrendamientos</Link>
+          <Link to={"properties"} className="headeradmin-group-a">Propiedades</Link>
           <Link className="headeradmin-group-a">Ventas</Link>
         </div>
         <div className="headeradmin-group">
-          <Link className="headeradmin-group-a btnhead">Clientes</Link>
-          <Link className="headeradmin-group-a">Asesores</Link>
+          <Link to={"statics"} className="headeradmin-group-a btnhead">Estadísticas</Link>
+          <Link to={"users"} className="headeradmin-group-a">Clientes</Link>
         </div>
         <div className="headeradmin-group">
           <Link className="headeradmin-group-a">Finanzas</Link>
@@ -109,14 +110,14 @@ export const HeaderAdmin = () => {
           </div>
         </div>
         <div id="menu-admin" className="headeradmin-mobile-links">
-          <Link>Propiedades por listar</Link>
-          <Link>Propiedades arrendadas</Link>
-          <Link>Propiedades recientes</Link>
-          <Link>Propiedades vendidas</Link>
-          <Link>Asesores nuevos</Link>
-          <Link>Asesores pendientes de verificar</Link>
+          <Link to={"/admin/dashboard"}>Inicio</Link>
+          <Link to={"properties"}>Propiedades</Link>
+          <Link>Servicios</Link>
+          <Link to={"users"}>Clientes</Link>
+          <Link to={"statics"}>Estadísticas</Link>
+          <Link>Finanzas</Link>
           <Link>Clientes nuevos</Link>
-          <Link>Clientes pendientes de verificar</Link>
+          <Link>Comunicaciones</Link>
           <Link>Listar servicios</Link>
         </div>
       </div>
