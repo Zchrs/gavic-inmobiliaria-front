@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { AppRouter, Footer, Header } from "../../index";
+// import { VisitorsTracker } from "../components/VisitorsTracker";
 
 export const HomeLayout = () => {
   return (
@@ -9,6 +10,8 @@ export const HomeLayout = () => {
       </header>
       <section className="homelayout-content">
         <AppRouter />
+        {/* <div className="homelayout-content-visitors">
+        </div> */}
       </section>
       <footer className="homelayout-footer">
         <Footer />
@@ -39,6 +42,16 @@ const LayoutHome = styled.section`
       align-items: start;
       display: grid;
       background: var(--bg-tertiary);
+
+      &-visitors{
+        display: grid;
+        position: fixed;
+        width: fit-content;
+        height: 150px;
+        z-index: 200;
+        bottom: 10px;
+        left: 10px;
+      }
     }
     &-footer {
       display: grid;
