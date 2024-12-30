@@ -6,8 +6,8 @@ export const VisitorsTracker = () => {
   const [connectedVisitors, setConnectedVisitors] = useState(0);
 
   const cityImages = {
-    Bogotá: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Bogota_Skyline.jpg/320px-Bogota_Skyline.jpg",
-    Medellín: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Medellin.jpg/320px-Medellin.jpg",
+    Bogotá: "https://static.wikia.nocookie.net/banderas-locales-de-america-e-iberia/images/d/d7/Flag_of_Anapoima_%28Cundinamarca%29.svg/revision/latest?cb=20220421202931&path-prefix=es",
+    Medellín: "https://static.wikia.nocookie.net/banderas-locales-de-america-e-iberia/images/3/3c/Flag_of_Medell%C3%ADn_%28Antioquia%29.svg",
     Cali: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cali-Skyline.jpg/320px-Cali-Skyline.jpg",
     // Agrega más ciudades e imágenes aquí
   };
@@ -63,17 +63,17 @@ export const VisitorsTracker = () => {
             </div>
           )}
           {location.city !== "Desconocida" && (
-            <div>
-              <p className="tracker-location">
-                <strong>Ciudad:</strong> {location.city}
-              </p>
-              {location.cityImage && (
+            <div className="tracker-flex">
+                            {location.cityImage && (
                 <img
                   src={location.cityImage}
                   alt={`Vista representativa de ${location.city}`}
                   className="tracker-city-image"
                 />
               )}
+              <p className="tracker-location">
+                <strong>Ciudad:</strong> {location.city}
+              </p>
             </div>
           )}
         </div>
@@ -85,12 +85,14 @@ export const VisitorsTracker = () => {
 const TrackerVisitors = styled.div`
   .tracker {
     display: grid;
+    width: 100%;
+    height: fit-content;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background: var(--color-primary, #f9f9f9);
     text-align: center;
-    max-width: 300px;
+    align-content: start;
     color: black;
 
     &-grid {
@@ -99,7 +101,7 @@ const TrackerVisitors = styled.div`
       align-items: center;
       height: fit-content;
       width: fit-content;
-      border: #555 1px solid;
+      /* border: #555 1px solid; */
     }
     &-flex {
       display: flex;
@@ -107,6 +109,7 @@ const TrackerVisitors = styled.div`
       align-items: center;
       height: fit-content;
       width: fit-content;
+      /* border: #555 1px solid; */
     }
 
     &-title {
@@ -131,11 +134,9 @@ const TrackerVisitors = styled.div`
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     &-city-image {
-      width: 100%;
+      width: 25px;
       height: auto;
-      margin-top: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 2px;
     }
   }
 `;

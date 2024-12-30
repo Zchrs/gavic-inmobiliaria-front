@@ -262,6 +262,7 @@ const HomeAdmin = styled.section`
           grid-template-columns: repeat(2, 1fr);
         }
         &-card {
+          display: grid;
           height: fit-content;
           padding: 24px;
           color: black;
@@ -288,6 +289,7 @@ const HomeAdmin = styled.section`
             box-shadow: var(--ds-m);
           }
           &:nth-child(3) {
+            
             @media (max-width: 820px) {
               margin: auto;
               width: 205%;
