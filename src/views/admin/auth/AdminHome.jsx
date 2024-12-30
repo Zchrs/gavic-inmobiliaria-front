@@ -9,6 +9,7 @@ import {
 import { BaseButton } from "../../../components/BaseButton";
 import { getImg } from "../../../../globalActions";
 import { useState } from "react";
+import { VisitorsTracker } from "../../../components/VisitorsTracker";
 
 export const AdminHome = () => {
   const [series, setSeries ] = useState(
@@ -87,18 +88,8 @@ export const AdminHome = () => {
               </p>
             </div>
             <div className="adminhome-left-mediumcontainer-card">
-              <h2>Clientes</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti soluta laboriosam harum ex architecto distinctio!
-                Saepe, inventore culpa cumque minima eveniet debitis, Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-                soluta laboriosam harum ex architecto distinctio! Saepe,
-                inventore culpa cumque minima eveniet debitis, Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Corrupti soluta
-                laboriosam harum ex architecto distinctio! Saepe, inventore
-                culpa cumque minima eveniet debitis,
-              </p>
+              <h2>Visitantes en vivo</h2>
+              <VisitorsTracker />
             </div>
           </div>
           <div className="adminhome-left-footer">

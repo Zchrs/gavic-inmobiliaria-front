@@ -86,7 +86,7 @@ export const HeaderAdmin = () => {
         </div>
         <div className="headeradmin-group">
           <Link to={"statics"} className="headeradmin-group-a btnhead">Estadísticas</Link>
-          <Link to={"users"} className="headeradmin-group-a">Clientes</Link>
+          <Link to={"users"} className="headeradmin-group-a">Usuarios</Link>
         </div>
         <div className="headeradmin-group">
           <Link to={"finances"} className="headeradmin-group-a">Finanzas</Link>
