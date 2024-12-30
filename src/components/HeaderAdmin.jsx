@@ -43,7 +43,7 @@ export const HeaderAdmin = () => {
     let header = document.getElementById("header-admin");
     const menuFixed = () => {
       if (window.scrollY > 50) {
-        header.style.cssText = `
+        header.style.cssText = `w
                 background: var(--bg-tertiary);
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                 margin: auto;

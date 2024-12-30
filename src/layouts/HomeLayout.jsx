@@ -42,6 +42,7 @@ const LayoutHome = styled.section`
     }
     &-footer {
       display: grid;
+      background: var(--bg-tertiary);
     }
   }
 `;

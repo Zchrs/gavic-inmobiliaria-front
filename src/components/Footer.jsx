@@ -101,7 +101,7 @@ const FooTer = styled.div`
   display: grid;
   width: 100%;
   height: fit-content;
-  background: var(--bg-tertiary);
+  background: transparent;
   margin-top: 100px;
   
   .footer{
