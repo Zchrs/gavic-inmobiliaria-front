@@ -6,9 +6,9 @@ export const VisitorsTracker = () => {
   const [connectedVisitors, setConnectedVisitors] = useState(0);
 
   const cityImages = {
-    Bogotá: "https://static.wikia.nocookie.net/banderas-locales-de-america-e-iberia/images/d/d7/Flag_of_Anapoima_%28Cundinamarca%29.svg/revision/latest?cb=20220421202931&path-prefix=es",
-    Medellín: "https://static.wikia.nocookie.net/banderas-locales-de-america-e-iberia/images/3/3c/Flag_of_Medell%C3%ADn_%28Antioquia%29.svg",
-    Cali: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Cali-Skyline.jpg/320px-Cali-Skyline.jpg",
+    Bogotá: "https://es.wikipedia.org/wiki/Bandera_de_Bogot%C3%A1#/media/Archivo:Flag_of_Bogot%C3%A1.svg",
+    Medellín: "https://upload.wikimedia.org/wikipedia/commons/5/51/Banderamedell%C3%ADn.PNG",
+    Cali: "https://es.wikipedia.org/wiki/Bandera_de_Cali#/media/Archivo:Flag_of_Santiago_de_Cali.svg",
     // Agrega más ciudades e imágenes aquí
   };
 

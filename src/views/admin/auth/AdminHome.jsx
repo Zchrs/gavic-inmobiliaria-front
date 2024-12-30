@@ -88,7 +88,7 @@ export const AdminHome = () => {
               </p>
             </div>
             <div className="adminhome-left-mediumcontainer-card">
-              <h2>Visitantes en vivo</h2>
+              <h2>Tráfico</h2>
               <VisitorsTracker />
             </div>
           </div>
