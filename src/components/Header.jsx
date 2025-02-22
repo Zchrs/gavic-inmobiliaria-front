@@ -15,9 +15,10 @@ export const Header = () => {
   const showHideMenu = () => {
     setMenuOpen((prev) => !prev);
   };
-  // const hideSubMenu = () => {
-  //   setSubMenuOpen((prev) => !prev);
-  // };
+
+  const isMobile = () => {
+    return window.innerWidth <= 920; // Ajusta el valor según tus necesidades
+  };
 
   useEffect(() => {
     let navMenu = document.getElementById("menu");
@@ -150,7 +151,11 @@ export const Header = () => {
   const headerRoutes = hdrRoutes;
 
   const handleBlockClick = (e, submenuRoutes = []) => {
-    e.preventDefault(); // Previene la navegación
+
+    if (isMobile()) {
+      event.preventDefault(); // Evitar la navegación en móviles
+    }
+
     if (!Array.isArray(submenuRoutes)) {
       console.error("submenuRoutes no es un array:", submenuRoutes);
       return;
