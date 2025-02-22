@@ -20,7 +20,7 @@ export const BaseInputSelect = ({
   isEmail,
   isPassword,
   isSmallSelect,
-  // smallSelect,
+  height,
   isSelect, // Nuevo prop para determinar si es un select
   options = [], // Lista de opciones para el select
 }) => {
@@ -58,10 +58,13 @@ export const BaseInputSelect = ({
            control: (base) => ({
              ...base,
              borderRadius: 5,
-             fontSize: '16px',
+             fontSize: '14px',
              padding: '0',
+             marginTop: '0',
              borderColor: 'var(--bg-secondary-semi-soft)',
-             height: '100%',
+             height: height,
+             minHeight: height,
+             maxHeight: height,
              width: '100%',
              display: 'flex',
              alignItems: 'center',
@@ -70,10 +73,15 @@ export const BaseInputSelect = ({
              justifyContent: 'space-between',
   
              '&:hover': {
-               borderColor: '#5E9CC8',
+               borderColor: 'none',
              },
              '&:focus': {
-               borderColor: '#5E9CC8',
+               borderColor: 'none',
+               outline: 'none',
+             },
+             '&:focus-visible': {
+               borderColor: 'none',
+               outline: 'none',
              },
   
              '@media (min-width: 1280px) and (max-width: 1920px)': {
@@ -84,7 +92,6 @@ export const BaseInputSelect = ({
               fontSize: '14px',
               minWidth: '100%',
               maxWidth: '200px',
-              height: '40px',
               width: '200px',
             },
              '@media (max-width: 920px)': {
@@ -100,7 +107,7 @@ export const BaseInputSelect = ({
              padding: '5px',
              fontSize: '15px',
              cursor: 'pointer',
-             height: '40px',
+             height: '30px',
              width: '100%',
              display: 'grid',
              textAlign: 'left',
@@ -112,9 +119,9 @@ export const BaseInputSelect = ({
            menu: (base) => ({
              ...base,
              borderRadius: 8,
-             marginTop: '5px',
+             marginTop: '0px',
              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-             height: '200px',
+             height: '250px',
              overflow: 'hidden',
              zIndex: '200',
            }),
@@ -131,9 +138,9 @@ export const BaseInputSelect = ({
            }),
            placeholder: (base) => ({
              ...base,
-             fontSize: '16px',
+             fontSize: '14px',
              color: '#BDBDBD',
-             padding: '5px 0',
+             padding: '0',
            }),
            dropdownIndicator: (base) => ({
              ...base,
@@ -170,10 +177,12 @@ export const BaseInputSelect = ({
             control: (base) => ({
               ...base,
               borderRadius: 5,
-              fontSize: '16px',
+              fontSize: '14px',
               padding: '0',
               borderColor: '#DDE4ED',
-              height: '100%',
+              height: height,
+              minHeight: height,
+              maxHeight: height,
               width: '100%',
               display: 'flex',
               alignItems: 'center',
@@ -207,7 +216,7 @@ export const BaseInputSelect = ({
               padding: '5px',
               fontSize: '16px',
               cursor: 'pointer',
-              height: '40px',
+              height: 'fit-content',
               width: '100%',
               display: 'grid',
               alignItems: 'center',
@@ -320,7 +329,6 @@ const InputBaseSel = styled.div`
     display: grid;
     margin: 0;
     padding: 0;
-    gap: 4px;
 
     &.nobg {
       background: transparent;
@@ -328,7 +336,7 @@ const InputBaseSel = styled.div`
       outline: none;
       input {
         border: 1px solid rgb(153, 0, 0);
-        border-radius: 7px;
+        border-radius: 5px;
       }
       img {
         width: 70%;
@@ -338,6 +346,7 @@ const InputBaseSel = styled.div`
     &.outline {
       position: relative;
       outline: none;
+      
 
       textarea {
         border: 1px solid #ec333632;
@@ -345,7 +354,7 @@ const InputBaseSel = styled.div`
         height: 130px;
         font-size: 14px;
         font-weight: 500;
-        border-radius: 7px;
+        border-radius: 5px;
         outline: none;
         color: black;
         font-weight: 400;
@@ -365,11 +374,15 @@ const InputBaseSel = styled.div`
         background: white;
         font-size: 16px;
         font-weight: 500;
-        border-radius: 7px;
+        border-radius: 5px;
         outline: none;
         color: black;
         font-weight: 400;
         position: relative;
+        border: 1px solid var(--bg-secondary-semi-soft);
+      }
+      &:focus{
+        padding: 10px 16px;
       }
     }
 
@@ -379,10 +392,11 @@ const InputBaseSel = styled.div`
       border: none;
       outline: none;
       position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
       right: 10px;
-      bottom: 0px;
-      width: 8%;
-      height: 85%;
+      width: 6%;
       border-radius: 0 7px 7px 0;
       cursor: pointer;
       font-size: 12px;
@@ -395,7 +409,7 @@ const InputBaseSel = styled.div`
 
     &.normal {
       position: relative;
-      color: var(--text-dark);
+      color: black;
       height: 100%;
       width: 100%;
       margin: 0;
@@ -406,27 +420,23 @@ const InputBaseSel = styled.div`
 
       input {
         position: relative;
-        background: var(--bg-tertiary);
+        background: white;
         border: #818080 1px solid;
-        padding: 12px 16px;
+        padding: 8px 10px;
         color: black;
         font-size: 16px;
         font-weight: 400;
         letter-spacing: 1px;
         width: 100%;
-        height: 100%;
         transition: all ease 0.3s;
-        border-radius: 5px;
       }
     }
 
     label {
-      z-index: -1;
       font-weight: 400;
       font-size: 14px;
       line-height: 140%;
       color: #295170;
-      margin-top: 10px;
 
       span {
         position: absolute;
@@ -438,10 +448,10 @@ const InputBaseSel = styled.div`
 
     input {
       position: relative;
-      padding: 12px 16px;
+      padding: 5px 10px;
       background: transparent;
       border: 1px solid #dde4ed;
-      border-radius: 12px;
+      border-radius: 7px;
       font-size: 14px;
       font-weight: 700;
 
@@ -451,19 +461,11 @@ const InputBaseSel = styled.div`
 
       &::placeholder {
         font-weight: 300;
-        font-size: 14px;
+        font-size: 12px;
         line-height: 140%;
         color: #bdbbbb;
       }
     }
   }
 
-  .select {
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 300;
-    color: #00000078;
-    outline: none;
-  }
 `;

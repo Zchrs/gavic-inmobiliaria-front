@@ -7,17 +7,24 @@ import { CountrySelect } from "../../../components/CountrySelect";
 import { initialForm, useForm } from "../../../hooks/useForm";
 import { BaseInputSelect } from "../../../components/BaseInputSelect";
 import { countries } from "../../../../apiEmulated";
+import  departamentos  from "../../../colombia/colombia.json";
+
 
 
 export const Register = () => {
-
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [cities, setCities] = useState([]);
 
-  const handleCounry = (e) => {
-    setSelectedCountry(e.target.value); // Actualizar el estado con la opción seleccionada
-    console.log(e.target.value)
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
+    if (selectedDepartment) {
+      setCities(selectedDepartment.ciudades);
+    } else {
+      setCities([]);
+    }
+    handleChange(e); // Para actualizar el estado del formulario
   };
-
 
   const validationsForm = (form) => {
   
@@ -30,6 +37,8 @@ export const Register = () => {
     let name = document.getElementById("name");
     let lastName = document.getElementById("lastname");
     let country = document.getElementById("country");
+    let state = document.getElementById("state");
+    let city = document.getElementById("city");
     let email = document.getElementById("email");
     let phone = document.getElementById("phone");
     let message = document.getElementById("message");
@@ -63,16 +72,16 @@ export const Register = () => {
       email.style.cssText = "border: #34B0BE 1px solid; color: black;";
     }
   
-    // if (!form.phone) {
-    //   phone.style.cssText = "border: red 1px solid";
-    //   errors.phone = "Field phone are required";
-    // } else if (!regexPhone.test(form.phone.trim())) {
-    //   errors.phone = "Phone field have must only numbers";
-    // } else if (phone.value.length <= '12') {
-    //   errors.phone = "Phone format incorrect";
-    // }else {
-    //   phone.style.cssText = "border: #34B0BE 1px solid;";
-    // }
+    if (!form.phone) {
+      phone.style.cssText = "border: red 1px solid";
+      errors.phone = "Field phone are required";
+    } else if (!regexPhone.test(form.phone.trim())) {
+      errors.phone = "Phone field have must only numbers";
+    } else if (phone.value.length <= '12') {
+      errors.phone = "Phone format incorrect";
+    }else {
+      phone.style.cssText = "border: #34B0BE 1px solid;";
+    }
   
   
     if (!form.country) {
@@ -80,6 +89,18 @@ export const Register = () => {
       errors.country = "Debes seleccionar el país";
     } else {
       country.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";
+    }
+    if (!form.state) {
+      state.style.cssText = "border: red 1px solid; border-radius: 5px;";
+      errors.state = "Debes seleccionar el país";
+    } else {
+      state.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";
+    }
+    if (!form.city) {
+      city.style.cssText = "border: red 1px solid; border-radius: 5px;";
+      errors.city = "Debes seleccionar el país";
+    } else {
+      city.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";
     }
   
   
@@ -133,128 +154,166 @@ export const Register = () => {
   
     return errors;
   };
-  
-    const {
-      form,
-      errors,
-      loading,
-      response,
-      modal,
-      handleChange,
-      handleBlur,
-      handleSubmit,
-      handleSubmits,
-      handleCountryChange,
-      handleClearCountry,
-      // onChangeValidation,
-    } = useForm(initialForm, validationsForm);
-    const [selected, setSelected] = useState(null);
-    const [showPlaceholder, setShowPlaceholder] = useState(true);
 
-    const handleClearAll = () =>{
-      handleClearCountry();
-      setSelected(null);
-      setShowPlaceholder(true); 
-      
-    }
-    const handleCountrySelect = (label) =>{
-      // debugger
-      setSelectedCountry()
-      
-    }
+  const {
+    form,
+    errors,
+    loading,
+    response,
+    modal,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleSubmits,
+    handleCountryChange,
+    handleClearCountry,
+  } = useForm(initialForm, validationsForm);
 
   return (
     <div className="auth">
-
-    <form onSubmit={handleSubmits}>
-      <div>
-      <BaseInputSelect
-      classs={"inputs outline"}
-              id="country"
-              placeholder="Seleccionar país"
-              isSelect={true}
-              name="country"
-              value={form.country}
-              onChange={handleCountryChange}
-              handleBlur={handleBlur}
-              options={countries}
-              textLabel={true}
-              required
-            />
-        {errors.country && <p className="warnings-form">{errors.country}</p>}
-      </div>
-      <div>
-        <BaseInput
-        classs={"inputs outline"}
-        placeholder="Nombre"
-        name="name"
-        id="name"
-        value={form.name}
+      <form onSubmit={handleSubmits}>
+        <div className="auth-input">
+          <BaseInputSelect
+            height={"30px"}
+            classs={"inputs outline"}
+            id="country"
+            placeholder="Seleccionar país"
+            isSelect={true}
+            name="country"
+            value={form.country}
+            onChange={handleCountryChange}
+            handleBlur={handleBlur}
+            options={countries}
+            textLabel={true}
+            required
+          />
+          {/* {errors.country && <p className="warnings-form">{errors.country}</p>} */}
+        </div>
+        <div  className="auth-input">
+          <BaseInput
+            classs={"inputs outline"}
+            placeholder="Nombre"
+            name="name"
+            id="name"
+            value={form.name}
             onBlur={handleBlur}
             onChange={handleChange}
             required
-        />
-        {errors.name && <p className="warnings-form">{errors.name}</p>}
-      </div>
-      <div>
-        <BaseInput
-        classs={"inputs outline"}
-        placeholder="Apellido"
-        name="lastname"
-        id="lastname"
-        value={form.lastname}
+          />
+          {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+        </div>
+        <div  className="auth-input">
+          <BaseInput
+            classs={"inputs outline"}
+            placeholder="Apellido"
+            name="lastname"
+            id="lastname"
+            value={form.lastname}
             onBlur={handleBlur}
             onChange={handleChange}
             required
-        />
-        {errors.lastname && <p className="warnings-form">{errors.lastname}</p>}
-      </div>
-      <div>
-        <BaseInput
-        classs={"inputs outline"}
-        placeholder="Correo electrónico"
-        name="email"
-        id="email"
-        value={form.email}
+          />
+          {/* {errors.lastname && <p className="warnings-form">{errors.lastname}</p>} */}
+        </div>
+        <div  className="auth-input">
+          <BaseInputSelect
+            height={"30px"}
+            classs={"inputs outline"}
+            id="state"
+            name="state"
+            placeholder="Seleccionar departamento"
+            value={form.state}
+            onChange={handleStateChange}
+            handleBlur={handleBlur}
+            options={departamentos.map((dep) => ({
+              value: dep.departamento,
+              label: dep.departamento,
+            }))}
+            isSelect={true}
+            textLabel={true}
+            required
+          />
+          {/* {errors.state && <p className="warnings-form">{errors.state}</p>} */}
+        </div>
+        <div  className="auth-input">
+          <BaseInputSelect
+            height={"30px"}
+            classs={"inputs outline"}
+            id="city"
+            name="city"
+            placeholder="Seleccionar ciudad"
+            value={form.city}
+            onChange={handleChange}
+            handleBlur={handleBlur}
+            options={cities.map(city => ({
+              value: city,
+              label: city,
+            }))}
+            isSelect={true}
+            textLabel={true}
+            required
+          />
+          {/* {errors.city && <p className="warnings-form">{errors.city}</p>} */}
+        </div>
+        <div  className="auth-input">
+          <BaseInput
+            classs={"inputs outline"}
+            placeholder="Teléfono"
+            name="phone"
+            id="phone"
+            value={form.phone}
             onBlur={handleBlur}
             onChange={handleChange}
-        required
-        isEmail
-        />
-        {errors.email && <p className="warnings-form">{errors.email}</p>}
+            required
+            isNumber
+          />
+          {/* {errors.phone && <p className="warnings-form">{errors.phone}</p>} */}
+        </div>
+        <div  className="auth-input">
+          <BaseInput
+            classs={"inputs outline"}
+            placeholder="Correo electrónico"
+            name="email"
+            id="email"
+            value={form.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            required
+            isEmail
+          />
+          {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
+        </div>
+        <div  className="auth-input">
+          <BaseInput
+            classs={"inputs outline"}
+            placeholder="Contraseña"
+            name="password"
+            id="password"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={form.password}
+            isPassword
+            required
+          />
+          {/* {errors.password && <p className="warnings-form">{errors.password}</p>} */}
+        </div>
+        <BaseButton handleClick={handleSubmits} classs={"button full-primary"} textLabel={true} label="Registrarme" />
+      </form>
+      <div className="auth-gruop2">
+        <h3>Continuar con</h3>
       </div>
-      <div>
-        <BaseInput
-        classs={"inputs outline"}
-        placeholder="Contraseña"
-        name="password"
-        id="password"
-        onBlur={handleBlur}
-        onChange={handleChange}
-        value={form.password}
-        isPassword
-        required
-        />
-        {errors.password && <p className="warnings-form">{errors.password}</p>}
+      <div className="auth-social">
+        <img src={getImg('svg', 'facebook', 'svg')} alt="facebook-logo" />
+        <img src={getImg('svg', 'google-icon', 'svg')} alt="google-logo" />
+        <img src={getImg('svg', 'twitter', 'svg')} alt="twitter-logo" />
+        <img src={getImg('svg', 'linkedin', 'svg')} alt="linkedin-linkedin" />
+        <img src={getImg('svg', 'apple-logo', 'svg')} alt="apple-logo" />
       </div>
-
-      <BaseButton handleClick={handleSubmits} classs={"button full-primary"} textLabel={true} label="Registrarme" />
-    </form>
-    <div className="auth-gruop2">
-      <h3>Continuar con</h3>
+      <div className="auth-tyc">
+        <p>
+          {/* {t('globals.tycText')} */}
+        </p>
+      </div>
     </div>
-    <div className="auth-social">
-      <img src={getImg('svg', 'facebook', 'svg')} alt="facebook-logo" />
-      <img src={getImg('svg', 'google-icon', 'svg')} alt="google-logo" />
-      <img src={getImg('svg', 'twitter', 'svg')} alt="twitter-logo" />
-      <img src={getImg('svg', 'linkedin', 'svg')} alt="linkedin-linkedin" />
-      <img src={getImg('svg', 'apple-logo', 'svg')} alt="apple-logo" />
-    </div>
-    <div className="auth-tyc">
-      <p>
-      {/* {t('globals.tycText')} */}
-      </p>
-    </div>
-  </div>
-  )
-}
+  );
+};

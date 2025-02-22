@@ -157,6 +157,7 @@ const AdminHeader = styled.header`
 
     &-group {
       display: flex;
+      width: 100%;
       border-radius: 50px;
       background: var(--bg-secondary);
       box-shadow: var(--ds-m);
@@ -188,6 +189,7 @@ const AdminHeader = styled.header`
       }
 
       &-a {
+        width: 100%;  
         padding: 10px;
         align-items: center;
         text-align: center;
@@ -198,10 +200,12 @@ const AdminHeader = styled.header`
       }
     }
     .btnhead {
+      width: 100%;
       background: var(--deg-fourty);
       border-radius: 50px 20px 20px 50px;
       a {
         color: var(--text-tertiary);
+        width: 100%;
       }
     }
     &-mobile {

@@ -182,8 +182,8 @@ export const useRoutesHome = () => {
     { name: "leases", route: "/leases", text: "Arrendamiento" },
     { name: "sales", route: "/sales", text: "Venta" },
 
-    { name: "register", route: "/auth/register", text: "Registro" },
-    { name: "login", route: "/auth/login", text: "Iniciar sesión" },
+    { name: "register", route: "/auth/client-register", text: "Registro" },
+    { name: "login", route: "/auth/client-login", text: "Iniciar sesión" },
     {
       name: "values",
       route: "about/#values",
@@ -213,6 +213,8 @@ export const useRoutesHome = () => {
       route: "/superintendency-of-industria-and-commerce",
       text: "Super intendencia de industria y comercio(SIC)",
     },
+    { name: "login", route: "/auth/advisor/login", text: "Iniciar sesión" },
+    { name: "register", route: "/auth/advisor/register", text: "Registrarme" },
   ];
 
 };

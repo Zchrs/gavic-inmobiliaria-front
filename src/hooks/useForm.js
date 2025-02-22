@@ -24,6 +24,19 @@ export const initialForm = {
   country: "",
   name: "",
   lastname: "",
+  state: "",
+  city: "",
+  phone: "",
+  email: "",
+  password: "",
+};
+export const initialFormAdvisor = {
+  country: "",
+  name: "",
+  lastname: "",
+  state: "",
+  city: "",
+  expeditionDate: "",
   phone: "",
   email: "",
   password: "",
@@ -151,19 +164,7 @@ export const useForm = (initialForm, validateForm) => {
     setModal(true);
     console.log("click");
   };
-  // const onChangeValidation = (e) => {
-  //   const { value } = e.target;
-  //   setForm({
-  //      value,
-  //   });
-  //   // debugger
-  //   if (value === "email") {
-  //     validateEmails(email)
-  //   } else {
-  //     return
-  //   }
 
-  // }
   const handleSetImage = (imageUrls) => {
     setForm({
       ...form,
@@ -692,9 +693,11 @@ export const useForm = (initialForm, validateForm) => {
     const finalForm = {
       ...form,
     };
+    if (!finalForm.country) return;
     if (!finalForm.name) return;
     if (!finalForm.lastname) return;
-    if (!finalForm.country) return;
+    if (!finalForm.state) return;
+    if (!finalForm.city) return;
     if (!finalForm.phone) return;
     if (!finalForm.email) return;
     if (!finalForm.pass) return;
@@ -790,6 +793,7 @@ export const useForm = (initialForm, validateForm) => {
     setLoading(false);
     setModal(true);
   };
+
 
   return {
     form,

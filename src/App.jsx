@@ -44,8 +44,18 @@ import {
   } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { Blocked } from "./components/Blocked";
+import { AdvisorLogin } from "./views/home/auth/AdvisorLogin";
+import { AdvisorRegister } from "./views/home/auth/AdvisorRegister";
+import { AuthAdvisorLayout } from "./layouts/AuthAdvisorLayout";
+
+
 
 function App() {
+  const isBlocked = (e) =>{
+    true,
+    e.preventDefault();
+  }
   return (
     <section className="body">
       <HashRouter>
@@ -58,13 +68,14 @@ function App() {
               <Route exact path="values" element={<Values />} />
               <Route exact path="Targets" element={<Targets />} />
               <Route exact path="quality-policy" element={<QualityPolicy />} />
-            
-
             <Route exact path="immovables" element={<Immovables />} />
             <Route exact path="sales" element={<Sales/>} />
             <Route exact path="leases" element={<Leases/>} />
             <Route exact path="list-your-property" element={<PropertyList/>} />
-            <Route exact path="register" element={<Register/>} />
+            <Route exact path="client/register" element={<Register/>} />
+          <Route exact path="client/login" element={<Login/>} />
+          <Route exact path="advisor/register" element={<AdvisorLogin/>} />
+          <Route exact path="advisor/login" element={<AdvisorLogin/>} />
             <Route exact path="coverage" element={<Coverage />} />
             <Route exact path="helpcenter" element={<HelpCenter />} />
             <Route exact path="contact" element={<Contact />} />
@@ -77,13 +88,22 @@ function App() {
               element={<CommerceIndustry />}
             />
             </Route>
-            <Route exact path="/auth/*" element={
+            <Route exact path="/auth/client/*" element={
               //  <PublicRoute>
                 <AuthLayout />
                //</PublicRoute>
           }>
             <Route exact path="login" element={<Login />} />
             <Route exact path="register" element={<Register />} />
+            </Route>
+
+            <Route exact path="/auth/advisor/*" element={
+              //  <PublicRoute>
+                <AuthAdvisorLayout />
+               //</PublicRoute>
+          }>
+            <Route exact path="login" element={<AdvisorLogin />} />
+            <Route exact path="register" element={<AdvisorRegister />} />
             </Route>
 
             <Route path="/admin/dashboard/*" element={<AdminDashboardLayout />} >
@@ -105,6 +125,9 @@ function App() {
               <Route exact path="settings" element={<Settings/>} />
               <Route exact path="properties" element={<Properties />} />
           </Route>
+
+          
+        {!isBlocked && <Route path="/bloqueado" element={<Blocked />} />}
 
           </Routes>
         </Provider>

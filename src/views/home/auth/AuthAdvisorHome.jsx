@@ -10,7 +10,7 @@ const grid = {
     display: 'grid',
 }
 
-export const AuthHome = () =>{
+export const AuthAdvisorHome = () => {
   // const dispatch = useDispatch();
   //   const lang = useSelector(state => state.langUI.lang);
   //   const { t, i18n } = useTranslation();
@@ -22,11 +22,11 @@ export const AuthHome = () =>{
 
 
     return (
-        <section className="authhome" style={ grid }>
+        <section className="advisorlayout" style={ grid }>
           <h1>Bienvenido</h1>
 
-          <Link to={'/client/register'}>Registrarme</Link>
-          <Link to={'/client/login'}>Iniciar sesión</Link>
+          <Link to={'/advisor/register'}>Registrarme</Link>
+          <Link to={'/advisor/login'}>Iniciar sesión</Link>
           <Link to={'/'}>Volver a inicio</Link>
 
           <AuthRouter />

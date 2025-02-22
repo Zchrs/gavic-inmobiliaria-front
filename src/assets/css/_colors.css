@@ -1,10 +1,10 @@
 :root {
-    --primary: #008800;
-    --primary-semi: #709d48;
-    --primary-light: #94b378;
-    --primary-semi-soft: #b3c8a1;
+    --primary: #162F47;
+    --primary-semi: #6D859F;
+    --primary-light: #CBD6DA;
+    --primary-semi-soft: #f7ffff;
     --primary-soft: #d5decb;
-    --secondary: #363636;
+    --secondary: #FFE08A;
     --secondary-semi: #5b5b5b;
     --secondary-light: #848484;
     --secondary-semi-soft: #a8a8a8;
@@ -14,16 +14,16 @@
     --danger: #E54476;
     --warning: rgb(255, 217, 0);
     --info: rgb(0, 255, 255);
-    --light: #f9fafb;
+    --light: #F7FFFF;
     --dark: black;
   
     /* TEXT COLORS */
-    --text-primary: #008800;
-    --text-primary-semi: #709d48;
-    --text-primary-light: #94b378;
-    --text-primary-semi-soft: #b3c8a1;
+    --text-primary: #162F47;
+    --text-primary-semi: #6D859F;
+    --text-primary-light: #CBD6DA;
+    --text-primary-semi-soft: #f7ffff;
     --text-primary-soft: #d5decb;
-    --text-secondary: #363636;
+    --text-secondary: #FFE08A;
     --text-secondary-semi: #5b5b5b;
     --text-secondary-light: #848484;
     --text-secondary-semi-soft: #a8a8a8;
@@ -37,12 +37,12 @@
     --text-dark: black;
   
     /* BACKGROUNDS */
-    --bg-primary: #008800;
-    --bg-primary-semi: #709d48;
-    --bg-primary-light: #94b378;
-    --bg-primary-semi-soft: #b3c8a1;
+    --bg-primary: #162F47;
+    --bg-primary-semi: #6D859F;
+    --bg-primary-light: #CBD6DA;
+    --bg-primary-semi-soft: #f7ffff;
     --bg-primary-soft: #d5decb;
-    --bg-secondary: #363636;
+    --bg-secondary: #FFE08A;
     --bg-secondary-semi: #5b5b5b;
     --bg-secondary-light: #848484;
     --bg-secondary-semi-soft: #a8a8a8;
@@ -56,7 +56,7 @@
     --bg-light: #d9d9cd;
     --bg-dark: black;
 
-    --deg-primary: linear-gradient(180deg, #008800 0%, #709d48 100%);
+    --deg-primary: linear-gradient(180deg, #162F47 0%, #6D859F 100%);
     --deg-secondary: linear-gradient(180deg, #727871 0%, #50574f 100%);
     --deg-tertiary: linear-gradient(180deg, #ecece2 0%, #c3c5ba 100%);
     --deg-fourty: linear-gradient(180deg, #98ac91 0%, #6b7e68 100%);

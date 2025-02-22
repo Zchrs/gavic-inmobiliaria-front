@@ -75,6 +75,7 @@ const AbOut = styled.div`
       height: fit-content;
       place-content: center;
       padding: 190px 250px;
+      overflow: hidden;
       @media (max-width: 1024px) {
         padding: 190px 100px;
       }
@@ -86,7 +87,7 @@ const AbOut = styled.div`
         top: 0px;
         left: 0;
         object-fit: cover;
-        height: 100%;
+        width: 100%;
         border-radius: 10px;
         filter: grayscale(100%);
         opacity: 0.09;

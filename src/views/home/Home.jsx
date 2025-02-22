@@ -48,8 +48,9 @@ export const Home = () => {
           </div>
             <div className="home-banner-search">
               <div className="home-banner-search-inside">
-              <div>
+              <div className="home-banner-search-inside-div">
                 <BaseInputSelect
+                height={"40px"}
                 placeholder="Sector"
                 isSelect={true}
                 options={values}
@@ -58,8 +59,9 @@ export const Home = () => {
                     onChange={handleSector}
                 />
               </div>
-                <div>
+                <div className="home-banner-search-inside-div">
                   <BaseInputSelect
+                  height={"40px"}
                     placeholder="Tipo de inmueble"
                     isSelect={true}
                     name="property"
@@ -77,8 +79,9 @@ export const Home = () => {
                     ]}
                   />
                 </div>
-                <div>
+                <div className="home-banner-search-inside-div">
                   <BaseInputSelect
+                  height={"40px"}
                     placeholder="Presupuesto"
                     isSelect={true}
                     name="budget"
@@ -95,8 +98,9 @@ export const Home = () => {
                     ]}
                   />
                 </div>
-                <div>
+                <div className="home-banner-search-inside-div">
                   <BaseInputSelect
+                  height={"40px"}
                     placeholder="Código"
                     isSelect={true}
                     name="code"
@@ -166,11 +170,11 @@ const HoMe = styled.div`
       &-search {
         display: grid;
         z-index: 10;
+        height: fit-content;
         width: 100%;
-        height: 50px;
-        padding: 0px 100px;
         gap: 5px;
         align-items: center;
+        padding: 0px 100px;
         margin: auto;
         @media (max-width: 1024px) {
           padding: 0px 10px;
@@ -182,18 +186,21 @@ const HoMe = styled.div`
         }
 
         &-inside{
-        border-radius: 5px;
+          height: 50px;
+          border-radius: 5px;
         align-items: center;
           display: flex;
           background: var(--bg-primary);
           width: fit-content;
           margin: auto;
-          height: 100%;
           gap: 5px;
           padding: 5px;
-          div{
+          &-div{
+            width: 100%;
+            height: 100%;
             display: grid;
-            align-items: center;
+            /* border: white 1px solid; */
+            padding: 0;
           }
 
           @media (max-width: 820px) {

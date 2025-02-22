@@ -39,6 +39,9 @@ import {
   Values, 
   Vision 
 } from "../../index";
+import { AdvisorLogin } from "../views/home/auth/AdvisorLogin";
+import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
+import { AuthAdvisorHome } from "../views/home/auth/AuthAdvisorHome";
 
 
 export const AppRouter = () => {
@@ -50,7 +53,10 @@ export const AppRouter = () => {
           <Route exact path="sales" element={<Sales/>} />
           <Route exact path="leases" element={<Leases/>} />
           <Route exact path="list-your-property" element={<PropertyList/>} />
-          <Route exact path="register" element={<Register/>} />
+          <Route exact path="client/register" element={<Register/>} />
+          <Route exact path="client/login" element={<Login/>} />
+          <Route exact path="advisor/register" element={<AdvisorLogin/>} />
+          <Route exact path="advisor/login" element={<AdvisorLogin/>} />
           <Route exact path="coverage" element={<Coverage />} />
           <Route exact path="helpcenter" element={<HelpCenter />} />
           <Route exact path="contact" element={<Contact />} />
@@ -82,7 +88,25 @@ export const AppRouter = () => {
       
         <Route exact path="login" element={<Login />} />
         <Route exact path="register" element={<Register />} />
-        
+      </Routes>
+    );
+  };
+
+  export const AuthAdvisorRouter = () => {
+    // const dispatch = useDispatch();
+      
+    // useEffect(() => {
+    //   dispatch(startChecking());
+    // }, [dispatch]);
+
+    return (
+      <Routes>
+        <Route exact path="/*" element={ 
+            <AuthAdvisorHome />
+      } />
+
+        <Route exact path="login" element={<AdvisorLogin />} />
+        <Route exact path="register" element={<AdvisorRegister />} />
       </Routes>
     );
   };

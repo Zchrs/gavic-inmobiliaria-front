@@ -12,16 +12,67 @@ import { useState } from "react";
 import { VisitorsTracker } from "../../../components/VisitorsTracker";
 
 export const AdminHome = () => {
-  const [series, setSeries ] = useState(
-    {
-      series: [
-        {
-          name: "Ventas del día",
-          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2],
-        },
+  const data = {
+    series: {
+      name: ["Enero", "Febrero", "Marzo"],
+      data: [25, 56, 30],
+    },
+    sales: {
+      names: ["Vendidas", "Arrendadas", "Consignadas", "Canceladas", "Devueltas"],
+      data: [44, 55, 41, 17, 15],
+    },
+    finance: {
+      names: ["Ventas", "Gastos"],
+      data: [44, 55, 41, 17, 15, 35, 70],
+    },
+    users: {
+      data: [0, 1000, 3000, 3600, 4700, 5800, 9000, 9100, 9200, 9400],
+      dates: [
+        "2024-01-01",
+        "2024-01-02",
+        "2024-01-03",
+        "2024-01-04",
+        "2024-01-05",
+        "2024-01-06",
+        "2024-01-07",
+        "2024-01-08",
+        "2024-01-09",
+        "2024-01-10",
       ],
-    }
-  )
+    },
+    admins: {
+      data: [0, 1000, 3000, 3600, 4700, 5800, 9000, 9100, 9200, 9400],
+      dates: [
+        "2024-01-01",
+        "2024-01-02",
+        "2024-01-03",
+        "2024-01-04",
+        "2024-01-05",
+        "2024-01-06",
+        "2024-01-07",
+        "2024-01-08",
+        "2024-01-09",
+        "2024-01-10",
+      ],
+    },
+    clients: {
+      data: [0, 1000, 3000, 3600, 4700, 5800, 9000, 9100, 9200, 9400],
+      dates: [
+        "2024-01-01",
+        "2024-01-02",
+        "2024-01-03",
+        "2024-01-04",
+        "2024-01-05",
+        "2024-01-06",
+        "2024-01-07",
+        "2024-01-08",
+        "2024-01-09",
+        "2024-01-10",
+      ],
+    },
+  };
+  
+
 
 
   return (
@@ -31,7 +82,13 @@ export const AdminHome = () => {
           <div className="adminhome-left-container">
             <div className="adminhome-left-container-card">
               <h2>Usuarios</h2>
-              <AreaChart />
+              <AreaChart
+                dayColor={"#ffffff"}
+                daysColor={"#ffffff"}
+                theme={"light"}
+                series={[{ data: data.users.data }]}
+                labels={ data.users.dates }
+               />
               <div className="adminhome-left-mediumcontainer-card-btn">
                 <BaseButton
                   textLabel={true}
@@ -44,7 +101,10 @@ export const AdminHome = () => {
               <div className="adminhome-left-container-card-titles">
                 <h2>Propiedades</h2>
               </div>
-              <SimpleChart />
+              <SimpleChart
+                  series={data.sales.data}
+                  labels={data.sales.names}
+                />
               <div className="flex-s">
                 <BaseButton
                   textLabel={true}
@@ -55,7 +115,7 @@ export const AdminHome = () => {
             </div>
             <div className="adminhome-left-container-card">
               <h2>Ventas</h2>
-              <GradientChart />
+              <GradientChart series={data.series.data} labels={data.series.name} />
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
@@ -65,27 +125,24 @@ export const AdminHome = () => {
           </div>
           <div className="adminhome-left-mediumcontainer">
             <div className="adminhome-left-mediumcontainer-card">
-              <h2>Hipotecas</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti soluta laboriosam harum ex architecto distinctio!
-                Saepe, inventore culpa cumque minima eveniet debitis, Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-                soluta laboriosam harum ex architecto distinctio! Saepe,
-              </p>
+              <h2>Asesores</h2>
+              <AreaChart
+                dayColor={"#000000"}
+                daysColor={"#000000"}
+                theme={"dark"}
+                series={[{ data: data.admins.data }]}
+                labels={ data.admins.dates }
+               />
             </div>
             <div className="adminhome-left-mediumcontainer-card">
-              <h2>Servicios</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                corporis vitae placeat ratione incidunt mollitia, aut, earum
-                pariatur eos eaque adipisci molestias accusamus iste, quos
-                eveniet commodi rem ipsa. Ut.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                corporis vitae placeat ratione incidunt mollitia, aut, earum
-                pariatur eos eaque adipisci molestias accusamus iste, quos
-                eveniet commodi rem ipsa. Ut. Lorem ipsum dolor sit amet
-              </p>
+              <h2>Clientes</h2>
+              <AreaChart
+                dayColor={"#ffffff"}
+                daysColor={"#ffffff"}
+                theme={"light"}
+                series={[{ data: data.clients.data }]}
+                labels={ data.clients.dates }
+               />
             </div>
             <div className="adminhome-left-mediumcontainer-card">
               <h2>Tráfico</h2>
@@ -103,7 +160,7 @@ export const AdminHome = () => {
         <div className="adminhome-right">
           <div className="adminhome-right-card">
             <h2>Finanzas</h2>
-            <CandlesChart series={series.series} />
+            <CandlesChart series={data.finance.data} />
             <div className="flex-s z-index">
               <BaseButton
                 textLabel={true}
@@ -188,7 +245,7 @@ const HomeAdmin = styled.section`
     grid-template-columns: 70.6% 29%;
     align-items: start;
     height: fit-content;
-    gap: 5px;
+    gap: 15px;
     @media (max-width: 980px) {
       display: grid;
       grid-template-columns: 1fr;
@@ -202,7 +259,7 @@ const HomeAdmin = styled.section`
         width: 100%;
         height: 100%;
         display: flex;
-        gap: 2px;
+        gap: 5px;
 
         @media (max-width: 820px) {
           display: grid;
@@ -253,7 +310,8 @@ const HomeAdmin = styled.section`
         }
       }
       &-mediumcontainer {
-        display: flex;
+        grid-template-columns: repeat(3, 1fr);
+        display: grid;
         width: 100%;
         height: 100%;
         gap: 10px;
@@ -262,6 +320,7 @@ const HomeAdmin = styled.section`
           grid-template-columns: repeat(2, 1fr);
         }
         &-card {
+          width: 100%;
           display: grid;
           height: fit-content;
           padding: 24px;
@@ -275,7 +334,6 @@ const HomeAdmin = styled.section`
             z-index: 100;
           }
           &:nth-child(1) {
-            width: 60%;
             height: fit-content;
             @media (max-width: 820px) {
               width: 100%;
@@ -416,6 +474,7 @@ const HomeAdmin = styled.section`
 
         &-card {
           border-radius: 15px;
+          width: 100%;
           display: grid;
           padding: 24px;
           &:nth-child(1) {

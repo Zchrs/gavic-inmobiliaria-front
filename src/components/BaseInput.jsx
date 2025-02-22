@@ -248,7 +248,6 @@ const InputBase = styled.div`
     display: grid;
     margin: 0;
     padding: 0;
-    gap: 4px;
 
     &.nobg {
       background: transparent;
@@ -312,10 +311,11 @@ const InputBase = styled.div`
       border: none;
       outline: none;
       position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
       right: 10px;
-      bottom: 0px;
-      width: 8%;
-      height: 85%;
+      width: 6%;
       border-radius: 0 7px 7px 0;
       cursor: pointer;
       font-size: 12px;
@@ -341,7 +341,7 @@ const InputBase = styled.div`
         position: relative;
         background: white;
         border: #818080 1px solid;
-        padding: 10px 16px;
+        padding: 8px 10px;
         color: black;
         font-size: 16px;
         font-weight: 400;
@@ -367,7 +367,7 @@ const InputBase = styled.div`
 
     input {
       position: relative;
-      padding: 10px 16px;
+      padding: 5px 10px;
       background: transparent;
       border: 1px solid #dde4ed;
       border-radius: 12px;
@@ -380,7 +380,7 @@ const InputBase = styled.div`
 
       &::placeholder {
         font-weight: 300;
-        font-size: 14px;
+        font-size: 12px;
         line-height: 140%;
         color: #bdbbbb;
       }
@@ -395,6 +395,8 @@ const InputBase = styled.div`
     color: #00000078;
     outline: none;
   }
+
+
 `;
 
 

@@ -1,5 +1,5 @@
 
-import { AuthRouter } from "../router/AppRouter";
+import { AuthAdvisorRouter } from "../router/AppRouter";
 import { Link, NavLink } from "react-router-dom"
 // import { useTranslation } from 'react-i18next';
 // import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import { Link, NavLink } from "react-router-dom"
 import styled from "styled-components";
 import { getImg } from "../../globalActions";
 
-export const AuthLayout = () => {
+export const AuthAdvisorLayout = () => {
 
   // const dispatch = useDispatch();
 
@@ -22,26 +22,26 @@ export const AuthLayout = () => {
   // }, [i18n, lang, dispatch]);
 
   return (
-    <AuthLayOut>
-        <img className="background" loading="lazy" src={getImg('svg', 'auth', 'webp')} alt="" />
+    <AdvisorLayOut>
+        <img className="background" loading="lazy" src={getImg('jpg', 'asesores', 'webp')} alt="" />
         <Link to={"/"} className="backhome">Volver al inicio</Link>
-      <section className="authlayout">
-        <div className="authlayout-logo">
+      <section className="advisorlayout">
+        <div className="advisorlayout-logo">
             <img src={getImg('svg', 'logo', 'svg')} alt="logo" />
         </div>
-        <div className="authlayout-container">
-        <div className="authlayout-container-group">
-          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/auth/client/register"}>Registrarme</NavLink>
-          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/auth/client/login"}>Iniciar sesión</NavLink>
+        <div className="advisorlayout-container">
+        <div className="advisorlayout-container-group">
+          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/auth/advisor/register"}>Registrarme</NavLink>
+          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/auth/advisor/login"}>Iniciar sesión</NavLink>
         </div>
-          <AuthRouter />
+          <AuthAdvisorRouter />
         </div>
       </section>
-    </AuthLayOut>
+    </AdvisorLayOut>
   )
 }
 
-const AuthLayOut = styled.section`
+const AdvisorLayOut = styled.section`
 display: grid;
 width: 100%;
 height: fit-content;
@@ -66,7 +66,7 @@ height: fit-content;
         }
     }
     
-.authlayout{
+.advisorlayout{
     display: flex;
     width: 100%;
     max-width: 1920px;
@@ -357,7 +357,6 @@ height: fit-content;
       opacity: 1;
     }
   }
-
 
 // fin Country select component
 `

@@ -20,6 +20,7 @@ export const HomeLayout = () => {
   );
 };
 const LayoutHome = styled.section`
+position: relative;
   display: grid;
   width: 100%;
   height: 100%;
@@ -29,7 +30,7 @@ const LayoutHome = styled.section`
   margin: auto;
   .homelayout {
     display: grid;
-    max-width: 1920px;
+    width: 100%;
     height: 100%;
     min-height: 100vh;
     &-header {
