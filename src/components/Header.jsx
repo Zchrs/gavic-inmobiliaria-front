@@ -153,7 +153,7 @@ export const Header = () => {
   const handleBlockClick = (e, submenuRoutes = []) => {
 
     if (isMobile()) {
-      event.preventDefault(); // Evitar la navegación en móviles
+      e.preventDefault(); // Evitar la navegación en móviles
     }
 
     if (!Array.isArray(submenuRoutes)) {
