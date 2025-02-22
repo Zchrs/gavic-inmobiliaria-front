@@ -150,6 +150,7 @@ export const Header = () => {
   const headerRoutes = hdrRoutes;
 
   const handleBlockClick = (e, submenuRoutes = []) => {
+    e.preventDefault(); // Previene la navegación
     if (!Array.isArray(submenuRoutes)) {
       console.error("submenuRoutes no es un array:", submenuRoutes);
       return;
