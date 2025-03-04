@@ -1,6 +1,6 @@
 
 
-export const PrivacyPolicy = () => {
+export const PrivPoly = () => {
   return (
     <div>PrivacyPolicy</div>
   )

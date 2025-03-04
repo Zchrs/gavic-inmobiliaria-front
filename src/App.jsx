@@ -11,7 +11,7 @@ import {
   Immovables, 
   Mision, 
   Pqrs, 
-  PrivacyPolicy, 
+  PrivPoly, 
   QualityPolicy, 
   Values, 
   Vision, 
@@ -80,7 +80,7 @@ function App() {
             <Route exact path="helpcenter" element={<HelpCenter />} />
             <Route exact path="contact" element={<Contact />} />
             <Route exact path="pqrs" element={<Pqrs />} />
-            <Route exact path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route exact path="privacy-policy" element={<PrivPoly />} />
             <Route exact path="data-treatment" element={<DataTreathment />} />
             <Route
               exact

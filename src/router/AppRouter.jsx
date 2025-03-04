@@ -21,7 +21,7 @@ import {
   Login, 
   Mision, 
   Pqrs, 
-  PrivacyPolicy, 
+  PrivPoly, 
   Properties, 
   PropertyList, 
   QualityPolicy, 
@@ -69,7 +69,7 @@ export const AppRouter = () => {
           <Route exact path="values" element={<Values />} />
           <Route exact path="Targets" element={<Targets />} />
           <Route exact path="quality-policy" element={<QualityPolicy />} />
-          <Route exact path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route exact path="privacy-policy" element={<PrivPoly />} />
         </Routes>
     );
   };

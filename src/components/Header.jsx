@@ -67,6 +67,7 @@ export const Header = () => {
         transform: translateY(-120%);
         transition: all ease .5s;
         display: none;
+        z-index: -1;
       `;
       setTimeout(() => {
         subMenu.style.cssText = ""; // Resetear estilos después de la animación
@@ -83,6 +84,7 @@ export const Header = () => {
         transform: translateY(-120%);
         transition: all ease .5s;
         display: none;
+        z-index: -1;
       `;
       setTimeout(() => {
         subMenu.style.cssText = ""; // Resetear estilos después de la animación
@@ -99,6 +101,7 @@ export const Header = () => {
         transform: translateY(-120%);
         transition: all ease .5s;
         display: none;
+        z-index: -1;
       `;
       setTimeout(() => {
         subMenu.style.cssText = ""; // Resetear estilos después de la animación
@@ -154,6 +157,7 @@ export const Header = () => {
 
     if (isMobile()) {
       e.preventDefault(); // Evitar la navegación en móviles
+      return;
     }
 
     if (!Array.isArray(submenuRoutes)) {
@@ -163,7 +167,10 @@ export const Header = () => {
 
     if (!submenuRoutes.includes(location.pathname)) {
       e.preventDefault(); // Previene la navegación
+      return;
     }
+
+    return;
   };
 
   const isSubmenuActive = (routes) => {
@@ -325,10 +332,6 @@ const HeaDer = styled.div`
     align-items: center;
     width: 100%;
 
-    /* @media (max-width: 1024px) {
-        display: none;
-      } */
-
     &-btns {
       display: none;
       @media (max-width: 920px) {
@@ -412,6 +415,7 @@ const HeaDer = styled.div`
             opacity: 1;
             border-radius: 0 0 5px 5px;
             transform: translateY(0%);
+            z-index: -1;
           }
         }
         &:nth-child(4) {
@@ -423,11 +427,16 @@ const HeaDer = styled.div`
             opacity: 1;
             border-radius: 0 0 5px 5px;
             transform: translateY(0%);
-
+            
             @media (max-width: 920px) {
+              z-index: -1;
+              width: 200px;
               right: -176%;
-              top: -15%;
+              top: -29%;
               border-radius: 0 5px 5px 0;
+              a{
+                font-size: 18px;
+              }
             }
           }
         }
@@ -440,11 +449,17 @@ const HeaDer = styled.div`
             height: fit-content;
             opacity: 1;
             border-radius: 0 0 5px 5px;
-
-            @media (max-width: 920px) {
-              right: -196%;
+            
+            @media (max-width: 920px) {     
+              z-index: -1;
+              width: 200px;
+              right: -225%;
               top: -110%;
               border-radius: 0 5px 5px 0;
+              gap: 0px;
+              a{
+                font-size: 18px;
+              }
             }
           }
         }
@@ -457,11 +472,15 @@ const HeaDer = styled.div`
             height: fit-content;
             opacity: 1;
             border-radius: 0 0 5px 5px;
-
+            
             @media (max-width: 920px) {
               right: -166%;
+              width: 200px;
               top: -70%;
               border-radius: 0 5px 5px 0;
+              a{
+                font-size: 18px;
+              }
             }
           }
         }
@@ -543,6 +562,9 @@ const HeaDer = styled.div`
     display: grid;
     padding: 0;
     z-index: 100;
+    @media (max-width: 920px) {
+      z-index: -1;
+    }
 
     a {
       transition: all ease 0.3s;
