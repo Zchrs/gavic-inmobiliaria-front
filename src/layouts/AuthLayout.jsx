@@ -294,7 +294,7 @@ height: fit-content;
           top: 10px;
           width: 300%;
           height: 1px;
-          background: var(--bg-secondary);
+          background: var(--bg-secondary-semi-soft);
         }
 
 
@@ -306,12 +306,12 @@ height: fit-content;
             padding: 0 15px;
             width: fit-content;
             height: fit-content;
-            background: var(--bg-secondary);
+            background: var(--primary-semi);
             border-radius: 20px;
             font-size: 14px;
             text-align: center;
-            font-weight: 300;
-            color: var(--text-tertiary);
+            font-weight: 500;
+            color: var(--text-black);
             
         }
     }

@@ -22,6 +22,9 @@ export const CardLeases = ({
   description,
   member,
   img,
+  boxGrid,
+  boxFlex,
+  location,
   user_id,
   product_id,
   prodHover,
@@ -219,6 +222,7 @@ export const CardLeases = ({
             {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'jpg') || defaultImage} alt="" />}
           </div>
         </div>
+        {boxGrid && 
         <div className="productcard-box">
           {buy && (
             <div className="productcard-btn">
@@ -257,7 +261,36 @@ export const CardLeases = ({
               />
             </div>
           )}
+        </div>}
+        {boxFlex &&
+        <div className="productcard-grid">
+          <div className="productcard-flex">
+            <div className="productcard-flex-location">
+              <p><strong>Ubicación:</strong> El poblado</p>
+            </div>
+            <div className="productcard-flex-location">
+              <b>{price}</b>
+            </div>
+          </div>
+          <div className="productcard-flex">
+            <div className="productcard-flex-details">
+              <img src={getImg('png', 'cama', 'png')} alt="" />
+              <strong>Habitaciones</strong>
+              <p>3</p>
+            </div>
+            <div className="productcard-flex-details">
+              <img src={getImg('png', 'banio', 'png')} alt="" />
+              <strong>Baños</strong>
+              <p>2</p>
+            </div>
+            <div className="productcard-flex-details">
+              <img src={getImg('png', 'closet', 'png')} alt="" />
+              <strong>Closet</strong>
+              <p>0</p>
+            </div>
+          </div>
         </div>
+        }
         {/* Resto del código */}
       </section>
     </ProductCard>
@@ -272,10 +305,11 @@ display: grid;
     position: relative;
     display: grid;
     height: 100%;
-    border-radius: 5px;
+    border-radius: 15px;
     align-content: space-between;
+    overflow: hidden;
     gap: 2px;
-    padding: 0px 0px 10px 0;
+    padding: 0;
     transition: all ease 0.9s;
     &:hover {
       transform: scale(1.12);
@@ -371,7 +405,7 @@ display: grid;
       padding: 0;
       align-items: start;
       overflow: hidden;
-      border-radius: 5px 5px 0px 0px;
+      border-radius: 15px 15px 0px 0px;
       
       img {
         border-radius: 0px;
@@ -414,6 +448,55 @@ display: grid;
       height: 40px;
       align-items: center;
       transition: all ease 0.3s;
+    }
+    &:hover .productcard-grid{
+      transition: all ease 0.3s;
+      transform: translateY(0);
+    }
+    &-flex{
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      
+
+      strong{
+        font-weight: 500;
+        font-size: 12px;
+      }
+      p{
+        font-size: 12px;
+      }
+      
+      &-details{
+        width: 100%;
+        padding-top: 5px;
+        border-top: 1px solid var(--primary-semi);
+        place-items: center;
+        text-align: center;
+        display: grid;
+        img{
+          height: 15px;
+        }
+      }
+      &-location{
+        display: grid;
+        width: fit-content;
+        align-items: center;
+        height: 100%;
+      }
+    }
+    &-grid{
+      transition: all ease 0.3s;
+      width: 100%;
+      gap: 5px;
+      padding: 10px;
+      display: grid;
+      position: absolute;
+      bottom: 0;
+      height: fit-content;
+      background: #ffffff81;
+      transform: translateY(100%);
     }
   }
 `;

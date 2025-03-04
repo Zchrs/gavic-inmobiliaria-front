@@ -9,7 +9,7 @@ import { useState } from "react"
 export const RecentAdded = () => {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
 
   const totalPages = Math.ceil(leases.length / itemsPerPage);
 
@@ -42,6 +42,7 @@ export const RecentAdded = () => {
                     priceText={true}
                     price={itemL.price}
                     productInfo={itemL}
+                    boxFlex={true}
                     classs={"productcard background"}
                     // onClick={() => handleSetProductClick(itemL)}
                     // prodHover={() => handleSetProductClick(itemL)}
@@ -64,9 +65,9 @@ export const RecentAdded = () => {
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
-          colorText="light"
-          arrowPrev="button bg-light"
-          arrowNext="button bg-light"
+          colorText="dark"
+          arrowPrev="button bg-dark"
+          arrowNext="button bg-dark"
         />
             </div>
         </div>
@@ -106,7 +107,7 @@ const AddedRecent = styled.div`
       height: 100%;
       padding: 25px;
       clip-path: polygon(0 0, 26% 0, 28% 3%, 72% 3%, 74% 0, 100% 0, 100% 100%, 65% 100%, 63% 96%, 37% 96%, 35% 100%, 0 100%);
-      background: var(--bg-secondary);
+      background: #eae8e8;
       
       @media (max-width: 1024px) {
           clip-path: polygon(0 0, 20% 0, 23% 1.8%, 77% 1.8%, 80% 0, 100% 0, 100% 100%, 65% 100%, 63% 98%, 37% 98%, 35% 100%, 0 100%);
@@ -122,7 +123,7 @@ const AddedRecent = styled.div`
       .recently{
       position: relative;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         width: 100%;
         height: 100%;

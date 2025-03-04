@@ -125,7 +125,7 @@ export const Sales = () => {
             />
           </div>
         </div>
-        <div className="sales-content grid-5fr">
+        <div className="sales-content grid-4fr">
           {
             loading ? (
               <Loader />
@@ -139,6 +139,7 @@ export const Sales = () => {
                 addToWish={"addwishlist-red"}
                 addTocart={"addcart-red"}
                 img={"default"}
+                boxFlex={true}
                 sellingsText={true}
                 sellings={"999"}
                 priceText={true}

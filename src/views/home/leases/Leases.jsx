@@ -127,7 +127,7 @@ export const Leases = () => {
             />
           </div>
         </div>
-        <div className="leases-content grid-5fr">
+        <div className="leases-content grid-4fr">
           {loading ? (
             <Loader />
           ) : selectedLeases.length === 0 ? (
@@ -144,6 +144,7 @@ export const Leases = () => {
                 sellings={"999"}
                 priceText={true}
                 price={itemL.price}
+                boxFlex={true}
                 productInfo={itemL}
                 classs={"productcard background"}
                 // onClick={() => handleSetProductClick(itemL)}
