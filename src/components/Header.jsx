@@ -11,7 +11,6 @@ export const Header = () => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   const location = useLocation();
 
-
   const showHideMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -46,7 +45,12 @@ export const Header = () => {
       const menu = document.getElementById("menu");
       const menuButton = document.querySelector(".header-menu");
 
-      if (menu && menuButton && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+      if (
+        menu &&
+        menuButton &&
+        !menu.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
         setMenuOpen(false);
       }
     };
@@ -57,60 +61,58 @@ export const Header = () => {
     };
   }, []);
 
+  const hideSubMenu = () => {
+    let subMenu = document.getElementById("submenu");
+    // Buscar todos los submenús abiertos
+    if (subMenu) {
+      subMenu.style.cssText = `
+        opacity: 0;
+        transform: translateY(-120%);
+        transition: all ease .5s;
+        display: none;
+        z-index: -1;
+      `;
+      setTimeout(() => {
+        subMenu.style.cssText = ""; // Resetear estilos después de la animación
+      }, 500);
+      setSubMenuOpen(false);
+    }
+  };
+  const hideSubMenu1 = () => {
+    let subMenu = document.getElementById("submenu1");
+    // Buscar todos los submenús abiertos
+    if (subMenu) {
+      subMenu.style.cssText = `
+        opacity: 0;
+        transform: translateY(-120%);
+        transition: all ease .5s;
+        display: none;
+        z-index: -1;
+      `;
+      setTimeout(() => {
+        subMenu.style.cssText = ""; // Resetear estilos después de la animación
+      }, 500);
+      setSubMenuOpen(false);
+    }
+  };
+  const hideSubMenu2 = () => {
+    let subMenu = document.getElementById("submenu2");
+    // Buscar todos los submenús abiertos
+    if (subMenu) {
+      subMenu.style.cssText = `
+        opacity: 0;
+        transform: translateY(-120%);
+        transition: all ease .5s;
+        display: none;
+        z-index: -1;
+      `;
+      setTimeout(() => {
+        subMenu.style.cssText = ""; // Resetear estilos después de la animación
+      }, 500);
+      setSubMenuOpen(false);
+    }
+  };
 
-    const hideSubMenu = () => {
-      let subMenu = document.getElementById("submenu");
-      // Buscar todos los submenús abiertos
-      if (subMenu) {
-        subMenu.style.cssText = `
-        opacity: 0;
-        transform: translateY(-120%);
-        transition: all ease .5s;
-        display: none;
-        z-index: -1;
-      `;
-      setTimeout(() => {
-        subMenu.style.cssText = ""; // Resetear estilos después de la animación
-      }, 500);
-      setSubMenuOpen(false);
-      }
-    }
-    const hideSubMenu1 = () => {
-      let subMenu = document.getElementById("submenu1");
-      // Buscar todos los submenús abiertos
-      if (subMenu) {
-        subMenu.style.cssText = `
-        opacity: 0;
-        transform: translateY(-120%);
-        transition: all ease .5s;
-        display: none;
-        z-index: -1;
-      `;
-      setTimeout(() => {
-        subMenu.style.cssText = ""; // Resetear estilos después de la animación
-      }, 500);
-      setSubMenuOpen(false);
-      }
-    }
-    const hideSubMenu2 = () => {
-      let subMenu = document.getElementById("submenu2");
-      // Buscar todos los submenús abiertos
-      if (subMenu) {
-        subMenu.style.cssText = `
-        opacity: 0;
-        transform: translateY(-120%);
-        transition: all ease .5s;
-        display: none;
-        z-index: -1;
-      `;
-      setTimeout(() => {
-        subMenu.style.cssText = ""; // Resetear estilos después de la animación
-      }, 500);
-      setSubMenuOpen(false);
-      }
-    }
-    
-  
   useEffect(() => {
     let header = document.getElementById("header");
     const menuFixed = () => {
@@ -154,7 +156,6 @@ export const Header = () => {
   const headerRoutes = hdrRoutes;
 
   const handleBlockClick = (e, submenuRoutes = []) => {
-
     if (isMobile()) {
       e.preventDefault(); // Evitar la navegación en móviles
       return;
@@ -202,16 +203,18 @@ export const Header = () => {
           </Link>
         </div>
         <div id="menu" className="header-links">
-          
-            <NavLink
-              className={({ isActive }) =>
-                `${isActive ? "header-links-a-active" : "header-links-a"}`
-              }
-              to={'/'}>
-              <img className="header-links-img" src={getImg("svg", "home", "svg")} alt="inicio" />
-              Inicio
-            </NavLink>
-          
+          <NavLink
+            className={({ isActive }) =>
+              `${isActive ? "header-links-a-active" : "header-links-a"}`
+            }
+            to={"/"}>
+            <img
+              className="header-links-img"
+              src={getImg("svg", "home", "svg")}
+              alt="inicio"
+            />
+            Inicio
+          </NavLink>
 
           <NavLink
             onClick={handleBlockClick}
@@ -224,7 +227,11 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
-            <img className="header-links-img" src={getImg("svg", "builds", "svg")} alt="propiedades" />
+            <img
+              className="header-links-img"
+              src={getImg("svg", "builds", "svg")}
+              alt="propiedades"
+            />
             Propiedades
             <div id="submenu" className="submenu">
               <Link onClick={handleFunctions} to={"/leases"}>
@@ -255,7 +262,11 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
-              <img className="header-links-img" src={getImg("svg", "services", "svg")} alt="inicio" />
+            <img
+              className="header-links-img"
+              src={getImg("svg", "services", "svg")}
+              alt="inicio"
+            />
             Servicios
             <div id="submenu1" className="submenu">
               <Link onClick={handleFunctions} to={"/hipoteca"}>
@@ -287,7 +298,11 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
-              <img className="header-links-img" src={getImg("svg", "register", "svg")} alt="inicio" />
+            <img
+              className="header-links-img"
+              src={getImg("svg", "register", "svg")}
+              alt="inicio"
+            />
             Registrarme
             <div id="submenu2" className="submenu">
               <Link onClick={handleFunctions} to={"/auth/client/register"}>
@@ -360,10 +375,6 @@ const HeaDer = styled.div`
       display: flex;
       gap: 50px;
 
-      &-img{
-        height: 18px;
-      }
-
       &-a {
         gap: 10px;
         position: relative;
@@ -377,7 +388,14 @@ const HeaDer = styled.div`
           color: var(--text-primary);
           @media (max-width: 920px) {
             color: var(--text-tertiary);
-            transform: translateX(-90%);
+            transform: translateX(-80%);
+          }
+          .header-links-img {
+            height: 18px;
+            @media (max-width: 920px) {
+              height: 25px;
+              filter: invert(100%);
+            }
           }
         }
         &::before {
@@ -414,6 +432,13 @@ const HeaDer = styled.div`
             color: var(--text-tertiary);
             border-bottom: 3px solid var(--bg-tertiary);
           }
+          .header-links-img {
+            height: 18px;
+            @media (max-width: 920px) {
+              height: 25px;
+              filter: invert(100%);
+            }
+          }
         }
         &:last-child {
           &:hover .submenu {
@@ -435,14 +460,14 @@ const HeaDer = styled.div`
             opacity: 1;
             border-radius: 0 0 5px 5px;
             transform: translateY(0%);
-            
+
             @media (max-width: 920px) {
               z-index: -1;
               width: 200px;
-              right: -176%;
+              right: -156%;
               top: -29%;
               border-radius: 0 5px 5px 0;
-              a{
+              a {
                 font-size: 18px;
               }
             }
@@ -457,15 +482,15 @@ const HeaDer = styled.div`
             height: fit-content;
             opacity: 1;
             border-radius: 0 0 5px 5px;
-            
-            @media (max-width: 920px) {     
+
+            @media (max-width: 920px) {
               z-index: -1;
               width: 200px;
-              right: -225%;
+              right: -180%;
               top: -110%;
               border-radius: 0 5px 5px 0;
               gap: 0px;
-              a{
+              a {
                 font-size: 18px;
               }
             }
@@ -480,20 +505,25 @@ const HeaDer = styled.div`
             height: fit-content;
             opacity: 1;
             border-radius: 0 0 5px 5px;
-            
+
             @media (max-width: 920px) {
-              right: -166%;
+              right: -156%;
               width: 200px;
               top: -70%;
               border-radius: 0 5px 5px 0;
-              a{
+              a {
                 font-size: 18px;
               }
             }
           }
         }
-        img{
-          height: 20px;
+      }
+      &-img {
+        height: 18px;
+        @media (max-width: 920px) {
+          fill: #ffffff;
+          height: 25px;
+          filter: invert(60%);
         }
       }
 
@@ -608,9 +638,10 @@ const HeaDer = styled.div`
     transform: translateY(0%);
     visibility: visible;
     border-radius: 0 0 5px 5px;
+    
   }
   .submenu-hidden {
-  opacity: 0;
-  transform: translateY(-120%);
-}
+    opacity: 0;
+    transform: translateY(-120%);
+  }
 `;
