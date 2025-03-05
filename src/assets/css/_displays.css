@@ -42,6 +42,9 @@
     @media (max-width: 1025px) {
         grid-template-columns: repeat(2, 1fr);
     }
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 .grid-4fr {
     display: grid;
@@ -49,6 +52,9 @@
     gap: 10px;
     @media (max-width: 1025px) {
         grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
     }
 }
 .grid-custom{

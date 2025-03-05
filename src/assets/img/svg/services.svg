@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <defs>
+  <symbol data-name="Layer 1" id="svg_26" viewBox="0 0 36 45" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
+   <path d="m26.53,34l-23.46,0a1.05,1.05 0 0 1 -1,-0.6a1.08,1.08 0 0 1 0.12,-1.13l3.81,-4.75a1.1,1.1 0 0 0 0.24,-0.67l0,-17.38a7.46,7.46 0 0 1 7.49,-7.47l12.8,0a7.48,7.48 0 0 1 7.47,7.47l0,17.06a7.48,7.48 0 0 1 -7.47,7.47zm-21.24,-2.13l21.24,0a5.34,5.34 0 0 0 5.34,-5.34l0,-17.06a5.33,5.33 0 0 0 -5.34,-5.34l-12.8,0a5.34,5.34 0 0 0 -5.33,5.34l0,17.38a3.24,3.24 0 0 1 -0.7,2l-2.41,3.02z"/>
+   <path d="m26.53,24.4a1.06,1.06 0 0 1 -1.06,-1.07l0,-7.46a2.14,2.14 0 0 0 -2.14,-2.14l-6.4,0a2.14,2.14 0 0 0 -2.13,2.14l0,7.46a1.07,1.07 0 1 1 -2.13,0l0,-7.46a4.27,4.27 0 0 1 4.26,-4.27l6.4,0a4.27,4.27 0 0 1 4.27,4.27l0,7.46a1.07,1.07 0 0 1 -1.07,1.07z"/>
+   <path d="m23.33,24.4l-2.13,0a1.07,1.07 0 1 1 0,-2.13l1.07,0l0,-3.2a1.07,1.07 0 1 1 2.13,0l0,4.26a1.07,1.07 0 0 1 -1.07,1.07z"/>
+   <path d="m16.93,24.4a1.06,1.06 0 0 1 -1.06,-1.07l0,-4.26a1.07,1.07 0 1 1 2.13,0l0,4.26a1.07,1.07 0 0 1 -1.07,1.07z"/>
+   <text fill="#000000" font-family="&#x27;Helvetica Neue&#x27;, Helvetica, Arial-Unicode, Arial, Sans-serif" font-size="5px" font-weight="bold" x="0" y="51">Created by Wahyu Adam</text>
+   <text fill="#000000" font-family="&#x27;Helvetica Neue&#x27;, Helvetica, Arial-Unicode, Arial, Sans-serif" font-size="5px" font-weight="bold" x="0" y="56">from the Noun Project</text>
+  </symbol>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <use id="svg_27" transform="matrix(1.24707 0 0 1.39419 -85.4891 -27.5779)" xlink:href="#svg_26"/>
+ </g>
+</svg>

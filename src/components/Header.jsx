@@ -202,16 +202,16 @@ export const Header = () => {
           </Link>
         </div>
         <div id="menu" className="header-links">
-          {headerRoutes.map((item, index) => (
+          
             <NavLink
               className={({ isActive }) =>
                 `${isActive ? "header-links-a-active" : "header-links-a"}`
               }
-              to={item.route}
-              key={index}>
-              {item.text}
+              to={'/'}>
+              <img className="header-links-img" src={getImg("svg", "home", "svg")} alt="inicio" />
+              Inicio
             </NavLink>
-          ))}
+          
 
           <NavLink
             onClick={handleBlockClick}
@@ -224,6 +224,7 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
+            <img className="header-links-img" src={getImg("svg", "builds", "svg")} alt="propiedades" />
             Propiedades
             <div id="submenu" className="submenu">
               <Link onClick={handleFunctions} to={"/leases"}>
@@ -254,6 +255,7 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
+              <img className="header-links-img" src={getImg("svg", "services", "svg")} alt="inicio" />
             Servicios
             <div id="submenu1" className="submenu">
               <Link onClick={handleFunctions} to={"/hipoteca"}>
@@ -285,6 +287,7 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
+              <img className="header-links-img" src={getImg("svg", "register", "svg")} alt="inicio" />
             Registrarme
             <div id="submenu2" className="submenu">
               <Link onClick={handleFunctions} to={"/auth/client/register"}>
@@ -357,7 +360,12 @@ const HeaDer = styled.div`
       display: flex;
       gap: 50px;
 
+      &-img{
+        height: 18px;
+      }
+
       &-a {
+        gap: 10px;
         position: relative;
         font-size: 18px;
         font-weight: 300;
@@ -483,6 +491,9 @@ const HeaDer = styled.div`
               }
             }
           }
+        }
+        img{
+          height: 20px;
         }
       }
 

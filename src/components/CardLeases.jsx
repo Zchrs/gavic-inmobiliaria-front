@@ -200,24 +200,6 @@ export const CardLeases = ({
     <ProductCard>
       <section className={classs}>
         <div>
-          <div className="productcard-addwish">
-            <AddCartWishlist
-              addWish={true}
-              // onMouseEnter={handleMouseEnter}
-              // onMouseLeave={handleMouseLeave}
-              // onclick={handleAddToWishList}
-              // onSubmit={handleAddToWishList}
-            />
-          </div>
-          <div className="productcard-addcart">
-            <AddCartWishlist
-              addCart={true}
-              // onMouseEnter={handleMouseEnter}
-              // onMouseLeave={handleMouseLeave}
-              // onclick={handleAddToCart}
-              // onSubmit={handleAddToCart}
-            />
-          </div>
           <div className="productcard-contain">
             {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'jpg') || defaultImage} alt="" />}
           </div>

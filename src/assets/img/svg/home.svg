@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <defs>
+  <symbol height="135" id="svg_9" version="1.1" width="110" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+   <g class="layer">
+    <title>Layer 1</title>
+    <path d="m74,98.13c6.62,0 12,-5.38 12,-12l0,-23.19c0,-3.69 -1.75,-7.24 -4.67,-9.5l-18.78,-14.49c-4.27,-3.3 -10.27,-3.33 -14.57,-0.07l-19.22,14.55c-2.98,2.25 -4.76,5.83 -4.76,9.57l0,23.13c0,6.62 5.38,12 12,12l38,0zm-46,-12l0,-23.13c0,-2.49 1.19,-4.88 3.17,-6.38l19.22,-14.55c1.42,-1.08 3.13,-1.62 4.83,-1.62s3.45,0.55 4.89,1.66l18.78,14.49c1.95,1.5 3.11,3.87 3.11,6.33l0,23.19c0,4.41 -3.59,8 -8,8l-38,0c-4.41,0 -8,-3.59 -8,-8l0,0.01z" id="svg_8"/>
+    <path d="m45,88.2c1.1,0 2,-0.9 2,-2l0,-6c0,-4.41 3.59,-8 8,-8s8,3.59 8,8l0,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2l0,-6c0,-6.62 -5.38,-12 -12,-12s-12,5.38 -12,12l0,6c0,1.1 0.9,2 2,2z" id="svg_7"/>
+   </g>
+  </symbol>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <use id="svg_10" transform="matrix(7.70313 0 0 7.70313 -102.19 -278.37)" xlink:href="#svg_9"/>
+ </g>
+</svg>
