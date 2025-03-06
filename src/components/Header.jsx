@@ -253,10 +253,10 @@ export const Header = () => {
               `${
                 isActive ||
                 isSubmenuActive([
-                  "/hipoteca",
-                  "/consultorias",
-                  "/avaluos",
-                  "/mejoras-locativas",
+                  "/mortgage",
+                  "/consultancies",
+                  "/appraisals",
+                  "/location-improvements",
                 ])
                   ? "header-links-a-active"
                   : "header-links-a"
@@ -272,13 +272,13 @@ export const Header = () => {
               <Link onClick={handleFunctions} to={"/mortgage"}>
                 Hipotecas
               </Link>
-              <Link onClick={handleFunctions} to={"/consultorias"}>
+              <Link onClick={handleFunctions} to={"/consultancies"}>
                 Consultorías
               </Link>
-              <Link onClick={handleFunctions} to={"/avaluos"}>
+              <Link onClick={handleFunctions} to={"/appraisals"}>
                 Avalúos
               </Link>
-              <Link onClick={handleFunctions} to={"/mejoras-locativas"}>
+              <Link onClick={handleFunctions} to={"/location-improvements"}>
                 Mejoras locativas
               </Link>
             </div>

@@ -9,7 +9,7 @@ const v4options = {
 export const leases = [
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+        title: 'Apartamento',
         description: `
         Habitaciones amplias con closet, Habitación principal con 
         soporte para tv y baño privado encabinado.
@@ -23,7 +23,7 @@ export const leases = [
         1 parqueadero privado cubierto
         `,
         img: 'unidad',
-        price: '$999,999.00',
+        price: '$2,000,000.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
