@@ -214,6 +214,11 @@ const HoMe = styled.div`
         display: grid;
         gap: 25px;
         margin: 25px;
+        @media (max-width: 820px) {
+              width: 100%;
+              margin: auto;
+              padding: 12px;
+         }
       }
     }
   }
