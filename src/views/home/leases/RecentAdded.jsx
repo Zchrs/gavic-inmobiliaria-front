@@ -40,7 +40,7 @@ export const RecentAdded = () => {
                     productLink={`/products/${itemL.id}`}
                     addToWish={"addwishlist-red"}
                     addTocart={"addcart-red"}
-                    img={"default"}
+                    img={itemL.img}
                     sellingsText={true}
                     sellings={"999"}
                     priceText={true}

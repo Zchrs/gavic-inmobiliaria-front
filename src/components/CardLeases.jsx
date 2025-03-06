@@ -204,7 +204,7 @@ export const CardLeases = ({
       <section className={classs}>
         <div>
           <div className="productcard-contain">
-            {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'jpg') || defaultImage} alt="" />}
+            {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'webp') || defaultImage} alt="" />}
           </div>
         </div>
         {boxGrid && 
@@ -395,11 +395,12 @@ display: grid;
       img {
         border-radius: 0px;
         width: 100%;
-        height: 100%;
-        object-fit: contain;
+        
+        object-fit: cover;
         margin: 0;
         padding: 0;
         transition: all ease 0.4s;
+        min-height: 220px;
         &:hover {
           transform: scale(1.2);
         }
@@ -475,12 +476,12 @@ display: grid;
       transition: all ease 0.3s;
       width: 100%;
       gap: 5px;
-      padding: 10px;
+      padding: 5px 10px;
       display: grid;
       position: absolute;
       bottom: 0;
       height: fit-content;
-      background: #ffffff81;
+      background: #ffffffc8;
       transform: translateY(100%);
     }
   }

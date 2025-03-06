@@ -41,6 +41,7 @@ import {
   Users,
   Properties,
   DetailSales,
+  Mortgage,
   } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -124,6 +125,7 @@ function App() {
               <Route exact path="clients/advivosrs" element={<Advisors/>} />
               <Route exact path="settings" element={<Settings/>} />
               <Route exact path="properties" element={<Properties />} />
+              <Route exact path="mortgage" element={<Mortgage />} />
           </Route>
 
           

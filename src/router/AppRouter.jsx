@@ -20,6 +20,7 @@ import {
   Leases, 
   Login, 
   Mision, 
+  Mortgage, 
   Pqrs, 
   PrivPoly, 
   Properties, 
@@ -70,6 +71,7 @@ export const AppRouter = () => {
           <Route exact path="Targets" element={<Targets />} />
           <Route exact path="quality-policy" element={<QualityPolicy />} />
           <Route exact path="privacy-policy" element={<PrivPoly />} />
+          <Route exact path="mortgage" element={<Mortgage />} />
         </Routes>
     );
   };

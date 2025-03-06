@@ -269,7 +269,7 @@ export const Header = () => {
             />
             Servicios
             <div id="submenu1" className="submenu">
-              <Link onClick={handleFunctions} to={"/hipoteca"}>
+              <Link onClick={handleFunctions} to={"/mortgage"}>
                 Hipotecas
               </Link>
               <Link onClick={handleFunctions} to={"/consultorias"}>

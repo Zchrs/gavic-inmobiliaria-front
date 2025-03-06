@@ -72,6 +72,7 @@ export { Approved } from "./src/views/admin/properties/properties-status/Approve
 export { Rejected } from "./src/views/admin/properties/properties-status/Rejected";
 export { Properties } from "./src/views/admin/properties/Properties";
 export { DetailSales } from "./src/views/admin/Sales/DetailSales";
+export { Mortgage } from "./src/views/home/mortgage/Mortgage";
 
 
 

@@ -10,18 +10,29 @@ export const leases = [
     {
         id: `${uuidv4(v4options.random)}`,
         title: 'Laptop gamer 1',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
-        img: 'house',
+        description: `
+        Habitaciones amplias con closet, Habitación principal con 
+        soporte para tv y baño privado encabinado.
+        Baño social encabinado. 
+        Sala con mueble de entretenimiento listo para utilizar.
+        Comedor.
+        Balcón amplio con vista hacia Bello.
+        Cocina integral con estufa en vidrio templado y horno empotrado.
+         Zona de ropas y calentador a gas.
+        Puerta de seguridad.
+        1 parqueadero privado cubierto
+        `,
+        img: 'unidad',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
-        district: 'El poblado',
-        quantityRooms: '4',
+        district: 'Bello',
+        quantityRooms: '3',
         quantityBathrooms: '2',
-        quantityCloset: '1',
+        balcony: '1',
+        quantityCloset: '3',
         forecourt: '1',
         kitchen: 'Integral',
         garage: '1',
