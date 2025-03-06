@@ -403,7 +403,7 @@ const HeaDer = styled.div`
           content: "";
           height: 3px;
           width: 0%;
-          background: var(--bg-primary);
+          background: var(--bg-secondary);
           position: absolute;
           bottom: -3px;
           left: 0;
@@ -422,7 +422,7 @@ const HeaDer = styled.div`
           font-weight: 500;
           width: fit-content;
           color: var(--text-primary);
-          border-bottom: 3px solid var(--bg-primary);
+          border-bottom: 3px solid var(--bg-secondary);
 
           @media (max-width: 920px) {
             margin: auto;

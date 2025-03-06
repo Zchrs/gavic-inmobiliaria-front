@@ -33,6 +33,10 @@ export const RecentAdded = () => {
                 selectedLeases.map((itemL) => (
                   <CardLeases
                     key={itemL.id}
+                    quantityBathrooms={itemL.quantityBathrooms}
+                    quantityCloset={itemL.quantityCloset}
+                    quantityRooms={itemL.quantityRooms}
+                    location={itemL.district}
                     productLink={`/products/${itemL.id}`}
                     addToWish={"addwishlist-red"}
                     addTocart={"addcart-red"}

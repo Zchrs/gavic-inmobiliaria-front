@@ -12,398 +12,532 @@ export const leases = [
         title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
-        img: 'laptop-gaming-rog',
-        price: '$777,999.00',
+        img: 'house',
+        price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-             'laptop-gaming-rog',
-             'laptop-gaming-rog',
-             'laptop-gaming-rog',
-             'laptop-gaming-rog',
-             'laptop-gaming-rog'
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
         ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 2',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
-        img: 'laptop-gaming-victus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-gaming-victus',
-            'laptop-gaming-victus',
-            'laptop-gaming-victus',
-            'laptop-gaming-victus',
-            'laptop-gaming-victus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 3',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop',
-            'laptop',
-            'laptop',
-            'laptop',
-            'laptop'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 4',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-gamer-lenovo',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-gamer-lenovo',
-            'laptop-gamer-lenovo',
-            'laptop-gamer-lenovo',
-            'laptop-gamer-lenovo',
-            'laptop-gamer-lenovo'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae. 
-`,
-        img: 'laptop-asus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
-        price: '$777,999.00',
-        previousPrice: '$999,999.00',
-        sellingsText: 'Vendidos',
-        sellings: '999',
-        url: '/products/productId',
-        thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
-    },
-    {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
     {
         id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 5',
+        title: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-`,
-        img: 'laptop-asus',
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
         price: '$999,999.00',
         previousPrice: '$999,999.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
         thumbnails: [
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus',
-            'laptop-asus'
-       ]
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
+    },
+    {
+        id: `${uuidv4(v4options.random)}`,
+        title: 'Laptop gamer 1',
+        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
+        img: 'house',
+        price: '$999,999.00',
+        previousPrice: '$999,999.00',
+        sellingsText: 'Vendidos',
+        sellings: '999',
+        url: '/products/productId',
+        district: 'El poblado',
+        quantityRooms: '4',
+        quantityBathrooms: '2',
+        quantityCloset: '1',
+        forecourt: '1',
+        kitchen: 'Integral',
+        garage: '1',
+        diningRoom: '1',
+        floor: 'Baldosa',
+        thumbnails: [
+             'house',
+             'house',
+             'house',
+             'house',
+             'house'
+        ]
     },
 ]
 export const clothingChilds = [
@@ -621,8 +755,8 @@ export const services = [
         title: 'Arrendamientos',
         description: `Frijol rojo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'arrendamiento',
-        price: '$9,999.00',
-gsText: 'V',
+        price: '$9,999.00',   
+        gsText: 'V',
         sellings: '999',
         url: '/products/productId',
         thumbnails: [

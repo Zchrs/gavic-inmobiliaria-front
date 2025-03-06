@@ -29,6 +29,9 @@ export const CardLeases = ({
   product_id,
   prodHover,
   prodLeave,
+  quantityRooms,
+  quantityBathrooms,
+  quantityCloset,
   preview,
   price,
   previousPrice,
@@ -248,7 +251,7 @@ export const CardLeases = ({
         <div className="productcard-grid">
           <div className="productcard-flex">
             <div className="productcard-flex-location">
-              <p><strong>Ubicación:</strong> El poblado</p>
+              <p><strong>Ubicación:</strong> {location}</p>
             </div>
             <div className="productcard-flex-location">
               <b>{price}</b>
@@ -258,17 +261,17 @@ export const CardLeases = ({
             <div className="productcard-flex-details">
               <img src={getImg('png', 'cama', 'png')} alt="" />
               <strong>Habitaciones</strong>
-              <p>3</p>
+              <p>{quantityRooms}</p>
             </div>
             <div className="productcard-flex-details">
               <img src={getImg('png', 'banio', 'png')} alt="" />
               <strong>Baños</strong>
-              <p>2</p>
+              <p>{quantityBathrooms}</p>
             </div>
             <div className="productcard-flex-details">
               <img src={getImg('png', 'closet', 'png')} alt="" />
-              <strong>Closet</strong>
-              <p>0</p>
+              <strong>Closets</strong>
+              <p>{quantityCloset}</p>
             </div>
           </div>
         </div>
