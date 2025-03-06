@@ -593,32 +593,77 @@ const HeaDer = styled.div`
     position: absolute;
     overflow: hidden;
     width: 150px;
-    height: fit-content;
+    height: 100%;
     z-index: -1;
     text-align: center;
-    transform: translateY(-100%);
+    transform: translateY(-10%);
     top: 0%;
     right: 0;
-    background: black;
+    background: transparent;
     display: grid;
-    padding: 0;
+    padding: 7px 0px 0px 0px;
     z-index: 100;
     @media (max-width: 920px) {
+      width: 100%;
       z-index: -1;
     }
 
     a {
+      z-index: 1;
       transition: all ease 0.3s;
       font-size: 14px;
-      color: white;
+      color: black;
       width: 100%;
       padding: 5px 0;
       &:hover {
-        background: #ffffff47;
+        background: #00000027;
+        font-weight: 400;
       }
+      @media (max-width: 920px) {
+      color: white;
+      padding: 2px 0;
+    }
     }
     @media (max-width: 920px) {
       transform: translateY(0%);
+    }
+
+    &::before{
+      content: "";
+      z-index: 0;
+      width: 97.5%;
+      height: 96%;
+      position: absolute;
+      transform: rotateZ(180deg);
+      top: 2px;
+      left: 2px;
+      background: white;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 46% 95%, 41% 100%, 36% 95%, 0 95%);  
+      @media (max-width: 768px) {
+        top: 1px;
+        background: var(--bg-secondary-semi);
+        width: 98%;
+        height: 98%;
+        transform: rotateX(-180deg);
+        clip-path: polygon(5% 45%, 5% 0, 100% 0, 100% 100%, 5% 100%, 5% 56%, 0 51%);
+      } 
+     }
+    &::after{
+      content: "";
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: black;
+      transform: rotateZ(180deg);
+      clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 46% 95%, 41% 100%, 36% 95%, 0 95%);   
+      @media (max-width: 768px) {
+       transform: rotateX(-180deg);
+       clip-path: polygon(5% 45%, 5% 0, 100% 0, 100% 100%, 5% 100%, 5% 56%, 0 51%);
+       background: white;
+      } 
     }
   }
 
@@ -630,6 +675,7 @@ const HeaDer = styled.div`
     height: fit-content;
     visibility: hidden;
     font-weight: 300;
+    
   }
 
   .header-links-a-active:hover .submenu {
@@ -638,7 +684,7 @@ const HeaDer = styled.div`
     transform: translateY(0%);
     visibility: visible;
     border-radius: 0 0 5px 5px;
-    
+
   }
   .submenu-hidden {
     opacity: 0;

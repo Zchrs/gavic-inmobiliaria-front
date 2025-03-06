@@ -132,7 +132,8 @@ const AddedRecent = styled.div`
           grid-template-columns: repeat(3, 1fr);
         }
         @media (max-width: 820px) {
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 1fr;
+          padding:30px 15px;
         }
     }
     &-pagination{
