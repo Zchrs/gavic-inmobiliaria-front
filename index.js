@@ -78,7 +78,7 @@ export { Appraisals } from "./src/views/home/appraisals/Appraisals";
 export { Consultancies } from "./src/views/home/consultancies/Consultancies";
 export { LocationImprovements } from "./src/views/home/location improvements/LocationImprovements";
 export { HomeProperties } from "./src/views/home/properties/HomeProperties";
-export { CheckOut } from "./src/views/home/properties/Checkout";
+export { CheckOut } from "./src/views/home/properties/CheckOut";
 
 
 
