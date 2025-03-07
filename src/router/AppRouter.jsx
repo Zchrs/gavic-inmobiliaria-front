@@ -3,21 +3,27 @@ import {
   About,
   AdminHome, 
   Advisors, 
+  Appraisals, 
   Approved, 
   AuthHome, 
+  CheckOut, 
   Clients, 
   CommerceIndustry, 
   Comunications, 
+  Consultancies, 
   Contact, 
   Coverage, 
   DataTreathment, 
+  DetailProperty, 
   DetailSales, 
   Finances, 
   ForRentPropertiesw, 
   HelpCenter, 
   Home, 
+  HomeProperties, 
   Immovables, 
   Leases, 
+  LocationImprovements, 
   Login, 
   Mision, 
   Mortgage, 
@@ -72,6 +78,9 @@ export const AppRouter = () => {
           <Route exact path="quality-policy" element={<QualityPolicy />} />
           <Route exact path="privacy-policy" element={<PrivPoly />} />
           <Route exact path="mortgage" element={<Mortgage />} />
+          <Route exact path="location-improvements" element={<LocationImprovements />} />
+          <Route exact path="appreisals" element={<Appraisals />} />
+          <Route exact path="consultancies" element={<Consultancies />} />
         </Routes>
     );
   };
@@ -143,5 +152,15 @@ export const AppRouter = () => {
             <Route exact path="settings" element={<Settings/>} />
       </Routes>
       </>
+    );
+  };
+
+  export const PropertiesRouter = () => {
+    return (
+      <Routes>
+        <Route exact path="/*" element={ <HomeProperties />} />       
+        <Route exact path=":propertyId" element={<DetailProperty />} />
+        <Route exact path=":propertyId/checkout" element={<CheckOut />} />
+      </Routes>
     );
   };

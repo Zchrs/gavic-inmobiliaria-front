@@ -8,23 +8,24 @@ const v4options = {
   };
 export const leases = [
     {
+        area: '70 M2',  
         id: `${uuidv4(v4options.random)}`,
-        title: 'Apartamento',
+        name: 'Apartamento',
         description: `
         Habitaciones amplias con closet, Habitación principal con 
         soporte para tv y baño privado encabinado.
         Baño social encabinado. 
         Sala con mueble de entretenimiento listo para utilizar.
         Comedor.
-        Balcón amplio con vista hacia Bello.
-        Cocina integral con estufa en vidrio templado y horno empotrado.
-         Zona de ropas y calentador a gas.
+        Balcón amplio con vista hacia Bello, 
+        Cocina integral con estufa en vidrio templado y horno empotrado, 
+        Zona de ropas y calentador a gas.
         Puerta de seguridad.
         1 parqueadero privado cubierto
         `,
         img: 'unidad',
         price: '$2,000,000.00',
-        previousPrice: '$999,999.00',
+        previousPrice: '$2,500,000.00',
         sellingsText: 'Vendidos',
         sellings: '999',
         url: '/products/productId',
@@ -37,18 +38,20 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
-             'house',
-             'house',
-             'house',
-             'house',
-             'house'
+             'unidad',
+             'unidad',
+             'unidad',
+             'unidad',
+             'unidad'
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -65,6 +68,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Venta',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -75,8 +79,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -93,6 +98,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Venta',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -103,8 +109,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -121,6 +128,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -131,8 +139,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -149,6 +158,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -159,8 +169,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -177,6 +188,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -187,8 +199,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -205,6 +218,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -215,8 +229,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -233,6 +248,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -243,8 +259,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -261,6 +278,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -271,8 +289,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -289,6 +308,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -299,8 +319,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -317,6 +338,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -327,8 +349,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -345,6 +368,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -355,8 +379,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -373,6 +398,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -383,8 +409,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -401,6 +428,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -411,8 +439,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -429,6 +458,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -439,8 +469,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -457,6 +488,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -467,8 +499,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -485,6 +518,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -495,8 +529,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -513,6 +548,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -523,8 +559,9 @@ export const leases = [
         ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Laptop gamer 1',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Laptop gamer 1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -541,6 +578,7 @@ export const leases = [
         kitchen: 'Integral',
         garage: '1',
         diningRoom: '1',
+        option: 'Arrendamiento',
         floor: 'Baldosa',
         thumbnails: [
              'house',
@@ -553,8 +591,9 @@ export const leases = [
 ]
 export const clothingChilds = [
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Conjunto niño looney tunes blanco/verde',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Conjunto niño looney tunes blanco/verde',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -573,8 +612,9 @@ export const clothingChilds = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Conjunto dragon ball super mouse blanco/azul',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Conjunto dragon ball super mouse blanco/azul',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -593,8 +633,9 @@ export const clothingChilds = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Conjunto niño bob esponja blanco/azul',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Conjunto niño bob esponja blanco/azul',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -613,8 +654,9 @@ export const clothingChilds = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Conjunto niño mickey mouse rojo/blanco',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Conjunto niño mickey mouse rojo/blanco',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -633,8 +675,9 @@ export const clothingChilds = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Conjunto niño los pitufos blanco/azul',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Conjunto niño los pitufos blanco/azul',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -655,8 +698,9 @@ export const clothingChilds = [
 ]
 export const mobilePhones = [
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Samsung Galaxy S23 Ultra',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Samsung Galaxy S23 Ultra',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -676,8 +720,9 @@ export const mobilePhones = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Motorola moto g84',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Motorola moto g84',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -697,8 +742,9 @@ export const mobilePhones = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Conjunto niño bob esponja blanco/azul',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Conjunto niño bob esponja blanco/azul',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -718,8 +764,9 @@ export const mobilePhones = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Huawei Y 91',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Huawei Y 91',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -739,8 +786,9 @@ export const mobilePhones = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Iphone 14 pro Max',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Iphone 14 pro Max',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -762,8 +810,9 @@ export const mobilePhones = [
 ]
 export const services = [
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Arrendamientos',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Arrendamientos',
         description: `Frijol rojo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'arrendamiento',
         price: '$9,999.00',   
@@ -779,8 +828,9 @@ export const services = [
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Ventas',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Ventas',
         description: `Garbanzo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'ventas',
         price: '$9,999.00',
@@ -796,8 +846,9 @@ gsText: 'V',
        ]
     },
     {
-        id: `${uuidv4(v4options.random)}`,
-        title: 'Hipoteca',
+      area: '70 M2',  
+      id: `${uuidv4(v4options.random)}`,
+        name: 'Hipoteca',
         description: `Lenteja nacional hidropondica en bolsa nacional de la más alta calidad, 100% orgánicas.`,
         img: 'hipoteca',
         price: '$9,999.00',

@@ -2,13 +2,18 @@
 import styled from "styled-components"
 import { leases } from "../../../../apiEmulated"
 import { Loader, CardLeases, Pagination } from "../../../../index"
+import { selectedProduct, setProduct } from "../../../actions/productActions";
+
 import { useState } from "react"
+import { useDispatch } from "react-redux";
 
 
 
 export const RecentAdded = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
+  const [property, setProperty] = useState([]);
   const itemsPerPage = 12;
 
   const totalPages = Math.ceil(leases.length / itemsPerPage);
@@ -16,6 +21,10 @@ export const RecentAdded = () => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedLeases = leases.slice(startIndex, startIndex + itemsPerPage);
+
+  const handleSetProductClick = (product) => {
+    dispatch(selectedProduct(product));
+  };
 
 
   return (
@@ -37,27 +46,21 @@ export const RecentAdded = () => {
                     quantityCloset={itemL.quantityCloset}
                     quantityRooms={itemL.quantityRooms}
                     location={itemL.district}
-                    productLink={`/products/${itemL.id}`}
+                    productLink={`/properties/${itemL.id}`}
                     addToWish={"addwishlist-red"}
                     addTocart={"addcart-red"}
                     img={itemL.img}
                     sellingsText={true}
-                    sellings={"999"}
                     priceText={true}
                     price={itemL.price}
                     productInfo={itemL}
                     boxFlex={true}
                     classs={"productcard background"}
-                    // onClick={() => handleSetProductClick(itemL)}
-                    // prodHover={() => handleSetProductClick(itemL)}
+                    onClick={() => handleSetProductClick(itemL)}
+                    prodHover={() => handleSetProductClick(itemL)}
                     jpg="true"
-                    description={itemL.description}
-                    beforePrice={itemL.previousPrice}
                     title={itemL.title}
                     thumbnails={itemL.thumbnails}
-                    // products="portatiles"
-                    // ratingss={true}
-                    // ratings={ratings}
                     product_id={itemL.id}
                   />
                 ))

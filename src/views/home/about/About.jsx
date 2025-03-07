@@ -64,13 +64,12 @@ const AbOut = styled.div`
     width: 100%;
     align-content: start;
     height: fit-content;
-    color: white;
     padding: 0;
 
     &-header {
       display: grid;
       position: relative;
-      background-color: var(--bg-secondary);
+      background-color: var(--bg-primary-soft);
       width: 100%;
       height: fit-content;
       place-content: center;
@@ -97,6 +96,9 @@ const AbOut = styled.div`
         align-items: center;
         height: fit-content;
         gap: 30px;
+        p{
+          font-size: 1.9rem;
+        }
       }
     }
 

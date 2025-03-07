@@ -5,16 +5,17 @@ import { formatPrice, getFile, getImg, scrollTop } from "../../globalActions";
 import defaultImage from "../assets/img/jpg/default.jpg";
 import styled from "styled-components";
 import { BaseButton } from "./BaseButton";
-// import { useDispatch, useSelector } from "react-redux";
-// import { clearProduct, selectedProduct } from "../actions/productActions";
+import { useDispatch, useSelector } from "react-redux";
+import { clearProduct, selectedProduct } from "../actions/productActions";
 import { AddCartWishlist } from "./AddCartWishlist";
 import { useNavigate } from "react-router-dom";
-// import { addToCart as addToCartAction } from "../actions/cartActions";
+import { addToCart as addToCartAction } from "../actions/cartActions";
 import Swal from "sweetalert2";
 import { useForm, initialAddCartForm } from "../hooks/useForm";
 
 
 import { Rating } from "./Rating";
+import { Link } from "react-router-dom";
 
 export const CardLeases = ({
   name,
@@ -23,6 +24,7 @@ export const CardLeases = ({
   member,
   img,
   boxGrid,
+  onClick,
   boxFlex,
   location,
   user_id,
@@ -45,154 +47,156 @@ export const CardLeases = ({
   buyCr,
   buy,
 }) => {
-  // const user = useSelector((state) => state.auth.user);
-  // const productHover = useSelector((state) => state.product.selectedProduct);
+  const user = useSelector((state) => state.auth.user);
+  const productHover = useSelector((state) => state.product.selectedProduct);
   
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const dataFormErrors = (formCart) =>{
-  //   let user_id = document.getElementById("user_id")
-  //   let product_id = document.getElementById("product_id")
-  //   let price = document.getElementById("price")
-  //   let quantity = document.getElementById("quantity")
+  const dataFormErrors = (formCart) =>{
+    let user_id = document.getElementById("user_id")
+    let product_id = document.getElementById("product_id")
+    let price = document.getElementById("price")
+    let quantity = document.getElementById("quantity")
 
-  //   let data = {};
-  //   let errors = {};
+    let data = {};
+    let errors = {};
 
-  //   if (!formCart.user_id && formCart.user_id ==! formCart.user_id) {
-  //     user_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
-  //     errors.user_id = "no permitido";
-  //     return
-  //   }  
+    if (!formCart.user_id && formCart.user_id ==! formCart.user_id) {
+      user_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
+      errors.user_id = "no permitido";
+      return
+    }  
   
-  //   if (!formCart.product_id && formCart.product_id ==! formCart.product_id) {
-  //     product_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
-  //     errors.product_id = "no permitido";
-  //   }  else {
-  //     product_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
-  //   }
+    if (!formCart.product_id && formCart.product_id ==! formCart.product_id) {
+      product_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
+      errors.product_id = "no permitido";
+    }  else {
+      product_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
+    }
   
-  //   if (!formCart.price && formCart.price ==! formCart.price) {
-  //     price.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
-  //     errors.price = "no permitido.";
-  //   } else {
-  //     price.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px; color: black;";
-  //   }
+    if (!formCart.price && formCart.price ==! formCart.price) {
+      price.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
+      errors.price = "no permitido.";
+    } else {
+      price.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px; color: black;";
+    }
   
-  //   if (!formCart.quantity) {
-  //     quantity.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
-  //     errors.quantity = "no permitido.";
-  //   }else {
-  //     quantity.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
-  //   }
+    if (!formCart.quantity) {
+      quantity.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
+      errors.quantity = "no permitido.";
+    }else {
+      quantity.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
+    }
   
 
 
-  //   return errors
+    return errors
 
-  // }
+  }
   
-  // const {
-  //   formCart,
-  //   errors,
-  //   handleChangeProduct,
-  //   handleSubmitAddCart,
-  //   handleSubmitAddWishlist,
-  //   setFormCart
-  // } = useForm(initialAddCartForm, dataFormErrors);
+  const {
+    formCart,
+    errors,
+    handleChangeProduct,
+    handleSubmitAddCart,
+    handleSubmitAddWishlist,
+    setFormCart
+  } = useForm(initialAddCartForm, dataFormErrors);
   
 
   // Cuando quieras establecer el estado del producto
-  // const handleSetProductInfo = (e) => {
-  //   // console.log(productHover, 'producto seteado')
-  //   if(!user) return
+
+  const handleSetProductInfo = (e) => {
+    // console.log(productHover, 'producto seteado')
     
-  //   dispatch(selectedProduct(productHover));
-  //   localStorage.setItem("productHover", productHover);
-  //   setFormCart((prevFormCart) => ({
-  //     ...prevFormCart,
-  //     user_id: user.id, // Assuming you want to set the user_id as well
-  //     product_id: productHover.id,
-  //     price: productHover.price,
-  //     quantity: 1, // You can set a default quantity or manage it as needed
-  //   }));
-  // };
+    // if(!user) return
+    
+    dispatch(selectedProduct(productHover));
+    localStorage.setItem("productHover", productHover);
+    setFormCart((prevFormCart) => ({
+      ...prevFormCart,
+      user_id: user.id, // Assuming you want to set the user_id as well
+      product_id: productHover.id,
+      price: productHover.price,
+      quantity: 1, // You can set a default quantity or manage it as needed
+    }));
+  };
   
-  // const handleCLearProduct = () => {
-  //   dispatch(clearProduct(productHover));
-  //   localStorage.removeItem("productHover", productHover);
-  //   setFormCart(initialAddCartForm);
-  // };
+  const handleCLearProduct = () => {
+    dispatch(clearProduct(productHover));
+    localStorage.removeItem("productHover", productHover);
+    setFormCart(initialAddCartForm);
+  };
 
-  // const handleMouseEnter = () => {
-  //   if (user) {
-  //     handleSetProductInfo({ user_id, product_id, price, quantity });
-  //   }
-  // };
+  const handleMouseEnter = () => {
+    if (user) {
+      handleSetProductInfo({ user_id, product_id, price, quantity });
+    }
+  };
 
-  // const handleMouseLeave = () => {
-  //   if (user) {
-  //     handleCLearProduct({ user_id, product_id, price, quantity });
-  //   }
-  // };
+  const handleMouseLeave = () => {
+    if (user) {
+      handleCLearProduct({ user_id, product_id, price, quantity });
+    }
+  };
 
-  // const handleAddToCart = (e) => {
-  //   if (user) {
-  //     handleSubmitAddCart(e);
-  //   } else {
-  //     Swal.fire({
-  //       title: "Aún no eres nuestro cliente",
-  //       text: "Regístrate para agregar productos al carrito.",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       // confirmButtonColor: '#990000',
-  //       // cancelButtonColor: '#a4883e',
-  //       confirmButtonText: "Registrarme",
-  //       cancelButtonText: "Cancelar",
-  //       background: "#f0f0f0",
-  //       customClass: {
-  //         popup: "custom-popup",
-  //         title: "custom-title",
-  //         content: "custom-content",
-  //         confirmButton: "custom-confirm-button",
-  //         cancelButton: "custom-cancel-button",
-  //       },
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         navigate("/users/auth/register");
-  //       }
-  //     });
-  //   }
-  // };
-  // const handleAddToWishList = (e) => {
-  //   if (user) {
-  //     handleSubmitAddWishlist(e);
-  //   } else {
-  //     Swal.fire({
-  //       title: "Aún no eres nuestro cliente",
-  //       text: "Regístrate para agregar productos a la lista de deseos.",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       // confirmButtonColor: '#990000',
-  //       // cancelButtonColor: '#a4883e',
-  //       confirmButtonText: "Registrarme",
-  //       cancelButtonText: "Cancelar",
-  //       background: "#f0f0f0",
-  //       customClass: {
-  //         popup: "custom-popup",
-  //         title: "custom-title",
-  //         content: "custom-content",
-  //         confirmButton: "custom-confirm-button",
-  //         cancelButton: "custom-cancel-button",
-  //       },
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         navigate("/users/auth/register");
-  //       }
-  //     });
-  //   }
-  // };
+  const handleAddToCart = (e) => {
+    if (user) {
+      handleSubmitAddCart(e);
+    } else {
+      Swal.fire({
+        title: "Aún no eres nuestro cliente",
+        text: "Regístrate para agregar productos al carrito.",
+        icon: "warning",
+        showCancelButton: true,
+        // confirmButtonColor: '#990000',
+        // cancelButtonColor: '#a4883e',
+        confirmButtonText: "Registrarme",
+        cancelButtonText: "Cancelar",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/users/auth/register");
+        }
+      });
+    }
+  };
+  const handleAddToWishList = (e) => {
+    if (user) {
+      handleSubmitAddWishlist(e);
+    } else {
+      Swal.fire({
+        title: "Aún no eres nuestro cliente",
+        text: "Regístrate para agregar productos a la lista de deseos.",
+        icon: "warning",
+        showCancelButton: true,
+        // confirmButtonColor: '#990000',
+        // cancelButtonColor: '#a4883e',
+        confirmButtonText: "Registrarme",
+        cancelButtonText: "Cancelar",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/users/auth/register");
+        }
+      });
+    }
+  };
 
   // const whatsapp = () => {
   //    window.open(`https://wa.me/message/WUYQ32XZFQ7TG1`, '_blank')
@@ -200,12 +204,22 @@ export const CardLeases = ({
 
 
   return (
-    <ProductCard>
+    <ProductCard onMouseEnter={prodHover}>
       <section className={classs}>
         <div>
-          <div className="productcard-contain">
-            {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'webp') || defaultImage} alt="" />}
+        <div className="productcard-addcart">
+            <AddCartWishlist
+              addWish={true}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onclick={handleAddToWishList}
+              onSubmit={handleAddToWishList}
+            />
           </div>
+
+          <Link onClick={onClick} to={productLink} className="productcard-contain">
+            {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'webp') || defaultImage} alt="" />}
+          </Link>
         </div>
         {boxGrid && 
         <div className="productcard-box">
@@ -251,7 +265,7 @@ export const CardLeases = ({
         <div className="productcard-grid">
           <div className="productcard-flex">
             <div className="productcard-flex-location">
-              <p><strong>Ubicación:</strong> {location}</p>
+              <p><img src={getImg('svg', 'location', 'svg')} alt="" /><strong>Ubicación:</strong> {location}</p>
             </div>
             <div className="productcard-flex-location">
               <b>{price}</b>
@@ -470,6 +484,10 @@ display: grid;
         width: fit-content;
         align-items: center;
         height: 100%;
+
+        img{
+          height: 15px;
+        }
       }
     }
     &-grid{
