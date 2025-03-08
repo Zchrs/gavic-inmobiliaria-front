@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { getRandomRef } from './globalActions';
 
 const v4options = {
     random: [
@@ -11,6 +12,7 @@ export const leases = [
         area: '70 M2',  
         id: `${uuidv4(v4options.random)}`,
         name: 'Apartamento',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `
         Habitaciones amplias con closet, Habitación principal con 
@@ -31,6 +33,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'Bello',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '3',
         quantityRooms: '3',
         quantityBathrooms: '2',
         balcony: '1',
@@ -53,6 +58,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -63,6 +69,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -84,6 +93,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -94,6 +104,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -115,6 +128,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -125,6 +139,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -146,6 +163,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -156,6 +174,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -177,6 +198,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -187,6 +209,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -208,6 +233,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -218,6 +244,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -239,6 +268,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -249,6 +279,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -270,6 +303,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -280,6 +314,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -301,6 +338,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -311,6 +349,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -332,6 +373,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -342,6 +384,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -363,6 +408,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -373,6 +419,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -394,6 +443,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -404,6 +454,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -425,6 +478,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -435,6 +489,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -456,6 +513,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -466,6 +524,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -487,6 +548,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -497,6 +559,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -518,6 +583,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -528,6 +594,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -549,6 +618,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -559,6 +629,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -580,6 +653,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
@@ -590,6 +664,9 @@ export const leases = [
         sellings: '999',
         url: '/products/productId',
         district: 'El poblado',
+        furnished: 'No',
+        admon: 'No',
+        stratum: '4',
         quantityRooms: '4',
         quantityBathrooms: '2',
         quantityCloset: '1',
@@ -613,6 +690,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño looney tunes blanco/verde',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -635,6 +713,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto dragon ball super mouse blanco/azul',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -657,6 +736,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño bob esponja blanco/azul',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -679,6 +759,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño mickey mouse rojo/blanco',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -701,6 +782,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño los pitufos blanco/azul',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -725,6 +807,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Samsung Galaxy S23 Ultra',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -748,6 +831,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Motorola moto g84',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -771,6 +855,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño bob esponja blanco/azul',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -794,6 +879,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Huawei Y 91',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -817,6 +903,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Iphone 14 pro Max',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
@@ -842,6 +929,7 @@ export const services = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Arrendamientos',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Frijol rojo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'arrendamiento',
@@ -861,6 +949,7 @@ export const services = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Ventas',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Garbanzo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'ventas',
@@ -880,6 +969,7 @@ gsText: 'V',
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Hipoteca',
+        ref: getRandomRef(),
         clothingZone: '1',
         description: `Lenteja nacional hidropondica en bolsa nacional de la más alta calidad, 100% orgánicas.`,
         img: 'hipoteca',

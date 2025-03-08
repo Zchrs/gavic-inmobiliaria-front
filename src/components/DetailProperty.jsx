@@ -235,13 +235,31 @@ export const DetailProperty = ({
               </p>
             </div>
             <div className="detailproduct-contain-box">
-              <h2>Product testimonials</h2>
-              <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
-               Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut
-               velit odit labore laboriosam iste officiis.
-              </p>
+              <h2>Área e interior</h2>
+              <div className="detailproduct-contain-grid">
+                <div>
+                  <p>
+                    Referencia: <strong>{product.ref}</strong>
+                  </p>
+                  <p>
+                    Sector: <strong>{product.district}</strong>
+                  </p>
+                  <p>
+                    Área: <strong>{product.area}</strong>
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    Estrato: <strong>{product.stratum}</strong>
+                  </p>
+                  <p>
+                    Administración: <strong>{product.admon}</strong>
+                  </p>
+                  <p>
+                    Amoblado: <strong>{product.furnished}</strong>
+                  </p>
+                </div>
+              </div>
             </div>
 
             </div>
@@ -371,6 +389,9 @@ const DetailProduct = styled.section`
             margin: 0;
             padding: 0;
             gap: 6px;
+            p{
+              font-size: 16px;
+            }
         }
         &-btns{
             display: grid;
@@ -430,6 +451,13 @@ const DetailProduct = styled.section`
             p{
               font-size: 16px;
             }
+          }
+        }
+        &-grid{
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          p{
+            font-size: 16px;
           }
         }
     }
