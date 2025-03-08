@@ -67,6 +67,9 @@ const HeAd = styled.div`
            img{
                height: 30%;
                filter: invert(100%) brightness(500%);
+               @media (max-width: 920px) {
+                   height: 20%;
+                }
            }
        }
    }

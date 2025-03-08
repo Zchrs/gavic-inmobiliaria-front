@@ -11,6 +11,7 @@ export const leases = [
         area: '70 M2',  
         id: `${uuidv4(v4options.random)}`,
         name: 'Apartamento',
+        clothingZone: '1',
         description: `
         Habitaciones amplias con closet, Habitación principal con 
         soporte para tv y baño privado encabinado.
@@ -42,16 +43,17 @@ export const leases = [
         floor: 'Baldosa',
         thumbnails: [
              'unidad',
-             'unidad',
-             'unidad',
-             'unidad',
-             'unidad'
+             'ap2',
+             'ap3',
+             'ap4',
+             'ap6'
         ]
     },
     {
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -82,6 +84,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -112,6 +115,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -142,6 +146,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -172,6 +177,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -202,6 +208,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -232,6 +239,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -262,6 +270,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -292,6 +301,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -322,6 +332,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -352,6 +363,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -382,6 +394,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -412,6 +425,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -442,6 +456,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -472,6 +487,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -502,6 +518,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -532,6 +549,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -562,6 +580,7 @@ export const leases = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Laptop gamer 1',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.`,
         img: 'house',
@@ -594,6 +613,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño looney tunes blanco/verde',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -615,6 +635,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto dragon ball super mouse blanco/azul',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -636,6 +657,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño bob esponja blanco/azul',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -657,6 +679,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño mickey mouse rojo/blanco',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -678,6 +701,7 @@ export const clothingChilds = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño los pitufos blanco/azul',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
 `,
@@ -701,6 +725,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Samsung Galaxy S23 Ultra',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -723,6 +748,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Motorola moto g84',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -745,6 +771,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Conjunto niño bob esponja blanco/azul',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -767,6 +794,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Huawei Y 91',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -789,6 +817,7 @@ export const mobilePhones = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Iphone 14 pro Max',
+        clothingZone: '1',
         description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Inventore id voluptate totam asperiores! Voluptas, eos recusandae.
          Alias, tenetur blanditiis. Voluptatum, possimus cumque aperiam aut 
@@ -813,6 +842,7 @@ export const services = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Arrendamientos',
+        clothingZone: '1',
         description: `Frijol rojo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'arrendamiento',
         price: '$9,999.00',   
@@ -831,6 +861,7 @@ export const services = [
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Ventas',
+        clothingZone: '1',
         description: `Garbanzo nacional hidropondico de la más alta calidad, 100% orgánicos.`,
         img: 'ventas',
         price: '$9,999.00',
@@ -849,6 +880,7 @@ gsText: 'V',
       area: '70 M2',  
       id: `${uuidv4(v4options.random)}`,
         name: 'Hipoteca',
+        clothingZone: '1',
         description: `Lenteja nacional hidropondica en bolsa nacional de la más alta calidad, 100% orgánicas.`,
         img: 'hipoteca',
         price: '$9,999.00',

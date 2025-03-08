@@ -77,7 +77,7 @@ const SliDer = styled.section`
 .slider-container {
     position: relative;
     display: grid;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     align-items: start;
     width: fit-content;
     height: fit-content;
@@ -108,7 +108,7 @@ const SliDer = styled.section`
       // box-shadow: 1px 1px 1px black;
       img{
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
       }
     }
     
@@ -119,21 +119,31 @@ const SliDer = styled.section`
     display: flex;
     overflow: hidden;
     width: 100%; /* Cambiar el ancho del slider según tus necesidades */
-    height: fit-content; /* Cambiar la altura del slider según tus necesidades */
-    align-items: start;
+    height: 350px; /* Cambiar la altura del slider según tus necesidades */
+    align-items: center;
   }
   
   .slide {
-    align-items: start;
+    align-items: center;
     position: relative;
     flex: 0 0 auto;
     width: 100%;
     height: 100%;
     transition: transform 0.5s ease-in-out;
-
+    border-radius: 10px;
+    overflow: hidden;
+    /* border: #EC3337 solid 1px; */
+    
     img{
-        object-fit: contain;
+      margin: auto;
+      border-radius: 15px;
+        object-fit: cover;
         width: 100%;
+      @media (max-width: 860px) {
+        width: 150%;
+        object-fit: cover;
+        margin-left: -100px;
+      }
     }
 
   }
@@ -147,7 +157,7 @@ const SliDer = styled.section`
     bottom: 0;
     top: 0;
     position: absolute;
-    width: 40px;
+    width: 45px;
     height: 40px;
     // border: black 1px solid;
 
@@ -160,7 +170,7 @@ const SliDer = styled.section`
         display: block;
         content: "";
         clip-path: polygon(90% 0, 40% 50%, 90% 100%, 75% 100%, 25% 50%, 75% 0);
-        background: rgba(0, 0, 0, 0.142);
+        background: rgba(0, 0, 0, 0.542);
         transform: rotateZ(-180deg) scale(0.7);
         width: 100%;
         height: 100%;
@@ -168,7 +178,7 @@ const SliDer = styled.section`
         
     }
     &:hover::before{
-        background: rgba(0, 0, 0, 0.579);
+        background: rgba(0, 0, 0, 0.779);
         transform: rotateZ(-180deg) scale(1);
     }
 
@@ -180,9 +190,10 @@ const SliDer = styled.section`
     top: 0;
     left: -16px;
     position: absolute;
-    width: 40px;
+    width: 45px;
     height: 40px;
     border: black 1px solid;
+    z-index: 10;
 
 
     &::before{
@@ -192,7 +203,7 @@ const SliDer = styled.section`
         display: block;
         content: "";
         clip-path: polygon(90% 0, 40% 50%, 90% 100%, 75% 100%, 25% 50%, 75% 0);
-        background: rgba(0, 0, 0, 0.142);
+        background: rgba(0, 0, 0, 0.342);
         width: 100%;
         height: 100%;
         transition: all ease .3s;
@@ -217,14 +228,14 @@ const SliDer = styled.section`
     display: grid;
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(225, 221, 221);
     overflow: hidden;
 
     img{
       top: 0;
       left: 0;
       position: absolute;
-      object-fit: contain;
+      border-radius: 10px;
+      object-fit: cover;
       height: 100%;
       width: 100%;
     }

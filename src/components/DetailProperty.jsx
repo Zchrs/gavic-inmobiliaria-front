@@ -6,7 +6,7 @@ import { Slider } from './Slider';
 // import { Rating } from './Rating';
 import { BaseButton } from '../../index';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { formatPrice, scrollTop } from '../../globalActions';
+import { formatPrice, getImg, scrollTop } from '../../globalActions';
 import Swal from 'sweetalert2';
 import styled from 'styled-components';
 import { useEffect } from 'react';
@@ -228,6 +228,12 @@ export const DetailProperty = ({
             <div className="detailproduct-contain-box">
               <div className="detailproduct-contain-info">
               </div>
+              <div className="detailproduct-contain-box">
+              <h2>Descripción</h2>
+              <p>
+              { product.description }
+              </p>
+            </div>
             <div className="detailproduct-contain-box">
               <h2>Product testimonials</h2>
               <p>
@@ -237,17 +243,47 @@ export const DetailProperty = ({
                velit odit labore laboriosam iste officiis.
               </p>
             </div>
-            <div className="detailproduct-contain-box">
-              <h2>Descripción</h2>
-              <p>
-              { product.description }
-              </p>
-            </div>
+
             </div>
           </div>
           <div className="detailproduct-contain-box">
-            <div className="detailproduct-contain-grid">
-
+            <h2>Características</h2>
+            <div className="detailproduct-contain-flex">
+              <div className={'detailproduct-contain-flex-inside'}>
+                <h3>Habitaciones</h3>
+                <img src={getImg('png', 'cama', 'png')} alt="" />
+                <p>{product.quantityRooms}</p>
+              </div>
+              <div className={'detailproduct-contain-flex-inside'}>
+                <h3>Closets</h3>
+                <img src={getImg('png', 'closet', 'png')} alt="" />
+                <p>{product.quantityCloset}</p>
+              </div>
+              <div className={'detailproduct-contain-flex-inside'}>
+                <h3>Cocina</h3>
+                <img src={getImg('png', 'cocina', 'png')} alt="" />
+                <p>{product.kitchen}</p>
+              </div>
+              <div className={'detailproduct-contain-flex-inside'}>
+                <h3>Sala comedor</h3>
+                <img src={getImg('png', 'sala', 'png')} alt="" />
+                <p>{product.diningRoom}</p>
+              </div>
+              <div className={'detailproduct-contain-flex-inside'}>
+                <h3>Parqueadero</h3>
+                <img src={getImg('png', 'carro', 'png')} alt="" />
+                <p>{product.garage}</p>
+              </div>
+              <div className={'detailproduct-contain-flex-inside'}>
+                <h3>Baños</h3>
+                <img src={getImg('png', 'banio', 'png')} alt="" />
+                <p>{product.quantityBathrooms}</p>
+              </div>
+              <div className={'detailproduct-contain-flex-inside'}>
+                <h3>Zona de ropa</h3>
+                <img src={getImg('png', 'lavadora', 'png')} alt="" />
+                <p>{product.clothingZone}</p>
+              </div>
             </div>
             <form encType="multipart/form-data">
             <div>
@@ -323,13 +359,15 @@ const DetailProduct = styled.section`
         display: grid;
         gap: 6px;
         margin: 0;
-        height: 100%;
+        height: fit-content;
         @media (max-width: 720px) {
             height: 100%;
         }
 
         &-box{
             display: grid;
+            align-items: start;
+            height: fit-content;
             margin: 0;
             padding: 0;
             gap: 6px;
@@ -379,6 +417,20 @@ const DetailProduct = styled.section`
                 width: 10px;
                 height: 10px;
             }
+        }
+        &-flex{
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          &-inside{
+            display: grid;
+            width: 100%;
+            height: fit-content;
+            place-items: center;
+            p{
+              font-size: 16px;
+            }
+          }
         }
     }
     form{
