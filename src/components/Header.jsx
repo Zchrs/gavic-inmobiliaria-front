@@ -425,6 +425,7 @@ const HeaDer = styled.div`
             transform: translateY(0%);
 
             @media (max-width: 920px) {
+              z-index: -1;
               right: -176%;
               top: -15%;
               border-radius: 0 5px 5px 0;
@@ -442,6 +443,7 @@ const HeaDer = styled.div`
             border-radius: 0 0 5px 5px;
 
             @media (max-width: 920px) {
+              z-index: -1;
               right: -196%;
               top: -110%;
               border-radius: 0 5px 5px 0;
@@ -459,6 +461,7 @@ const HeaDer = styled.div`
             border-radius: 0 0 5px 5px;
 
             @media (max-width: 920px) {
+              z-index: -1;
               right: -166%;
               top: -70%;
               border-radius: 0 5px 5px 0;
