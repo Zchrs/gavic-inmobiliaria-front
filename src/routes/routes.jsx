@@ -193,7 +193,7 @@ export const useRoutesHome = () => {
     {
       name: "coverage",
       route: "/coverage",
-      text: "Covertura",
+      text: "Cobertura",
     },
     { name: "helpcenter", route: "/helpcenter", text: "Centro de ayuda"},
     { name: "contact", route: "/contact", text: "Contacto" },

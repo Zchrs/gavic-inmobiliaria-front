@@ -38,13 +38,13 @@ export const Home = () => {
           <img
           loading="lazy"
             className="home-banner-img"
-            src={getImg("jpg", "interior", "jpeg")}
+            src={getImg("jpg", "casa", "webp")}
             alt="banner"
           />
 
           <div className="home-banner-group">
           <div className="home-banner-title">
-            <h2 className="h2-extra">Encuéntralo a tu medida</h2>
+            <h2 className="h2-extra">Encuentra tu hogar</h2>
           </div>
             <div className="home-banner-search">
               <div className="home-banner-search-inside">
@@ -128,7 +128,6 @@ export const Home = () => {
 
         </div>
         <RecentAdded />
-        <Services />
       </div>
     </HoMe>
   );
@@ -174,25 +173,15 @@ const HoMe = styled.div`
         width: 100%;
         gap: 5px;
         align-items: center;
-        padding: 0px 100px;
-        margin: auto;
-        @media (max-width: 1024px) {
-          padding: 0px 10px;
-          margin: 0;
-        }
-        @media (max-width: 820px) {
-          padding: 0px 10px;
-          margin: 0;
-        }
+        
 
         &-inside{
-          height: 50px;
+          height: fit-content;
           border-radius: 5px;
-        align-items: center;
-          display: flex;
+          display: grid;
           background: var(--bg-primary);
-          width: fit-content;
-          margin: auto;
+          width: 100%;
+
           gap: 5px;
           padding: 5px;
           &-div{
@@ -212,13 +201,24 @@ const HoMe = styled.div`
       }
       &-title {
         z-index: 20;
-        display: grid;
+        width: 100%;
+        word-break: break-all;
       }
       &-group {
-        text-align: center;
+        z-index: 10;
+        padding: 25px;
+        width: 450px;
         height: fit-content;
+        background-color: #ffffffa0;
+        border-radius: 15px;
         display: grid;
-        gap: 5px;
+        gap: 25px;
+        margin: 25px;
+        @media (max-width: 820px) {
+              width: 100%;
+              margin: auto;
+              padding: 12px;
+         }
       }
     }
   }

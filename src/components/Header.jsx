@@ -11,7 +11,6 @@ export const Header = () => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   const location = useLocation();
 
-
   const showHideMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -46,7 +45,12 @@ export const Header = () => {
       const menu = document.getElementById("menu");
       const menuButton = document.querySelector(".header-menu");
 
-      if (menu && menuButton && !menu.contains(event.target) && !menuButton.contains(event.target)) {
+      if (
+        menu &&
+        menuButton &&
+        !menu.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
         setMenuOpen(false);
       }
     };
@@ -57,57 +61,58 @@ export const Header = () => {
     };
   }, []);
 
+  const hideSubMenu = () => {
+    let subMenu = document.getElementById("submenu");
+    // Buscar todos los submenús abiertos
+    if (subMenu) {
+      subMenu.style.cssText = `
+        opacity: 0;
+        transform: translateY(-120%);
+        transition: all ease .5s;
+        display: none;
+        z-index: -1;
+      `;
+      setTimeout(() => {
+        subMenu.style.cssText = ""; // Resetear estilos después de la animación
+      }, 500);
+      setSubMenuOpen(false);
+    }
+  };
+  const hideSubMenu1 = () => {
+    let subMenu = document.getElementById("submenu1");
+    // Buscar todos los submenús abiertos
+    if (subMenu) {
+      subMenu.style.cssText = `
+        opacity: 0;
+        transform: translateY(-120%);
+        transition: all ease .5s;
+        display: none;
+        z-index: -1;
+      `;
+      setTimeout(() => {
+        subMenu.style.cssText = ""; // Resetear estilos después de la animación
+      }, 500);
+      setSubMenuOpen(false);
+    }
+  };
+  const hideSubMenu2 = () => {
+    let subMenu = document.getElementById("submenu2");
+    // Buscar todos los submenús abiertos
+    if (subMenu) {
+      subMenu.style.cssText = `
+        opacity: 0;
+        transform: translateY(-120%);
+        transition: all ease .5s;
+        display: none;
+        z-index: -1;
+      `;
+      setTimeout(() => {
+        subMenu.style.cssText = ""; // Resetear estilos después de la animación
+      }, 500);
+      setSubMenuOpen(false);
+    }
+  };
 
-    const hideSubMenu = () => {
-      let subMenu = document.getElementById("submenu");
-      // Buscar todos los submenús abiertos
-      if (subMenu) {
-        subMenu.style.cssText = `
-        opacity: 0;
-        transform: translateY(-120%);
-        transition: all ease .5s;
-        display: none;
-      `;
-      setTimeout(() => {
-        subMenu.style.cssText = ""; // Resetear estilos después de la animación
-      }, 500);
-      setSubMenuOpen(false);
-      }
-    }
-    const hideSubMenu1 = () => {
-      let subMenu = document.getElementById("submenu1");
-      // Buscar todos los submenús abiertos
-      if (subMenu) {
-        subMenu.style.cssText = `
-        opacity: 0;
-        transform: translateY(-120%);
-        transition: all ease .5s;
-        display: none;
-      `;
-      setTimeout(() => {
-        subMenu.style.cssText = ""; // Resetear estilos después de la animación
-      }, 500);
-      setSubMenuOpen(false);
-      }
-    }
-    const hideSubMenu2 = () => {
-      let subMenu = document.getElementById("submenu2");
-      // Buscar todos los submenús abiertos
-      if (subMenu) {
-        subMenu.style.cssText = `
-        opacity: 0;
-        transform: translateY(-120%);
-        transition: all ease .5s;
-        display: none;
-      `;
-      setTimeout(() => {
-        subMenu.style.cssText = ""; // Resetear estilos después de la animación
-      }, 500);
-      setSubMenuOpen(false);
-      }
-    }
-    
-  
   useEffect(() => {
     let header = document.getElementById("header");
     const menuFixed = () => {
@@ -151,9 +156,9 @@ export const Header = () => {
   const headerRoutes = hdrRoutes;
 
   const handleBlockClick = (e, submenuRoutes = []) => {
-
     if (isMobile()) {
       e.preventDefault(); // Evitar la navegación en móviles
+      return;
     }
 
     if (!Array.isArray(submenuRoutes)) {
@@ -163,7 +168,10 @@ export const Header = () => {
 
     if (!submenuRoutes.includes(location.pathname)) {
       e.preventDefault(); // Previene la navegación
+      return;
     }
+
+    return;
   };
 
   const isSubmenuActive = (routes) => {
@@ -195,16 +203,18 @@ export const Header = () => {
           </Link>
         </div>
         <div id="menu" className="header-links">
-          {headerRoutes.map((item, index) => (
-            <NavLink
-              className={({ isActive }) =>
-                `${isActive ? "header-links-a-active" : "header-links-a"}`
-              }
-              to={item.route}
-              key={index}>
-              {item.text}
-            </NavLink>
-          ))}
+          <NavLink
+            className={({ isActive }) =>
+              `${isActive ? "header-links-a-active" : "header-links-a"}`
+            }
+            to={"/"}>
+            <img
+              className="header-links-img"
+              src={getImg("svg", "home", "svg")}
+              alt="inicio"
+            />
+            Inicio
+          </NavLink>
 
           <NavLink
             onClick={handleBlockClick}
@@ -217,6 +227,11 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
+            <img
+              className="header-links-img"
+              src={getImg("svg", "builds", "svg")}
+              alt="propiedades"
+            />
             Propiedades
             <div id="submenu" className="submenu">
               <Link onClick={handleFunctions} to={"/leases"}>
@@ -238,27 +253,32 @@ export const Header = () => {
               `${
                 isActive ||
                 isSubmenuActive([
-                  "/hipoteca",
-                  "/consultorias",
-                  "/avaluos",
-                  "/mejoras-locativas",
+                  "/mortgage",
+                  "/consultancies",
+                  "/appraisals",
+                  "/location-improvements",
                 ])
                   ? "header-links-a-active"
                   : "header-links-a"
               }`
             }>
+            <img
+              className="header-links-img"
+              src={getImg("svg", "services", "svg")}
+              alt="inicio"
+            />
             Servicios
             <div id="submenu1" className="submenu">
-              <Link onClick={handleFunctions} to={"/hipoteca"}>
+              <Link onClick={handleFunctions} to={"/mortgage"}>
                 Hipotecas
               </Link>
-              <Link onClick={handleFunctions} to={"/consultorias"}>
+              <Link onClick={handleFunctions} to={"/consultancies"}>
                 Consultorías
               </Link>
-              <Link onClick={handleFunctions} to={"/avaluos"}>
+              <Link onClick={handleFunctions} to={"/appraisals"}>
                 Avalúos
               </Link>
-              <Link onClick={handleFunctions} to={"/mejoras-locativas"}>
+              <Link onClick={handleFunctions} to={"/location-improvements"}>
                 Mejoras locativas
               </Link>
             </div>
@@ -278,6 +298,11 @@ export const Header = () => {
                   : "header-links-a"
               }`
             }>
+            <img
+              className="header-links-img"
+              src={getImg("svg", "register", "svg")}
+              alt="inicio"
+            />
             Registrarme
             <div id="submenu2" className="submenu">
               <Link onClick={handleFunctions} to={"/auth/client/register"}>
@@ -325,10 +350,6 @@ const HeaDer = styled.div`
     align-items: center;
     width: 100%;
 
-    /* @media (max-width: 1024px) {
-        display: none;
-      } */
-
     &-btns {
       display: none;
       @media (max-width: 920px) {
@@ -355,6 +376,7 @@ const HeaDer = styled.div`
       gap: 50px;
 
       &-a {
+        gap: 10px;
         position: relative;
         font-size: 18px;
         font-weight: 300;
@@ -366,7 +388,14 @@ const HeaDer = styled.div`
           color: var(--text-primary);
           @media (max-width: 920px) {
             color: var(--text-tertiary);
-            transform: translateX(-90%);
+            transform: translateX(-80%);
+          }
+          .header-links-img {
+            height: 18px;
+            @media (max-width: 920px) {
+              height: 25px;
+              filter: invert(100%);
+            }
           }
         }
         &::before {
@@ -374,7 +403,7 @@ const HeaDer = styled.div`
           content: "";
           height: 3px;
           width: 0%;
-          background: var(--bg-primary);
+          background: var(--bg-secondary);
           position: absolute;
           bottom: -3px;
           left: 0;
@@ -393,7 +422,7 @@ const HeaDer = styled.div`
           font-weight: 500;
           width: fit-content;
           color: var(--text-primary);
-          border-bottom: 3px solid var(--bg-primary);
+          border-bottom: 3px solid var(--bg-secondary);
 
           @media (max-width: 920px) {
             margin: auto;
@@ -402,6 +431,13 @@ const HeaDer = styled.div`
             font-size: 25px;
             color: var(--text-tertiary);
             border-bottom: 3px solid var(--bg-tertiary);
+          }
+          .header-links-img {
+            height: 18px;
+            @media (max-width: 920px) {
+              height: 25px;
+              filter: invert(100%);
+            }
           }
         }
         &:last-child {
@@ -412,6 +448,7 @@ const HeaDer = styled.div`
             opacity: 1;
             border-radius: 0 0 5px 5px;
             transform: translateY(0%);
+            z-index: -1;
           }
         }
         &:nth-child(4) {
@@ -425,10 +462,12 @@ const HeaDer = styled.div`
             transform: translateY(0%);
 
             @media (max-width: 920px) {
-              z-index: -1;
               right: -176%;
               top: -15%;
               border-radius: 0 5px 5px 0;
+              a {
+                font-size: 18px;
+              }
             }
           }
         }
@@ -443,10 +482,13 @@ const HeaDer = styled.div`
             border-radius: 0 0 5px 5px;
 
             @media (max-width: 920px) {
-              z-index: -1;
               right: -196%;
               top: -110%;
               border-radius: 0 5px 5px 0;
+              gap: 0px;
+              a {
+                font-size: 18px;
+              }
             }
           }
         }
@@ -461,12 +503,22 @@ const HeaDer = styled.div`
             border-radius: 0 0 5px 5px;
 
             @media (max-width: 920px) {
-              z-index: -1;
               right: -166%;
               top: -70%;
               border-radius: 0 5px 5px 0;
+              a {
+                font-size: 18px;
+              }
             }
           }
+        }
+      }
+      &-img {
+        height: 18px;
+        @media (max-width: 920px) {
+          fill: #ffffff;
+          height: 25px;
+          filter: invert(60%);
         }
       }
 
@@ -536,29 +588,77 @@ const HeaDer = styled.div`
     position: absolute;
     overflow: hidden;
     width: 150px;
-    height: fit-content;
+    height: 100%;
     z-index: -1;
     text-align: center;
-    transform: translateY(-100%);
+    transform: translateY(-10%);
     top: 0%;
     right: 0;
-    background: black;
+    background: transparent;
     display: grid;
-    padding: 0;
+    padding: 7px 0px 0px 0px;
     z-index: 100;
+    @media (max-width: 920px) {
+      width: 100%;
+      z-index: -1;
+    }
 
     a {
+      z-index: 1;
       transition: all ease 0.3s;
       font-size: 14px;
-      color: white;
+      color: black;
       width: 100%;
       padding: 5px 0;
       &:hover {
-        background: #ffffff47;
+        background: #00000027;
+        font-weight: 400;
       }
+      @media (max-width: 920px) {
+      color: white;
+      padding: 2px 0;
+    }
     }
     @media (max-width: 920px) {
       transform: translateY(0%);
+    }
+
+    &::before{
+      content: "";
+      z-index: 0;
+      width: 97.5%;
+      height: 96%;
+      position: absolute;
+      transform: rotateZ(180deg);
+      top: 2px;
+      left: 2px;
+      background: white;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 46% 95%, 41% 100%, 36% 95%, 0 95%);  
+      @media (max-width: 768px) {
+        top: 1px;
+        background: var(--bg-secondary-semi);
+        width: 98%;
+        height: 98%;
+        transform: rotateX(-180deg);
+        clip-path: polygon(5% 45%, 5% 0, 100% 0, 100% 100%, 5% 100%, 5% 56%, 0 51%);
+      } 
+     }
+    &::after{
+      content: "";
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: black;
+      transform: rotateZ(180deg);
+      clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 46% 95%, 41% 100%, 36% 95%, 0 95%);   
+      @media (max-width: 768px) {
+       transform: rotateX(-180deg);
+       clip-path: polygon(5% 45%, 5% 0, 100% 0, 100% 100%, 5% 100%, 5% 56%, 0 51%);
+       background: white;
+      } 
     }
   }
 
@@ -570,6 +670,7 @@ const HeaDer = styled.div`
     height: fit-content;
     visibility: hidden;
     font-weight: 300;
+    
   }
 
   .header-links-a-active:hover .submenu {
@@ -578,9 +679,10 @@ const HeaDer = styled.div`
     transform: translateY(0%);
     visibility: visible;
     border-radius: 0 0 5px 5px;
+
   }
   .submenu-hidden {
-  opacity: 0;
-  transform: translateY(-120%);
-}
+    opacity: 0;
+    transform: translateY(-120%);
+  }
 `;

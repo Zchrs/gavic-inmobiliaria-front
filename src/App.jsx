@@ -11,7 +11,7 @@ import {
   Immovables, 
   Mision, 
   Pqrs, 
-  PrivacyPolicy, 
+  PrivPoly, 
   QualityPolicy, 
   Values, 
   Vision, 
@@ -41,6 +41,12 @@ import {
   Users,
   Properties,
   DetailSales,
+  Mortgage,
+  LocationImprovements,
+  Appraisals,
+  Consultancies,
+  DetailProperty,
+  CheckOut,
   } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -48,6 +54,7 @@ import { Blocked } from "./components/Blocked";
 import { AdvisorLogin } from "./views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "./views/home/auth/AdvisorRegister";
 import { AuthAdvisorLayout } from "./layouts/AuthAdvisorLayout";
+import { PropertiesLayout } from "./layouts/PropertiesLayout";
 
 
 
@@ -80,7 +87,7 @@ function App() {
             <Route exact path="helpcenter" element={<HelpCenter />} />
             <Route exact path="contact" element={<Contact />} />
             <Route exact path="pqrs" element={<Pqrs />} />
-            <Route exact path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route exact path="privacy-policy" element={<PrivPoly />} />
             <Route exact path="data-treatment" element={<DataTreathment />} />
             <Route
               exact
@@ -124,9 +131,18 @@ function App() {
               <Route exact path="clients/advivosrs" element={<Advisors/>} />
               <Route exact path="settings" element={<Settings/>} />
               <Route exact path="properties" element={<Properties />} />
+              <Route exact path="mortgage" element={<Mortgage />} />
+              <Route exact path="location-improvements" element={<LocationImprovements />} />
+              <Route exact path="appreisals" element={<Appraisals />} />
+              <Route exact path="consultancies" element={<Consultancies />} />
           </Route>
-
           
+                
+                  <Route exact path="/properties/*" element={ <PropertiesLayout />} >       
+                  <Route exact path=":propertyId" element={<DetailProperty />} />
+                  <Route exact path=":propertyId/checkout" element={<CheckOut />} />
+                  </Route>
+                          
         {!isBlocked && <Route path="/bloqueado" element={<Blocked />} />}
 
           </Routes>

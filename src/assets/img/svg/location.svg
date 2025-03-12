@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <defs>
+  <symbol enable-background="new 0 0 512 512" id="svg_5" version="1.1" viewBox="0 0 512 640" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+   <path d="m256,0c-105.6,0 -191.5,85.9 -191.5,191.5c0,34.4 16.2,77.8 49.4,132.7c27.6,45.6 61.8,90.9 91.9,130.8c13.9,18.4 27,35.8 37.1,50.2c3,4.3 7.9,6.8 13.1,6.8c5.2,0 10.1,-2.5 13.1,-6.8c10.1,-14.4 23.2,-31.8 37.1,-50.2c30.1,-39.9 64.2,-85.2 91.9,-130.8c33.2,-54.9 49.4,-98.3 49.4,-132.7c0,-105.6 -85.9,-191.5 -191.5,-191.5zm0,280c-48.8,0 -88.5,-39.7 -88.5,-88.5c0,-48.8 39.7,-88.5 88.5,-88.5c48.8,0 88.5,39.7 88.5,88.5c0,48.8 -39.7,88.5 -88.5,88.5z"/>
+   <text fill="#000000" font-family="&#x27;Helvetica Neue&#x27;, Helvetica, Arial-Unicode, Arial, Sans-serif" font-size="5px" font-weight="bold" x="0" y="527">Created by kliwir art</text>
+   <text fill="#000000" font-family="&#x27;Helvetica Neue&#x27;, Helvetica, Arial-Unicode, Arial, Sans-serif" font-size="5px" font-weight="bold" x="0" y="532">from the Noun Project</text>
+  </symbol>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <use id="svg_6" transform="matrix(1.24111 0 0 1.24205 -68.1998 2.1094)" xlink:href="#svg_5"/>
+ </g>
+</svg>

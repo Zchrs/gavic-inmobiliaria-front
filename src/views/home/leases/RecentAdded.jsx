@@ -2,20 +2,29 @@
 import styled from "styled-components"
 import { leases } from "../../../../apiEmulated"
 import { Loader, CardLeases, Pagination } from "../../../../index"
+import { selectedProduct, setProduct } from "../../../actions/productActions";
+
 import { useState } from "react"
+import { useDispatch } from "react-redux";
 
 
 
 export const RecentAdded = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [property, setProperty] = useState([]);
+  const itemsPerPage = 12;
 
   const totalPages = Math.ceil(leases.length / itemsPerPage);
 
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedLeases = leases.slice(startIndex, startIndex + itemsPerPage);
+
+  const handleSetProductClick = (product) => {
+    dispatch(selectedProduct(product));
+  };
 
 
   return (
@@ -33,26 +42,25 @@ export const RecentAdded = () => {
                 selectedLeases.map((itemL) => (
                   <CardLeases
                     key={itemL.id}
-                    productLink={`/products/${itemL.id}`}
+                    quantityBathrooms={itemL.quantityBathrooms}
+                    quantityCloset={itemL.quantityCloset}
+                    quantityRooms={itemL.quantityRooms}
+                    location={itemL.district}
+                    productLink={`/properties/${itemL.id}`}
                     addToWish={"addwishlist-red"}
                     addTocart={"addcart-red"}
-                    img={"default"}
+                    img={itemL.img}
                     sellingsText={true}
-                    sellings={"999"}
                     priceText={true}
                     price={itemL.price}
                     productInfo={itemL}
+                    boxFlex={true}
                     classs={"productcard background"}
-                    // onClick={() => handleSetProductClick(itemL)}
-                    // prodHover={() => handleSetProductClick(itemL)}
+                    onClick={() => handleSetProductClick(itemL)}
+                    prodHover={() => handleSetProductClick(itemL)}
                     jpg="true"
-                    description={itemL.description}
-                    beforePrice={itemL.previousPrice}
                     title={itemL.title}
                     thumbnails={itemL.thumbnails}
-                    // products="portatiles"
-                    // ratingss={true}
-                    // ratings={ratings}
                     product_id={itemL.id}
                   />
                 ))
@@ -64,9 +72,9 @@ export const RecentAdded = () => {
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={setCurrentPage}
-          colorText="light"
-          arrowPrev="button bg-light"
-          arrowNext="button bg-light"
+          colorText="dark"
+          arrowPrev="button bg-dark"
+          arrowNext="button bg-dark"
         />
             </div>
         </div>
@@ -106,7 +114,7 @@ const AddedRecent = styled.div`
       height: 100%;
       padding: 25px;
       clip-path: polygon(0 0, 26% 0, 28% 3%, 72% 3%, 74% 0, 100% 0, 100% 100%, 65% 100%, 63% 96%, 37% 96%, 35% 100%, 0 100%);
-      background: var(--bg-secondary);
+      background: #eae8e8;
       
       @media (max-width: 1024px) {
           clip-path: polygon(0 0, 20% 0, 23% 1.8%, 77% 1.8%, 80% 0, 100% 0, 100% 100%, 65% 100%, 63% 98%, 37% 98%, 35% 100%, 0 100%);
@@ -122,7 +130,7 @@ const AddedRecent = styled.div`
       .recently{
       position: relative;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         width: 100%;
         height: 100%;
@@ -131,7 +139,8 @@ const AddedRecent = styled.div`
           grid-template-columns: repeat(3, 1fr);
         }
         @media (max-width: 820px) {
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 1fr;
+          padding:30px 15px;
         }
     }
     &-pagination{

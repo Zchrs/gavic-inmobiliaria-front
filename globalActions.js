@@ -28,6 +28,34 @@ export const getImg = (route, url, extension = 'svg') => {
   //   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   // };
 
+  // ------------------ referencia de boleto ------------------------------------
+export let boletoRefArr = [];
+
+for(let i = 100; i <= 10000; i++)
+{
+    if(i >= 100 && i <= 1000){
+        boletoRefArr.push(`GVI#${i}`);
+    } else if(i > 1000 && i <= 10000)
+    {
+        boletoRefArr.push(`GV#${i}`);
+    }
+}
+// console.log(serieSorteosArr)
+export function getRandomRef(){
+    let totalElements = boletoRefArr.length;
+
+    let arrIndex = randomInt(0,totalElements);
+    let removedElement = boletoRefArr.splice(arrIndex, 1);
+        
+    return removedElement;
+}
+
+export function randomInt(max, min){
+    return Math.round(Math.random() * (max - min)) + min;
+} 
+
+//-------------------------  fin de referencias para boletos -------------------------------
+
   
   // export const socialMedia = {
   //  linkedin: window.open(`https://www.linkedin.com/company/muebles-jir%C3%A9h`, '_blank'),

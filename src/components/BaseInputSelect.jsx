@@ -144,7 +144,7 @@ export const BaseInputSelect = ({
            }),
            dropdownIndicator: (base) => ({
              ...base,
-             color: '#618627',
+             color: 'var(--bg-primary)',
              position: 'absolute',
              right: '-5px',
              top: '0',
@@ -154,7 +154,11 @@ export const BaseInputSelect = ({
              height: 'fit-content',
   
              '&:hover': {
-               color: '#7bac2b',
+               color: 'var(--bg-secondary-semi-soft)',
+             },
+             '&:active': {
+               color: 'var(--bg-secondary-semi-soft)',
+               transform: 'rotate(9s0deg)',
              },
            }),
            indicatorSeparator: (base) => ({
