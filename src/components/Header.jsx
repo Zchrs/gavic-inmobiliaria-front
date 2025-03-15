@@ -265,7 +265,7 @@ export const Header = () => {
             <img
               className="header-links-img"
               src={getImg("svg", "services", "svg")}
-              alt="inicio"
+              alt="servicios"
             />
             Servicios
             <div id="submenu1" className="submenu">
@@ -301,7 +301,7 @@ export const Header = () => {
             <img
               className="header-links-img"
               src={getImg("svg", "register", "svg")}
-              alt="inicio"
+              alt="registro"
             />
             Registrarme
             <div id="submenu2" className="submenu">

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/agency-fb');
 
                 
@@ -6,7 +6,7 @@
 
 /* Definición de las fuentes */
 :root {
-  --font-primary: "Yantramanav", sans-serif;
+  --font-primary: "Montserrat", sans-serif;
   --font-secondary: 'Agency FB', sans-serif;
 }
 
@@ -412,7 +412,7 @@
   }
 }
 .h2-extra-medium {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 400;
   line-height: 5.9rem;
   /* color: var(--text-primary); */

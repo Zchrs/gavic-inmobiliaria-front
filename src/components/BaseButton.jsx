@@ -228,14 +228,14 @@ const ButtonBase = styled.div`
       a {
         gap: 5px;
         display: flex;
-        padding: 6px 25px;
+        padding: 6px 20px;
         width: 100%;
         height: fit-content;
         background: var(--deg-fourty);
         color: white;
         border-radius: 50px;
         font-weight: 400;
-        font-size: 15px;
+        font-size: 1.3rem;
         transition: all ease 0.3s;
         text-decoration: none;
         img {
@@ -252,7 +252,7 @@ const ButtonBase = styled.div`
         }
 
         @media (max-width: 600px) {
-          padding: 5px 17px;
+          padding: 5px 10px;
         }
       }
 

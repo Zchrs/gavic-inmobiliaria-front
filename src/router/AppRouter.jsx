@@ -79,7 +79,7 @@ export const AppRouter = () => {
           <Route exact path="privacy-policy" element={<PrivPoly />} />
           <Route exact path="mortgage" element={<Mortgage />} />
           <Route exact path="location-improvements" element={<LocationImprovements />} />
-          <Route exact path="appreisals" element={<Appraisals />} />
+          <Route exact path="appraisals" element={<Appraisals />} />
           <Route exact path="consultancies" element={<Consultancies />} />
         </Routes>
     );

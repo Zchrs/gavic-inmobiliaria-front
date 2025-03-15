@@ -109,7 +109,12 @@ export const AdminHome = () => {
                 <BaseButton
                   textLabel={true}
                   label={"Ver detalle"}
-                  classs={"button button little-primary-gradient"}
+                  classs={"button little-primary-gradient"}
+                />
+                <BaseButton
+                  textLabel={true}
+                  label={"Añadir propiedad"}
+                  classs={"button little-primary-gradient"}
                 />
               </div>
             </div>

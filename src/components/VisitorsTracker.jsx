@@ -90,7 +90,7 @@ const TrackerVisitors = styled.div`
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background: var(--color-primary, #f9f9f9);
+    /* background: var(--color-primary, #f9f9f9); */
     text-align: center;
     align-content: start;
     color: black;
