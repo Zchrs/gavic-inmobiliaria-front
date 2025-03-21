@@ -16,15 +16,21 @@ export const About = () => {
           <div className="container-header-grid">
             <h2 className="h2-extra">¿Quiénes sómos?</h2>
             <p>
-              <strong>GAVIC INMOBILIARIA S.A.S, </strong> Surge de la necesidad de conformar un
-              equipo de trabajo que llegue más directo a las personas jurídicas y
-              naturales con posibilidad de inversión o insuficiencias en todo lo
-              relacionado con Propiedad Raíz en cualquiera que sea la modalidad,
-              además de participar en el mercado interpretando los requerimientos
-              de la incipiente economía solidaria, colaborativa y compartida.
-              Somos una empresa de servicios integrales, especializada en el
-              sector inmobiliario, en la comercialización, administración y
-              asesorías en propiedad raíz para proyectos de inversión y afines.
+              <strong>GAVIC INMOBILIARIA S.A.S, </strong> somos una empresa inmobiliaria dedicada a
+                transformar la experiencia de nuestros clientes en la
+                administración y comercialización de bienes raíces. Nuestro
+                compromiso es mejorar la calidad de vida de las personas,
+                ofreciendo confianza, seguridad y un servicio personalizado que
+                protege su patrimonio. Nos caracterizamos por nuestra
+                responsabilidad, transparencia y diligencia, lo que nos posiciona
+                como aliados estratégicos en cada proyecto inmobiliario. Con
+                un enfoque orientado a la innovación, trabajamos para innovar
+                y promover la sostenibilidad, estableciendo relaciones sólidas
+                con nuestros clientes, proveedores y colaboradores. GAVIC
+                S.A.S., creemos en construir un legado basado en la excelencia,
+                creando oportunidades de empleo y promoviendo el
+                crecimiento personal mientras dejamos una huella positiva
+                en la industria.
             </p>
           </div>
           <img

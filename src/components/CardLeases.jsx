@@ -278,7 +278,7 @@ export const CardLeases = ({
               <p>{quantityRooms}</p>
             </div>
             <div className="productcard-flex-details">
-              <img src={getImg('png', 'banio', 'png')} alt="" />
+              <img src={getImg('png', 'shower', 'png')} alt="" />
               <strong>Baños</strong>
               <p>{quantityBathrooms}</p>
             </div>

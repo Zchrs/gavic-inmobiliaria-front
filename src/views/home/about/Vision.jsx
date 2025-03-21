@@ -12,10 +12,12 @@ export const Vision = () => {
       
           <h2>Visión</h2>
           <p>
-            En el 2026 GAVIC INMOBILIARIA S.A.S. es una compañía reconocida por los
-            altos estándares de calidad en tecnología y recurso humano al servicio
-            del mercado inmobiliario con la más alta gestión administrativa, para
-            llegar como la marca líder en el sector inmobiliario.
+          Entre el 2026 y 2027, GAVIC S.A.S. será reconocida como una
+            marca líder en el sector inmobiliario, destacada por sus altos
+            estándares en tecnología, gestión administrativa y talento
+            humano. Aspiramos a ser una empresa que inspire confianza,
+            innovación y solidez, posicionándonos como aliados clave para
+            la administración y las inversiones inmobiliarias.
           </p>
       
       </div>

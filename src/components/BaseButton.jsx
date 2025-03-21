@@ -1038,7 +1038,7 @@ const ButtonBase = styled.div`
         font-size: 17px;
         display: flex;
         gap: 5px;
-        color: white;
+        color: var(--text-primary);
         align-items: center;
         padding: 5px 15px;
         z-index: 100;
@@ -1056,11 +1056,14 @@ const ButtonBase = styled.div`
       }
       img {
         margin-top: -2px;
+        filter: invert(100%) brightness(0%);
+        stroke: black;
       }
       &:hover {
         transition: all ease 0.3s;
-        background: #ef4a4d;
+        background: var(--bg-primary);
         a {
+          color: white;
           text-shadow: black 1px 1px 1px;
         }
       }

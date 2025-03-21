@@ -294,7 +294,7 @@ export const DetailProperty = ({
               </div>
               <div className={'detailproduct-contain-flex-inside'}>
                 <h3>Baños</h3>
-                <img src={getImg('png', 'banio', 'png')} alt="" />
+                <img src={getImg('png', 'shower', 'png')} alt="" />
                 <p>{product.quantityBathrooms}</p>
               </div>
               <div className={'detailproduct-contain-flex-inside'}>
@@ -361,7 +361,7 @@ const DetailProduct = styled.section`
         width: 100%;
         height: 100%;
         display: grid;
-        grid-template-columns: 40% 35% 1fr;
+        grid-template-columns: 40% 30% 1fr;
         gap: 13px;
         
         
@@ -450,6 +450,12 @@ const DetailProduct = styled.section`
             place-items: center;
             p{
               font-size: 16px;
+            }
+            h3{
+              font-size: 16px;
+            }
+            img{
+              height: 13px;
             }
           }
         }

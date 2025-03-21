@@ -578,6 +578,7 @@ const ListProperty = styled.section`
     top: 32%;
   }
   .wizard-icon-circle {
+    
     padding: 15px !important;
     width: fit-content;
     height: fit-content;
@@ -794,5 +795,8 @@ const ListProperty = styled.section`
   transition: all 0.3s ease;
     z-index: 10;
   color: var(--text-primary);
+}
+.fa-circle {
+    transform: translateY(-2.5px);
 }
 `;

@@ -10,12 +10,13 @@ export const Mision = () => {
           <div className="sectionsabout-contain-grid">
         <h2>Misión</h2>
         <p>
-          Brindar un servicio personalizado de asesoría y acompañamiento en
-          inversiones y administración de Propiedad Raíz, orientada a cuidar el
-          patrimonio, correspondiéndole la confianza depositada por nuestros
-          clientes convirtiéndonos en sus mejores aliados para los proyectos
-          inmobiliarios.
-        </p>
+        Proporcionar un servicio personalizado de asesoría y
+        acompañamiento en inversiones y administración de propiedad
+        raíz. Nuestra prioridad es cuidar el patrimonio de nuestros
+        clientes mediante soluciones justas, responsables y
+        transparentes, construyendo relaciones duraderas que nos
+        conviertan en su primera opción para proyectos inmobiliarios.
+                </p>
       </div>
       <img loading="lazy" className="sectionsabout-img" src={getImg("svg", "mission", "svg")} alt="" />
     </div>

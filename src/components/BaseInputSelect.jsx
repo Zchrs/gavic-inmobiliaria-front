@@ -57,8 +57,9 @@ export const BaseInputSelect = ({
          styles={{
            control: (base) => ({
              ...base,
-             borderRadius: 5,
+             borderRadius: 10,
              fontSize: '14px',
+             fontFamily: 'Montserrat, sans-serif',
              padding: '0',
              marginTop: '0',
              borderColor: 'var(--bg-secondary-semi-soft)',
@@ -86,7 +87,7 @@ export const BaseInputSelect = ({
   
              '@media (min-width: 1280px) and (max-width: 1920px)': {
               fontSize: '14px',
-              minWidth: '230px',
+              minWidth: '190px',
             },
              '@media (min-width: 921px) and (max-width: 1279px)': {
               fontSize: '14px',
@@ -139,6 +140,7 @@ export const BaseInputSelect = ({
            placeholder: (base) => ({
              ...base,
              fontSize: '14px',
+             fontFamily: '"Montserrat", sans-serif',
              color: '#BDBDBD',
              padding: '0',
            }),
@@ -180,8 +182,9 @@ export const BaseInputSelect = ({
           styles={{
             control: (base) => ({
               ...base,
-              borderRadius: 5,
+              borderRadius: 10,
               fontSize: '14px',
+              fontFamily: 'Montserrat, sans-serif',
               padding: '0',
               borderColor: '#DDE4ED',
               height: height,
@@ -251,6 +254,7 @@ export const BaseInputSelect = ({
             placeholder: (base) => ({
               ...base,
               fontSize: '16px',
+              fontFamily: 'Montserrat, sans-serif',
               color: '#BDBDBD',
               padding: '5px 0',
             }),
@@ -330,6 +334,7 @@ export const BaseInputSelect = ({
 
 const InputBaseSel = styled.div`
   .inputs {
+    font-family: "Montserrat", sans-serif;
     display: grid;
     margin: 0;
     padding: 0;

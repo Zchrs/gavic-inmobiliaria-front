@@ -46,9 +46,8 @@ export const Home = () => {
           <div className="home-banner-title">
             <h2 className="h2-extra">Encuentra tu hogar</h2>
           </div>
-            <div className="home-banner-search">
-              <div className="home-banner-search-inside">
-              <div className="home-banner-search-inside-div">
+            
+              
                 <BaseInputSelect
                 height={"40px"}
                 placeholder="Sector"
@@ -58,8 +57,6 @@ export const Home = () => {
                     value={selectedSector}
                     onChange={handleSector}
                 />
-              </div>
-                <div className="home-banner-search-inside-div">
                   <BaseInputSelect
                   height={"40px"}
                     placeholder="Tipo de inmueble"
@@ -77,41 +74,38 @@ export const Home = () => {
                       { value: "option7", label: "Casa Finca" },
                       { value: "option8", label: "Oficina" },
                     ]}
-                  />
-                </div>
-                <div className="home-banner-search-inside-div">
-                  <BaseInputSelect
-                  height={"40px"}
-                    placeholder="Presupuesto"
-                    isSelect={true}
-                    name="budget"
-                    value={selectedBudget}
-                    onChange={handleBudget}
-                    options={[
-                      { value: "option1", label: "$1000 - $5000" },
-                      { value: "option2", label: "$5000 - $10,000" },
-                      { value: "option3", label: "Más de $10,000" },
-                      { value: "option4", label: "Más de $10,000" },
-                      { value: "option5", label: "Más de $10,000" },
-                      { value: "option6", label: "Más de $10,000" },
-                      { value: "option7", label: "Más de $10,000" },
-                    ]}
-                  />
-                </div>
-                <div className="home-banner-search-inside-div">
-                  <BaseInputSelect
-                  height={"40px"}
-                    placeholder="Código"
-                    isSelect={true}
-                    name="code"
-                    value={selectedCode}
-                    onChange={handleCode}
-                    options={[
-                      { value: "option1", label: "Código 1" },
-                      { value: "option2", label: "Código 2" },
-                      { value: "option3", label: "Código 3" },
-                    ]}
-                  />
+                  />               
+                <div className="home-banner-group-flex">
+                    <BaseInputSelect
+                    height={"40px"}
+                      placeholder="Presupuesto"
+                      isSelect={true}
+                      name="budget"
+                      value={selectedBudget}
+                      onChange={handleBudget}
+                      options={[
+                        { value: "option1", label: "$1000 - $5000" },
+                        { value: "option2", label: "$5000 - $10,000" },
+                        { value: "option3", label: "Más de $10,000" },
+                        { value: "option4", label: "Más de $10,000" },
+                        { value: "option5", label: "Más de $10,000" },
+                        { value: "option6", label: "Más de $10,000" },
+                        { value: "option7", label: "Más de $10,000" },
+                      ]}
+                    />             
+                    <BaseInputSelect
+                    height={"40px"}
+                      placeholder="Código"
+                      isSelect={true}
+                      name="code"
+                      value={selectedCode}
+                      onChange={handleCode}
+                      options={[
+                        { value: "option1", label: "Código 1" },
+                        { value: "option2", label: "Código 2" },
+                        { value: "option3", label: "Código 3" },
+                      ]}
+                    />
                 </div>
                 <div>
                   <BaseButton
@@ -121,10 +115,10 @@ export const Home = () => {
                     svg={true}
                     // handleClick={whatsapp}
                   />
-                </div>
+                
               </div>
             </div>
-          </div>
+      
 
         </div>
         <RecentAdded />
@@ -166,60 +160,34 @@ const HoMe = styled.div`
           object-fit: cover;
         }
       }
-      &-search {
-        display: grid;
-        z-index: 10;
-        height: fit-content;
-        width: 100%;
-        gap: 5px;
-        align-items: center;
-        
-
-        &-inside{
-          height: fit-content;
-          border-radius: 5px;
-          display: grid;
-          background: var(--bg-primary);
-          width: 100%;
-
-          gap: 5px;
-          padding: 5px;
-          &-div{
-            width: 100%;
-            height: 100%;
-            display: grid;
-            /* border: white 1px solid; */
-            padding: 0;
-          }
-
-          @media (max-width: 820px) {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-      }
       &-title {
         z-index: 20;
         width: 100%;
-        word-break: break-all;
+        /* word-break: break-all; */
       }
       &-group {
         z-index: 10;
         padding: 25px;
-        width: 450px;
+        width: 35%;
         height: fit-content;
-        background-color: #ffffffa0;
+        background-color: #00000060;
         border-radius: 15px;
         display: grid;
-        gap: 25px;
+        gap: 15px;
         margin: 25px;
         @media (max-width: 820px) {
               width: 100%;
               margin: auto;
               padding: 12px;
          }
+         &-flex{
+           display: grid;
+           grid-template-columns: repeat(2, 1fr);
+           width: 100%;
+           gap: 5px;
+         }
       }
+
     }
   }
 `;
