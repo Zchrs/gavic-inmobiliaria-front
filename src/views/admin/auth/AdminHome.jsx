@@ -10,6 +10,7 @@ import { BaseButton } from "../../../components/BaseButton";
 import { getImg } from "../../../../globalActions";
 import { useState } from "react";
 import { VisitorsTracker } from "../../../components/VisitorsTracker";
+import { useNavigate } from "react-router-dom";
 
 export const AdminHome = () => {
   const data = {
@@ -73,6 +74,35 @@ export const AdminHome = () => {
   };
   
 
+  const navigate = useNavigate();
+
+  const handleScrollToSection = (route) => {
+    const [path, hash] = route.split("#");
+  
+    if (path) {
+      navigate(path); // Navega a la página base
+    }
+  
+    if (hash) {
+      setTimeout(() => {
+        const section = document.getElementById(hash);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        } else {
+          // Observador de cambios en el DOM por si el elemento no está cargado
+          const observer = new MutationObserver(() => {
+            const section = document.getElementById(hash);
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+              observer.disconnect();
+            }
+          });
+  
+          observer.observe(document.body, { childList: true, subtree: true });
+        }
+      }, 300); // Espera para asegurarse de que se cargue la vista
+    }
+  };
 
 
   return (
@@ -110,11 +140,13 @@ export const AdminHome = () => {
                   textLabel={true}
                   label={"Ver detalle"}
                   classs={"button little-primary-gradient"}
+                  handleClick={() => handleScrollToSection("/admin/dashboard/properties#sold")}
                 />
                 <BaseButton
                   textLabel={true}
                   label={"Añadir propiedad"}
                   classs={"button little-primary-gradient"}
+                  handleClick={() => handleScrollToSection("/admin/dashboard/properties#create-property")}
                 />
               </div>
             </div>
@@ -125,6 +157,7 @@ export const AdminHome = () => {
                 textLabel={true}
                 label={"Ver detalle"}
                 classs={"button button little-primary-gradient"}
+                
               />
             </div>
           </div>
@@ -272,7 +305,7 @@ const HomeAdmin = styled.section`
         }
         &-card {
           display: grid;
-          height: fit-content;
+          height: 100%;
           padding: 24px;
           background: var(--deg-secondary);
           box-shadow: var(--ds-s);
@@ -327,7 +360,7 @@ const HomeAdmin = styled.section`
         &-card {
           width: 100%;
           display: grid;
-          height: fit-content;
+          height: 100%;
           padding: 24px;
           color: black;
           border-radius: 15px;
@@ -339,7 +372,7 @@ const HomeAdmin = styled.section`
             z-index: 100;
           }
           &:nth-child(1) {
-            height: fit-content;
+            height: 100%;
             @media (max-width: 820px) {
               width: 100%;
             }

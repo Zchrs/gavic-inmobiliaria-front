@@ -2,9 +2,11 @@ import styled from "styled-components";
 // import { GradientChart, SimpleChart } from "../../../components/MultiChart";
 import { Tabs } from "../../../components/Tabs"
 import { Advisors, Clients, PendingAdvisors, PendingClients } from "../../../../index";
+import { useState } from "react";
 
 
 export const Users = () => {
+  const [activeTab, setActiveTab] = useState("Asesores activos");
 
   const tabs = [
     { label: 'Asesores activos', content: <Advisors /> },
@@ -16,9 +18,9 @@ export const Users = () => {
   return (
     <CliEnts>
       <div className="clients">
-        <h2 className="clients-h2">Usuarios</h2>
+        <h2 className="clients-h2">Usuarios: <br />{activeTab}</h2>
         <div>
-          <Tabs tabs={tabs} />
+          <Tabs tabs={tabs} onTabChange={setActiveTab} />
         </div>
       </div>
     </CliEnts>

@@ -20,7 +20,6 @@ export const Advisors = () => {
   return (
     <AdVisors>
       <div className="advisors">
-      <h2>Asesores</h2>
         <CardUsers columns={columns} data={selectedData} message />
         <Pagination
                 currentPage={currentPage}

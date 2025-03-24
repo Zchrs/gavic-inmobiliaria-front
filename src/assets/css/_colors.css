@@ -57,12 +57,12 @@
     --bg-dark: black;
 
     --deg-primary: linear-gradient(180deg, #162F47 0%, #6D859F 100%);
-    --deg-secondary: linear-gradient(180deg, #727871 0%, #50574f 100%);
-    --deg-tertiary: linear-gradient(180deg, #ecece2 0%, #c3c5ba 100%);
-    --deg-fourty: linear-gradient(180deg, #98ac91 0%, #6b7e68 100%);
-    --deg-fift: linear-gradient(180deg, #767c76 0%, #5b5f5b 100%);
-    --deg-six: linear-gradient(180deg, #8b9a86 0%, #586755 100%);
-    --deg-transparent: linear-gradient(90deg, #0A6E9A 0%, #2695c580 100%);
+    --deg-secondary: linear-gradient(180deg, #717478 0%, #4f5257 100%);
+    --deg-tertiary: linear-gradient(180deg, #e2e6ec 0%, #babcc5 100%);
+    --deg-fourty: linear-gradient(180deg, #445464 0%, #162F47 100%);
+    --deg-fift: linear-gradient(180deg, #76797c 0%, #5b5d5f 100%);
+    --deg-six: linear-gradient(180deg, #868d9a 0%, #555d67 100%);
+    --deg-transparent: linear-gradient(90deg, #0a579a 0%, #2670c580 100%);
   
     /* SHADOWS */
     --ds-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);

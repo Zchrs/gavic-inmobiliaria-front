@@ -3,11 +3,23 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export const Tabs = ({ tabs }) => {
+export const Tabs = ({ tabs, onTabChange }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].label);
 
-  const handleTabClick = (label) => {
+  const handleTabClick = (label, id) => {
     setActiveTab(label);
+    if (onTabChange) {
+      onTabChange(label);
+    }
+
+    if (id) {
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
   };
 
   return (
@@ -16,21 +28,20 @@ export const Tabs = ({ tabs }) => {
         {tabs.map((tab) => (
           <Tab
             key={tab.label}
-            isActive={tab.label === activeTab}
-            onClick={() => handleTabClick(tab.label)}
+            esActive={tab.label === activeTab}
+            onClick={() => handleTabClick(tab.label, tab.id)}
           >
             {tab.label}
           </Tab>
         ))}
       </TabList>
       <TabContent>
-        {tabs.map((tab) => (
-          tab.label === activeTab && <div key={tab.label}>{tab.content}</div>
-        ))}
+        {tabs.find((tab) => tab.label === activeTab)?.content}
       </TabContent>
     </TabsContainer>
   );
 };
+
 
 Tabs.propTypes = {
   tabs: PropTypes.arrayOf(
@@ -39,6 +50,7 @@ Tabs.propTypes = {
       content: PropTypes.node.isRequired,
     })
   ).isRequired,
+  onTabChange: PropTypes.func,
 };
 
 const TabsContainer = styled.div`
@@ -59,7 +71,7 @@ position: absolute;
   display: flex;
   width: fit-content;
   height: 35px;
-  gap: 10px;
+  gap: 8px;
   border-bottom: black 1px solid;
   @media (max-width: 826px) {
       width: 100%;
@@ -71,11 +83,11 @@ position: absolute;
 
 const Tab = styled.button`
 width: fit-content;
-padding: 10px 20px;
+padding: 10px 8px;
 cursor: pointer;
-background: ${({ isActive }) => (isActive ? 'var(--deg-secondary)' : 'var(--deg-tertiary)')};
+background: ${({ esActive }) => (esActive ? 'var(--deg-secondary)' : 'var(--deg-tertiary)')};
 border: none;
-color: ${({ isActive }) => (isActive ? 'var(--text-tertiary)' : 'none')};
+color: ${({ esActive }) => (esActive ? 'var(--text-tertiary)' : 'none')};
 outline: none;
 transition: all ease .3s;
 border-radius: 10px 10px 0px 0;

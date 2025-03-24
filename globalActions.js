@@ -28,6 +28,8 @@ export const getImg = (route, url, extension = 'svg') => {
   //   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   // };
 
+  
+
   // ------------------ referencia de boleto ------------------------------------
 export let boletoRefArr = [];
 

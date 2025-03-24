@@ -65,6 +65,7 @@ export { Finances } from "./src/views/admin/finances/Finances";
 export { Memberships } from "./src/views/admin/memberships/Memberships";
 export { RecentProperties } from "./src/views/admin/properties/properties-recent/RecentProperties";
 export { Settings } from "./src/views/admin/settings/Settings";
+export { CreateProperty } from "./src/views/admin/properties/CreateProperty";
 export { Validations } from "./src/views/admin/Validations/Validations";
 export { ForRentPropertiesw } from "./src/views/admin/properties/properties-for-rent/ForRentPropertiesw";
 export { LeasedProperties } from "./src/views/admin/leased/LeasedProperties";
@@ -72,6 +73,9 @@ export { Pending } from "./src/views/admin/properties/properties-status/Pending"
 export { Approved } from "./src/views/admin/properties/properties-status/Approved";
 export { Rejected } from "./src/views/admin/properties/properties-status/Rejected";
 export { Properties } from "./src/views/admin/properties/Properties";
+export { PropertySale } from "./src/views/admin/properties/for-sale/PropertySale";
+export { Rented } from "./src/views/admin/properties/rented/Rented";
+export { PropertiesSold } from "./src/views/admin/properties/sold/PropertiesSold";
 export { DetailSales } from "./src/views/admin/Sales/DetailSales";
 export { Mortgage } from "./src/views/home/mortgage/Mortgage";
 export { Appraisals } from "./src/views/home/appraisals/Appraisals";

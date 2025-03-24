@@ -1054,7 +1054,7 @@ const ButtonBase = styled.div`
           font-size: 11px;
         }
       }
-      img {
+      svg {
         margin-top: -2px;
         filter: invert(100%) brightness(0%);
         stroke: black;
@@ -1062,6 +1062,9 @@ const ButtonBase = styled.div`
       &:hover {
         transition: all ease 0.3s;
         background: var(--bg-primary);
+        svg {
+        filter: invert(0%) brightness(500%);
+      }
         a {
           color: white;
           text-shadow: black 1px 1px 1px;

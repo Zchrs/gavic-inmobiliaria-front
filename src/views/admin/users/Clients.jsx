@@ -22,7 +22,6 @@ export const Clients = () => {
   return (
     <CliEnts>
       <div className="clients">
-        <h2>Clientes</h2>
         <CardUsers columns={columns} data={selectedData} message />
         <Pagination
                 currentPage={currentPage}

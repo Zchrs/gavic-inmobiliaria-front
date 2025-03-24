@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { getImg, scrollTop } from "../../globalActions";
 import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export const HeaderAdmin = () => {
   let contador = 0;
@@ -71,26 +72,45 @@ export const HeaderAdmin = () => {
     showHideMenu();
   };
 
+
+
   return (
     <AdminHeader>
       <div className="headeradmin">
         <div className="headeradmin-group">
-          <Link className="headeradmin-group-a">
+          <NavLink className="headeradmin-group-a">
             <img  className="headeradmin-group-icons" src={getImg("svg", "settings", "svg")} alt="" />
-          </Link>
-          <Link to={"/admin/dashboard"} className="headeradmin-group-a">Inicio</Link>
+          </NavLink>
+          <NavLink 
+          to={"/admin/dashboard"} 
+          className={({ isActive }) =>
+            `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
+          }
+          >Inicio</NavLink>
         </div>
         <div className="headeradmin-group">
-          <Link to={"properties"} className="headeradmin-group-a">Propiedades</Link>
-          <Link to={"sales"} className="headeradmin-group-a">Ventas</Link>
+          <NavLink to={"properties"} className={({ isActive }) =>
+            `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
+          }>Propiedades</NavLink>
+          <NavLink to={"sales"} className={({ isActive }) =>
+            `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
+          }>Ventas</NavLink>
         </div>
         <div className="headeradmin-group">
-          <Link to={"statics"} className="headeradmin-group-a btnhead">Estadísticas</Link>
-          <Link to={"users"} className="headeradmin-group-a">Usuarios</Link>
+          <NavLink to={"statics"} className={({ isActive }) =>
+            `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a btnhead"}`
+          }>Estadísticas</NavLink>
+          <NavLink to={"users"} className={({ isActive }) =>
+            `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
+          }>Usuarios</NavLink>
         </div>
         <div className="headeradmin-group">
-          <Link to={"finances"} className="headeradmin-group-a">Finanzas</Link>
-          <Link to={"comunications"} className="headeradmin-group-a">Comunicaciones</Link>
+          <NavLink to={"finances"} className={({ isActive }) =>
+            `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
+          }>Finanzas</NavLink>
+          <NavLink to={"comunications"} className={({ isActive }) =>
+            `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
+          }>Comunicaciones</NavLink>
         </div>
       </div>
       <div className="headeradmin-mobile">
@@ -162,6 +182,7 @@ const AdminHeader = styled.header`
       background: var(--bg-secondary);
       box-shadow: var(--ds-m);
       align-items: center;
+      overflow: hidden;
       &:nth-child(1) {
         background: var(--deg-secondary);
         a {
@@ -193,6 +214,14 @@ const AdminHeader = styled.header`
         padding: 10px;
         align-items: center;
         text-align: center;
+
+        &-active{
+          background: #0000003c;
+          width: 100%;  
+        padding: 10px;
+        align-items: center;
+        text-align: center;
+        }
       }
       &-icons{
         width: 15px;

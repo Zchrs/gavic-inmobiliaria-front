@@ -18,7 +18,6 @@ export const PendingClients = () => {
     return (
       <ClientsPending>
         <div className="pendingclients">
-            <h2>Clientes pendientes de verificación</h2>
           <CardUsers columns={columns} data={selectedData} approve />
           <Pagination
                   currentPage={currentPage}
