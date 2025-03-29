@@ -170,6 +170,7 @@ export const BaseInput = ({
             value={value}
             onChange={onChange}
             onBlur={onBlur}
+            className='textarea'
           />
         ) : (
           <>
@@ -267,7 +268,7 @@ const InputBase = styled.div`
       outline: none;
       
 
-      textarea {
+      .textarea {
         border: 1px solid #ec333632;
         background: white;
         height: 130px;
@@ -279,8 +280,9 @@ const InputBase = styled.div`
         font-weight: 400;
         position: relative;
         padding: 5px 15px;
-
+        
         &::placeholder {
+          padding: 5px 15px;
           font-weight: 300;
           font-size: 14px;
           line-height: 140%;
@@ -336,18 +338,42 @@ const InputBase = styled.div`
       align-items: center;
       display: grid;
       background: transparent;
+      border-radius: 10px;
 
       input {
         position: relative;
         background: white;
-        border: #818080 1px solid;
+        border: 1px solid var(--trans-primary);
         padding: 8px 10px;
         color: black;
-        font-size: 16px;
+        font-size: 1.8rem;
         font-weight: 400;
         letter-spacing: 1px;
         width: 100%;
         transition: all ease 0.3s;
+
+        outline: none;
+      }
+      
+      .textarea {
+        outline: none;
+        border: 1px solid var(--trans-primary);
+        background: white;
+        height: 130px;
+        font-size: 1.8rem;
+        font-weight: 500;
+        border-radius: 10px;
+        color: black;
+        font-weight: 400;
+        position: relative;
+        padding: 5px 10px;
+        
+        &::placeholder {
+          font-weight: 300;
+          font-size: 14px;
+          line-height: 140%;
+          color: #bdbbbb;
+        }
       }
     }
 

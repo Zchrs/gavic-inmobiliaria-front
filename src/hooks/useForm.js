@@ -42,13 +42,19 @@ export const initialFormAdvisor = {
   password: "",
 };
 
-export const initialProductForm = {
+export const initialPropertyForm = {
   name: "",
   price: "",
-  previousPrice: "",
   category: "",
-  quantity: "3",
   description: "",
+  bedroom: "",
+  bathroom: "",
+  dinigRoom: "",
+  closet: "",
+  kitchen: "",
+  floor: "",
+  stratum: "",
+  image: "",
   img_url: [],
 };
 
@@ -62,7 +68,7 @@ export const initialAddCartForm = {
 export const useForm = (initialForm, validateForm) => {
   // ---------------- variables de estado -----------------------
   const [form, setForm] = useState(initialForm);
-  const [formProduct, setFormProduct] = useState(initialProductForm);
+  const [formProduct, setFormProduct] = useState(initialPropertyForm);
   const [formAdmin, setFormAdmin] = useState(initialFormAdmin);
   const [formCart, setFormCart] = useState(initialAddCartForm);
   const [errors, setErrors] = useState({});
@@ -264,16 +270,22 @@ export const useForm = (initialForm, validateForm) => {
   });
   };
 
-  const handleSubmitProduct = async (e) => {
+  const handleSubmitProperty = async (e) => {
     e.preventDefault();
   
     const formData = {
       name: form.name,
       price: form.price,
-      previousPrice: form.previousPrice,
       category: form.category,
-      quantity: form.quantity,
       description: form.description,
+      bedRoom: form.bedRoom,
+      bathRoom: form.bathRoom,
+      diningRoom: form.diningRoom,
+      closet: form.colset,
+      kitchen: form.kitchen,
+      floor: form.floor,
+      stratum: form.stratum,
+      image: form.image,
       img_url: form.img_url// Asumiendo que img_url es un array de objetos con una propiedad 'url'
     };
   
@@ -315,7 +327,7 @@ export const useForm = (initialForm, validateForm) => {
       console.log(response);
       setLoading(false);
       setResponse(true);
-      setForm(initialProductForm);
+      setForm(initialPropertyForm);
       
       Swal.fire({
         title: '¡Éxito!',
@@ -755,6 +767,7 @@ export const useForm = (initialForm, validateForm) => {
     setModal(true);
   };
 
+
   const handleSubscribeNewsletter = async (e) => {
     const finalForm = {
       ...form,
@@ -816,7 +829,7 @@ export const useForm = (initialForm, validateForm) => {
     handleBlurAdm,
     handleSubmitsAdmin,
     handleSubmitAddCart,
-    handleSubmitProduct,
+    handleSubmitProperty,
     handleSetImage,
     handleChecked,
     loadingActive,

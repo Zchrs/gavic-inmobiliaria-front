@@ -83,14 +83,14 @@ position: absolute;
 
 const Tab = styled.button`
 width: fit-content;
-padding: 10px 8px;
+padding: 10px 20px;
 cursor: pointer;
 background: ${({ esActive }) => (esActive ? 'var(--deg-secondary)' : 'var(--deg-tertiary)')};
 border: none;
 color: ${({ esActive }) => (esActive ? 'var(--text-tertiary)' : 'none')};
 outline: none;
 transition: all ease .3s;
-border-radius: 10px 10px 0px 0;
+border-radius: 10px 10px 0 0;
 @media (max-width: 826px) {
     font-size: 13px;
     width: 100%;

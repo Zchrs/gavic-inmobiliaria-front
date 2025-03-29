@@ -1,7 +1,7 @@
 import styled from "styled-components";
 // import { GradientChart, SimpleChart } from "../../../components/MultiChart";
 import { Tabs } from "../../../components/Tabs"
-import { Approved, CreateProperty, ForRentPropertiesw, PropertiesSold, PropertySale, Rejected, Rented } from "../../../../index";
+import { Approved, CreateProperty, ForRentPropertiesw, Pending, PropertiesSold, PropertySale, Rejected, Rented } from "../../../../index";
 
 
 import { useState } from "react";
@@ -10,13 +10,14 @@ export const Properties = () => {
   const [activeTab, setActiveTab] = useState("Crear Propiedad");
 
   const tabs = [
-    { label: "Crear propiedad", content: <CreateProperty id="create-property" /> },
-    { label: "Propiedades aprobadas", content: <Approved /> },
-    { label: "Propiedades rechazadas", content: <Rejected /> },
-    { label: "Propiedades en arrendamiento", content: <ForRentPropertiesw /> },
-    { label: "Propiedades en venta", content: <PropertySale /> },
-    { label: "Propiedades vendidas", content: <PropertiesSold id="sold" /> },
-    { label: "Propiedades arrendadas", content: <Rented /> },
+    { label: "Agregar", content: <CreateProperty id="create-property" /> },
+    { label: "Aprobadas", content: <Approved /> },
+    { label: "Rechazadas", content: <Rejected /> },
+    { label: "Pendientes", content: <Pending /> },
+    { label: "En arrendamiento", content: <ForRentPropertiesw /> },
+    { label: "En venta", content: <PropertySale /> },
+    { label: "Vendidas", content: <PropertiesSold id="sold" /> },
+    { label: "Arrendadas", content: <Rented /> },
   ];
 
   
@@ -24,7 +25,7 @@ export const Properties = () => {
   return (
     <CliEnts>
       <div className="clients">
-        <h2 className="clients-h2">{activeTab}</h2>
+        <h2 className="clients-h2">Propiedades: {activeTab}</h2>
         <div>
           <Tabs tabs={tabs} onTabChange={setActiveTab} />
         </div>

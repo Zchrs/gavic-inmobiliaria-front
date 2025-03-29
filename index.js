@@ -50,6 +50,7 @@ export { Loader } from "./src/components/Loader";
 export { Pagination } from "./src/components/Pagination";
 export { ScreenResolution } from "./src/components/ScreenResolution";
 export { Table } from "./src/components/Table";
+export { MultiDropZone } from "./src/components/MultiDropZone";
 
 
 export { Statics } from "./src/views/admin/statics/Statics";

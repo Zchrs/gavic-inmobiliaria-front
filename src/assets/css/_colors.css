@@ -56,6 +56,11 @@
     --bg-light: #d9d9cd;
     --bg-dark: black;
 
+    /* TRANSPARENCIES */
+    --trans-primary: rgba(13, 32, 48, 0.106);
+    --trans-secondary: rgba(255, 224, 138, 0.2);
+    --trans-tertiary: rgba(203, 196, 188, 0.5);
+
     --deg-primary: linear-gradient(180deg, #162F47 0%, #6D859F 100%);
     --deg-secondary: linear-gradient(180deg, #717478 0%, #4f5257 100%);
     --deg-tertiary: linear-gradient(180deg, #e2e6ec 0%, #babcc5 100%);

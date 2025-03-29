@@ -142,8 +142,8 @@ export const DropZone = ({ title, text, name, type, id, setImage, onChange}) => 
                 onChange={handleFileUpload}
               />
               <div className="card-profile__title">
-                <p className="card-profile__upload">Drag and drop file, or <strong>Browse computer</strong></p>
-                <p className="card-profile__upload">Upload files up to 30mb</p>
+                <p className="card-profile__upload">Arrastra y suelta tu foto aquí, o <strong>buscala en tu computadora</strong></p>
+                <p className="card-profile__upload">Carga un a foto de hasta <b>30MB.</b></p>
               </div>
               <div className='group'>
                   <span className="file-info">{dropzoneFile && dropzoneFile.name}</span>
@@ -171,7 +171,7 @@ export const DropZone = ({ title, text, name, type, id, setImage, onChange}) => 
       display: grid;
       
       width: 100%;
-      border: 1px dashed var(--bg-primary);
+      border: 1px dashed var(--bg-secondary);
       border-radius: 4px;
     }
     &__drag {

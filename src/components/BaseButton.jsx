@@ -417,20 +417,10 @@ const ButtonBase = styled.div`
         }
       }
     }
-    &.full-red {
+    &.full-primary {
       display: grid;
       width: 100%;
       height: 100%;
-      clip-path: polygon(
-        3% 0,
-        97% 0,
-        100% 20%,
-        100% 80%,
-        97% 100%,
-        3% 100%,
-        0 80%,
-        0 20%
-      );
       position: relative;
       background: var(--bg-primary);
       a {
@@ -460,28 +450,7 @@ const ButtonBase = styled.div`
           width: fit-content;
         }
       }
-      &::before {
-        display: block;
-        position: absolute;
-        content: "";
-        clip-path: polygon(
-          3% 0,
-          97% 0,
-          100% 20%,
-          100% 80%,
-          97% 100%,
-          3% 100%,
-          0 80%,
-          0 20%
-        );
 
-        top: 1px;
-        left: 1px;
-        width: 99%;
-        height: 95%;
-        background: var(--bg-4th);
-        z-index: 400;
-      }
     }
 
     &.full-black {
