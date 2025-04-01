@@ -2,7 +2,7 @@
 import styled from "styled-components"
 import { leases } from "../../../../apiEmulated"
 import { Loader, CardLeases, Pagination } from "../../../../index"
-import { selectedProduct, setProduct } from "../../../actions/productActions";
+import { selectedProperty, setProperty } from "../../../actions/propertyActions";
 
 import { useState } from "react"
 import { useDispatch } from "react-redux";
@@ -22,8 +22,8 @@ export const RecentAdded = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedLeases = leases.slice(startIndex, startIndex + itemsPerPage);
 
-  const handleSetProductClick = (product) => {
-    dispatch(selectedProduct(product));
+  const handleSetProductClick = (property) => {
+    dispatch(selectedProperty(property));
   };
 
 

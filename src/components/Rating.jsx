@@ -5,7 +5,7 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
-import { addRating, fetchProductRatings} from '../actions/productActions'; // Asegúrate de importar las acciones correctas
+import { addRating, fetchPropertiesRatings} from '../actions/propertyActions'; // Asegúrate de importar las acciones correctas
 import Swal from 'sweetalert2';
 import io from 'socket.io-client';
 
@@ -21,7 +21,7 @@ export const Rating = ({ title, sellings, ratings, productID, userID }) => {
   useEffect(() => {
     if (productID) {
       if (!ratings || !ratings[productID]) {
-        dispatch(fetchProductRatings([productID]));
+        dispatch(fetchPropertiesRatings([productID]));
       }
     }
   }, [productID, dispatch, ratings]);

@@ -93,26 +93,23 @@ export const Home = () => {
                         { value: "option7", label: "Más de $10,000" },
                       ]}
                     />             
-                    <BaseInputSelect
+                    <BaseInput
                     height={"40px"}
                       placeholder="Código"
-                      isSelect={true}
+                      classs={"inputs normal"}
                       name="code"
+                      id="code"
                       value={selectedCode}
                       onChange={handleCode}
-                      options={[
-                        { value: "option1", label: "Código 1" },
-                        { value: "option2", label: "Código 2" },
-                        { value: "option3", label: "Código 3" },
-                      ]}
+
                     />
                 </div>
                 <div>
                   <BaseButton
-                    classs={"button small-gray"}
+                    classs={"button full-primary"}
                     textLabel={true}
                     label={"Buscar"}
-                    svg={true}
+                    // svg={true}
                     // handleClick={whatsapp}
                   />
                 

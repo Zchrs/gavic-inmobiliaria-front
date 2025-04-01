@@ -87,7 +87,7 @@ padding: 10px 20px;
 cursor: pointer;
 background: ${({ esActive }) => (esActive ? 'var(--deg-secondary)' : 'var(--deg-tertiary)')};
 border: none;
-color: ${({ esActive }) => (esActive ? 'var(--text-tertiary)' : 'none')};
+color: ${({ esActive }) => (esActive ? 'var(--text-tertiary)' : 'var(--text-primary)')};
 outline: none;
 transition: all ease .3s;
 border-radius: 10px 10px 0 0;

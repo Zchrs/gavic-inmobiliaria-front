@@ -18,7 +18,7 @@ export const Users = () => {
   return (
     <CliEnts>
       <div className="clients">
-        <h2 className="clients-h2">Usuarios: <br />{activeTab}</h2>
+        <h2 className="clients-h2">Usuarios: {activeTab}</h2>
         <div>
           <Tabs tabs={tabs} onTabChange={setActiveTab} />
         </div>

@@ -6,7 +6,7 @@ import defaultImage from "../assets/img/jpg/default.jpg";
 import styled from "styled-components";
 import { BaseButton } from "./BaseButton";
 import { useDispatch, useSelector } from "react-redux";
-import { clearProduct, selectedProduct } from "../actions/productActions";
+import { clearProperty, selectedProperty } from "../actions/propertyActions";
 import { AddCartWishlist } from "./AddCartWishlist";
 import { useNavigate } from "react-router-dom";
 import { addToCart as addToCartAction } from "../actions/cartActions";
@@ -28,7 +28,7 @@ export const CardLeases = ({
   boxFlex,
   location,
   user_id,
-  product_id,
+  property_id,
   prodHover,
   prodLeave,
   quantityRooms,
@@ -48,14 +48,14 @@ export const CardLeases = ({
   buy,
 }) => {
   const user = useSelector((state) => state.auth.user);
-  const productHover = useSelector((state) => state.product.selectedProduct);
+  const productHover = useSelector((state) => state.product.selectedProperty);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const dataFormErrors = (formCart) =>{
     let user_id = document.getElementById("user_id")
-    let product_id = document.getElementById("product_id")
+    let property_id = document.getElementById("property_id")
     let price = document.getElementById("price")
     let quantity = document.getElementById("quantity")
 
@@ -68,11 +68,11 @@ export const CardLeases = ({
       return
     }  
   
-    if (!formCart.product_id && formCart.product_id ==! formCart.product_id) {
-      product_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
-      errors.product_id = "no permitido";
+    if (!formCart.property_id && formCart.property_id ==! formCart.property_id) {
+      property_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
+      errors.property_id = "no permitido";
     }  else {
-      product_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
+      property_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
     }
   
     if (!formCart.price && formCart.price ==! formCart.price) {
@@ -112,32 +112,32 @@ export const CardLeases = ({
     
     // if(!user) return
     
-    dispatch(selectedProduct(productHover));
+    dispatch(selectedProperty(productHover));
     localStorage.setItem("productHover", productHover);
     setFormCart((prevFormCart) => ({
       ...prevFormCart,
       user_id: user.id, // Assuming you want to set the user_id as well
-      product_id: productHover.id,
+      property_id: productHover.id,
       price: productHover.price,
       quantity: 1, // You can set a default quantity or manage it as needed
     }));
   };
   
-  const handleCLearProduct = () => {
-    dispatch(clearProduct(productHover));
+  const handleCLearProperty = () => {
+    dispatch(clearProperty(productHover));
     localStorage.removeItem("productHover", productHover);
     setFormCart(initialAddCartForm);
   };
 
   const handleMouseEnter = () => {
     if (user) {
-      handleSetProductInfo({ user_id, product_id, price, quantity });
+      handleSetProductInfo({ user_id, property_id, price, quantity });
     }
   };
 
   const handleMouseLeave = () => {
     if (user) {
-      handleCLearProduct({ user_id, product_id, price, quantity });
+      handleCLearProperty({ user_id, property_id, price, quantity });
     }
   };
 
@@ -249,7 +249,7 @@ export const CardLeases = ({
             <p className="productcard__p2">{formatPrice(previousPrice)}</p>
           </div>
           <p className="productcard__p3"> {member} </p>
-          {/* {ratingss && <Rating ratings={ratings} productID={product_id} userID={user ? user.id : null} />} */}
+          {/* {ratingss && <Rating ratings={ratings} productID={property_id} userID={user ? user.id : null} />} */}
           {preview && (
             <div className="productcard-btn">
               <BaseButton

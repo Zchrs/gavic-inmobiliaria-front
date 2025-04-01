@@ -51,6 +51,8 @@ export { Pagination } from "./src/components/Pagination";
 export { ScreenResolution } from "./src/components/ScreenResolution";
 export { Table } from "./src/components/Table";
 export { MultiDropZone } from "./src/components/MultiDropZone";
+export { ItemsCategory } from "./src/components/ItemsCategory";
+export { Empty } from "./src/components/Empty";
 
 
 export { Statics } from "./src/views/admin/statics/Statics";

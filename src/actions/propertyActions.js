@@ -5,33 +5,33 @@ import { types } from "../types/types";
 import { io } from "socket.io-client";
 
 
-export const setProduct = (productInfo) => {
+export const setProperty = (propertyInfo) => {
     return {
-      type: types.productView,
-      payload: Array.isArray(productInfo) ? productInfo : [],
+      type: types.propertyView,
+      payload: Array.isArray(propertyInfo) ? propertyInfo : [],
     };
   };
 
-export const clearProduct = (productInfo) => {
+export const clearProperty = (propertyInfo) => {
     return {
-      type: types.REMOVE_PRODUCT,
-      payload: Array.isArray(productInfo) ? productInfo : [],
+      type: types.REMOVE_PROPERTY,
+      payload: Array.isArray(propertyInfo) ? propertyInfo : [],
     };
   };
 
-  export const storagedProduct = (productInfo) => ({
-    type: types.STORAGED_PRODUCT,
-    payload: Array.isArray(productInfo) ? productInfo : [],
+  export const storagedProperty = (propertyInfo) => ({
+    type: types.STORAGED_PROPERTY,
+    payload: Array.isArray(propertyInfo) ? propertyInfo : [],
   });
   
-  export const selectedProduct = (productInfo) => ({
-    type: types.SELECTED_PRODUCT,
-    payload: productInfo,
+  export const selectedProperty = (propertyInfo) => ({
+    type: types.SELECTED_PROPERTY,
+    payload: propertyInfo,
   });
   
-  export const updateProduct = (productInfo) => ({
-    type: types.UPDATE_PRODUCT,
-    payload: Array.isArray(productInfo) ? productInfo : [],
+  export const updateProperty = (propertyInfo) => ({
+    type: types.UPDATE_PROPERTY,
+    payload: Array.isArray(propertyInfo) ? propertyInfo : [],
   });
 
   export const setRatings = (ratings) => ({
@@ -40,9 +40,9 @@ export const clearProduct = (productInfo) => {
   });
 
 
-  export const fetchSoldProducts = async () => {
+  export const fetchSoldProperties = async () => {
     try {
-      const response = await axios.get(import.meta.env.VITE_APP_API_GET_SOLD_PRODUCTS_URL);
+      const response = await axios.get(import.meta.env.VITE_APP_API_GET_SOLD_PROPERTIES_URL);
       return response.data;
     } catch (error) {
       console.error('Error al obtener los productos vendidos:', error);
@@ -50,13 +50,13 @@ export const clearProduct = (productInfo) => {
     }
   };
 
-  export const fetchProducts = () => async (dispatch) => {
+  export const fetchProperties = () => async (dispatch) => {
     try {
 
         // Consultar la base de datos si no hay productos en localStorage o si el array está vacío
-        const response = await axios.get(import.meta.env.VITE_APP_API_GET_PRODUCTS_URL);
-        const productsComplete = await Promise.all(response.data.map(async (productInfo) => {
-            const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PRODUCTS_URL}/${productInfo.id}`);
+        const response = await axios.get(import.meta.env.VITE_APP_API_GET_PROPERTIES_URL);
+        const propertiesComplete = await Promise.all(response.data.map(async (productInfo) => {
+            const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${productInfo.id}`);
             return {
                 ...productInfo,
                 images: imagesRes.data.images || [],
@@ -64,18 +64,18 @@ export const clearProduct = (productInfo) => {
         }));
 
         // Guardar los productos en localStorage después de la consulta
-        localStorage.setItem('products', JSON.stringify(productsComplete));
-        dispatch(setProduct(productsComplete));
-        return productsComplete;
+        localStorage.setItem('properties', JSON.stringify(propertiesComplete));
+        dispatch(setProperty(propertiesComplete));
+        return propertiesComplete;
     } catch (error) {
         console.error('Error al obtener los productos:', error);
-        dispatch(setProduct([])); // Asegurarse de despachar un array vacío en caso de error
+        dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
         throw error;
     }
 };
 
   // Función para escuchar actualizaciones de productos y actualizar localStorage
-  export const listenForProductUpdates = () => (dispatch) => {
+  export const listenForPropertyUpdates = () => (dispatch) => {
     const socket = io(import.meta.env.VITE_APP_API_WEBSOCKET_URL, {
       cors: true,
     });
@@ -84,11 +84,11 @@ export const clearProduct = (productInfo) => {
       console.log('Conectado al servidor de WebSocket');
     });
   
-    socket.on('updateProducts', (updatedProducts) => {
-      console.log('Productos actualizados:', updatedProducts);
+    socket.on('updateProperties', (updatedProperties) => {
+      console.log('Productos actualizados:', updatedProperties);
       // Actualizar productos en el estado y localStorage
-      localStorage.setItem('products', JSON.stringify(updatedProducts));
-      dispatch(setProduct(updatedProducts));
+      localStorage.setItem('properties', JSON.stringify(updatedProperties));
+      dispatch(setProperty(updatedProperties));
     });
   
     return () => {
@@ -96,12 +96,12 @@ export const clearProduct = (productInfo) => {
     };
   };
   
-  export const fetchProductsCategory = (category) => async (dispatch) => {
+  export const fetchPropertiesCategory = (category) => async (dispatch) => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PRODUCTS_CATEGORY}?category=${category}`);
-      const productsComplete = await Promise.all(response.data.map(async (productInfo) => {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROPERTIES_CATEGORY}?category=${category}`);
+      const propertiesComplete = await Promise.all(response.data.map(async (productInfo) => {
         try {
-          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PRODUCTS_URL}/${productInfo.id}`);
+          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROPERTIES_URL}/${productInfo.id}`);
           return {
             ...productInfo,
             images: imagesRes.data.images || [],
@@ -114,25 +114,25 @@ export const clearProduct = (productInfo) => {
           };
         }
       }));
-      dispatch(setProduct(productsComplete));
+      dispatch(setProperty(propertiesComplete));
     } catch (error) {
       console.error('Error al obtener los productos:', error);
-      dispatch(setProduct([])); // Asegurarse de despachar un array vacío en caso de error
+      dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
     }
   };
   
 
-  // export const fetchProductsCategory = (category) => async (dispatch) => {
+  // export const fetchPropertiesCategory = (category) => async (dispatch) => {
   //   try {
   //     // Obtener los productos por categoría
-  //     const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PRODUCTS_CATEGORY}?category=${category}`);
-  //     const products = response.data;
+  //     const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROperties_CATEGORY}?category=${category}`);
+  //     const properties = response.data;
   
   //     // Obtener imágenes y calificaciones para cada producto
-  //     const productsComplete = await Promise.all(products.map(async (productInfo) => {
+  //     const propertiesComplete = await Promise.all(properties.map(async (productInfo) => {
   //       try {
   //         // Obtener las imágenes del producto
-  //         const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PRODUCTS_URL}/${productInfo.id}`);
+  //         const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${productInfo.id}`);
           
   //         // Obtener las calificaciones del producto
   //         const ratingsRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_PRODUCT_RATINGS_URL}/${productInfo.id}`);
@@ -152,32 +152,32 @@ export const clearProduct = (productInfo) => {
   //         };
   //       }
   //     }));
-  //     console.log(productsComplete)
+  //     console.log(propertiesComplete)
   //     // Despachar los productos completos con imágenes y calificaciones
-  //     dispatch(setProduct(productsComplete, 'Fetch'));
-  //     console.log('Productos completos con imágenes y calificaciones:', productsComplete);
+  //     dispatch(setProperty(propertiesComplete, 'Fetch'));
+  //     console.log('Productos completos con imágenes y calificaciones:', propertiesComplete);
   //   } catch (error) {
   //     console.error('Error al obtener los productos:', error);
-  //     dispatch(setProduct([])); // Despachar un array vacío en caso de error
+  //     dispatch(setProperty([])); // Despachar un array vacío en caso de error
   //   }
   // };
 
-  export const fetchProductsById = (id) => async (dispatch) => {
+  export const fetchPropertiesById = (id) => async (dispatch) => {
     try {
       // Fetch product details by ID
-      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PRODUCTS_URL}/${id}`);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROperties_URL}/${id}`);
       const productInfo = response.data;
   
       try {
         // Fetch product images by ID
-        const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PRODUCTS_URL}/${id}`);
+        const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${id}`);
         const productWithImages = {
           ...productInfo,
           images: imagesRes.data.images || [],
         };
   
         // Dispatch action to update product in Redux store
-        dispatch(setProduct([productWithImages]));
+        dispatch(setProperty([productWithImages]));
       } catch (error) {
         console.error(`Error al obtener las imágenes para el producto ${id}:`, error);
   
@@ -186,11 +186,11 @@ export const clearProduct = (productInfo) => {
           ...productInfo,
           images: [],
         };
-        dispatch(setProduct([productWithoutImages]));
+        dispatch(setProperty([productWithoutImages]));
       }
     } catch (error) {
       console.error(`Error al obtener el producto con ID ${id}:`, error);
-      dispatch(setProduct([])); // Asegurarse de despachar un array vacío en caso de error
+      dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
     }
   };
 
@@ -218,7 +218,7 @@ export const clearProduct = (productInfo) => {
     }
   };
   
-  export const fetchProductRatings = (productIds) => async (dispatch) => {
+  export const fetchPropertiesRatings = (productIds) => async (dispatch) => {
     try {
       const responses = await Promise.all(
         productIds.map((id) => axios.get(`${import.meta.env.VITE_APP_API_GET_RATING_URL}/${id}`))

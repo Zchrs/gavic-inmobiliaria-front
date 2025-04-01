@@ -17,6 +17,9 @@ export const CreateProperty = () => {
   const [selectedKitchen, setSelectedKitchen] = useState("");
   const [selectedFloor, setSelectedFloor] = useState("");
   const [selectedStratum, setSelectedStratum] = useState("");
+  const [selectedSector, setSelectedSector] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedAction, setSelectedAction] = useState("");
 
 
 
@@ -176,7 +179,6 @@ export const CreateProperty = () => {
   } = useForm(initialPropertyForm, validationsForm);
 
   const handleBedRoom = (e) => {
-    console.log("Sector seleccionado:", e.target.value);
     setSelectedBedRoom(e.target.value); // Actualizar el estado con la opción seleccionada
   };
   const handleBathRoom = (p) => {
@@ -200,6 +202,15 @@ export const CreateProperty = () => {
   const handleStratum = (c) => {
     setSelectedStratum(c.target.value); // Actualizar el estado con la opción seleccionada
   };
+  const handleSector = (c) => {
+    setSelectedSector(c.target.value); // Actualizar el estado con la opción seleccionada
+  };
+  const handleCategory = (c) => {
+    setSelectedCategory(c.target.value); // Actualizar el estado con la opción seleccionada
+  };
+  const handleAction = (c) => {
+    setSelectedAction(c.target.value); // Actualizar el estado con la opción seleccionada
+  };
 
   return (
     <Create>
@@ -213,7 +224,7 @@ export const CreateProperty = () => {
               classs={"inputs normal"}
               type="text"
             />
-            <div className="flex-k">
+            <div className="grid-k">
               <BaseInput
                 placeholder={"Precio"}
                 isNumber
@@ -224,14 +235,30 @@ export const CreateProperty = () => {
               <BaseInputSelect
                 placeholder={"Sector"}
                 options={values}
+                value={selectedSector}
+                onChange={handleSector}
                 isSmallSelect={true}
                 id="district"
                 name="district"
               />
             </div>
-            <BaseInput
+            <BaseInputSelect
+              options={[
+                { value: "option2", label: "Apartamento" },
+                { value: "option3", label: "Apartaestudio" },
+                { value: "option9", label: "Bodega" },
+                { value: "option1", label: "Casa" },
+                { value: "option7", label: "Casa Finca" },
+                { value: "option5", label: "Casa Local" },
+                { value: "option6", label: "Finca" },
+                { value: "option4", label: "Local" },
+                { value: "option8", label: "Oficina" },
+              ]}
               placeholder={"Categoría"}
+              value={selectedCategory}
+              onChange={handleCategory}
               classs={"inputs normal"}
+              isSmallSelect
               id="category"
               name="category"
               type="text"
@@ -243,7 +270,7 @@ export const CreateProperty = () => {
               id="description"
               name="description"
             />
-            <div className="flex-k">
+            <div className="grid-k">
               <BaseInputSelect
                 options={[
                   { value: "option1", label: "1" },
@@ -279,7 +306,7 @@ export const CreateProperty = () => {
                 name={"bathroom"}
               />
             </div>
-            <div className="flex-k">
+            <div className="grid-k">
               <BaseInputSelect
                 options={[
                   { value: "option1", label: "Sí" },
@@ -310,7 +337,7 @@ export const CreateProperty = () => {
                 name={"diningRoom"}
               />
             </div>
-            <div className="flex-k">
+            <div className="grid-k">
               <BaseInputSelect
                 options={[
                   { value: "option1", label: "Integral" },
@@ -348,7 +375,7 @@ export const CreateProperty = () => {
                 name={"floor"}
               />
             </div>
-            <div className="flex-k">
+            <div className="grid-three">
               <BaseInputSelect
                 options={[
                   { value: "option1", label: "1" },
@@ -379,6 +406,19 @@ export const CreateProperty = () => {
                 onChange={handleClothingZone}
                 id="clothing"
                 name="clothing"
+              />
+            <BaseInputSelect
+                options={[
+                  { value: "option1", label: "Venta" },
+                  { value: "option2", label: "Arrendamiento" },
+                ]}
+                width={"100%"}
+                placeholder={"Opción"}
+                isSmallSelect={true}
+                value={selectedAction}
+                onChange={handleAction}
+                id="action"
+                name="action"
               />
             </div>
           </div>
@@ -442,9 +482,16 @@ const Create = styled.div`
       gap: 5px;
     }
   }
-  .flex-k{
+  .grid-k{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    /* border: 1px solid var(--text-primary); */
+    width: 100%;
+    gap: 8px;
+  }
+  .grid-three{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     /* border: 1px solid var(--text-primary); */
     width: 100%;
     gap: 8px;

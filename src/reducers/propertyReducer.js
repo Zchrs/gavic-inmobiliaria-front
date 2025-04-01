@@ -1,39 +1,39 @@
 import { types } from "../types/types";
 
 
- const productInitiaState = {
-    productInfo: [],
-    selectedProduct: [],
+ const propertyInitiaState = {
+    propertyInfo: [],
+    selectedProperty: [],
     ratings: {}
 }
 
 
 
 
-export const productReducer = (state = productInitiaState, action) =>{
+export const propertyReducer = (state = propertyInitiaState, action) =>{
     switch (action.type) {
-        case types.productView:
+        case types.propertyView:
           return {
             ...state,
             ... action.payload,
-            productInfo: action.payload
+            propertyInfo: action.payload
           };
-          case types.productViewedFinish:
+          case types.propertyViewedFinish:
             return {
                 ... state,
-                productInfo: action.payload,
+                propertyInfo: action.payload,
                 state: null
             };
-            case types.REMOVE_PRODUCT:
+            case types.REMOVE_PROPERTY:
               return {
                 ...state,
-                removeProduct: action.payload,
+                removeProperty: action.payload,
                 state: null
               };
-            case types.SELECTED_PRODUCT:
+            case types.SELECTED_PROPERTY:
               return {
                 ...state,
-                selectedProduct: action.payload,
+                selectedProperty: action.payload,
               };
               case types.SET_RATINGS:
                 return {

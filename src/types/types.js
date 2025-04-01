@@ -29,13 +29,13 @@ export const types = {
         
 
     // types para el estado de productos
-    productView: `[looking], looking start`,
-    productViewed: `[viewed], viewed out`,
-    STORAGED_PRODUCT: `[storaged], storaged`,
-    SELECTED_PRODUCT: `[selected], product selected`,
-    REMOVE_PRODUCT: `[remove], deleted`,
-    UPDATE_PRODUCT: `[update], Updated`,
-    productViewedFinish: `[finish], viewed finish`,
+    propertyView: `[looking], looking start`,
+    propertyViewed: `[viewed], viewed out`,
+    STORAGED_PROPERTY: `[storaged], storaged`,
+    SELECTED_PROPERTY: `[selected], product selected`,
+    REMOVE_PROPERTY: `[remove], deleted`,
+    UPDATE_PROPERTY: `[update], Updated`,
+    propertyViewedFinish: `[finish], viewed finish`,
 
     CHANGE_LANG: 'CHANGE_LANG',
 
@@ -59,4 +59,4 @@ export const types = {
     SET_RATINGS: 'ratings on'
 }
 
-export const SOCKET_UPDATE_PRODUCTS = 'SOCKET_UPDATE_PRODUCTS';
+export const SOCKET_UPDATE_PROPERTIES = 'SOCKET_UPDATE_PROPERTIES';

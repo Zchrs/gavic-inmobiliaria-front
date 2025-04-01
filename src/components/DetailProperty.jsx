@@ -10,7 +10,7 @@ import { formatPrice, getImg, scrollTop } from '../../globalActions';
 import Swal from 'sweetalert2';
 import styled from 'styled-components';
 import { useEffect } from 'react';
-import { clearProduct, selectedProduct } from '../actions/productActions';
+import { clearProperty, selectedProperty } from '../actions/propertyActions';
 import { initialAddCartForm, useForm } from '../hooks/useForm';
 
 export const DetailProperty = ({
@@ -21,8 +21,8 @@ export const DetailProperty = ({
 }) => {
   const location = useLocation();
   const showLocation = useLocation();
-  const product = useSelector((state) => state.product.selectedProduct);
-  const productHover = useSelector((state) => state.product.selectedProduct);
+  const product = useSelector((state) => state.product.selectedProperty);
+  const productHover = useSelector((state) => state.product.selectedProperty);
   const ratings = useSelector((state) => state.product.ratings);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -89,7 +89,7 @@ export const DetailProperty = ({
     // console.log(productHover, 'producto seteado')
     if(!user) return
     
-    dispatch(selectedProduct(productHover));
+    dispatch(selectedProperty(productHover));
     localStorage.setItem("productHover", productHover);
     setFormCart((prevFormCart) => ({
       ...prevFormCart,
@@ -100,10 +100,10 @@ export const DetailProperty = ({
     }));
   };
 
-  const handleCLearProduct = () => {
+  const handleCLearProperty = () => {
 
     // console.log(productHover, 'producto quitado')
-    dispatch(clearProduct(productHover));
+    dispatch(clearProperty(productHover));
     localStorage.removeItem("productHover", productHover);
     setFormCart(initialAddCartForm);
   };
@@ -147,7 +147,7 @@ export const DetailProperty = ({
 
   const handleMouseLeave = () => {
     if (user) {
-      handleCLearProduct({ user_id, product_id, price, quantity });
+      handleCLearProperty({ user_id, product_id, price, quantity });
     }
   };
 
