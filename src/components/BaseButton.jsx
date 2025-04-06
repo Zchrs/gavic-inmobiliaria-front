@@ -432,7 +432,6 @@ const ButtonBase = styled.div`
         padding: 10px 16px;
         height: 100%;
         width: 100%;
-        z-index: 500;
         color: white;
         border-radius: 10px;
         font-weight: 800;

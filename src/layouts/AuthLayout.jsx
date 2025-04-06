@@ -147,11 +147,11 @@ height: fit-content;
         position: relative;
         align-items: center;
         display: grid;
-        width: 70%;
+        width: 80%;
         height: fit-content;
-        padding: 10px;
         border-radius: 5px;
         overflow: hidden;
+        padding: 10px 0 0 0;
         &::before{
             content: '';
             position: absolute;
@@ -221,9 +221,11 @@ height: fit-content;
     margin: auto;
     gap: 25px;
     display: grid;
-    width: 80%;
+    width: fit-content;
     height: fit-content;
     align-items: center;
+    place-content: center;
+    padding: 0 20px;
     border-radius: 0 0 5px 5px;
    
     // border: #EC3337 1px solid;
@@ -235,18 +237,18 @@ height: fit-content;
         padding: 25px 0;
         width: 70%;
         margin: 0;
-    }
+      }
     
     
-    form{
+    .form{
         position: relative;
         display: grid;
         gap: 7px;
         margin: 0;
-        align-items: start;
-        align-content: start;
+        width: 100%;
 
         .a{
+          display: grid;
             width: fit-content;
             color: #EC3337;
             &:hover{

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { helpHttp } from "../helpers/helperHttp";
 import { Form, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import  departamentos  from "../colombia/colombia.json";
 import {
   startLogin,
   startLoginAdmin,
@@ -34,9 +35,11 @@ export const initialFormAdvisor = {
   country: "",
   name: "",
   lastname: "",
+  typeDoc: "",
+  dnaId: "",
+  expDate: "",
   state: "",
   city: "",
-  expeditionDate: "",
   phone: "",
   email: "",
   password: "",
@@ -70,6 +73,7 @@ export const useForm = (initialForm, validateForm) => {
   const [form, setForm] = useState(initialForm);
   const [formProduct, setFormProduct] = useState(initialPropertyForm);
   const [formAdmin, setFormAdmin] = useState(initialFormAdmin);
+  const [formAdvisor, setFormAdvisor] = useState(initialFormAdvisor);
   const [formCart, setFormCart] = useState(initialAddCartForm);
   const [errors, setErrors] = useState({});
   const [errorsCart, setErrorsCart] = useState({});
@@ -81,7 +85,6 @@ export const useForm = (initialForm, validateForm) => {
   const [selected, setSelected] = useState(null);
   const [checked, setChecked] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  
   // ----------------- funciones form -------------------------
 
   const dispatch = useDispatch();
@@ -117,6 +120,16 @@ export const useForm = (initialForm, validateForm) => {
       });
     }
   };
+  const handleCountryChangeAdvisor = (options) => {
+    if (!options) {
+      setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
+    } else {
+      setFormAdvisor({
+        ...formAdvisor,
+        country: options.target.value,
+      });
+    }
+  };
 
   const handleClearCountry = (label, value) => {
     if (label) {
@@ -145,6 +158,24 @@ export const useForm = (initialForm, validateForm) => {
     } else {
       return;
     }
+  };
+  const handleChangeAdvisor = (e) => {
+    const { name, value } = e.target;
+    // console.log(value)
+    setFormAdvisor({
+      ...formAdvisor,
+      [name]: value,
+    });
+
+    if (value === "email") {
+      validateEmails(name);
+    } else {
+      return;
+    }
+  };
+  const handleBlurAdvisor = (e) => {
+    handleChangeAdvisor(e);
+    setErrors(validateForm(formAdvisor));
   };
 
   const handleChangeAdmin = (e) => {
@@ -188,7 +219,7 @@ export const useForm = (initialForm, validateForm) => {
     });
   };
 
-  const handleUpdateProduct = async (id) => {
+  const handleUpdateProperty = async (id) => {
     
     setLoading(true);
     
@@ -356,7 +387,7 @@ export const useForm = (initialForm, validateForm) => {
   });
 };
 
-  const deleteProduct = async (id) => {
+  const deleteProperty = async (id) => {
     try {
         const result = await Swal.fire({
             title: 'Vas a eliminar un producto',
@@ -701,6 +732,75 @@ export const useForm = (initialForm, validateForm) => {
    
   };
 
+  const handleSubmitsAdvisor = async (e, label) => {
+    const finalForm = {
+      ...formAdvisor,
+    };
+    if (!finalForm.country) return;
+    if (!finalForm.name) return;
+    if (!finalForm.lastname) return;
+    if (!finalForm.dnaType) return;
+    if (!finalForm.dnaId) return;
+    if (!finalForm.expDate) return;
+    if (!finalForm.state) return;
+    if (!finalForm.city) return;
+    if (!finalForm.phone) return;
+    if (!finalForm.email) return;
+    if (!finalForm.pass) return;
+
+    e.preventDefault();
+    setErrors(validateForm);
+    setLoading(true);
+    try {
+      helpHttp();
+      console.log("API URL:", import.meta.env.VITE_APP_API_REGISTER_URL);
+      const response = await axios.post(
+        import.meta.env.VITE_APP_API_REGISTER_URL,
+        finalForm,
+        {
+          body: finalForm,
+          headers: {
+            "Content-type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log(response);
+      setLoading(false);
+      setResponse(true);
+      setFormAdvisor(initialFormAdvisor);
+      // setTimeout(() => setResponse(false, initialForm, ));
+      setTimeout(
+        () =>
+          setResponse(
+            false,
+            initialFormAdvisor,
+            Swal.fire({
+              title: '¡Hecho!',
+              html: `Te has registrado correctamente`,
+              icon: 'success',
+              showCancelButton: false,
+              cancelButtonText: 'Volver',
+              background: '#f0f0f0',
+              customClass: {
+                popup: 'custom-popup',
+                title: 'custom-title',
+                content: 'custom-content',
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button',
+              },
+            })
+          ),
+        200
+      );
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    setLoading(false);
+    setModal(true);
+  };
+
   const handleSubmits = async (e, label) => {
     const finalForm = {
       ...form,
@@ -811,23 +911,29 @@ export const useForm = (initialForm, validateForm) => {
   return {
     form,
     formAdmin,
+    formAdvisor,
     formCart,
     errorsCart,
     errors,
     loading,
     response,
     modal,
-    formProduct, 
+    formProduct,
     setFormProduct,
-    deleteProduct,
+    deleteProperty,
     handleChangeProduct,
     setForm,
+    setFormAdmin,
+    setFormAdvisor,
+    handleBlurAdvisor,
+    handleChangeAdvisor,
     setLoading,
     setFormCart,
     handleImageChange,
     handleChangeAdmin,
     handleBlurAdm,
     handleSubmitsAdmin,
+    handleSubmitsAdvisor,
     handleSubmitAddCart,
     handleSubmitProperty,
     handleSetImage,
@@ -841,9 +947,10 @@ export const useForm = (initialForm, validateForm) => {
     handleLoginAdmin,
     handleSubscribeNewsletter,
     handleClearCountry,
-    handleUpdateProduct,
+    handleUpdateProperty,
     openModal,
     handleCountryChange,
-    handleSubmitAddWishlist
+    handleSubmitAddWishlist,
+    handleCountryChangeAdvisor
   };
 };

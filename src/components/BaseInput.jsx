@@ -339,16 +339,16 @@ const InputBase = styled.div`
       display: grid;
       background: transparent;
       border-radius: 10px;
-
+      
       input {
+        border-radius: 10px;
         position: relative;
         background: white;
         border: 1px solid var(--trans-primary);
         padding: 8px 10px;
         color: black;
-        font-size: 1.8rem;
-        font-weight: 400;
-        letter-spacing: 1px;
+        font-size: 1.6rem;
+        font-weight: 200;
         width: 100%;
         transition: all ease 0.3s;
 

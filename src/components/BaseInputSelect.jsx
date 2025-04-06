@@ -74,6 +74,7 @@ export const BaseInputSelect = ({
              textAlign: 'left',
              position: 'relative',
              justifyContent: 'space-between',
+             zIndex: '100',
   
              '&:hover': {
                borderColor: 'none',
@@ -186,7 +187,7 @@ export const BaseInputSelect = ({
             control: (base) => ({
               ...base,
               borderRadius: 10,
-              fontSize: '12px',
+              fontSize: '10px',
               fontFamily: 'Montserrat, sans-serif',
               padding: '0',
               borderColor: '#DDE4ED',
@@ -199,6 +200,8 @@ export const BaseInputSelect = ({
               textAlign: 'left',
               position: 'relative',
               justifyContent: 'space-between',
+              
+              
               '&:hover': {
                 borderColor: '#5E9CC8',
               },
@@ -230,6 +233,7 @@ export const BaseInputSelect = ({
               width: '100%',
               display: 'grid',
               alignItems: 'center',
+              
               '&:hover': {
                 backgroundColor: '#F0F0F0',
               },
@@ -247,7 +251,7 @@ export const BaseInputSelect = ({
             singleValue: (base) => ({
               ...base,
               color: '#333',
-              fontSize: '16px',
+              fontSize: '14px',
               padding: '5px 0',
               // Media query para pantallas pequeñas
               '@media (max-width: 600px)': {
@@ -256,7 +260,7 @@ export const BaseInputSelect = ({
             }),
             placeholder: (base) => ({
               ...base,
-              fontSize: '14px',
+              fontSize: '12px',
               fontFamily: 'Montserrat, sans-serif',
               color: '#BDBDBD',
               padding: '5px 0',
@@ -271,6 +275,7 @@ export const BaseInputSelect = ({
               margin: 'auto',
               width: 'fit-content',
               height: 'fit-content',
+              
               '&:hover': {
                 color: '#7bac2b',
               },

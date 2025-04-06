@@ -7,9 +7,8 @@ import { CountrySelect } from "../../../components/CountrySelect";
 import { initialForm, useForm } from "../../../hooks/useForm";
 import { BaseInputSelect } from "../../../components/BaseInputSelect";
 import { countries } from "../../../../apiEmulated";
-import  departamentos  from "../../../colombia/colombia.json";
-
-
+import departamentos from "../../../colombia/colombia.json";
+import styled from "styled-components";
 
 export const Register = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -17,7 +16,9 @@ export const Register = () => {
 
   const handleStateChange = (e) => {
     const selectedState = e.target.value;
-    const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
+    const selectedDepartment = departamentos.find(
+      (dep) => dep.departamento === selectedState
+    );
     if (selectedDepartment) {
       setCities(selectedDepartment.ciudades);
     } else {
@@ -27,11 +28,11 @@ export const Register = () => {
   };
 
   const validationsForm = (form) => {
-  
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-    let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]+$/;
+    let regexPassword =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]+$/;
     let regexMessage = /^.{1,300}$/;
     let regexPhone = /^\+[0-9]{1,3}\s?[0-9]{10}$/;
     let name = document.getElementById("name");
@@ -44,7 +45,7 @@ export const Register = () => {
     let message = document.getElementById("message");
     let password = document.getElementById("password");
     let repassword = document.getElementById("repassword");
-  
+
     if (!form.name) {
       name.style.cssText = "border: red 1px solid;";
       errors.name = "Debes ingresar el nombre";
@@ -53,7 +54,7 @@ export const Register = () => {
     } else {
       name.style.cssText = "border: #34B0BE 1px solid;";
     }
-  
+
     if (!form.lastname) {
       lastName.style.cssText = "border: red 1px solid";
       errors.lastname = "Debes ingresar el apellido";
@@ -62,7 +63,7 @@ export const Register = () => {
     } else {
       lastName.style.cssText = "border: #34B0BE 1px solid;";
     }
-  
+
     if (!form.email) {
       email.style.cssText = "border: red 1px solid";
       errors.email = "Debes ingresar el correo electrónico";
@@ -71,19 +72,18 @@ export const Register = () => {
     } else {
       email.style.cssText = "border: #34B0BE 1px solid; color: black;";
     }
-  
+
     if (!form.phone) {
       phone.style.cssText = "border: red 1px solid";
       errors.phone = "Field phone are required";
     } else if (!regexPhone.test(form.phone.trim())) {
       errors.phone = "Phone field have must only numbers";
-    } else if (phone.value.length <= '12') {
+    } else if (phone.value.length <= "12") {
       errors.phone = "Phone format incorrect";
-    }else {
+    } else {
       phone.style.cssText = "border: #34B0BE 1px solid;";
     }
-  
-  
+
     if (!form.country) {
       country.style.cssText = "border: red 1px solid; border-radius: 5px;";
       errors.country = "Debes seleccionar el país";
@@ -102,30 +102,27 @@ export const Register = () => {
     } else {
       city.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";
     }
-  
-  
-    if (!password.value ) {
+
+    if (!password.value) {
       password.style.cssText = "border: red 1px solid";
       errors.password = "Debes ingresar una contraseña";
-    } else if (password.value.length <= '6') {
+    } else if (password.value.length <= "6") {
       errors.password = "la contraseña debe tener al menos 6 caracteres";
     } else if (!regexPassword.test(password.value.trim())) {
       errors.password = "La contraseña debe tener letras y números";
-    }
-  
-    else{
+    } else {
       password.style.cssText = "border: #34B0BE 1px solid;";
     }
-  
+
     // if (!form.repassword ) {
     //   repassword.style.cssText = "border: red 1px solid";
-      
+
     // } else if (!regexPassword.test(form.password.trim())) {
     //   errors.repassword = "password field have must letters and numbers";
     // } else {
     //   repassword.style.cssText = "border: #34B0BE 1px solid;";
     // }
-  
+
     // if (password.value !== repassword.value) {
     //   repassword.style.cssText = "border: red 1px solid";
     //   password.style.cssText = "border: red 1px solid";
@@ -142,7 +139,7 @@ export const Register = () => {
     //   password.style.cssText = "border: #34B0BE 1px solid;";
     //   repassword.style.cssText = "border: #34B0BE 1px solid;";
     // }
-  
+
     // if (!form.message) {
     //   message.style.cssText = "border: red 1px solid";
     //   errors.message = "Field message are required";
@@ -151,7 +148,7 @@ export const Register = () => {
     // } else {
     //   message.style.cssText = "border: #34B0BE 1px solid;";
     // }
-  
+
     return errors;
   };
 
@@ -170,58 +167,57 @@ export const Register = () => {
   } = useForm(initialForm, validationsForm);
 
   return (
+    <AuTh>
     <div className="auth">
-      <form onSubmit={handleSubmits}>
-        <div className="auth-input">
+      <form className="form" onSubmit={handleSubmits}>
+        <BaseInputSelect
+          height={"100%"}
+          width={"100%"}
+          classs={"inputs normal"}
+          id="country"
+          placeholder="Seleccionar país"
+          isSmallSelect={true}
+          name="country"
+          value={form.country}
+          onChange={handleCountryChange}
+          handleBlur={handleBlur}
+          options={countries}
+          required
+        />
+        {/* {errors.country && <p className="warnings-form">{errors.country}</p>} */}
+
+        <BaseInput
+          classs={"inputs normal"}
+          placeholder="Nombre"
+          name="name"
+          id="name"
+          value={form.name}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required
+        />
+        {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+
+        <BaseInput
+          classs={"inputs normal"}
+          placeholder="Apellido"
+          name="lastname"
+          id="lastname"
+          value={form.lastname}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required
+        />
+        {/* {errors.lastname && <p className="warnings-form">{errors.lastname}</p>} */}
+
+        <div className="grid-l">
           <BaseInputSelect
-            height={"30px"}
-            classs={"inputs outline"}
-            id="country"
-            placeholder="Seleccionar país"
-            isSelect={true}
-            name="country"
-            value={form.country}
-            onChange={handleCountryChange}
-            handleBlur={handleBlur}
-            options={countries}
-            textLabel={true}
-            required
-          />
-          {/* {errors.country && <p className="warnings-form">{errors.country}</p>} */}
-        </div>
-        <div  className="auth-input">
-          <BaseInput
-            classs={"inputs outline"}
-            placeholder="Nombre"
-            name="name"
-            id="name"
-            value={form.name}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            required
-          />
-          {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
-        </div>
-        <div  className="auth-input">
-          <BaseInput
-            classs={"inputs outline"}
-            placeholder="Apellido"
-            name="lastname"
-            id="lastname"
-            value={form.lastname}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            required
-          />
-          {/* {errors.lastname && <p className="warnings-form">{errors.lastname}</p>} */}
-        </div>
-        <div  className="auth-input">
-          <BaseInputSelect
-            height={"30px"}
-            classs={"inputs outline"}
+            height={"100%"}
+            width={"100%"}
+            classs={"inputs normal"}
             id="state"
             name="state"
-            placeholder="Seleccionar departamento"
+            placeholder="Departamento"
             value={form.state}
             onChange={handleStateChange}
             handleBlur={handleBlur}
@@ -229,35 +225,33 @@ export const Register = () => {
               value: dep.departamento,
               label: dep.departamento,
             }))}
-            isSelect={true}
-            textLabel={true}
+            isSmallSelect={true}
             required
           />
           {/* {errors.state && <p className="warnings-form">{errors.state}</p>} */}
-        </div>
-        <div  className="auth-input">
+
           <BaseInputSelect
-            height={"30px"}
-            classs={"inputs outline"}
+            height={"100%"}
+            width={"100%"}
+            classs={"inputs normal"}
             id="city"
             name="city"
-            placeholder="Seleccionar ciudad"
+            placeholder="Ciudad"
             value={form.city}
             onChange={handleChange}
             handleBlur={handleBlur}
-            options={cities.map(city => ({
+            options={cities.map((city) => ({
               value: city,
               label: city,
             }))}
-            isSelect={true}
-            textLabel={true}
+            isSmallSelect={true}
             required
           />
           {/* {errors.city && <p className="warnings-form">{errors.city}</p>} */}
         </div>
-        <div  className="auth-input">
+        <div className="grid-l">
           <BaseInput
-            classs={"inputs outline"}
+            classs={"inputs normal"}
             placeholder="Teléfono"
             name="phone"
             id="phone"
@@ -268,10 +262,9 @@ export const Register = () => {
             isNumber
           />
           {/* {errors.phone && <p className="warnings-form">{errors.phone}</p>} */}
-        </div>
-        <div  className="auth-input">
+
           <BaseInput
-            classs={"inputs outline"}
+            classs={"inputs normal"}
             placeholder="Correo electrónico"
             name="email"
             id="email"
@@ -283,37 +276,50 @@ export const Register = () => {
           />
           {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
         </div>
-        <div  className="auth-input">
-          <BaseInput
-            classs={"inputs outline"}
-            placeholder="Contraseña"
-            name="password"
-            id="password"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={form.password}
-            isPassword
-            required
-          />
-          {/* {errors.password && <p className="warnings-form">{errors.password}</p>} */}
-        </div>
-        <BaseButton handleClick={handleSubmits} classs={"button full-primary"} textLabel={true} label="Registrarme" />
+
+        <BaseInput
+          classs={"inputs normal"}
+          placeholder="Contraseña"
+          name="password"
+          id="password"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={form.password}
+          isPassword
+          required
+        />
+        {/* {errors.password && <p className="warnings-form">{errors.password}</p>} */}
+
+        <BaseButton
+          handleClick={handleSubmits}
+          classs={"button full-primary"}
+          textLabel={true}
+          label="Registrarme"
+        />
       </form>
       <div className="auth-gruop2">
         <h3>Continuar con</h3>
       </div>
       <div className="auth-social">
-        <img src={getImg('svg', 'facebook', 'svg')} alt="facebook-logo" />
-        <img src={getImg('svg', 'google-icon', 'svg')} alt="google-logo" />
-        <img src={getImg('svg', 'twitter', 'svg')} alt="twitter-logo" />
-        <img src={getImg('svg', 'linkedin', 'svg')} alt="linkedin-linkedin" />
-        <img src={getImg('svg', 'apple-logo', 'svg')} alt="apple-logo" />
+        <img src={getImg("svg", "facebook", "svg")} alt="facebook-logo" />
+        <img src={getImg("svg", "google-icon", "svg")} alt="google-logo" />
+        <img src={getImg("svg", "twitter", "svg")} alt="twitter-logo" />
+        <img src={getImg("svg", "linkedin", "svg")} alt="linkedin-linkedin" />
+        <img src={getImg("svg", "apple-logo", "svg")} alt="apple-logo" />
       </div>
       <div className="auth-tyc">
-        <p>
-          {/* {t('globals.tycText')} */}
-        </p>
+        <p>{/* {t('globals.tycText')} */}</p>
       </div>
     </div>
+    </AuTh>
   );
 };
+
+const AuTh = styled.div`
+display: grid;
+  .grid-l{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+`
