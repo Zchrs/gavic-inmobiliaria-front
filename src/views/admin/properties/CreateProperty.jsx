@@ -9,21 +9,8 @@ import { DropZone } from "../../../components/DropZone";
 import { values } from "../../../sectors/dataSectors";
 
 export const CreateProperty = () => {
-  const [selectedBedRoom, setSelectedBedRoom] = useState("");
-  const [selectedBathRoom, setSelectedBathRoom] = useState("");
-  const [selectedDiningRoom, setSelectedDiningRoom] = useState("");
-  const [selectedLivingRoom, setSelectedLivingRoom] = useState("");
-  const [selectedClothingZone, setSelectedClothingZone] = useState("");
-  const [selectedKitchen, setSelectedKitchen] = useState("");
-  const [selectedFloor, setSelectedFloor] = useState("");
-  const [selectedStratum, setSelectedStratum] = useState("");
-  const [selectedSector, setSelectedSector] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedAction, setSelectedAction] = useState("");
 
-
-
-  const validationsForm = (form, data) => {
+  const validationsForm = (formProperty) => {
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexPrice = /^(0\.([1-9]\d*|[0-9]))$|^[1-9]\d*(\.\d{1,2})?$/;
@@ -42,180 +29,149 @@ export const CreateProperty = () => {
     let closets = document.getElementById("closets");
     let floor = document.getElementById("floor");
     let stratum = document.getElementById("stratum");
+    let action = document.getElementById("action");
     let image = document.getElementById("image");
     let img_url = document.getElementById("images");
 
-    if (!form.name) {
-      name.style.cssText = "border: red 1px solid;";
+    if (!formProperty.name) {
+      name.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.name = "Escribe un nombre de producto";
-    } else if (!regexName.test(form.name.trim())) {
+    } else if (!regexName.test(formProperty.name.trim())) {
       errors.name = "Nombre de producto debe contener solo letras";
     } else {
-      name.style.cssText = "border: #34B0BE 1px solid;";
+      name.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.price) {
-      price.style.cssText = "border: red 1px solid";
+    if (!formProperty.price) {
+      price.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.price = "Escribe un precio";
-    } else if (!regexPrice.test(form.price.trim())) {
+    } else if (!regexPrice.test(formProperty.price.trim())) {
       errors.price = "Precio debe contener solo números ej: 0.1";
     } else {
-      price.style.cssText = "border: #34B0BE 1px solid;";
+      price.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.district) {
-      district.style.cssText = "border: red 1px solid";
+    if (!formProperty.district) {
+      district.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.district = "Escribe una categoría";
     } else {
-      district.style.cssText = "border: #34B0BE 1px solid;";
+      district.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.category) {
-      category.style.cssText = "border: red 1px solid";
+    if (!formProperty.category) {
+      category.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.category = "Escribe una categoría";
     } else {
-      category.style.cssText = "border: #34B0BE 1px solid;";
+      category.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.description) {
-      description.style.cssText = "border: red 1px solid";
+    if (!formProperty.description) {
+      description.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.description = "Debes escribir una descripción";
     } else {
-      description.style.cssText = "border: #34B0BE 1px solid;";
+      description.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.bedRoom) {
-      bedRoom.style.cssText = "border: red 1px solid";
+    if (!formProperty.bedRoom) {
+      bedRoom.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.bedRoom = "Escribe un precio anterior";
-    } else if (!regexOnlyNumbers.test(form.bedRoom.trim())) {
+    } else if (!regexOnlyNumbers.test(formProperty.bedRoom.trim())) {
       errors.bedRoom = "Baños debe contener solo números ej: 1";
     } else {
-      bedRoom.style.cssText = "border: #34B0BE 1px solid;";
+      bedRoom.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.diningRoom) {
-      diningRoom.style.cssText = "border: red 1px solid";
+    if (!formProperty.diningRoom) {
+      diningRoom.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.diningRoom = "Escribe un precio anterior";
-    } else if (!regexOnlyNumbers.test(form.diningRoom.trim())) {
-      errors.diningRoom = "Baños debe contener solo números ej: 1";
     } else {
-      diningRoom.style.cssText = "border: #34B0BE 1px solid;";
+      diningRoom.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.kitchen) {
-      kitchen.style.cssText = "border: red 1px solid";
+    if (!formProperty.kitchen) {
+      kitchen.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.kitchen = "Debes seleccionar una opción";
     } else {
-      kitchen.style.cssText = "border: #34B0BE 1px solid;";
+      kitchen.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.bathRoom) {
-      bathRoom.style.cssText = "border: red 1px solid";
+    if (!formProperty.bathRoom) {
+      bathRoom.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.bathRoom = "Escribe una cantidad";
-    } else if (!regexOnlyNumbers.test(form.bathRoom.trim())) {
+    } else if (!regexOnlyNumbers.test(formProperty.bathRoom.trim())) {
       errors.bathRoom = "Baños debe contener solo números ej: 1; ";
     } else {
-      bathRoom.style.cssText = "border: #34B0BE 1px solid;";
+      bathRoom.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.closets) {
-      closets.style.cssText = "border: red 1px solid";
+    if (!formProperty.closets) {
+      closets.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.closets = "Escribe una cantidad";
-    } else if (!regexOnlyNumbers.test(form.closets.trim())) {
-      errors.closets = "Baños debe contener solo números ej: 1; ";
     } else {
-      closets.style.cssText = "border: #34B0BE 1px solid;";
+      closets.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.floor) {
-      floor.style.cssText = "border: red 1px solid";
+    if (!formProperty.floor) {
+      floor.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.floor = "Debes seleccionar una opción";
     } else {
-      floor.style.cssText = "border: #34B0BE 1px solid;";
+      floor.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.stratum) {
-      stratum.style.cssText = "border: red 1px solid";
+    if (!formProperty.stratum) {
+      stratum.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.stratum = "Debes seleccionar una opción";
     } else {
-      stratum.style.cssText = "border: #34B0BE 1px solid;";
+      stratum.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.clothing) {
-      clothing.style.cssText = "border: red 1px solid";
+    if (!formProperty.clothing) {
+      clothing.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.clothing = "Debes seleccionar una opción";
     } else {
-      clothing.style.cssText = "border: #34B0BE 1px solid;";
+      clothing.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.image) {
-      image.style.cssText = "border: red 1px solid";
+    if (!formProperty.action) {
+      action.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.action = "Debes seleccionar una opción";
+    } else {
+      action.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
+    }
+
+    if (!formProperty.image) {
+      image.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.image = "Selecciona al menos una imagen";
     } else {
-      image.style.cssText = "border: #34B0BE 1px solid;";
+      image.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!form.img_url) {
-      img_url.style.cssText = "border: red 1px solid";
+    if (!formProperty.img_url || formProperty.img_url.length === 0) {
+      img_url.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.img_url = "Selecciona al menos una imagen";
     } else {
-      img_url.style.cssText = "border: #34B0BE 1px solid;";
+      img_url.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
     return errors;
   };
 
   const {
-    form,
-    errors,
-    loading,
-    response,
-    setForm,
-    handleChange,
-    handleImageChange,
+    formProperty,
+    handleChangeProperty,
+    handleBlurProperty,
+    handleSetImages,
     handleSetImage,
-    handleBlur,
+    handleImageChangeProperty,
+    handleImagesChangeProperty,
     handleSubmitProperty,
   } = useForm(initialPropertyForm, validationsForm);
 
-  const handleBedRoom = (e) => {
-    setSelectedBedRoom(e.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleBathRoom = (p) => {
-    setSelectedBathRoom(p.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleDiningRoom = (b) => {
-    setSelectedDiningRoom(b.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleLivingRoom = (b) => {
-    setSelectedLivingRoom(b.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleClothingZone = (b) => {
-    setSelectedClothingZone(b.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleKitchen = (c) => {
-    setSelectedKitchen(c.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleFloor = (c) => {
-    setSelectedFloor(c.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleStratum = (c) => {
-    setSelectedStratum(c.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleSector = (c) => {
-    setSelectedSector(c.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleCategory = (c) => {
-    setSelectedCategory(c.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleAction = (c) => {
-    setSelectedAction(c.target.value); // Actualizar el estado con la opción seleccionada
-  };
 
   return (
     <Create>
       <div className="create" id="create-property">
-        <form className="form"  action="" >
+        <form className="form">
           <div className="grid">
             <BaseInput
               id="name"
@@ -223,6 +179,9 @@ export const CreateProperty = () => {
               placeholder={"Título"}
               classs={"inputs normal"}
               type="text"
+              onChange={handleChangeProperty}
+              onBlur={handleBlurProperty}
+              value={formProperty.name}
             />
             <div className="grid-k">
               <BaseInput
@@ -231,12 +190,16 @@ export const CreateProperty = () => {
                 classs={"inputs normal"}
                 id="price"
                 name="price"
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
+                value={formProperty.price}
               />
               <BaseInputSelect
                 placeholder={"Sector"}
                 options={values}
-                value={selectedSector}
-                onChange={handleSector}
+                value={formProperty.district}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 isSmallSelect={true}
                 id="district"
                 name="district"
@@ -244,19 +207,20 @@ export const CreateProperty = () => {
             </div>
             <BaseInputSelect
               options={[
-                { value: "option2", label: "Apartamento" },
-                { value: "option3", label: "Apartaestudio" },
-                { value: "option9", label: "Bodega" },
-                { value: "option1", label: "Casa" },
-                { value: "option7", label: "Casa Finca" },
-                { value: "option5", label: "Casa Local" },
-                { value: "option6", label: "Finca" },
-                { value: "option4", label: "Local" },
-                { value: "option8", label: "Oficina" },
+                { value: "Apartamento", label: "Apartamento" },
+                { value: "Apartaestudio", label: "Apartaestudio" },
+                { value: "Bodega", label: "Bodega" },
+                { value: "Casa", label: "Casa" },
+                { value: "Casa Finca", label: "Casa Finca" },
+                { value: "Casa Local", label: "Casa Local" },
+                { value: "Finca", label: "Finca" },
+                { value: "Local", label: "Local" },
+                { value: "Oficina", label: "Oficina" },
               ]}
               placeholder={"Categoría"}
-              value={selectedCategory}
-              onChange={handleCategory}
+              value={formProperty.category}
+              onChange={handleChangeProperty}
+              onBlur={handleBlurProperty}
               classs={"inputs normal"}
               isSmallSelect
               id="category"
@@ -269,108 +233,117 @@ export const CreateProperty = () => {
               classs={"inputs normal"}
               id="description"
               name="description"
+              onBlur={handleBlurProperty}
+              onChange={handleChangeProperty}
+              value={formProperty.description}
             />
             <div className="grid-k">
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "1" },
-                  { value: "option2", label: "2" },
-                  { value: "option3", label: "3" },
-                  { value: "option4", label: "4" },
-                  { value: "option5", label: "5" },
-                  { value: "option6", label: "6" },
-                  { value: "option7", label: "7" },
+                  { value: "1", label: "1" },
+                  { value: "2", label: "2" },
+                  { value: "3", label: "3" },
+                  { value: "4", label: "4" },
+                  { value: "5", label: "5" },
+                  { value: "6", label: "6" },
+                  { value: "7", label: "7" },
                 ]}
                 placeholder={"Alcobas"}
                 isSmallSelect={true}
-                value={selectedBedRoom}
-                onChange={handleBedRoom}
+                value={formProperty.bedRoom}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 id={"bedroom"}
-                name={"bedroom"}
+                name={"bedRoom"}
               />
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "1" },
-                  { value: "option2", label: "2" },
-                  { value: "option3", label: "3" },
-                  { value: "option4", label: "4" },
-                  { value: "option5", label: "5" },
-                  { value: "option6", label: "6" },
-                  { value: "option7", label: "7" },
+                  { value: "1", label: "1" },
+                  { value: "2", label: "2" },
+                  { value: "3", label: "3" },
+                  { value: "4", label: "4" },
+                  { value: "5", label: "5" },
+                  { value: "6", label: "6" },
+                  { value: "7", label: "7" },
                 ]}
                 placeholder={"Baños"}
                 isSmallSelect={true}
-                value={selectedBathRoom}
-                onChange={handleBathRoom}
+                value={formProperty.bathRoom}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 id={"bathroom"}
-                name={"bathroom"}
+                name={"bathRoom"}
               />
             </div>
             <div className="grid-k">
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "Sí" },
-                  { value: "option2", label: "No" },
+                  { value: "Sí", label: "Sí" },
+                  { value: "No", label: "No" },
                 ]}
                 placeholder={"Sala comedor"}
                 isSmallSelect={true}
-                value={selectedLivingRoom}
-                onChange={handleLivingRoom}
-                id={"diningRoom"}
+                value={formProperty.diningRoom}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
+                id={"diningroom"}
                 name={"diningRoom"}
               />
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "1" },
-                  { value: "option2", label: "2" },
-                  { value: "option3", label: "3" },
-                  { value: "option4", label: "4" },
-                  { value: "option5", label: "5" },
-                  { value: "option6", label: "6" },
-                  { value: "option7", label: "7" },
+                  { value: "1", label: "1" },
+                  { value: "2", label: "2" },
+                  { value: "3", label: "3" },
+                  { value: "4", label: "4" },
+                  { value: "5", label: "5" },
+                  { value: "6", label: "6" },
+                  { value: "7", label: "7" },
                 ]}
                 placeholder={"Closets"}
                 isSmallSelect={true}
-                value={selectedDiningRoom}
-                onChange={handleDiningRoom}
-                id={"diningRoom"}
-                name={"diningRoom"}
+                value={formProperty.closets}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
+                id={"closets"}
+                name={"closets"}
               />
             </div>
             <div className="grid-k">
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "Integral" },
-                  { value: "option1", label: "En línea" },
-                  { value: "option2", label: "En paralelo" },
-                  { value: "option3", label: "En L" },
-                  { value: "option4", label: "En U" },
-                  { value: "option5", label: "Con isla" },
-                  { value: "option6", label: "Con barra" },
+                  { value: "Integral", label: "Integral" },
+                  { value: "En línea", label: "En línea" },
+                  { value: "En paralelo", label: "En paralelo" },
+                  { value: "En L", label: "En L" },
+                  { value: "En U", label: "En U" },
+                  { value: "Con isla", label: "Con isla" },
+                  { value: "Con barra", label: "Con barra" },
                   {
-                    value: "option7",
+                    value: "Cocina abierta a la zona de día",
                     label: "Cocina abierta a la zona de día",
                   },
                 ]}
                 placeholder={"Cocina"}
                 classs={"inputs normal"}
                 isSmallSelect={true}
-                value={selectedKitchen}
-                onChange={handleKitchen}
+                value={formProperty.kitchen}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 id={"kitchen"}
                 name={"kitchen"}
               />
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "Baldosa" },
-                  { value: "option2", label: "Cerámica" },
-                  { value: "option3", label: "Porcelanato" },
-                  { value: "option4", label: "Piedra natural" },
+                  { value: "Baldosa", label: "Baldosa" },
+                  { value: "Cerámica", label: "Cerámica" },
+                  { value: "Porcelanato", label: "Porcelanato" },
+                  { value: "Piedra natural", label: "Piedra natural" },
                 ]}
                 placeholder={"Piso"}
                 isSmallSelect={true}
-                value={selectedFloor}
-                onChange={handleFloor}
+                value={formProperty.floor}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 id={"floor"}
                 name={"floor"}
               />
@@ -378,45 +351,48 @@ export const CreateProperty = () => {
             <div className="grid-three">
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "1" },
-                  { value: "option2", label: "2" },
-                  { value: "option3", label: "3" },
-                  { value: "option4", label: "4" },
-                  { value: "option4", label: "5" },
-                  { value: "option4", label: "6" },
+                  { value: "1", label: "1" },
+                  { value: "2", label: "2" },
+                  { value: "3", label: "3" },
+                  { value: "4", label: "4" },
+                  { value: "5", label: "5" },
+                  { value: "6", label: "6" },
                 ]}
                 width={"100%"}
                 placeholder={"Estrato"}
                 isSmallSelect={true}
-                value={selectedStratum}
-                onChange={handleStratum}
+                value={formProperty.stratum}  
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 id="stratum"
                 name="stratum"
               />
               <BaseInputSelect
                 options={[
-                  { value: "option1", label: "1" },
-                  { value: "option2", label: "2" },
-                  { value: "option2", label: "No" },
+                  { value: "1", label: "1" },
+                  { value: "2", label: "2" },
+                  { value: "no", label: "No" },
                 ]}
                 width={"100%"}
                 placeholder={"Zona de ropa"}
                 isSmallSelect={true}
-                value={selectedClothingZone}
-                onChange={handleClothingZone}
+                value={formProperty.clothing}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 id="clothing"
                 name="clothing"
               />
             <BaseInputSelect
                 options={[
-                  { value: "option1", label: "Venta" },
-                  { value: "option2", label: "Arrendamiento" },
+                  { value: "Venta", label: "Venta" },
+                  { value: "Arrendamiento", label: "Arrendamiento" },
                 ]}
                 width={"100%"}
                 placeholder={"Opción"}
                 isSmallSelect={true}
-                value={selectedAction}
-                onChange={handleAction}
+                value={formProperty.action}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
                 id="action"
                 name="action"
               />
@@ -425,20 +401,27 @@ export const CreateProperty = () => {
           <div className="images">
             <div>
               <h4>Imagen principal</h4>
-              <DropZone id="image" name="image" type="file" />
+              <DropZone 
+              id="image" 
+              name="image" 
+              type="file" 
+              setImage={handleSetImage}
+              onChange={handleImageChangeProperty}
+              onBlur={handleBlurProperty}
+              />
             </div>
             <div>
               <h4>Imágenes alternativas</h4>
               <MultiDropZone
-                onBlur={handleBlur}
-                id="img_url"
+                id="images"
                 name="img_url"
                 type="file"
-                onChange={handleImageChange}
-                setImages={handleSetImage}
+                setImages={handleSetImages}
+                onChange={handleImagesChangeProperty}
+                onBlur={handleBlurProperty}
               />
             </div>
-        <BaseButton classs={"button full-primary"} textLabel={true} label={"Enviar"} />
+        <BaseButton handleClick={handleSubmitProperty} classs={"button full-primary"} textLabel={true} label={"Enviar"} />
           </div>
         </form>
       </div>

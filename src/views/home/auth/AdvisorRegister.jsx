@@ -17,14 +17,14 @@ export const AdvisorRegister = () => {
       const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
       if (selectedDepartment) {
         setCities(selectedDepartment.ciudades);
-        setFormAdvisor({
-          ...formAdvisor,
-        });
+
       } else {
         setCities([]);
       }
+      setFormAdvisor({
+        ...formAdvisor,
+      });
       handleChangeAdvisor(e); // Para actualizar el estado del formulario
-
     };
 
     const handleDnaType = (e) => {
@@ -32,6 +32,7 @@ export const AdvisorRegister = () => {
       setFormAdvisor({
         ...formAdvisor,
       });
+      handleChangeAdvisor(e); 
     };
   
     const validationsForm = (formAdvisor) => {
@@ -42,7 +43,8 @@ export const AdvisorRegister = () => {
       let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]+$/;
       let regexDateExp = /^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[0-2])[/]\d{4}$/;
       let regexMessage = /^.{1,300}$/;
-      let regexPhone = /^\+[0-9]{1,3}\s?[0-9]{10}$/;
+      // let regexPhone = /^\+[0-9]{1,3}\s?[0-9]{10}$/;
+      let regexPhone = /^\+?[\d\s-]{8,20}$/;
       let country = document.getElementById("country");
       let name = document.getElementById("name");
       let lastName = document.getElementById("lastname");
@@ -51,6 +53,7 @@ export const AdvisorRegister = () => {
       let expDate = document.getElementById("exp-date");
       let state = document.getElementById("state");
       let city = document.getElementById("city");
+      let address = document.getElementById("address");
       let email = document.getElementById("email");
       let phone = document.getElementById("phone");
       let password = document.getElementById("password");
@@ -92,9 +95,9 @@ export const AdvisorRegister = () => {
       
       if (!formAdvisor.typeDoc) {
         typeDoc.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.typeDoc = "Field typeDoc are required";
-      }  else if (typeDoc.value.length <= '12') {
-        errors.typeDoc = "option format incorrect";
+        errors.typeDoc = "Debes seleccionar el tipo de documento";
+      }  else if (typeDoc.value.length <= '6') {
+        errors.typeDoc = "Opción incorrecta";
       }else {
         expDate.style.cssText = "border: #34B0BE 1px solid;";
       }
@@ -102,8 +105,8 @@ export const AdvisorRegister = () => {
       if (!formAdvisor.expDate) {
         expDate.style.cssText = "border: red 1px solid; border-radius: 10px;";
         errors.expDate = "Field expDate are required";
-      } else if (expDate.value.length > '6') {
-        errors.expDate = "expDate format incorrect";
+      } else if (expDate.value.length < '6') {
+        errors.expDate = "Fecha de expedición incorrecta";
       }else {
         expDate.style.cssText = "border: #34B0BE 1px solid;";
       }
@@ -111,34 +114,43 @@ export const AdvisorRegister = () => {
       if (!formAdvisor.dnaId) {
         dnaId.style.cssText = "border: red 1px solid; border-radius: 10px;";
         errors.dnaId = "Field dnaId are required";
-      }  else if (dnaId.value.length > '6') {
-        errors.dnaId = "dnaId format incorrect";
+      }  else if (dnaId.value.length < '6') {
+        errors.dnaId = "Formato de cédula incorrecto";
       }else {
         dnaId.style.cssText = "border: #34B0BE 1px solid;";
       }
 
       if (!formAdvisor.city) {
         city.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.city = "Debes seleccionar el país";
+        errors.city = "Debes seleccionar una ciudad";
       } else {
         city.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
       }
     
       if (!formAdvisor.state) {
         state.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.state = "Debes seleccionar el país";
+        errors.state = "Debes seleccionar un departamento";
       } else {
         state.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
       }
+
+      if (!formAdvisor.address) {
+        address.style.cssText = "border: red 1px solid; border-radius: 10px;";
+        errors.address = "Debes ingresar la dirección";
+      } else if (!regexName.test(formAdvisor.address.trim())) {
+        errors.address = "formato de dirección incorrecto";
+      } else {
+        address.style.cssText = "border: #34B0BE 1px solid;";
+      }
     
       if (!formAdvisor.phone) {
-        phone.style.cssText = "border: red 1px solid";
-        errors.phone = "Field phone are required";
+        phone.style.cssText = "border: red 1px solid; border-radius: 10px;";
+        errors.phone = "Nqecesitas ingresar el teléfono";
       } else if (!regexPhone.test(formAdvisor.phone.trim())) {
-        errors.phone = "Phone field have must only numbers";
-      } else if (phone.value.length <= '12') {
-        errors.phone = "Phone format incorrect";
-      }else {
+        errors.phone = "Formato de teléfono incorrecto";
+      } else if (formAdvisor.phone.trim().length <= 11) { // mínimo: +57 3001234567
+        errors.phone = "Número incorrecto";
+      } else {
         phone.style.cssText = "border: #34B0BE 1px solid;";
       }
     
@@ -161,6 +173,7 @@ export const AdvisorRegister = () => {
   
     const {
       formAdvisor,
+      errors,
       handleChangeAdvisor,
       handleBlurAdvisor,
       handleSubmitsAdvisor,
@@ -219,7 +232,7 @@ export const AdvisorRegister = () => {
                     id="dna-type"
                     name="dna-type"
                     placeholder="Documento"
-                    value={selectedDnaType}
+                    value={formAdvisor.typeDoc}
                     onChange={handleDnaType}
                     handleBlur={handleBlurAdvisor}
                     options={[
@@ -232,6 +245,7 @@ export const AdvisorRegister = () => {
                   />
                 <div className="grid-l">
 
+                  <div className="group">
                   <BaseInput
                     classs={"inputs normal"}
                     placeholder="Número de cédula"
@@ -243,6 +257,7 @@ export const AdvisorRegister = () => {
                     required
                     isNumber
                   />
+                  </div>
                   <BaseInput
                     classs={"inputs normal"}
                     name="expDate"
@@ -293,6 +308,16 @@ export const AdvisorRegister = () => {
                   />
                   {/* {errors.city && <p className="warnings-formAdvisor">{errors.city}</p>} */}
                 </div>
+                <BaseInput
+                  classs={"inputs normal"}
+                  placeholder="Dirección de residencia"
+                  name="address"
+                  id="address"
+                  onBlur={handleBlurAdvisor}
+                  onChange={handleChangeAdvisor}
+                  value={formAdvisor.address}
+                  required
+                />
                 <div className="grid-l">
                   <BaseInput
                     classs={"inputs normal"}
@@ -305,7 +330,6 @@ export const AdvisorRegister = () => {
                     required
                     isNumber
                   />
-                  {/* {errors.phone && <p className="warnings-formAdvisor">{errors.phone}</p>} */}
         
                   <BaseInput
                     classs={"inputs normal"}
@@ -382,5 +406,8 @@ const RegisterAdvisor = styled.div`
     width: fit-content;
     height: fit-content;
   }
+}
+.group{
+  display: grid;
 }
 `

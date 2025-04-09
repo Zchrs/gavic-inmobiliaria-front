@@ -11,7 +11,6 @@ import departamentos from "../../../colombia/colombia.json";
 import styled from "styled-components";
 
 export const Register = () => {
-  const [selectedCountry, setSelectedCountry] = useState("");
   const [cities, setCities] = useState([]);
 
   const handleStateChange = (e) => {
@@ -24,8 +23,13 @@ export const Register = () => {
     } else {
       setCities([]);
     }
+    setForm({
+      ...form,
+    })
     handleChange(e); // Para actualizar el estado del formulario
   };
+
+  
 
   const validationsForm = (form) => {
     let errors = {};
@@ -34,7 +38,8 @@ export const Register = () => {
     let regexPassword =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]+$/;
     let regexMessage = /^.{1,300}$/;
-    let regexPhone = /^\+[0-9]{1,3}\s?[0-9]{10}$/;
+    // let regexPhone = /^\+[0-9]{1,3}\s?[0-9]{12}$/;
+    let regexPhone = /^\+?[\d\s-]{8,20}$/;
     let name = document.getElementById("name");
     let lastName = document.getElementById("lastname");
     let country = document.getElementById("country");
@@ -42,12 +47,11 @@ export const Register = () => {
     let city = document.getElementById("city");
     let email = document.getElementById("email");
     let phone = document.getElementById("phone");
-    let message = document.getElementById("message");
     let password = document.getElementById("password");
-    let repassword = document.getElementById("repassword");
+    let address = document.getElementById("address");
 
     if (!form.name) {
-      name.style.cssText = "border: red 1px solid;";
+      name.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.name = "Debes ingresar el nombre";
     } else if (!regexName.test(form.name.trim())) {
       errors.name = "El nombre debe tener solo letras";
@@ -65,7 +69,7 @@ export const Register = () => {
     }
 
     if (!form.email) {
-      email.style.cssText = "border: red 1px solid";
+      email.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.email = "Debes ingresar el correo electrónico";
     } else if (!regexEmail.test(form.email.trim())) {
       errors.email = "Formato de correo incorrecto";
@@ -74,33 +78,40 @@ export const Register = () => {
     }
 
     if (!form.phone) {
-      phone.style.cssText = "border: red 1px solid";
-      errors.phone = "Field phone are required";
+      phone.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.phone = "Field phone is required";
     } else if (!regexPhone.test(form.phone.trim())) {
-      errors.phone = "Phone field have must only numbers";
-    } else if (phone.value.length <= "12") {
-      errors.phone = "Phone format incorrect";
+      errors.phone = "Phone must start with + and have 10 digits after the code";
+    } else if (form.phone.trim().length <= 11) { // mínimo: +57 3001234567
+      errors.phone = "Phone format is too short";
     } else {
       phone.style.cssText = "border: #34B0BE 1px solid;";
     }
 
+    if (!form.address) {
+      address.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.address = "Debes ingresar tu dirección";
+    }  else {
+      address.style.cssText = "border: #34B0BE 1px solid;";
+    }
+
     if (!form.country) {
-      country.style.cssText = "border: red 1px solid; border-radius: 5px;";
+      country.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.country = "Debes seleccionar el país";
     } else {
-      country.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";
+      country.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
     if (!form.state) {
-      state.style.cssText = "border: red 1px solid; border-radius: 5px;";
+      state.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.state = "Debes seleccionar el país";
     } else {
-      state.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";
+      state.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
     if (!form.city) {
-      city.style.cssText = "border: red 1px solid; border-radius: 5px;";
+      city.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.city = "Debes seleccionar el país";
     } else {
-      city.style.cssText = "border: #34B0BE 1px solid; border-radius: 5px;";
+      city.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
     if (!password.value) {
@@ -114,50 +125,13 @@ export const Register = () => {
       password.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    // if (!form.repassword ) {
-    //   repassword.style.cssText = "border: red 1px solid";
-
-    // } else if (!regexPassword.test(form.password.trim())) {
-    //   errors.repassword = "password field have must letters and numbers";
-    // } else {
-    //   repassword.style.cssText = "border: #34B0BE 1px solid;";
-    // }
-
-    // if (password.value !== repassword.value) {
-    //   repassword.style.cssText = "border: red 1px solid";
-    //   password.style.cssText = "border: red 1px solid";
-    //   errors.password = "Passwordwords no matches"
-    // }else if (password.value === '' && repassword.value === '') {
-    //   repassword.style.cssText = "border: red 1px solid";
-    //   password.style.cssText = "border: red 1px solid";
-    //   errors.password = "Password password are required";
-    //   errors.repassword = "Please confirm repassword";
-    // } else if (password.value.length <= '6') {
-    //   errors.password = "Passwordword must contain 7 or more characters";
-    // }
-    // else {
-    //   password.style.cssText = "border: #34B0BE 1px solid;";
-    //   repassword.style.cssText = "border: #34B0BE 1px solid;";
-    // }
-
-    // if (!form.message) {
-    //   message.style.cssText = "border: red 1px solid";
-    //   errors.message = "Field message are required";
-    // } else if (!regexMessage.test(form.message.trim())) {
-    //   errors.message = "Limit characters exceded 300 max";
-    // } else {
-    //   message.style.cssText = "border: #34B0BE 1px solid;";
-    // }
-
     return errors;
   };
 
   const {
     form,
     errors,
-    loading,
-    response,
-    modal,
+    setForm,
     handleChange,
     handleBlur,
     handleSubmit,
@@ -252,16 +226,15 @@ export const Register = () => {
         <div className="grid-l">
           <BaseInput
             classs={"inputs normal"}
-            placeholder="Teléfono"
+            placeholder="Teléfono ej: +57 000 000 0000"
             name="phone"
             id="phone"
             value={form.phone}
-            onBlur={handleBlur}
             onChange={handleChange}
+            onBlur={handleBlur}
             required
             isNumber
           />
-          {/* {errors.phone && <p className="warnings-form">{errors.phone}</p>} */}
 
           <BaseInput
             classs={"inputs normal"}
@@ -276,7 +249,16 @@ export const Register = () => {
           />
           {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
         </div>
-
+        <BaseInput
+          classs={"inputs normal"}
+          placeholder="Dirección de domicilio"
+          name="address"
+          id="address"
+          value={form.address}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          required
+        />
         <BaseInput
           classs={"inputs normal"}
           placeholder="Contraseña"

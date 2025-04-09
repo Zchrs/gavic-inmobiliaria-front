@@ -22,4 +22,26 @@ html{
   height: 100%;
 }
 
+.warnings-box-left{
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  transform: translateX(-100%) ;
+  display: grid;
+  width: 130px;
+  height: fit-content;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.796);
+  color: red;
+  font-size: 11px;
+}
+.warnings-box-right{
+  position: absolute;
+  display: grid;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.522);
+}
+
 

@@ -5,7 +5,6 @@ import { useState } from "react";
 import { helpHttp } from "../helpers/helperHttp";
 import { Form, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import  departamentos  from "../colombia/colombia.json";
 import {
   startLogin,
   startLoginAdmin,
@@ -48,15 +47,18 @@ export const initialFormAdvisor = {
 export const initialPropertyForm = {
   name: "",
   price: "",
+  district: "",
   category: "",
   description: "",
-  bedroom: "",
-  bathroom: "",
-  dinigRoom: "",
-  closet: "",
+  bedRoom: "",
+  bathRoom: "",
+  diningRoom: "",
+  closets: "",
   kitchen: "",
   floor: "",
   stratum: "",
+  clothing: "",
+  action: "",
   image: "",
   img_url: [],
 };
@@ -71,7 +73,7 @@ export const initialAddCartForm = {
 export const useForm = (initialForm, validateForm) => {
   // ---------------- variables de estado -----------------------
   const [form, setForm] = useState(initialForm);
-  const [formProduct, setFormProduct] = useState(initialPropertyForm);
+  const [formProperty, setFormProperty] = useState(initialPropertyForm);
   const [formAdmin, setFormAdmin] = useState(initialFormAdmin);
   const [formAdvisor, setFormAdvisor] = useState(initialFormAdvisor);
   const [formCart, setFormCart] = useState(initialAddCartForm);
@@ -180,7 +182,6 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleChangeAdmin = (e) => {
     const { name, value } = e.target;
-    console.log(value);
     setFormAdmin({
       ...formAdmin,
       [name]: value,
@@ -192,6 +193,10 @@ export const useForm = (initialForm, validateForm) => {
       return;
     }
   };
+  const handleBlurAdmin = (e) => {
+    handleChangeAdmin(e);
+    setErrors(validateForm(formAdmin));
+  };
 
   const handleChecked = (e, checked) => {
     setChecked(e.target.checked);
@@ -202,247 +207,298 @@ export const useForm = (initialForm, validateForm) => {
     console.log("click");
   };
 
-  const handleSetImage = (imageUrls) => {
+  const handleSetImages = (imageUrls) => {
     setForm({
       ...form,
       img_url: imageUrls,
     });
   };
-
-  // formularios y estados del producto
-  const handleChangeProduct = (e) => {
-    const { name, value } = e.target;
-    // console.log(value)
-    setFormProduct({
-      ...formProduct,
-      [name]: value,
+  const handleSetImage = (url) => {
+    setForm({
+      ...form,
+      image: url,
     });
   };
 
+  // formularios y estados del producto
+  const handleChangeProperty = (e) => {
+    const { name, value } = e.target;
+    // console.log(value)
+    setFormProperty({
+      ...formProperty,
+      [name]: value,
+    });
+  };
+  const handleBlurProperty = (e) => {
+    handleChangeProperty(e);
+    setErrors(validateForm(formProperty));
+  };
+
   const handleUpdateProperty = async (id) => {
-    
     setLoading(true);
-    
+
     Swal.fire({
-      title: 'Estás actualizando un producto',
-      text: '¿Deseas continuar actualizando este producto?',
-      icon: 'warning',
+      title: "Estás actualizando un producto",
+      text: "¿Deseas continuar actualizando este producto?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Volver',
-      background: '#f0f0f0',
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Volver",
+      background: "#f0f0f0",
       customClass: {
-        popup: 'custom-popup',
-        title: 'custom-title',
-        content: 'custom-content',
-        confirmButton: 'custom-confirm-button',
+        popup: "custom-popup",
+        title: "custom-title",
+        content: "custom-content",
+        confirmButton: "custom-confirm-button",
       },
     }).then((result) => {
       if (result.isConfirmed) {
+        try {
+          const formData = new FormData();
+          formData.append("name", formProperty.name);
+          formData.append("price", formProperty.price);
+          formData.append("previousPrice", formProperty.previousPrice);
+          formData.append("category", formProperty.category);
+          formData.append("quantity", formProperty.quantity);
+          formData.append("description", formProperty.description);
+          formData.append("img_url", formProperty.img_url);
+          const response = axios.put(
+            `${import.meta.env.VITE_APP_API_UPDATE_PRODUCT_URL}/${id}`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Accept: "application/json",
+              },
+            }
+          );
 
-    try {
-      const formData = new FormData();
-      formData.append('name', formProduct.name);
-      formData.append('price', formProduct.price);
-      formData.append('previousPrice', formProduct.previousPrice);
-      formData.append('category', formProduct.category);
-      formData.append('quantity', formProduct.quantity);
-      formData.append('description', formProduct.description);
-      formData.append('img_url', formProduct.img_url);
-      const response = axios.put(
-        `${import.meta.env.VITE_APP_API_UPDATE_PRODUCT_URL}/${id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Accept: "application/json",
-          },
+          if (response.status === 200) {
+            Swal.fire({
+              title: "¡Éxito!",
+              text: "Producto actualizado correctamente.",
+              icon: "success",
+              showCancelButton: false,
+              confirmButtonText: "Volver",
+              background: "#f0f0f0",
+              customClass: {
+                popup: "custom-popup",
+                title: "custom-title",
+                content: "custom-content",
+                confirmButton: "custom-confirm-button",
+              },
+            });
+            console.log("Product updated successfully", response.data);
+          } else {
+            console.log("Failed to update product", response.data);
+          }
+        } catch (error) {
+          Swal.fire({
+            title: "Error",
+            text: "Hubo un error al intentar actualizar este producto.",
+            icon: "error",
+            background: "#f0f0f0",
+            customClass: {
+              popup: "custom-popup",
+              title: "custom-title",
+              content: "custom-content",
+              confirmButton: "custom-confirm-button",
+            },
+          });
+          setLoading(false);
+          throw error.response?.data || error.message;
         }
-      );
-
-      if (response.status === 200) {
-        Swal.fire({
-          title: '¡Éxito!',
-          text: 'Producto actualizado correctamente.',
-          icon: 'success',
-          showCancelButton: false,
-          confirmButtonText: 'Volver',
-          background: '#f0f0f0',
-          customClass: {
-            popup: 'custom-popup',
-            title: 'custom-title',
-            content: 'custom-content',
-            confirmButton: 'custom-confirm-button',
-          },
-        })
-        console.log("Product updated successfully", response.data);
       } else {
-        console.log("Failed to update product", response.data);
+        return;
       }
-    } catch (error) {
-      Swal.fire({
-        title: 'Error',
-        text: 'Hubo un error al intentar actualizar este producto.',
-        icon: 'error',
-        background: '#f0f0f0',
-        customClass: {
-            popup: 'custom-popup',
-            title: 'custom-title',
-            content: 'custom-content',
-            confirmButton: 'custom-confirm-button',
-        },
     });
-    setLoading(false);
-    throw error.response?.data || error.message;
-    }
-  }else{
-    return
-  }
-  });
   };
 
   const handleSubmitProperty = async (e) => {
     e.preventDefault();
-  
+
     const formData = {
       name: form.name,
       price: form.price,
+      district: form.district,
       category: form.category,
       description: form.description,
       bedRoom: form.bedRoom,
       bathRoom: form.bathRoom,
       diningRoom: form.diningRoom,
-      closet: form.colset,
+      closets: form.closets,
       kitchen: form.kitchen,
       floor: form.floor,
       stratum: form.stratum,
+      clothing: form.clothing,
+      action: form.action,
       image: form.image,
-      img_url: form.img_url// Asumiendo que img_url es un array de objetos con una propiedad 'url'
+      img_url: form.img_url, // Asumiendo que img_url es un array de objetos con una propiedad 'url'
     };
-  
+
+    debugger
+
     if (!Array.isArray(formData.img_url) || formData.img_url.length === 0) {
       console.error("img_url debe ser un array de URLs");
       return;
     }
-    
+
     setLoading(true);
 
     Swal.fire({
-      title: 'Estás agregando un producto',
-      text: '¿Deseas agregar este producto?',
-      icon: 'warning',
+      title: "Estás agregando un inmueble",
+      text: "¿Deseas agregar este inmueble?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Volver',
-      background: '#f0f0f0',
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Volver",
+      background: "#f0f0f0",
       customClass: {
-        popup: 'custom-popup',
-        title: 'custom-title',
-        content: 'custom-content',
-        confirmButton: 'custom-confirm-button',
+        popup: "custom-popup",
+        title: "custom-title",
+        content: "custom-content",
+        confirmButton: "custom-confirm-button",
       },
     }).then((result) => {
       if (result.isConfirmed) {
-    try {
-      const response = axios.post(
-        import.meta.env.VITE_APP_API_UPLOAD_PRODUCT_URL,
-        formData,
-        {
-          headers: {
-            "Content-type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-  
-      console.log(response);
-      setLoading(false);
-      setResponse(true);
-      setForm(initialPropertyForm);
-      
-      Swal.fire({
-        title: '¡Éxito!',
-        text: 'Producto agregado correctamente.',
-        icon: 'success',
-        showCancelButton: false,
-        confirmButtonText: 'Volver',
-        background: '#f0f0f0',
-        customClass: {
-          popup: 'custom-popup',
-          title: 'custom-title',
-          content: 'custom-content',
-          confirmButton: 'custom-confirm-button',
-        },
-      })
+        try {
+          const response = axios.post(
+            import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
+            formData,
+            {
+              headers: {
+                "Content-type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          );
+
+          console.log(response);
+          setLoading(false);
+          setResponse(true);
+          setFormProperty(initialPropertyForm);
+          setForm(initialPropertyForm);
+
+          Swal.fire({
+            title: "¡Éxito!",
+            text: "Inmueble agregado correctamente.",
+            icon: "success",
+            showCancelButton: false,
+            confirmButtonText: "Volver",
+            background: "#f0f0f0",
+            customClass: {
+              popup: "custom-popup",
+              title: "custom-title",
+              content: "custom-content",
+              confirmButton: "custom-confirm-button",
+            },
+          });
           // Manejar acciones adicionales si es necesario
-     
-    } catch (error) {
-      console.error('Error al enviar el producto:', error);
-      setLoading(false);
-      // Manejar el error de manera adecuada, como mostrar un mensaje al usuario
-    }
-  }else{
-    return
-  }
-  });
-};
+        } catch (error) {
+          console.error("Error al enviar el inmueble:", error);
+          setLoading(false);
+          // Manejar el error de manera adecuada, como mostrar un mensaje al usuario
+        }
+      } else {
+        return;
+      }
+    });
+  };
+
+  const handleSetImagesProperty = (imageUrls) => {
+    setForm({
+      ...formProperty,
+      img_url: imageUrls,
+    });
+  };
+
+  const handleSetImageProperty = (url) => {
+    setForm({
+      ...formProperty,
+      image: url,
+    });
+  };
+
+  const handleImagesChangeProperty = (e) => {
+    const files = Array.from(e.target.files);
+    const imgUrls = files.map((file) => URL.createObjectURL(file));
+    setFormProperty((formProperty) => ({
+      ...formProperty,
+      img_url: imgUrls, // Guardar las URLs de las imágenes
+    }));
+    handleSetImagesProperty(imgUrls); // Llama a la función para establecer las imágenes
+  };
+  const handleImageChangeProperty = (e) => {
+    const files = Array.from(e.target.files);
+    const image = files.map((file) => URL.createObjectURL(file));
+    setFormProperty((formProperty) => ({
+      ...formProperty,
+      image: image, // Guardar las URLs de las imágenes
+    }));
+    handleSetImageProperty(image); // Llama a la función para establecer las imágenes
+  };
 
   const deleteProperty = async (id) => {
     try {
-        const result = await Swal.fire({
-            title: 'Vas a eliminar un producto',
-            text: '¡Estás seguro que deseas eliminar este producto?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Confirmar',
-            cancelButtonText: 'Volver',
-            background: '#f0f0f0',
-            customClass: {
-                popup: 'custom-popup',
-                title: 'custom-title',
-                content: 'custom-content',
-                confirmButton: 'custom-confirm-button',
-                cancelButton: 'custom-cancel-button',
-            },
-        });
+      const result = await Swal.fire({
+        title: "Vas a eliminar un producto",
+        text: "¡Estás seguro que deseas eliminar este producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Volver",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+      });
 
-        if (result.isConfirmed) {
-            const response = await axios.delete(`${import.meta.env.VITE_APP_API_DELETE_PRODUCT_URL}/${id}`);
-            console.log(response.data); // Mensaje de éxito o información adicional
-            Swal.fire({
-                title: 'Eliminado!',
-                text: 'El producto ha sido eliminado exitosamente.',
-                icon: 'success',
-                background: '#f0f0f0',
-                customClass: {
-                    popup: 'custom-popup',
-                    title: 'custom-title',
-                    content: 'custom-content',
-                    confirmButton: 'custom-confirm-button',
-                },
-            });
-            return response.data;
-        } else {
-            return;
-        }
-    } catch (error) {
-        console.error('Error deleting product:', error.response?.data || error.message);
+      if (result.isConfirmed) {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_APP_API_DELETE_PRODUCT_URL}/${id}`
+        );
+        console.log(response.data); // Mensaje de éxito o información adicional
         Swal.fire({
-            title: 'Error',
-            text: 'Hubo un error al intentar eliminar el producto.',
-            icon: 'error',
-            background: '#f0f0f0',
-            customClass: {
-                popup: 'custom-popup',
-                title: 'custom-title',
-                content: 'custom-content',
-                confirmButton: 'custom-confirm-button',
-            },
+          title: "Eliminado!",
+          text: "El producto ha sido eliminado exitosamente.",
+          icon: "success",
+          background: "#f0f0f0",
+          customClass: {
+            popup: "custom-popup",
+            title: "custom-title",
+            content: "custom-content",
+            confirmButton: "custom-confirm-button",
+          },
         });
-        throw error.response?.data || error.message;
+        return response.data;
+      } else {
+        return;
+      }
+    } catch (error) {
+      console.error(
+        "Error deleting product:",
+        error.response?.data || error.message
+      );
+      Swal.fire({
+        title: "Error",
+        text: "Hubo un error al intentar eliminar el producto.",
+        icon: "error",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+        },
+      });
+      throw error.response?.data || error.message;
     }
-};
-// fin de funciones y estados del producto
+  };
+  // fin de funciones y estados del producto
 
   const validateEmails = async (email) => {
     const finalForm = {
@@ -514,8 +570,6 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleSubmitAddCart = async (e) => {
-
-  
     const finalFormAddCart = {
       ...formCart,
     };
@@ -547,18 +601,18 @@ export const useForm = (initialForm, validateForm) => {
             false,
             initialAddCartForm,
             Swal.fire({
-              title: '¡Correcto!',
+              title: "¡Correcto!",
               text: `Agregaste un producto al carrito!`,
-              icon: 'success',
+              icon: "success",
               showCancelButton: false,
-              confirmButtonText: 'Volver',
-              cancelButtonText: 'Volver',
-              background: '#f0f0f0',
+              confirmButtonText: "Volver",
+              cancelButtonText: "Volver",
+              background: "#f0f0f0",
               customClass: {
-                popup: 'custom-popup',
-                title: 'custom-title',
-                content: 'custom-content',
-                confirmButton: 'custom-confirm-button',
+                popup: "custom-popup",
+                title: "custom-title",
+                content: "custom-content",
+                confirmButton: "custom-confirm-button",
               },
             })
           ),
@@ -566,27 +620,25 @@ export const useForm = (initialForm, validateForm) => {
       );
     } catch (error) {
       Swal.fire({
-        title: 'No se pudo agregar al carrito',
-        text: 'Regresa al producto e inténtalo de nuevo',
-        icon: 'warning',
+        title: "No se pudo agregar al carrito",
+        text: "Regresa al producto e inténtalo de nuevo",
+        icon: "warning",
         showCancelButton: false,
-        confirmButtonText: 'Volver',
-        cancelButtonText: 'Volver',
-        background: '#f0f0f0',
+        confirmButtonText: "Volver",
+        cancelButtonText: "Volver",
+        background: "#f0f0f0",
         customClass: {
-          popup: 'custom-popup',
-          title: 'custom-title',
-          content: 'custom-content',
-          confirmButton: 'custom-confirm-button',
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
         },
-      })
+      });
       return;
     }
   };
 
   const handleSubmitAddWishlist = async (e) => {
-
-  
     const finalFormAddWishlist = {
       ...formCart,
     };
@@ -596,7 +648,9 @@ export const useForm = (initialForm, validateForm) => {
     try {
       const token = user.token;
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_API_POST_WISHLIST_URL}/${formCart.product_id}`,
+        `${import.meta.env.VITE_APP_API_POST_WISHLIST_URL}/${
+          formCart.product_id
+        }`,
         finalFormAddWishlist,
         {
           body: finalFormAddWishlist,
@@ -618,18 +672,18 @@ export const useForm = (initialForm, validateForm) => {
             false,
             initialAddCartForm,
             Swal.fire({
-              title: '¡Correcto!',
+              title: "¡Correcto!",
               text: `Agregaste un producto en la lista de deseos!`,
-              icon: 'success',
+              icon: "success",
               showCancelButton: false,
-              confirmButtonText: 'Volver',
-              cancelButtonText: 'Volver',
-              background: '#f0f0f0',
+              confirmButtonText: "Volver",
+              cancelButtonText: "Volver",
+              background: "#f0f0f0",
               customClass: {
-                popup: 'custom-popup',
-                title: 'custom-title',
-                content: 'custom-content',
-                confirmButton: 'custom-confirm-button',
+                popup: "custom-popup",
+                title: "custom-title",
+                content: "custom-content",
+                confirmButton: "custom-confirm-button",
               },
             })
           ),
@@ -637,20 +691,20 @@ export const useForm = (initialForm, validateForm) => {
       );
     } catch (error) {
       Swal.fire({
-        title: 'No se pudo agregar al carrito',
-        text: 'Regresa al producto e inténtalo de nuevo',
-        icon: 'warning',
+        title: "No se pudo agregar al carrito",
+        text: "Regresa al producto e inténtalo de nuevo",
+        icon: "warning",
         showCancelButton: false,
-        confirmButtonText: 'Volver',
-        cancelButtonText: 'Volver',
-        background: '#f0f0f0',
+        confirmButtonText: "Volver",
+        cancelButtonText: "Volver",
+        background: "#f0f0f0",
         customClass: {
-          popup: 'custom-popup',
-          title: 'custom-title',
-          content: 'custom-content',
-          confirmButton: 'custom-confirm-button',
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
         },
-      })
+      });
       return;
     }
   };
@@ -719,17 +773,16 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleLoginAdmin = (e) => {
-    debugger
+    debugger;
     if (!formAdmin.email) return;
     if (!formAdmin.pass) return;
-    
+
     e.preventDefault();
     dispatch(startLoginAdmin(formAdmin.email, formAdmin.pass));
 
     // console.log(form)
     loadingActive();
     navigate("/admin/dashboard");
-   
   };
 
   const handleSubmitsAdvisor = async (e, label) => {
@@ -776,18 +829,18 @@ export const useForm = (initialForm, validateForm) => {
             false,
             initialFormAdvisor,
             Swal.fire({
-              title: '¡Hecho!',
+              title: "¡Hecho!",
               html: `Te has registrado correctamente`,
-              icon: 'success',
+              icon: "success",
               showCancelButton: false,
-              cancelButtonText: 'Volver',
-              background: '#f0f0f0',
+              cancelButtonText: "Volver",
+              background: "#f0f0f0",
               customClass: {
-                popup: 'custom-popup',
-                title: 'custom-title',
-                content: 'custom-content',
-                confirmButton: 'custom-confirm-button',
-                cancelButton: 'custom-cancel-button',
+                popup: "custom-popup",
+                title: "custom-title",
+                content: "custom-content",
+                confirmButton: "custom-confirm-button",
+                cancelButton: "custom-cancel-button",
               },
             })
           ),
@@ -842,18 +895,18 @@ export const useForm = (initialForm, validateForm) => {
             false,
             initialForm,
             Swal.fire({
-              title: '¡Hecho!',
+              title: "¡Hecho!",
               html: `Te has registrado correctamente`,
-              icon: 'success',
+              icon: "success",
               showCancelButton: false,
-              cancelButtonText: 'Volver',
-              background: '#f0f0f0',
+              cancelButtonText: "Volver",
+              background: "#f0f0f0",
               customClass: {
-                popup: 'custom-popup',
-                title: 'custom-title',
-                content: 'custom-content',
-                confirmButton: 'custom-confirm-button',
-                cancelButton: 'custom-cancel-button',
+                popup: "custom-popup",
+                title: "custom-title",
+                content: "custom-content",
+                confirmButton: "custom-confirm-button",
+                cancelButton: "custom-cancel-button",
               },
             })
           ),
@@ -866,7 +919,6 @@ export const useForm = (initialForm, validateForm) => {
     setLoading(false);
     setModal(true);
   };
-
 
   const handleSubscribeNewsletter = async (e) => {
     const finalForm = {
@@ -907,7 +959,6 @@ export const useForm = (initialForm, validateForm) => {
     setModal(true);
   };
 
-
   return {
     form,
     formAdmin,
@@ -918,25 +969,35 @@ export const useForm = (initialForm, validateForm) => {
     loading,
     response,
     modal,
-    formProduct,
-    setFormProduct,
-    deleteProperty,
-    handleChangeProduct,
+    formProperty,
     setForm,
+    setLoading,
+    handleBlurAdmin,
     setFormAdmin,
+    handleLoginAdmin,
+    handleChangeAdmin,
+    handleSubmitsAdmin,
+    handleBlurAdm,
     setFormAdvisor,
     handleBlurAdvisor,
     handleChangeAdvisor,
-    setLoading,
-    setFormCart,
-    handleImageChange,
-    handleChangeAdmin,
-    handleBlurAdm,
-    handleSubmitsAdmin,
+    handleCountryChangeAdvisor,
     handleSubmitsAdvisor,
+    setFormCart,
     handleSubmitAddCart,
+    handleImageChange,
+    handleChangeProperty,
     handleSubmitProperty,
+    handleImageChangeProperty,
+    handleSetImagesProperty,
+    handleSetImageProperty,
+    handleImagesChangeProperty,
+    handleBlurProperty,
+    handleUpdateProperty,
+    deleteProperty,
+    setFormProperty,
     handleSetImage,
+    handleSetImages,
     handleChecked,
     loadingActive,
     handleChange,
@@ -944,13 +1005,10 @@ export const useForm = (initialForm, validateForm) => {
     handleSubmit,
     handleSubmits,
     handleLogin,
-    handleLoginAdmin,
     handleSubscribeNewsletter,
     handleClearCountry,
-    handleUpdateProperty,
     openModal,
     handleCountryChange,
     handleSubmitAddWishlist,
-    handleCountryChangeAdvisor
   };
 };
