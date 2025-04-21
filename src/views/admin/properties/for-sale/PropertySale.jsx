@@ -4,15 +4,15 @@ import { ItemsCategory } from "../../../../components/ItemsCategory"
 
 export const PropertySale = () => {
   return (
-    <ReJected>
+    <SaLe>
       <div>
-        <ItemsCategory category={"for-sale"} title={"No hay propiedades para la venta en este momento"} />
+        <ItemsCategory action={"Venta"} showToAddWish = {false} />
       </div>
-    </ReJected>
+    </SaLe>
 )
 }
 
-const ReJected = styled.div`
+const SaLe = styled.div`
 display: grid;
 width: 100%;
 height: 100%;

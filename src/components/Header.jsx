@@ -309,7 +309,7 @@ export const Header = () => {
                 Como Cliente
               </Link>
               <Link onClick={handleFunctions} to={"/auth/advisor/register"}>
-                Como Asesor
+                Como Asesor inmobiliario
               </Link>
             </div>
           </NavLink>

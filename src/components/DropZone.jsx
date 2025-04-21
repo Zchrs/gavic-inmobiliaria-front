@@ -8,7 +8,6 @@ import styled from 'styled-components';
 export const DropZone = ({ name, type, id, setImage }) => {
   const [active, setActive] = useState(false);
   const [dropzoneFile, setDropzoneFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
 
   const toggleActive = () => {
@@ -20,52 +19,52 @@ export const DropZone = ({ name, type, id, setImage }) => {
     const file = e.dataTransfer.files[0];
     if (file) {
       setDropzoneFile(file);
-      const preview = URL.createObjectURL(file);
-      setPreviewUrl(preview);
-      setImage(preview, id);
+      setImage(file);
     }
   };
 
   const handleFileUpload = async (e) => {
     e.preventDefault();
     const file = e.target.files[0];
+    
+    if (!file) {
+      console.error("No se seleccionó ningún archivo.");
+      return;
+    }
 
-    if (file) {
-      setDropzoneFile(file);
-      const preview = URL.createObjectURL(file);
-      setPreviewUrl(preview);
-      setImage(preview, id);
+    setDropzoneFile(file);
 
-      try {
-        const formData = new FormData();
-        formData.append("image", file);
+    try {
+      const formData = new FormData();
+      formData.append("image", file); // Cambiado de "img_url" a "image"
 
-        const response = await axios.post(
-          import.meta.env.VITE_APP_API_UPLOAD_IMAGE_PROPERTIES_URL,
-          formData
-        );
-
-        if (response.status === 200) {
-          const data = response.data;
-          setImage(data.imageUrl, id);
-          setPreviewUrl(data.imageUrl);
-          setSuccessMessage("¡Imagen enviada correctamente!");
-        } else {
-          console.error("Error uploading image:", response.statusText);
+      const response = await axios.post(
+        import.meta.env.VITE_APP_API_UPLOAD_IMAGE_PROPERTIES_URL,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         }
-      } catch (error) {
-        console.error("Error uploading image:", error);
+      );
+
+      if (response.status === 200) {
+        const data = response.data;
+        setImage(data.imageUrl); // Asumiendo que el backend devuelve imageUrl
+        console.log("Imagen enviada correctamente");
+        setSuccessMessage("¡Imagen enviada correctamente!");
+      } else {
+        console.error("Error al subir la imagen:", response.statusText);
       }
-    } else {
-      console.error("No file selected.");
+    } catch (error) {
+      console.error("Error al subir la imagen:", error);
     }
   };
 
   const handleRemoveImage = () => {
     setDropzoneFile(null);
-    setPreviewUrl(null);
+    setImage(null);
     setSuccessMessage("");
-    setImage(null, id); // limpiar en el padre también
   };
 
   return (
@@ -86,6 +85,7 @@ export const DropZone = ({ name, type, id, setImage }) => {
               id={id}
               name={name}
               onChange={handleFileUpload}
+              accept="image/*"
             />
             <div className="card-profile__title">
               <p className="card-profile__upload">
@@ -98,22 +98,24 @@ export const DropZone = ({ name, type, id, setImage }) => {
             </div>
 
             <div className="group">
-              {/* {dropzoneFile && (
-                <span className="file-info">{dropzoneFile.name}</span>
-              )} */}
-              {previewUrl && (
+              {dropzoneFile && (
                 <>
+                  <div className="selected-image">
                   <img
-                    src={previewUrl}
+                    src={URL.createObjectURL(dropzoneFile)}
                     alt="Preview"
-                    className="selected-image"
                   />
-                  <button type="button" onClick={handleRemoveImage} className="remove-btn">
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="remove-btn"
+                  >
                     X
                   </button>
+                  </div>
                 </>
               )}
-              {successMessage && <p>{successMessage}</p>}
+              {successMessage && <p className="success-message">{successMessage}</p>}
             </div>
           </div>
         </label>
@@ -183,12 +185,18 @@ export const DropZone = ({ name, type, id, setImage }) => {
     color: black;
   }
   .selected-image{
-    width: 100%;
+    position: relative;
+    width: 15%;
+    margin: auto;
+    img{
+      width: 100%;
+    }
   }
   .group{
     display: grid;
     position: relative;
-    width: 30%;
+    width: 100%;
+    text-align  : center;
     gap: 10px;
 
     p{
@@ -196,13 +204,19 @@ export const DropZone = ({ name, type, id, setImage }) => {
     }
   }
   .remove-btn{
-    width: 10px;
-    height: 30px;
+    width: fit-content;
+    height: fit-content;
     display: grid;
+    z-index: 100a;
     position: absolute;
     place-content: center;
     border: 1px solid red;
-    background-color: transparent;
+    background-color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: 300;
+    color: red;
+    pad: 0;
     top: 5px;
     right: 5px;
   }

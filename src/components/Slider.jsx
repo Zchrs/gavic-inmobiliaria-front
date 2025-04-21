@@ -5,22 +5,25 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getImg } from '../../globalActions';
+import { Id } from 'react-country-flags-select';
 
 
 export const Slider = () => {
-  const images = [
-    'default-product',
-    'man-avatar',
-    'default-product',
-    'icon-avatar',
-    'default-avatar'
-  ];
   
-//   const product = useSelector(state => state.product.selectedProduct);
-  const productThumbs = useSelector(state => state.product.selectedProduct?.thumbnails || []);
+  //   const product = useSelector(state => state.product.selectedProduct);
+  const propertyThumbs = useSelector(state => state.properties.selectedProperty || []);
+  let images = propertyThumbs.images || [];
+  
+  const image = {
+    Id: propertyThumbs.id,
+    img_url: propertyThumbs.image
+  };
+
+  const allImagesSlider = image ? [image, ...images] : images;
+  console.log(allImagesSlider)
+
   const location = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(currentIndex);
 
   const goToIndex = (index) => {
     setCurrentIndex(index);
@@ -28,13 +31,13 @@ export const Slider = () => {
 
   const goToPrevSlide = () => {
     let index = currentIndex - 1;
-    if (index < 0) index = images.length - 1;
+    if (index < 0) index = allImagesSlider.length - 1;
     setCurrentIndex(index);
   };
 
   const goToNextSlide = () => {
     let index = currentIndex + 1;
-    if (index >= images.length) index = 0;
+    if (index >= allImagesSlider.length) index = 0;
     setCurrentIndex(index);
   };
 
@@ -44,9 +47,9 @@ export const Slider = () => {
           <button className='prev' onClick={goToPrevSlide}></button>
           <div className="slider">
           <div className="slide">
-  {productThumbs.length > 0 ? (
-    // <img loading='lazy' src={productThumbs[currentIndex]?.img_url} alt="" />
-    <img loading='lazy' src={getImg('jpg', `${productThumbs[currentIndex]}`, 'webp')} alt="" />
+  {allImagesSlider.length > 0 ? (
+    <img loading='lazy' src={allImagesSlider[currentIndex]?.img_url} alt="" />
+    // <img loading='lazy' src={getImg('jpg', `${images[currentIndex].img_url}`, 'webp')} alt="" />
   ) : (
     <p>No hay imágenes disponibles</p>
   )}
@@ -54,7 +57,7 @@ export const Slider = () => {
           </div>
           <button className='next' onClick={goToNextSlide}></button>
           <div className="thumbs">
-            {productThumbs.map((thumb, index) => (
+            {allImagesSlider.map((thumb, index) => (
               <div
                 key={index}
                 className={index === currentIndex ? 'thumb activesl' : 'thumb'}
@@ -62,8 +65,8 @@ export const Slider = () => {
               >
                 <img
                   loading='lazy'
-                //   src={thumb.img_url}
-                  src={getImg('jpg', `${thumb}`, 'webp')}
+                  src={thumb.img_url}
+                  // src={getImg('jpg', `${thumb}`, 'webp')}
                   alt="" />
               </div>
             ))}

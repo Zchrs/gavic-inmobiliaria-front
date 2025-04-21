@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from "axios";
 import styled from 'styled-components';
 
-export const MultiDropZone = ({ id, setImages, name, type }) => {
+export const MultiDropZone = ({ id, setImages, name, type, multiple }) => {
   const [active, setActive] = useState(false);
   const [dropzoneFiles, setDropzoneFiles] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
@@ -24,11 +24,12 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
     e.preventDefault();
     const files = Array.from(e.target.files);
     setDropzoneFiles(files);
+
     if (files.length > 0) {
       try {
         const formData = new FormData();
-        files.forEach((file, index) => {
-          formData.append('img_url', file);
+        files.forEach((file) => {
+          formData.append("img_url", file);
         });
 
         const response = await axios.post(
@@ -38,24 +39,30 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
 
         if (response.status === 200) {
           const data = response.data;
-          setImages(data.imageUrls); // Asumiendo que el servidor devuelve un array de URLs de imágenes
-          console.log('Imágenes enviadas correctamente');
+          setImages(data.imageUrls);
+          console.log("Imágenes enviadas correctamente");
           setSuccessMessage("¡Imágenes enviadas correctamente!");
         } else {
-          console.error('Error al subir las imágenes:', response.statusText);
+          console.error("Error al subir las imágenes:", response.statusText);
         }
       } catch (error) {
-        console.error('Error al subir las imágenes:', error);
+        console.error("Error al subir las imágenes:", error);
       }
     } else {
-      console.error('No se seleccionaron archivos.');
+      console.error("No se seleccionaron archivos.");
       return;
     }
   };
 
+  const handleRemoveImage = (indexToRemove) => {
+    const updatedFiles = dropzoneFiles.filter((_, i) => i !== indexToRemove);
+    setDropzoneFiles(updatedFiles);
+    setImages(updatedFiles);
+  };
+
   return (
     <MultiDropzone>
-      <div className={`multidropzone ${active ? 'active-dropzone' : ''}`}>
+      <div className={`multidropzone ${active ? "active-dropzone" : ""}`}>
         <label
           htmlFor={id}
           onDragEnter={toggleActive}
@@ -71,19 +78,33 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
               id={id}
               name={name}
               onChange={handleFileUpload}
-              multiple // Permite la selección de múltiples archivos
+              multiple={multiple}
             />
             <div className="multidropzone__title">
-              <p className="multidropzone__upload">Arrastra y suelta los archivos, o <strong>Busca en tu computadora</strong></p>
+              <p className="multidropzone__upload">
+                Arrastra y suelta los archivos, o{" "}
+                <strong>Busca en tu computadora</strong>
+              </p>
               <p className="multidropzone__upload">Sube archivos de hasta 30 MB</p>
             </div>
-            <div className='group'>
-              {dropzoneFiles.map((file, index) => (
-                <div key={index}>
-                  <span className="file-info">{file.name}</span>
-                  <img src={URL.createObjectURL(file)} alt={`Selected ${index}`} className="selected-image" />
+            <div className="multidropzone-group">
+            <div className="flex-l">
+            {dropzoneFiles.map((file, index) => (
+                <div key={index} className="image-preview">
+                  <img
+                    src={URL.createObjectURL(file)}
+                    alt={`Selected ${index}`}
+                  />
+                  <button
+                    type="button"
+                    className="remove-button"
+                    onClick={() => handleRemoveImage(index)}
+                  >
+                    X
+                  </button>
                 </div>
               ))}
+            </div>
               {successMessage && <p>{successMessage}</p>}
             </div>
           </div>
@@ -94,15 +115,32 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
 };
 
 
+
+
+
   const MultiDropzone = styled.div`
   display: grid;
     .multidropzone {
     background-color: white;
     border-radius: 8px;
     border: 1px dashed var(--bg-secondary);
+    
     &:not(:last-child) {
       margin-bottom: 24px;
     }
+    &-group{
+    position: relative;
+    display: grid;
+    width: 70%;
+    gap: 10px;
+    text-align  : center;
+    place-items: center;
+    margin: auto;
+
+    p{
+      color: green;
+    }
+  }
     &__drag {
       display: block;
       margin: 0 auto;
@@ -148,20 +186,41 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
     margin-top: 6px;
     color: black;
   }
-  .selected-image{
-    margin: auto;
-    width: 30%;
-  }
-  .group{
-    text-align: center;
-    place-content: center;
+  .image-preview{
     display: grid;
-    gap: 10px;
+    position: relative;
+    align-items: center;
+    place-items: center;
+    width: 100%;
     img{
-      width: 100px;
+      width: 100%;
     }
-    p{
-      color: green;
-    }
+  }
+
+  .flex-l{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    align-items: center;
+    place-items: center;
+    position: relative;
+  }
+
+  .remove-button{
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    z-index: 100a;
+    position: absolute;
+    place-content: center;
+    border: 1px solid red;
+    background-color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: 300;
+   color: red;
+    pad: 0;
+    top: 5px;
+    right: 5px;
   }
   `

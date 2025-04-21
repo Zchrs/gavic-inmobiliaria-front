@@ -30,7 +30,7 @@ export const types = {
 
     // types para el estado de productos
     propertyView: `[looking], looking start`,
-    propertyViewed: `[viewed], viewed out`,
+    propertiesViewedFinish: `[viewed], viewed out`,
     STORAGED_PROPERTY: `[storaged], storaged`,
     SELECTED_PROPERTY: `[selected], product selected`,
     REMOVE_PROPERTY: `[remove], deleted`,

@@ -45,20 +45,21 @@ export const initialFormAdvisor = {
 };
 
 export const initialPropertyForm = {
-  name: "",
-  price: "",
-  district: "",
-  category: "",
-  description: "",
-  bedRoom: "",
-  bathRoom: "",
-  diningRoom: "",
-  closets: "",
-  kitchen: "",
-  floor: "",
-  stratum: "",
-  clothing: "",
-  action: "",
+  name: "Apartamento en Laureles",
+  city: "Medellín",
+  price: "1500000",
+  district: "Laureles",
+  category: "Apartamento",
+  description: "espectacular apartamento en Laureles",
+  bedRoom: "4",
+  bathRoom: "3",
+  diningRoom: "Sí",
+  closets: "4",
+  kitchen: "Con isla",
+  floor: "Cerámica",
+  stratum: "5",
+  clothing: "1",
+  action: "Venta",
   image: "",
   img_url: [],
 };
@@ -193,6 +194,7 @@ export const useForm = (initialForm, validateForm) => {
       return;
     }
   };
+  
   const handleBlurAdmin = (e) => {
     handleChangeAdmin(e);
     setErrors(validateForm(formAdmin));
@@ -213,10 +215,10 @@ export const useForm = (initialForm, validateForm) => {
       img_url: imageUrls,
     });
   };
-  const handleSetImage = (url) => {
+  const handleSetImage = (imageUrl) => {
     setForm({
       ...form,
-      image: url,
+      image: imageUrl,
     });
   };
 
@@ -225,7 +227,7 @@ export const useForm = (initialForm, validateForm) => {
     const { name, value } = e.target;
     // console.log(value)
     setFormProperty({
-      ...formProperty,
+      ...form,
       [name]: value,
     });
   };
@@ -319,6 +321,7 @@ export const useForm = (initialForm, validateForm) => {
 
     const formData = {
       name: form.name,
+      city: form.city,
       price: form.price,
       district: form.district,
       category: form.category,
@@ -338,8 +341,13 @@ export const useForm = (initialForm, validateForm) => {
 
     debugger
 
+    if (!formData.image) {
+      console.error("Selecciona 1 imagen");
+      return
+    }
+
     if (!Array.isArray(formData.img_url) || formData.img_url.length === 0) {
-      console.error("img_url debe ser un array de URLs");
+      console.error("Selecciona 4 imágenes");
       return;
     }
 
@@ -407,35 +415,40 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleSetImagesProperty = (imageUrls) => {
     setForm({
-      ...formProperty,
+      ...form,
       img_url: imageUrls,
     });
   };
 
-  const handleSetImageProperty = (url) => {
+  const handleSetImageProperty = (imageUrl) => {
     setForm({
-      ...formProperty,
-      image: url,
+      ...form,
+      image: imageUrl,
     });
   };
 
   const handleImagesChangeProperty = (e) => {
     const files = Array.from(e.target.files);
     const imgUrls = files.map((file) => URL.createObjectURL(file));
-    setFormProperty((formProperty) => ({
-      ...formProperty,
+    setFormProperty((form) => ({
+      ...form,
       img_url: imgUrls, // Guardar las URLs de las imágenes
     }));
     handleSetImagesProperty(imgUrls); // Llama a la función para establecer las imágenes
   };
+
   const handleImageChangeProperty = (e) => {
-    const files = Array.from(e.target.files);
-    const image = files.map((file) => URL.createObjectURL(file));
-    setFormProperty((formProperty) => ({
-      ...formProperty,
-      image: image, // Guardar las URLs de las imágenes
+    const file = e.target.files[0];
+    if (!file) return;
+  
+    const imageUrl = URL.createObjectURL(file);
+  
+    setFormProperty((form) => ({
+      ...form,
+      image: imageUrl, // Guardar la URL de la imagen
     }));
-    handleSetImageProperty(image); // Llama a la función para establecer las imágenes
+  
+    handleSetImageProperty(imageUrl); // Establecer la imagen en el padre
   };
 
   const deleteProperty = async (id) => {

@@ -3,12 +3,20 @@
 
 import styled from "styled-components";
 import { BaseInputSelect, BaseInput, MultiDropZone, BaseButton } from "../../../../index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { initialPropertyForm, useForm } from "../../../hooks/useForm";
 import { DropZone } from "../../../components/DropZone";
 import { values } from "../../../sectors/dataSectors";
+import departamentos from "../../../colombia/colombia.json";
+
+
 
 export const CreateProperty = () => {
+  const [isFormComplete, setIsFormComplete] = useState(null);
+
+  const cities = departamentos.find(
+    (dep) => dep.departamento === "Antioquia"
+  )?.ciudades || [];
 
   const validationsForm = (formProperty) => {
     let errors = {};
@@ -17,6 +25,7 @@ export const CreateProperty = () => {
     let regexTextArea = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s.,:'"?¡¿!/;%]+$/;
     let regexOnlyNumbers = /^[0-9]+$/;
     let name = document.getElementById("name");
+    let city = document.getElementById("city");
     let price = document.getElementById("price");
     let district = document.getElementById("district");
     let category = document.getElementById("category");
@@ -51,6 +60,12 @@ export const CreateProperty = () => {
       price.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
+    if (!formProperty.city) {
+      city.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.city = "Escribe una categoría";
+    } else {
+      city.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
+    }
     if (!formProperty.district) {
       district.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.district = "Escribe una categoría";
@@ -148,7 +163,7 @@ export const CreateProperty = () => {
 
     if (!formProperty.img_url || formProperty.img_url.length === 0) {
       img_url.style.cssText = "border: red 1px solid; border-radius: 10px;";
-      errors.img_url = "Selecciona al menos una imagen";
+      errors.img_url = "Debes seleccionar 4 imágenes";
     } else {
       img_url.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
@@ -156,17 +171,28 @@ export const CreateProperty = () => {
     return errors;
   };
 
+
   const {
     formProperty,
+    form,
+    errors,
     handleChangeProperty,
     handleBlurProperty,
     handleSetImages,
-    handleSetImage,
+    handleSetImageProperty,
     handleImageChangeProperty,
     handleImagesChangeProperty,
     handleSubmitProperty,
   } = useForm(initialPropertyForm, validationsForm);
 
+
+  const formComplete = () => {
+    // Verificar si todos los campos del formulario están llenos
+    const isFormFilled = Object.values(form).every(value => value !== "");
+    // Actualizar el estado de completitud del formulario
+    // console.log("Formulario vacío:", form);
+    setIsFormComplete(isFormFilled);
+  };
 
   return (
     <Create>
@@ -183,6 +209,19 @@ export const CreateProperty = () => {
               onBlur={handleBlurProperty}
               value={formProperty.name}
             />
+                <BaseInputSelect
+                placeholder={"Ciudad"}
+                options={cities.map(ciudad => ({
+                  value: ciudad,  // El valor que se guardará (puede ser el nombre o un ID si lo tienes)
+                  label: ciudad   // Lo que se muestra en el dropdown
+                }))}
+                value={formProperty.city}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
+                isSmallSelect={true}
+                id="city"
+                name="city"
+              />
             <div className="grid-k">
               <BaseInput
                 placeholder={"Precio"}
@@ -401,11 +440,11 @@ export const CreateProperty = () => {
           <div className="images">
             <div>
               <h4>Imagen principal</h4>
-              <DropZone 
+              <DropZone
               id="image" 
               name="image" 
               type="file" 
-              setImage={handleSetImage}
+              setImage={handleSetImageProperty}
               onChange={handleImageChangeProperty}
               onBlur={handleBlurProperty}
               />
@@ -419,9 +458,10 @@ export const CreateProperty = () => {
                 setImages={handleSetImages}
                 onChange={handleImagesChangeProperty}
                 onBlur={handleBlurProperty}
+                multiple
               />
             </div>
-        <BaseButton handleClick={handleSubmitProperty} classs={"button full-primary"} textLabel={true} label={"Enviar"} />
+        <BaseButton disabled={!formComplete} handleClick={handleSubmitProperty} classs={`button full-primary ${!isFormComplete ? 'button full-primary disabled' : ''}`} textLabel={true} label={"Enviar"} />
           </div>
         </form>
       </div>

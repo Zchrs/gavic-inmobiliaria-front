@@ -1,50 +1,52 @@
 import { types } from "../types/types";
 
 
- const propertyInitiaState = {
-    propertyInfo: [],
-    selectedProperty: [],
-    ratings: {}
-}
+const propertiesInitiaState = {
+  propertiesInfo: [],
+  selectedProperty: [],
+  removeProperties: [],
+  likes: {}
+};
 
 
 
 
-export const propertyReducer = (state = propertyInitiaState, action) =>{
-    switch (action.type) {
-        case types.propertyView:
-          return {
-            ...state,
-            ... action.payload,
-            propertyInfo: action.payload
-          };
-          case types.propertyViewedFinish:
-            return {
-                ... state,
-                propertyInfo: action.payload,
-                state: null
-            };
-            case types.REMOVE_PROPERTY:
-              return {
-                ...state,
-                removeProperty: action.payload,
-                state: null
-              };
-            case types.SELECTED_PROPERTY:
-              return {
-                ...state,
-                selectedProperty: action.payload,
-              };
-              case types.SET_RATINGS:
-                return {
-                  ...state,
-                  ratings: {
-                    ...state.ratings,
-                    ...action.payload,
-                  },
-                };
-        default:
-          return state;
-      }
-}
+export const propertiesReducer = (state = propertiesInitiaState, action) => {
+  switch (action.type) {
+    case types.propertyView:
+      return {
+        ...state,
+        propertiesInfo: action.payload
+      };
 
+    case types.propertiesViewedFinish:
+      return {
+        ...state,
+        propertiesInfo: action.payload
+      };
+
+    case types.REMOVE_PROPERTY:
+      return {
+        ...state,
+        removeProperties: action.payload
+      };
+
+    case types.SELECTED_PROPERTY:
+      return {
+        ...state,
+        selectedProperty: action.payload
+      };
+
+    case types.SET_LIKES:
+      return {
+        ...state,
+        likes: {
+          ...state.likes,
+          ...action.payload
+        }
+      };
+
+    default:
+      return state;
+  }
+};

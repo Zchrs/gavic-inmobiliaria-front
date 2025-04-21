@@ -1,87 +1,158 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components"
 import { leases } from "../../../../apiEmulated"
-import { Loader, CardLeases, Pagination } from "../../../../index"
-import { selectedProperty, setProperty } from "../../../actions/propertyActions";
+import { Loader, CardLeases, Pagination, Empty } from "../../../../index"
+import { selectedProperty, fetchRecentProperties } from "../../../actions/propertyActions";
 
-import { useState } from "react"
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { types } from "../../../types/types";
 
 
 
 export const RecentAdded = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [property, setProperty] = useState([]);
+  const recentProperties = useSelector((state) => state.properties.propertiesInfo);
+console.log(recentProperties)
+  
+  // Configuración de paginación
   const itemsPerPage = 12;
-
-  const totalPages = Math.ceil(leases.length / itemsPerPage);
-
-
+  const totalPages = Math.ceil(recentProperties.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const selectedLeases = leases.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedProperties = recentProperties.slice(startIndex, startIndex + itemsPerPage);
 
   const handleSetProductClick = (property) => {
     dispatch(selectedProperty(property));
   };
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await dispatch(fetchRecentProperties());
+  //       const properties = response.payload || response || [];
+  
+  //       setRecentProperties(properties);
+  
+  //       // Guardar en localStorage
+  //       localStorage.setItem("propertiesRecent", JSON.stringify(properties));
+  //     } catch (error) {
+  //       console.error("Error fetching recent properties:", error);
+  //       setRecentProperties([]);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  
+  //   // Revisar si hay datos guardados en localStorage
+  //   const localData = localStorage.getItem("propertiesRecent");
+  //   if (localData) {
+  //     try {
+  //       const parsedData = JSON.parse(localData);
+  //       setRecentProperties(parsedData);
+  //     } catch (e) {
+  //       console.error("Error al parsear recentProperties desde localStorage:", e.message);
+  //       fetchData(); // si el parse falla, traemos de la API
+  //     }
+  //   } else {
+  //     fetchData(); // si no hay datos, traemos de la API
+  //   }
+  // }, [dispatch]);
+
+  // Resetear a página 1 cuando cambian las propiedades
+  
+  useEffect(() => {
+    const init = async () => {
+      if (recentProperties.length > 0) return; // ya cargado en Redux
+
+      setLoading(true);
+      try {
+        const localData = localStorage.getItem("propertiesRecent");
+        if (localData) {
+          const parsedData = JSON.parse(localData);
+          dispatch({
+            type: types.propertyView, // o types.propertyView
+            payload: parsedData,
+          });
+        } else {
+          const response = await dispatch(fetchRecentProperties());
+          localStorage.setItem("propertiesRecent", JSON.stringify(response.payload));
+        }
+      } catch (error) {
+        console.error("Error fetching recent properties:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    init();
+  }, [dispatch]); // solo se ejecuta una ve
+  
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [recentProperties]);
 
   return (
     <AddedRecent>
       <div className="addrecent">
         <h2 className="addrecent-h2 h2-extra-medium">Añadidos recientemente</h2>
         <div className="addrecent-contain">
-            <div className="recently pd-top-bottom">
-              {
-              loading ? (
-                <Loader />
-              ) : leases.length === 0 ? (
-                <p>Sin datos</p>
-              ) : (
-                selectedLeases.map((itemL) => (
-                  <CardLeases
-                    key={itemL.id}
-                    quantityBathrooms={itemL.quantityBathrooms}
-                    quantityCloset={itemL.quantityCloset}
-                    quantityRooms={itemL.quantityRooms}
-                    location={itemL.district}
-                    productLink={`/properties/${itemL.id}`}
-                    addToWish={"addwishlist-red"}
-                    addTocart={"addcart-red"}
-                    img={itemL.img}
-                    sellingsText={true}
-                    priceText={true}
-                    price={itemL.price}
-                    productInfo={itemL}
-                    boxFlex={true}
-                    classs={"productcard background"}
-                    onClick={() => handleSetProductClick(itemL)}
-                    prodHover={() => handleSetProductClick(itemL)}
-                    jpg="true"
-                    title={itemL.title}
-                    thumbnails={itemL.thumbnails}
-                    product_id={itemL.id}
-                  />
-                ))
-              )}
-        
-            </div>
+          <div className="recently pd-top-bottom">
+            {loading ? (
+              <Loader />
+            ) : recentProperties.length === 0 ? (
+              <div className="addrecent-empty">
+                <Empty message="No hay propiedades recientes disponibles" />
+                </div>
+            ) : (
+              paginatedProperties.map((property) => (
+                <CardLeases
+                  key={property.id}
+                  quantityBathrooms={property.bathRoom}
+                  quantityCloset={property.closets}
+                  quantityRooms={property.bedRoom}
+                  location={property.district || "Ubicación no disponible"}
+                  productLink={`/properties/${property.id}`}
+                  addToWish="addwishlist-red"
+                  img={property.image || '/default-property.jpg'}
+                  sellingsText={true}
+                  priceText={true}
+                  price={property.price || "Consultar"}
+                  productInfo={property}
+                  boxFlex={true}
+                  classs="productcard background"
+                  onClick={() => handleSetProductClick(property)}
+                  prodHover={() => handleSetProductClick(property)}
+                  jpg="true"
+                  title={property.title || "Propiedad sin título"}
+                  thumbnails={property.images || []}
+                  showToAddWish={true}
+                  property_id={property.id}
+                  propertyRef={property.ref}
+                />
+              ))
+            )}
+          </div>
+          
+          {recentProperties.length > itemsPerPage && (
             <div className="addrecent-contain-pagination">
-            <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          colorText="dark"
-          arrowPrev="button bg-dark"
-          arrowNext="button bg-dark"
-        />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+                colorText="dark"
+                arrowPrev="button bg-dark"
+                arrowNext="button bg-dark"
+              />
             </div>
+          )}
         </div>
       </div>
-            </AddedRecent>
-  )
-}
+    </AddedRecent>
+  );
+};
 
 const AddedRecent = styled.div`
     display: grid;
@@ -106,6 +177,18 @@ const AddedRecent = styled.div`
           width: fit-content;
           top: -35px;
         }
+
+        &-empty{
+          grid-column: 1 / 5;
+          display: grid;
+          width: 100%;
+          height: 100%;
+          
+          place-items: center;
+          place-content: center;
+          justify-content: center;
+        }
+
       
       &-contain{
         position: relative;

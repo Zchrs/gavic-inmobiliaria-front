@@ -15,54 +15,54 @@ import { initialAddCartForm, useForm } from '../hooks/useForm';
 
 export const DetailProperty = ({
   user_id, 
-  product_id, 
+  property_id, 
   price, 
   quantity
 }) => {
   const location = useLocation();
   const showLocation = useLocation();
-  const product = useSelector((state) => state.product.selectedProperty);
-  const productHover = useSelector((state) => state.product.selectedProperty);
-  const ratings = useSelector((state) => state.product.ratings);
+  const property = useSelector((state) => state.properties.selectedProperty);
+  const propertyHover = useSelector((state) => state.properties.selectedProperty);
+
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // console.log(product)
+  // console.log(property)
   useEffect(() => {
     scrollTop();
   }, [])
   
-  const dataFormErrors = (formCart) =>{
+  const dataFormErrors = (formProperty) =>{
     let user_id = document.getElementById("user_id")
-    let product_id = document.getElementById("product_id")
+    let property_id = document.getElementById("property_id")
     let price = document.getElementById("price")
     let quantity = document.getElementById("quantity")
 
     let data = {};
     let errors = {};
 
-    if (!formCart.user_id && formCart.user_id ==! formCart.user_id) {
+    if (!formProperty.user_id && formProperty.user_id ==! formProperty.user_id) {
       user_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.user_id = "no permitido";
       return
     }  
   
-    if (!formCart.product_id && formCart.product_id ==! formCart.product_id) {
-      product_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
-      errors.product_id = "no permitido";
+    if (!formProperty.property_id && formProperty.property_id ==! formProperty.property_id) {
+      property_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
+      errors.property_id = "no permitido";
     }  else {
-      product_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
+      property_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
     }
   
-    if (!formCart.price && formCart.price ==! formCart.price) {
+    if (!formProperty.price && formProperty.price ==! formProperty.price) {
       price.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.price = "no permitido.";
     } else {
       price.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px; color: black;";
     }
   
-    if (!formCart.quantity) {
+    if (!formProperty.quantity) {
       quantity.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.quantity = "no permitido.";
     }else {
@@ -76,36 +76,36 @@ export const DetailProperty = ({
   }
   
   const {
-    formCart,
+    formProperty,
     errors,
-    handleChangeProduct,
+    handleChangeproperty,
     handleSubmitAddCart,
     handleSubmitAddWishlist,
-    setFormCart
+    setFormProperty
   } = useForm(initialAddCartForm, dataFormErrors);
 
 
-  const handleSetProductInfo = () => {
-    // console.log(productHover, 'producto seteado')
+  const handleSetpropertyInfo = () => {
+    // console.log(propertyHover, 'propertyo seteado')
     if(!user) return
     
-    dispatch(selectedProperty(productHover));
-    localStorage.setItem("productHover", productHover);
-    setFormCart((prevFormCart) => ({
-      ...prevFormCart,
+    dispatch(selectedProperty(propertyHover));
+    localStorage.setItem("propertiesRecent", propertyHover);
+    setFormProperty((prevFormProperty) => ({
+      ...prevFormProperty,
       user_id: user.id, // Assuming you want to set the user_id as well
-      product_id: productHover.id,
-      price: productHover.price,
+      property_id: propertyHover.id,
+      price: propertyHover.price,
       quantity: 1, // You can set a default quantity or manage it as needed
     }));
   };
 
   const handleCLearProperty = () => {
 
-    // console.log(productHover, 'producto quitado')
-    dispatch(clearProperty(productHover));
-    localStorage.removeItem("productHover", productHover);
-    setFormCart(initialAddCartForm);
+    // console.log(propertyHover, 'propertyo quitado')
+    dispatch(clearProperty(propertyHover));
+    localStorage.removeItem("propertiesRecent", propertyHover);
+    setFormProperty(initialAddCartForm);
   };
 
 
@@ -141,13 +141,13 @@ export const DetailProperty = ({
 
   const handleMouseEnter = () => {
     if (user) {
-      handleSetProductInfo({ user_id, product_id, price, quantity });
+      handleSetpropertyInfo({ user_id, property_id, price, quantity });
     }
   };
 
   const handleMouseLeave = () => {
     if (user) {
-      handleCLearProperty({ user_id, product_id, price, quantity });
+      handleCLearProperty({ user_id, property_id, price, quantity });
     }
   };
 
@@ -157,7 +157,7 @@ export const DetailProperty = ({
     } else {
       Swal.fire({
         title: "Aún no eres nuestro cliente",
-        text: "Regístrate para agregar productos al carrito.",
+        text: "Regístrate para agregar propertyos al carrito.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Registrarme",
@@ -183,7 +183,7 @@ export const DetailProperty = ({
     } else {
       Swal.fire({
         title: "Aún no eres nuestro cliente",
-        text: "Regístrate para agregar productos a la lista de deseos.",
+        text: "Regístrate para agregar propertyos a la lista de deseos.",
         icon: "warning",
         showCancelButton: true,
         // confirmButtonColor: '#990000',
@@ -207,56 +207,56 @@ export const DetailProperty = ({
   };
 
   return (
-    <DetailProduct>
-      <section className="detailproduct">
+    <Detailproperty>
+      <section className="detailproperty">
         <span>{`home${showLocation.pathname.replace(/\//g, ' > ')}`}</span>
-        <div className="detailproduct-containerr">
-          <div className="detailproduct-contain">
-          <h2>{product.option}</h2>
+        <div className="detailproperty-containerr">
+          <div className="detailproperty-contain">
+          <h2>{property.action}</h2>
             <div id='swiper-container'>
                 <Slider />
             </div>
           </div>
-          <div className="detailproduct-contain scroll">
-            <div className="detailproduct-contain-box">
-              <h2>{ product.name }</h2>
+          <div className="detailproperty-contain scroll">
+            <div className="detailproperty-contain-box">
+              <h2>{ property.name }</h2>
       
-            <h2>{ formatPrice(product.price) }</h2>
-              <h3 className='detailproduct__prevprice'>{ formatPrice(product.previousPrice) }</h3>
+            <h2>{ formatPrice(property.price) }</h2>
+              <h3 className='detailproperty__prevprice'>{ formatPrice(property.previousPrice) }</h3>
             </div>
             
-            <div className="detailproduct-contain-box">
-              <div className="detailproduct-contain-info">
+            <div className="detailproperty-contain-box">
+              <div className="detailproperty-contain-info">
               </div>
-              <div className="detailproduct-contain-box">
+              <div className="detailproperty-contain-box">
               <h2>Descripción</h2>
               <p>
-              { product.description }
+              { property.description }
               </p>
             </div>
-            <div className="detailproduct-contain-box">
+            <div className="detailproperty-contain-box">
               <h2>Área e interior</h2>
-              <div className="detailproduct-contain-grid">
+              <div className="detailproperty-contain-grid">
                 <div>
                   <p>
-                    Referencia: <strong>{product.ref}</strong>
+                    Referencia: <strong>{property.ref}</strong>
                   </p>
                   <p>
-                    Sector: <strong>{product.district}</strong>
+                    Sector: <strong>{property.district}</strong>
                   </p>
                   <p>
-                    Área: <strong>{product.area}</strong>
+                    Área: <strong>{property.area}</strong>
                   </p>
                 </div>
                 <div>
                   <p>
-                    Estrato: <strong>{product.stratum}</strong>
+                    Estrato: <strong>{property.stratum}</strong>
                   </p>
                   <p>
-                    Administración: <strong>{product.admon}</strong>
+                    Administración: <strong>{property.admon}</strong>
                   </p>
                   <p>
-                    Amoblado: <strong>{product.furnished}</strong>
+                    Amoblado: <strong>{property.furnished}</strong>
                   </p>
                 </div>
               </div>
@@ -264,60 +264,60 @@ export const DetailProperty = ({
 
             </div>
           </div>
-          <div className="detailproduct-contain-box">
+          <div className="detailproperty-contain-box">
             <h2>Características</h2>
-            <div className="detailproduct-contain-flex">
-              <div className={'detailproduct-contain-flex-inside'}>
+            <div className="detailproperty-contain-flex">
+              <div className={'detailproperty-contain-flex-inside'}>
                 <h3>Habitaciones</h3>
                 <img src={getImg('png', 'cama', 'png')} alt="" />
-                <p>{product.quantityRooms}</p>
+                <p>{property.bedRoom}</p>
               </div>
-              <div className={'detailproduct-contain-flex-inside'}>
+              <div className={'detailproperty-contain-flex-inside'}>
                 <h3>Closets</h3>
                 <img src={getImg('png', 'closet', 'png')} alt="" />
-                <p>{product.quantityCloset}</p>
+                <p>{property.closets}</p>
               </div>
-              <div className={'detailproduct-contain-flex-inside'}>
+              <div className={'detailproperty-contain-flex-inside'}>
                 <h3>Cocina</h3>
                 <img src={getImg('png', 'cocina', 'png')} alt="" />
-                <p>{product.kitchen}</p>
+                <p>{property.kitchen}</p>
               </div>
-              <div className={'detailproduct-contain-flex-inside'}>
+              <div className={'detailproperty-contain-flex-inside'}>
                 <h3>Sala comedor</h3>
                 <img src={getImg('png', 'sala', 'png')} alt="" />
-                <p>{product.diningRoom}</p>
+                <p>{property.diningRoom}</p>
               </div>
-              <div className={'detailproduct-contain-flex-inside'}>
+              <div className={'detailproperty-contain-flex-inside'}>
                 <h3>Parqueadero</h3>
                 <img src={getImg('png', 'carro', 'png')} alt="" />
-                <p>{product.garage}</p>
+                <p>{property.garage}</p>
               </div>
-              <div className={'detailproduct-contain-flex-inside'}>
+              <div className={'detailproperty-contain-flex-inside'}>
                 <h3>Baños</h3>
                 <img src={getImg('png', 'shower', 'png')} alt="" />
-                <p>{product.quantityBathrooms}</p>
+                <p>{property.bathroom}</p>
               </div>
-              <div className={'detailproduct-contain-flex-inside'}>
+              <div className={'detailproperty-contain-flex-inside'}>
                 <h3>Zona de ropa</h3>
                 <img src={getImg('png', 'lavadora', 'png')} alt="" />
-                <p>{product.clothingZone}</p>
+                <p>{property.clothing}</p>
               </div>
             </div>
             <form encType="multipart/form-data">
             <div>
-              <input id="user_id" name="user_id" type="text" value={formCart.user_id} onChange={handleChangeProduct} />
+              <input id="user_id" name="user_id" type="text" value={formProperty.user_id} onChange={handleChangeproperty} />
               {errors.user_id && <p className="warnings-form">{errors.user_id}</p>}
             </div>
             <div>
-              <input id="product_id" name="product_id" type="text" value={formCart.product_id} onChange={handleChangeProduct} />
-              {errors.product_id && <p className="warnings-form">{errors.product_id}</p>}
+              <input id="property_id" name="property_id" type="text" value={formProperty.property_id} onChange={handleChangeproperty} />
+              {errors.property_id && <p className="warnings-form">{errors.property_id}</p>}
             </div>
             <div>
-              <input id="price" name="price" type="text" value={formCart.price} onChange={handleChangeProduct} />
+              <input id="price" name="price" type="text" value={formProperty.price} onChange={handleChangeproperty} />
               {errors.price && <p className="warnings-form">{errors.price}</p>}
             </div>
             <div>
-              <input id="quantity" name="quantity" type="text" value={formCart.quantity} onChange={handleChangeProduct} />
+              <input id="quantity" name="quantity" type="text" value={formProperty.quantity} onChange={handleChangeproperty} />
               {errors.quantity && <p className="warnings-form">{errors.quantity}</p>}
             </div>
             
@@ -325,14 +325,14 @@ export const DetailProperty = ({
           </div>
         </div>
       </section>
-    </DetailProduct>
+    </Detailproperty>
   )
 }
 
 
 
 
-const DetailProduct = styled.section`
+const Detailproperty = styled.section`
 @keyframes fades {
     from{
        opacity: 0;
@@ -341,7 +341,7 @@ const DetailProduct = styled.section`
         opacity: 1;
     }
 }
-.detailproduct{
+.detailproperty{
     animation: fades .5s ease backwards;
     display: grid;
     padding: 12px;

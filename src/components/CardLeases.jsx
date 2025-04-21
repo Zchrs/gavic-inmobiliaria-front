@@ -1,23 +1,20 @@
 /* eslint-disable no-debugger */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { formatPrice, getFile, getImg, scrollTop } from "../../globalActions";
+import { formatPrice, getImg, scrollTop } from "../../globalActions";
 import defaultImage from "../assets/img/jpg/default.jpg";
-import styled from "styled-components";
 import { BaseButton } from "./BaseButton";
 import { useDispatch, useSelector } from "react-redux";
 import { clearProperty, selectedProperty } from "../actions/propertyActions";
 import { AddCartWishlist } from "./AddCartWishlist";
 import { useNavigate } from "react-router-dom";
-import { addToCart as addToCartAction } from "../actions/cartActions";
-import Swal from "sweetalert2";
 import { useForm, initialAddCartForm } from "../hooks/useForm";
-
-
-import { Rating } from "./Rating";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import Swal from "sweetalert2";
 
 export const CardLeases = ({
+  propertyRef,
   name,
   classs,
   description,
@@ -33,6 +30,7 @@ export const CardLeases = ({
   prodLeave,
   quantityRooms,
   quantityBathrooms,
+  showToAddWish,
   quantityCloset,
   preview,
   price,
@@ -41,19 +39,17 @@ export const CardLeases = ({
   productLink,
   thumbnails,
   quantity,
-  ratingss,
-  ratings,
   jpg,
   buyCr,
   buy,
 }) => {
   const user = useSelector((state) => state.auth.user);
-  const productHover = useSelector((state) => state.product.selectedProperty);
+  const propertyHover = useSelector((state) => state.properties.selectedProperty);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const dataFormErrors = (formCart) =>{
+  const dataFormErrors = (formProperty) =>{
     let user_id = document.getElementById("user_id")
     let property_id = document.getElementById("property_id")
     let price = document.getElementById("price")
@@ -62,27 +58,27 @@ export const CardLeases = ({
     let data = {};
     let errors = {};
 
-    if (!formCart.user_id && formCart.user_id ==! formCart.user_id) {
+    if (!formProperty.user_id && formProperty.user_id ==! formProperty.user_id) {
       user_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.user_id = "no permitido";
       return
     }  
   
-    if (!formCart.property_id && formCart.property_id ==! formCart.property_id) {
+    if (!formProperty.property_id && formProperty.property_id ==! formProperty.property_id) {
       property_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.property_id = "no permitido";
     }  else {
       property_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
     }
   
-    if (!formCart.price && formCart.price ==! formCart.price) {
+    if (!formProperty.price && formProperty.price ==! formProperty.price) {
       price.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.price = "no permitido.";
     } else {
       price.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px; color: black;";
     }
   
-    if (!formCart.quantity) {
+    if (!formProperty.quantity) {
       quantity.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.quantity = "no permitido.";
     }else {
@@ -96,81 +92,50 @@ export const CardLeases = ({
   }
   
   const {
-    formCart,
+    formProperty,
     errors,
-    handleChangeProduct,
-    handleSubmitAddCart,
     handleSubmitAddWishlist,
-    setFormCart
+    setFormProperty
   } = useForm(initialAddCartForm, dataFormErrors);
   
 
   // Cuando quieras establecer el estado del producto
 
   const handleSetProductInfo = (e) => {
-    // console.log(productHover, 'producto seteado')
+    // console.log(propertyHover, 'producto seteado')
     
     // if(!user) return
     
-    dispatch(selectedProperty(productHover));
-    localStorage.setItem("productHover", productHover);
-    setFormCart((prevFormCart) => ({
-      ...prevFormCart,
+    dispatch(selectedProperty(propertyHover));
+    localStorage.setItem("propertyHover", propertyHover);
+    setFormProperty((prevFormProperty) => ({
+      ...prevFormProperty,
       user_id: user.id, // Assuming you want to set the user_id as well
-      property_id: productHover.id,
-      price: productHover.price,
-      quantity: 1, // You can set a default quantity or manage it as needed
+      property_id: propertyHover.id,
+      price: propertyHover.price,
     }));
   };
   
   const handleCLearProperty = () => {
-    dispatch(clearProperty(productHover));
-    localStorage.removeItem("productHover", productHover);
-    setFormCart(initialAddCartForm);
+    dispatch(clearProperty(propertyHover));
+    localStorage.removeItem("propertyHover", propertyHover);
+    setFormProperty(initialAddCartForm);
   };
 
   const handleMouseEnter = () => {
-    if (user) {
-      handleSetProductInfo({ user_id, property_id, price, quantity });
+    if (!user) {
+      handleSetProductInfo({ user_id, property_id, price });
     }
   };
 
   const handleMouseLeave = () => {
-    if (user) {
-      handleCLearProperty({ user_id, property_id, price, quantity });
+    if (!user) {
+      handleCLearProperty({ user_id, property_id, price });
     }
   };
 
-  const handleAddToCart = (e) => {
-    if (user) {
-      handleSubmitAddCart(e);
-    } else {
-      Swal.fire({
-        title: "Aún no eres nuestro cliente",
-        text: "Regístrate para agregar productos al carrito.",
-        icon: "warning",
-        showCancelButton: true,
-        // confirmButtonColor: '#990000',
-        // cancelButtonColor: '#a4883e',
-        confirmButtonText: "Registrarme",
-        cancelButtonText: "Cancelar",
-        background: "#f0f0f0",
-        customClass: {
-          popup: "custom-popup",
-          title: "custom-title",
-          content: "custom-content",
-          confirmButton: "custom-confirm-button",
-          cancelButton: "custom-cancel-button",
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/users/auth/register");
-        }
-      });
-    }
-  };
   const handleAddToWishList = (e) => {
-    if (user) {
+    if (!user) {
       handleSubmitAddWishlist(e);
     } else {
       Swal.fire({
@@ -207,18 +172,23 @@ export const CardLeases = ({
     <ProductCard onMouseEnter={prodHover}>
       <section className={classs}>
         <div>
+          <div className="productcard-ref">
+            <p><strong>Ref:</strong> {propertyRef} </p>
+          </div>
         <div className="productcard-addcart">
+            {showToAddWish && 
             <AddCartWishlist
               addWish={true}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              // onMouseEnter={handleMouseEnter}
+              // onMouseLeave={handleMouseLeave}
               onclick={handleAddToWishList}
               onSubmit={handleAddToWishList}
-            />
+            />}
           </div>
 
           <Link onClick={onClick} to={productLink} className="productcard-contain">
-            {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'webp') || defaultImage} alt="" />}
+            {/* {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'webp') || defaultImage} alt="" />} */}
+            {jpg && <img loading="lazy" src={img} alt="" />}
           </Link>
         </div>
         {boxGrid && 
@@ -246,7 +216,7 @@ export const CardLeases = ({
             {formatPrice(price)} <span className="productcard-span"> {discount} </span>
           </h2>
           <div className="productcard-group">
-            <p className="productcard__p2">{formatPrice(previousPrice)}</p>
+            <p className="productcard__p2">{formatPrice(price)}</p>
           </div>
           <p className="productcard__p3"> {member} </p>
           {/* {ratingss && <Rating ratings={ratings} productID={property_id} userID={user ? user.id : null} />} */}
@@ -268,7 +238,7 @@ export const CardLeases = ({
               <p><img src={getImg('svg', 'location', 'svg')} alt="" /><strong>Ubicación:</strong> {location}</p>
             </div>
             <div className="productcard-flex-location">
-              <b>{price}</b>
+              <b>{formatPrice(price)}</b>
             </div>
           </div>
           <div className="productcard-flex">
@@ -418,6 +388,7 @@ display: grid;
         &:hover {
           transform: scale(1.2);
         }
+
         @media (max-width: 500px) {
           max-height: 250px;
         }
@@ -453,6 +424,7 @@ display: grid;
       transition: all ease 0.3s;
       transform: translateY(0);
     }
+
     &-flex{
       position: relative;
       display: flex;
@@ -501,6 +473,25 @@ display: grid;
       height: fit-content;
       background: #ffffffc8;
       transform: translateY(100%);
+    }
+
+    &-ref{
+      display: grid;
+      position: absolute;
+      background: var(--trans-secondary-md);
+      text-shadow: var(--ds-sm);
+      transition: all ease 0.3s;
+      align-items: center;
+      padding: 0 10px;
+      overflow: hidden;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 5px;
+      font-size: 12px;
+      color: black;
+      top: 15px;
+      left: 15px;
+      z-index: 10;
     }
   }
 `;

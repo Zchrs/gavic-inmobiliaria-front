@@ -1,5 +1,5 @@
 import { legacy_createStore as createStore, combineReducers, applyMiddleware, compose } from "redux";
-import { propertyReducer} from "../reducers/propertyReducer";
+import { propertiesReducer} from "../reducers/propertyReducer";
 import { authReducer, authReducerAdmin, authReducerAdvisor  } from "../reducers/authReducer";
 import { uxReducer } from "../reducers/uxReducer";
 import cartReducer from "../reducers/cartReducer";
@@ -9,7 +9,7 @@ import {thunk} from "redux-thunk";
 
 const reducers = combineReducers({
   cart: cartReducer,
-  product: propertyReducer,
+  properties: propertiesReducer,
   langUI: uxReducer,
   auth: authReducer,
   authAdmin: authReducerAdmin,

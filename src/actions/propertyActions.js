@@ -55,10 +55,10 @@ export const clearProperty = (propertyInfo) => {
 
         // Consultar la base de datos si no hay productos en localStorage o si el array está vacío
         const response = await axios.get(import.meta.env.VITE_APP_API_GET_PROPERTIES_URL);
-        const propertiesComplete = await Promise.all(response.data.map(async (productInfo) => {
-            const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${productInfo.id}`);
+        const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+            const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
             return {
-                ...productInfo,
+                ...propertyInfo,
                 images: imagesRes.data.images || [],
             };
         }));
@@ -73,6 +73,31 @@ export const clearProperty = (propertyInfo) => {
         throw error;
     }
 };
+  export const fetchRecentProperties = () => async (dispatch) => {
+    try {
+
+        // Consultar la base de datos si no hay productos en localStorage o si el array está vacío
+        const response = await axios.get(import.meta.env.VITE_APP_API_GET_RECENT_PROPERTIES_URL);
+        
+        const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+            const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
+            return {
+                ...propertyInfo,
+                images: imagesRes.data.images || [],
+            };
+        }));
+
+        // Guardar los productos en localStorage después de la consulta
+        localStorage.setItem('properties', JSON.stringify(propertiesComplete));
+        dispatch(setProperty(propertiesComplete));
+        return propertiesComplete;
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+        dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
+        throw error;
+    }
+};
+
 
   // Función para escuchar actualizaciones de productos y actualizar localStorage
   export const listenForPropertyUpdates = () => (dispatch) => {
@@ -99,17 +124,42 @@ export const clearProperty = (propertyInfo) => {
   export const fetchPropertiesCategory = (category) => async (dispatch) => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROPERTIES_CATEGORY}?category=${category}`);
-      const propertiesComplete = await Promise.all(response.data.map(async (productInfo) => {
+      const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
         try {
-          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROPERTIES_URL}/${productInfo.id}`);
+          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROPERTIES_URL}/${propertyInfo.id}`);
           return {
-            ...productInfo,
+            ...propertyInfo,
             images: imagesRes.data.images || [],
           };
         } catch (error) {
-          console.error(`Error al obtener las imágenes para el producto ${productInfo.id}:`, error);
+          console.error(`Error al obtener las imágenes para el producto ${propertyInfo.id}:`, error);
           return {
-            ...productInfo,
+            ...propertyInfo,
+            images: [],
+          };
+        }
+      }));
+      dispatch(setProperty(propertiesComplete));
+    } catch (error) {
+      console.error('Error al obtener los productos:', error);
+      dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
+    }
+  };
+  export const fetchPropertiesAction = (action) => async (dispatch) => {
+
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROPERTIES_ACTIONS_URL}/${action}`);
+      const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+        try {
+          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
+          return {
+            ...propertyInfo,
+            images: imagesRes.data.images || [],
+          };
+        } catch (error) {
+          console.error(`Error al obtener las imágenes para el producto ${propertyInfo.id}:`, error);
+          return {
+            ...propertyInfo,
             images: [],
           };
         }
@@ -129,24 +179,24 @@ export const clearProperty = (propertyInfo) => {
   //     const properties = response.data;
   
   //     // Obtener imágenes y calificaciones para cada producto
-  //     const propertiesComplete = await Promise.all(properties.map(async (productInfo) => {
+  //     const propertiesComplete = await Promise.all(properties.map(async (propertyInfo) => {
   //       try {
   //         // Obtener las imágenes del producto
-  //         const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${productInfo.id}`);
+  //         const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${propertyInfo.id}`);
           
   //         // Obtener las calificaciones del producto
-  //         const ratingsRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_PRODUCT_RATINGS_URL}/${productInfo.id}`);
+  //         const ratingsRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_PRODUCT_RATINGS_URL}/${propertyInfo.id}`);
           
           
   //         return {
-  //           ...productInfo,
+  //           ...propertyInfo,
   //           images: imagesRes.data.images || [],
   //           ratings: ratingsRes.data || [], // Asegúrate de que la API devuelva las calificaciones en el formato esperado
   //         };
   //       } catch (error) {
-  //         console.error(`Error al obtener las imágenes o calificaciones para el producto ${productInfo.id}:`, error);
+  //         console.error(`Error al obtener las imágenes o calificaciones para el producto ${propertyInfo.id}:`, error);
   //         return {
-  //           ...productInfo,
+  //           ...propertyInfo,
   //           images: [],
   //           ratings: [],
   //         };
@@ -165,14 +215,14 @@ export const clearProperty = (propertyInfo) => {
   export const fetchPropertiesById = (id) => async (dispatch) => {
     try {
       // Fetch product details by ID
-      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROperties_URL}/${id}`);
-      const productInfo = response.data;
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROPERTY_URL}/${id}`);
+      const propertyInfo = response.data;
   
       try {
         // Fetch product images by ID
-        const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${id}`);
+        const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROPERTIES_URL}/${id}`);
         const productWithImages = {
-          ...productInfo,
+          ...propertyInfo,
           images: imagesRes.data.images || [],
         };
   
@@ -183,7 +233,7 @@ export const clearProperty = (propertyInfo) => {
   
         // Dispatch action to update product without images in case of error
         const productWithoutImages = {
-          ...productInfo,
+          ...propertyInfo,
           images: [],
         };
         dispatch(setProperty([productWithoutImages]));
