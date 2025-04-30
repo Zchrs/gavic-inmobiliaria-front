@@ -40,13 +40,145 @@ export const clearProperty = (propertyInfo) => {
   });
 
 
-  export const fetchSoldProperties = async () => {
+  export const moveFromPropertiesToRented = (productId) => async (dispatch, getState) => {
+    // const { id: userId } = getState().auth.user;
+  
     try {
-      const response = await axios.get(import.meta.env.VITE_APP_API_GET_SOLD_PROPERTIES_URL);
-      return response.data;
+      // Llamada a la API para mover el producto del carrito a la lista de deseos
+      await axios.post(`${import.meta.env.VITE_APP_API_MOVE_TO_RENTED_URL}/${productId}`, {
+        // user_id: userId,
+        product_id: productId
+      });
+  
+      // Despachar la acción para actualizar el estado en Redux
+      dispatch({
+        type: types.MOVE_FROM_PROPERTIES_TO_RENTED,
+        payload: productId,
+      });
     } catch (error) {
-      console.error('Error al obtener los productos vendidos:', error);
-      throw error;
+      console.error('Error al mover el inmueble a propiedades vendidas:', error);
+    }
+  };
+  export const moveFromPropertiesToSold = (productId) => async (dispatch, getState) => {
+    // const { id: userId } = getState().auth.user;
+  
+    try {
+      // Llamada a la API para mover el producto del carrito a la lista de deseos
+      await axios.post(`${import.meta.env.VITE_APP_API_MOVE_TO_SOLD_URL}/${productId}`, {
+        // user_id: userId,
+        product_id: productId
+      });
+  
+      // Despachar la acción para actualizar el estado en Redux
+      dispatch({
+        type: types.MOVE_FROM_SELL_TO_SOLD,
+        payload: productId,
+      });
+    } catch (error) {
+      console.error('Error al mover el inmueble a propiedades vendidas:', error);
+    }
+  };
+
+
+  export const fetchSellProperties = (action) => async (dispatch) => {
+
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_SELL_PROPERTIES_URL}/${action}`);
+      const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+        try {
+          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
+          return {
+            ...propertyInfo,
+            images: imagesRes.data.images || [],
+          };
+        } catch (error) {
+          console.error(`Error al obtener las imágenes para el inmueble ${propertyInfo.id}:`, error);
+          return {
+            ...propertyInfo,
+            images: [],
+          };
+        }
+      }));
+      dispatch(setProperty(propertiesComplete));
+    } catch (error) {
+      console.error('Error al obtener las propiedades vendidas:', error);
+      dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
+    }
+  };
+  export const fetchSoldProperties = (action) => async (dispatch) => {
+
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_SOLD_PROPERTIES_URL}/${action}`);
+      const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+        try {
+          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
+          return {
+            ...propertyInfo,
+            images: imagesRes.data.images || [],
+          };
+        } catch (error) {
+          console.error(`Error al obtener las imágenes para el inmueble${propertyInfo.id}:`, error);
+          return {
+            ...propertyInfo,
+            images: [],
+          };
+        }
+      }));
+      dispatch(setProperty(propertiesComplete));
+    } catch (error) {
+      console.error('Error al obtener los inmuebles vendidos:', error);
+      dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
+    }
+  };
+
+  export const fetchRentedProperties = (action) => async (dispatch) => {
+
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_RENTED_PROPERTIES_URL}/${action}`);
+      const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+        try {
+          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
+          return {
+            ...propertyInfo,
+            images: imagesRes.data.images || [],
+          };
+        } catch (error) {
+          console.error(`Error al obtener las imágenes para el inmueble${propertyInfo.id}:`, error);
+          return {
+            ...propertyInfo,
+            images: [],
+          };
+        }
+      }));
+      dispatch(setProperty(propertiesComplete));
+    } catch (error) {
+      console.error('Error al obtener las propiedades arrendadas:', error);
+      dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
+    }
+  };
+  export const fetchRentProperties = (action) => async (dispatch) => {
+
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_RENT_PROPERTIES_URL}/${action}`);
+      const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+        try {
+          const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
+          return {
+            ...propertyInfo,
+            images: imagesRes.data.images || [],
+          };
+        } catch (error) {
+          console.error(`Error al obtener las imágenes para el inmueble${propertyInfo.id}:`, error);
+          return {
+            ...propertyInfo,
+            images: [],
+          };
+        }
+      }));
+      dispatch(setProperty(propertiesComplete));
+    } catch (error) {
+      console.error('Error al obtener los inmuebles arrendados:', error);
+      dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
     }
   };
 
@@ -73,29 +205,61 @@ export const clearProperty = (propertyInfo) => {
         throw error;
     }
 };
-  export const fetchRecentProperties = () => async (dispatch) => {
-    try {
-
-        // Consultar la base de datos si no hay productos en localStorage o si el array está vacío
-        const response = await axios.get(import.meta.env.VITE_APP_API_GET_RECENT_PROPERTIES_URL);
-        
-        const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
-            const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
-            return {
-                ...propertyInfo,
-                images: imagesRes.data.images || [],
-            };
-        }));
-
-        // Guardar los productos en localStorage después de la consulta
-        localStorage.setItem('properties', JSON.stringify(propertiesComplete));
-        dispatch(setProperty(propertiesComplete));
-        return propertiesComplete;
-    } catch (error) {
-        console.error('Error al obtener los productos:', error);
-        dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
-        throw error;
+export const fetchRecentProperties = () => async (dispatch) => {
+  try {
+    // 1. Verificar si hay datos en localStorage
+    const storedProperties = localStorage.getItem('properties');
+    
+    // 2. Si hay datos y no están vacíos, usarlos
+    if (storedProperties) {
+      const parsedProperties = JSON.parse(storedProperties);
+      if (Array.isArray(parsedProperties) && parsedProperties.length > 0) {
+        dispatch(setProperty(parsedProperties));
+        return parsedProperties;
+      }
     }
+
+    // 3. Si no hay datos válidos en localStorage, consultar la API
+    const response = await axios.get(import.meta.env.VITE_APP_API_GET_RECENT_PROPERTIES_URL);
+    
+    // 4. Obtener imágenes para cada propiedad
+    const propertiesComplete = await Promise.all(
+      response.data.map(async (propertyInfo) => {
+        try {
+          const imagesRes = await axios.get(
+            `${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`
+          );
+          return {
+            ...propertyInfo,
+            images: imagesRes.data?.images || [],
+          };
+        } catch (imageError) {
+          console.error(`Error obteniendo imágenes para propiedad ${propertyInfo.id}:`, imageError);
+          return {
+            ...propertyInfo,
+            images: [],
+          };
+        }
+      })
+    );
+
+    // 5. Filtrar propiedades sin imágenes si es necesario (opcional)
+    // const propertiesWithImages = propertiesComplete.filter(prop => prop.images.length > 0);
+
+    // 6. Guardar en localStorage y actualizar el estado
+    localStorage.setItem('properties', JSON.stringify(propertiesComplete));
+    dispatch(setProperty(propertiesComplete));
+    
+    return propertiesComplete;
+  } catch (error) {
+    console.error('Error al obtener propiedades recientes:', error);
+    
+    // Intentar devolver datos de localStorage incluso si hay error en la API
+    const fallbackProperties = JSON.parse(localStorage.getItem('properties') || '[]');
+    dispatch(setProperty(fallbackProperties));
+    
+    throw error;
+  }
 };
 
 
@@ -171,46 +335,6 @@ export const clearProperty = (propertyInfo) => {
     }
   };
   
-
-  // export const fetchPropertiesCategory = (category) => async (dispatch) => {
-  //   try {
-  //     // Obtener los productos por categoría
-  //     const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_PROperties_CATEGORY}?category=${category}`);
-  //     const properties = response.data;
-  
-  //     // Obtener imágenes y calificaciones para cada producto
-  //     const propertiesComplete = await Promise.all(properties.map(async (propertyInfo) => {
-  //       try {
-  //         // Obtener las imágenes del producto
-  //         const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGE_PROperties_URL}/${propertyInfo.id}`);
-          
-  //         // Obtener las calificaciones del producto
-  //         const ratingsRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_PRODUCT_RATINGS_URL}/${propertyInfo.id}`);
-          
-          
-  //         return {
-  //           ...propertyInfo,
-  //           images: imagesRes.data.images || [],
-  //           ratings: ratingsRes.data || [], // Asegúrate de que la API devuelva las calificaciones en el formato esperado
-  //         };
-  //       } catch (error) {
-  //         console.error(`Error al obtener las imágenes o calificaciones para el producto ${propertyInfo.id}:`, error);
-  //         return {
-  //           ...propertyInfo,
-  //           images: [],
-  //           ratings: [],
-  //         };
-  //       }
-  //     }));
-  //     console.log(propertiesComplete)
-  //     // Despachar los productos completos con imágenes y calificaciones
-  //     dispatch(setProperty(propertiesComplete, 'Fetch'));
-  //     console.log('Productos completos con imágenes y calificaciones:', propertiesComplete);
-  //   } catch (error) {
-  //     console.error('Error al obtener los productos:', error);
-  //     dispatch(setProperty([])); // Despachar un array vacío en caso de error
-  //   }
-  // };
 
   export const fetchPropertiesById = (id) => async (dispatch) => {
     try {

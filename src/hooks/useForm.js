@@ -11,6 +11,7 @@ import {
   loginSuccess,
 } from "../actions/authActions";
 import { fetchWithoutToken } from "../helpers/fetch";
+import departamentos from "../colombia/colombia.json";
 import Swal from "sweetalert2";
 
 export const initialFormAdmin = {
@@ -18,6 +19,18 @@ export const initialFormAdmin = {
   email: "",
   pass: "",
   codeAccess: "",
+};
+
+export const initialFormClient = {
+    country: "Colombia",
+    name: "John", 
+    lastname: "Doe",
+    state: "Antioquia",
+    city: "Medellín",
+    phone: "573122057896",
+    email: "sacuroyim@gmail.com",
+    address: "carrera 111 #34b 46",
+    password: "Perrito@123"
 };
 
 export const initialForm = {
@@ -30,6 +43,7 @@ export const initialForm = {
   email: "",
   password: "",
 };
+
 export const initialFormAdvisor = {
   country: "",
   name: "",
@@ -45,21 +59,24 @@ export const initialFormAdvisor = {
 };
 
 export const initialPropertyForm = {
-  name: "Apartamento en Laureles",
-  city: "Medellín",
-  price: "1500000",
-  district: "Laureles",
-  category: "Apartamento",
-  description: "espectacular apartamento en Laureles",
-  bedRoom: "4",
-  bathRoom: "3",
-  diningRoom: "Sí",
-  closets: "4",
-  kitchen: "Con isla",
-  floor: "Cerámica",
-  stratum: "5",
-  clothing: "1",
-  action: "Venta",
+  name: "",
+  city: "",
+  price: "",
+  district: "",
+  category: "",
+  furnished: "",
+  admon: "",
+  description: "",
+  bedRoom: "",
+  bathRoom: "",
+  diningRoom: "",
+  closets: "",
+  kitchen: "",
+  floor: "",
+  parking: "",
+  stratum: "",
+  clothing: "",
+  action: "",
   image: "",
   img_url: [],
 };
@@ -76,6 +93,7 @@ export const useForm = (initialForm, validateForm) => {
   const [form, setForm] = useState(initialForm);
   const [formProperty, setFormProperty] = useState(initialPropertyForm);
   const [formAdmin, setFormAdmin] = useState(initialFormAdmin);
+  const [formClient, setFormClient] = useState(initialFormClient);
   const [formAdvisor, setFormAdvisor] = useState(initialFormAdvisor);
   const [formCart, setFormCart] = useState(initialAddCartForm);
   const [errors, setErrors] = useState({});
@@ -85,7 +103,9 @@ export const useForm = (initialForm, validateForm) => {
   const [modal, setModal] = useState(false);
   const [response, setResponse] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [filteredCities, setFilteredCities] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [cities, setCities] = useState([]);
   const [checked, setChecked] = useState(false);
   const user = useSelector((state) => state.auth.user);
   // ----------------- funciones form -------------------------
@@ -123,6 +143,7 @@ export const useForm = (initialForm, validateForm) => {
       });
     }
   };
+
   const handleCountryChangeAdvisor = (options) => {
     if (!options) {
       setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
@@ -162,6 +183,42 @@ export const useForm = (initialForm, validateForm) => {
       return;
     }
   };
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
+    if (selectedDepartment) {
+      setCities(selectedDepartment.ciudades);
+
+    } else {
+      setCities([]);
+    }
+    setFormClient({
+      ...formClient,
+    });
+    handleChangeClient(e); // Para actualizar el estado del formulario
+  };
+
+  const handleChangeClient = (e) => {
+    const { name, value } = e.target;
+    // console.log(value)
+    setFormClient({
+      ...formClient,
+      [name]: value,
+    });
+
+    if (value === "email") {
+      validateEmails(name);
+    } else {
+      return;
+    }
+  };
+
+  const handleBlurClient = (e) => {
+    handleChangeClient(e);
+    setErrors(validateForm(formClient));
+  };
+
   const handleChangeAdvisor = (e) => {
     const { name, value } = e.target;
     // console.log(value)
@@ -176,6 +233,7 @@ export const useForm = (initialForm, validateForm) => {
       return;
     }
   };
+
   const handleBlurAdvisor = (e) => {
     handleChangeAdvisor(e);
     setErrors(validateForm(formAdvisor));
@@ -215,6 +273,7 @@ export const useForm = (initialForm, validateForm) => {
       img_url: imageUrls,
     });
   };
+
   const handleSetImage = (imageUrl) => {
     setForm({
       ...form,
@@ -227,10 +286,11 @@ export const useForm = (initialForm, validateForm) => {
     const { name, value } = e.target;
     // console.log(value)
     setFormProperty({
-      ...form,
+      ...formProperty,
       [name]: value,
     });
   };
+  
   const handleBlurProperty = (e) => {
     handleChangeProperty(e);
     setErrors(validateForm(formProperty));
@@ -320,26 +380,44 @@ export const useForm = (initialForm, validateForm) => {
     e.preventDefault();
 
     const formData = {
-      name: form.name,
-      city: form.city,
-      price: form.price,
-      district: form.district,
-      category: form.category,
-      description: form.description,
-      bedRoom: form.bedRoom,
-      bathRoom: form.bathRoom,
-      diningRoom: form.diningRoom,
-      closets: form.closets,
-      kitchen: form.kitchen,
-      floor: form.floor,
-      stratum: form.stratum,
-      clothing: form.clothing,
-      action: form.action,
-      image: form.image,
-      img_url: form.img_url, // Asumiendo que img_url es un array de objetos con una propiedad 'url'
+      name: formProperty.name,
+      city: formProperty.city,
+      price: formProperty.price,
+      district: formProperty.district,
+      category: formProperty.category,
+      furnished: formProperty.furnished,
+      admon: formProperty.admon,
+      description: formProperty.description,
+      bedRoom: formProperty.bedRoom,
+      bathRoom: formProperty.bathRoom,
+      diningRoom: formProperty.diningRoom,
+      closets: formProperty.closets,
+      kitchen: formProperty.kitchen,
+      floor: formProperty.floor,
+      parking: formProperty.parking,
+      stratum: formProperty.stratum,
+      clothing: formProperty.clothing,
+      action: formProperty.action,
+      image: formProperty.image,
+      img_url: formProperty.img_url, // Asumiendo que img_url es un array de objetos con una propiedad 'url'
     };
 
-    debugger
+    if (!formData.name) return;
+    if (!formData.city) return;
+    if (!formData.price) return;
+    if (!formData.district) return;
+    if (!formData.category) return;
+    if (!formData.furnished) return;
+    if (!formData.admon) return;
+    if (!formData.description) return;
+    if (!formData.diningRoom) return;
+    if (!formData.bathRoom) return;
+    if (!formData.closets) return;
+    if (!formData.floor) return;
+    if (!formData.parking) return;
+    if (!formData.stratum) return;
+    if (!formData.clothing) return;
+    if (!formData.action) return;
 
     if (!formData.image) {
       console.error("Selecciona 1 imagen");
@@ -350,6 +428,8 @@ export const useForm = (initialForm, validateForm) => {
       console.error("Selecciona 4 imágenes");
       return;
     }
+
+
 
     setLoading(true);
 
@@ -385,7 +465,7 @@ export const useForm = (initialForm, validateForm) => {
           setLoading(false);
           setResponse(true);
           setFormProperty(initialPropertyForm);
-          setForm(initialPropertyForm);
+         
 
           Swal.fire({
             title: "¡Éxito!",
@@ -414,15 +494,15 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleSetImagesProperty = (imageUrls) => {
-    setForm({
-      ...form,
+    setFormProperty({
+      ...formProperty,
       img_url: imageUrls,
     });
   };
 
   const handleSetImageProperty = (imageUrl) => {
-    setForm({
-      ...form,
+    setFormProperty({
+      ...formProperty,
       image: imageUrl,
     });
   };
@@ -430,25 +510,20 @@ export const useForm = (initialForm, validateForm) => {
   const handleImagesChangeProperty = (e) => {
     const files = Array.from(e.target.files);
     const imgUrls = files.map((file) => URL.createObjectURL(file));
-    setFormProperty((form) => ({
-      ...form,
+    setFormProperty((formProperty) => ({
+      ...formProperty,
       img_url: imgUrls, // Guardar las URLs de las imágenes
     }));
-    handleSetImagesProperty(imgUrls); // Llama a la función para establecer las imágenes
   };
 
   const handleImageChangeProperty = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-  
     const imageUrl = URL.createObjectURL(file);
-  
-    setFormProperty((form) => ({
-      ...form,
+    setFormProperty((formProperty) => ({
+      ...formProperty,
       image: imageUrl, // Guardar la URL de la imagen
     }));
-  
-    handleSetImageProperty(imageUrl); // Establecer la imagen en el padre
   };
 
   const deleteProperty = async (id) => {
@@ -774,6 +849,75 @@ export const useForm = (initialForm, validateForm) => {
     }
     setLoading(false);
     setModal(true);
+  }; 
+
+  const handleSubmitClient = async (e, label) => {
+    const finalForm = {
+      ...formClient,
+    };
+    if (!finalForm.country) return;
+    if (!finalForm.name) return;
+    if (!finalForm.lastname) return;
+    if (!finalForm.state) return;
+    if (!finalForm.city) return;
+    if (!finalForm.phone) return;
+    if (!finalForm.email) return;
+    if (!finalForm.address) return;
+    if (!finalForm.password) return;
+
+    e.preventDefault();
+    setErrors(validateForm);
+    setLoading(true);
+    try {
+      helpHttp();
+      const response = await axios.post(
+        import.meta.env.VITE_APP_API_REGISTER_CLIENTS_URL,
+        finalForm,
+        {
+          // const response = await axios.post("http://192.168.1.2:3000/api/auth/register", finalForm, {
+
+          body: finalForm,
+          headers: {
+            "Content-type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      setLoading(false);
+      setResponse(true);
+      setFormClient(initialFormClient);
+      setTimeout(
+        () =>
+          setResponse(
+            false,
+            initialFormClient,
+            Swal.fire({
+              title: "¡Hecho!",
+              html: `Te has registrado correctamente`,
+              icon: "success",
+              showCancelButton: false,
+              cancelButtonText: "Volver",
+              background: "#f0f0f0",
+              customClass: {
+                popup: "custom-popup",
+                title: "custom-title",
+                content: "custom-content",
+                confirmButton: "custom-confirm-button",
+                cancelButton: "custom-cancel-button",
+              },
+            })
+            // (window.location.href =
+              // import.meta.env.VITE_APP_API_LOGIN_ADMIN_FRONT)
+          ),
+        200
+      );
+    } catch (error) {
+      console.log(error.response.data);
+      alert(`${error.response.data}`);
+      return;
+    }
+    setLoading(false);
+    setModal(true);
   };
 
   const handleImageChange = (e) => {
@@ -975,21 +1119,28 @@ export const useForm = (initialForm, validateForm) => {
   return {
     form,
     formAdmin,
-    formAdvisor,
     formCart,
+    formClient,
     errorsCart,
     errors,
     loading,
     response,
     modal,
     formProperty,
+    filteredCities,
+    departamentos,
+    cities,
     setForm,
+    setFormClient,
+    handleChangeClient,
+    handleBlurClient,
     setLoading,
     handleBlurAdmin,
     setFormAdmin,
     handleLoginAdmin,
     handleChangeAdmin,
     handleSubmitsAdmin,
+    handleSubmitClient,
     handleBlurAdm,
     setFormAdvisor,
     handleBlurAdvisor,
@@ -1021,6 +1172,7 @@ export const useForm = (initialForm, validateForm) => {
     handleSubscribeNewsletter,
     handleClearCountry,
     openModal,
+    handleStateChange,
     handleCountryChange,
     handleSubmitAddWishlist,
   };

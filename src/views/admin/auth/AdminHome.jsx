@@ -135,7 +135,7 @@ export const AdminHome = () => {
                   series={data.sales.data}
                   labels={data.sales.names}
                 />
-              <div className="flex-s">
+              <div className="flex">
                 <BaseButton
                   textLabel={true}
                   label={"Ver detalle"}
@@ -198,8 +198,8 @@ export const AdminHome = () => {
         <div className="adminhome-right">
           <div className="adminhome-right-card">
             <h2>Finanzas</h2>
-            <CandlesChart series={data.finance.data} />
-            <div className="flex-s z-index">
+            <CandlesChart width={"140%"} height={"270%"} series={data.finance.data} />
+            <div className="flex z-index">
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
@@ -214,21 +214,21 @@ export const AdminHome = () => {
           </div>
           <div className="adminhome-right-card-medium">
             <div className="adminhome-right-card-medium-card">
-              <div className="flex-s">
+              <div className="flex">
                 <img src="" alt="" />
                 <p>title</p>
               </div>
-              <div className="flex-s">
+              <div className="flex">
                 <img src="" alt="" />
                 <p>title</p>
               </div>
             </div>
             <div className="adminhome-right-card-medium-card">
-              <div className="flex-s">
+              <div className="flex">
                 <img src="" alt="" />
                 <p>title</p>
               </div>
-              <div className="flex-s">
+              <div className="flex">
                 <img src="" alt="" />
                 <p>title</p>
               </div>
@@ -293,6 +293,7 @@ const HomeAdmin = styled.section`
       align-content: start;
       display: grid;
       gap: 10px;
+
       &-container {
         width: 100%;
         height: 100%;
@@ -305,6 +306,7 @@ const HomeAdmin = styled.section`
         }
         &-card {
           display: grid;
+          width: 100%;
           height: 100%;
           padding: 24px;
           background: var(--deg-secondary);
@@ -330,6 +332,7 @@ const HomeAdmin = styled.section`
           }
           &:nth-child(3) {
             border-radius: 5px 15px 15px 15px;
+            width: 100%;
             @media (max-width: 820px) {
               border-radius: 0px 0px 25px 25px;
             }
@@ -357,6 +360,10 @@ const HomeAdmin = styled.section`
           display: grid;
           grid-template-columns: repeat(2, 1fr);
         }
+        @media (max-width: 780px) {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
         &-card {
           width: 100%;
           display: grid;
@@ -375,6 +382,7 @@ const HomeAdmin = styled.section`
             height: 100%;
             @media (max-width: 820px) {
               width: 100%;
+              border-radius: 15px 15px 0 0;
             }
           }
           &:nth-child(2) {
@@ -383,12 +391,16 @@ const HomeAdmin = styled.section`
             color: white;
             background: var(--deg-fourty);
             box-shadow: var(--ds-m);
+            @media (max-width: 820px) {
+              border-radius: 0px;
+            }
           }
           &:nth-child(3) {
             
             @media (max-width: 820px) {
               margin: auto;
-              width: 205%;
+              width: 100%;
+              border-radius: 0px 0px 15px 15px;
             }
           }
         }
@@ -528,6 +540,15 @@ const HomeAdmin = styled.section`
     }
   }
   .z-index{
+    display: flex;
     z-index: 100;
+    justify-content: center;
+    gap: 20px;
+    margin: auto;
+  }
+  .flex{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
 `;

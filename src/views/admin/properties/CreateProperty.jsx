@@ -29,6 +29,8 @@ export const CreateProperty = () => {
     let price = document.getElementById("price");
     let district = document.getElementById("district");
     let category = document.getElementById("category");
+    let furnished = document.getElementById("furnished");
+    let admon = document.getElementById("admon");
     let description = document.getElementById("description");
     let bedRoom = document.getElementById("bedroom");
     let diningRoom = document.getElementById("diningroom");
@@ -37,6 +39,7 @@ export const CreateProperty = () => {
     let bathRoom = document.getElementById("bathroom");
     let closets = document.getElementById("closets");
     let floor = document.getElementById("floor");
+    let parking = document.getElementById("parking");
     let stratum = document.getElementById("stratum");
     let action = document.getElementById("action");
     let image = document.getElementById("image");
@@ -78,6 +81,20 @@ export const CreateProperty = () => {
       errors.category = "Escribe una categoría";
     } else {
       category.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
+    }
+
+    if (!formProperty.furnished) {
+      furnished.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.furnished = "Escribe una categoría";
+    } else {
+      furnished.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
+    }
+
+    if (!formProperty.admon) {
+      admon.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.admon = "Escribe una categoría";
+    } else {
+      admon.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
     if (!formProperty.description) {
@@ -133,6 +150,13 @@ export const CreateProperty = () => {
       floor.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
+    if (!formProperty.parking) {
+      parking.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.parking = "Debes seleccionar una opción";
+    } else {
+      parking.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
+    }
+
     if (!formProperty.stratum) {
       stratum.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.stratum = "Debes seleccionar una opción";
@@ -178,7 +202,7 @@ export const CreateProperty = () => {
     errors,
     handleChangeProperty,
     handleBlurProperty,
-    handleSetImages,
+    handleSetImagesProperty,
     handleSetImageProperty,
     handleImageChangeProperty,
     handleImagesChangeProperty,
@@ -244,7 +268,8 @@ export const CreateProperty = () => {
                 name="district"
               />
             </div>
-            <BaseInputSelect
+                <div className="grid-three">
+                <BaseInputSelect
               options={[
                 { value: "Apartamento", label: "Apartamento" },
                 { value: "Apartaestudio", label: "Apartaestudio" },
@@ -266,6 +291,37 @@ export const CreateProperty = () => {
               name="category"
               type="text"
             />
+            <BaseInputSelect
+              options={[
+                { value: "Sí", label: "Sí" },
+                { value: "No", label: "No" },
+              ]}
+              placeholder={"Amoblado"}
+              value={formProperty.furnished}
+              onChange={handleChangeProperty}
+              onBlur={handleBlurProperty}
+              classs={"inputs normal"}
+              isSmallSelect
+              id="furnished"
+              name="furnished"
+              type="text"
+            />
+            <BaseInputSelect
+              options={[
+                { value: "Sí", label: "Sí" },
+                { value: "No", label: "No" },
+              ]}
+              placeholder={"Administración"}
+              value={formProperty.admon}
+              onChange={handleChangeProperty}
+              onBlur={handleBlurProperty}
+              classs={"inputs normal"}
+              isSmallSelect
+              id="admon"
+              name="admon"
+              type="text"
+            />
+                </div>
             <BaseInput
               placeholder={"Descripción"}
               isTextarea
@@ -347,7 +403,7 @@ export const CreateProperty = () => {
                 name={"closets"}
               />
             </div>
-            <div className="grid-k">
+            <div className="grid-three">
               <BaseInputSelect
                 options={[
                   { value: "Integral", label: "Integral" },
@@ -385,6 +441,20 @@ export const CreateProperty = () => {
                 onBlur={handleBlurProperty}
                 id={"floor"}
                 name={"floor"}
+              />
+              <BaseInputSelect
+                options={[
+                  { value: "Sí", label: "Sí" },
+                  { value: "No", label: "No" },
+                  { value: "2 coches", label: "2 coches" },
+                ]}
+                placeholder={"Parqueadero"}
+                isSmallSelect={true}
+                value={formProperty.parking}
+                onChange={handleChangeProperty}
+                onBlur={handleBlurProperty}
+                id={"parking"}
+                name={"parking"}
               />
             </div>
             <div className="grid-three">
@@ -455,13 +525,19 @@ export const CreateProperty = () => {
                 id="images"
                 name="img_url"
                 type="file"
-                setImages={handleSetImages}
+                setImages={handleSetImagesProperty}
                 onChange={handleImagesChangeProperty}
                 onBlur={handleBlurProperty}
                 multiple
               />
             </div>
-        <BaseButton disabled={!formComplete} handleClick={handleSubmitProperty} classs={`button full-primary ${!isFormComplete ? 'button full-primary disabled' : ''}`} textLabel={true} label={"Enviar"} />
+        <BaseButton 
+            disabled={!formComplete} 
+            handleClick={handleSubmitProperty} 
+            classs={`button full-primary ${!isFormComplete ? 'button full-primary disabled' : ''}`} 
+            textLabel={true} 
+            label={"Enviar"} 
+         />
           </div>
         </form>
       </div>
@@ -480,15 +556,19 @@ const Create = styled.div`
     width: 100%;
     align-items: start;
     height: fit-content;
+
   }
   form {
     display: flex;
     align-items: center;
     gap: 15px;
+
   }
   .grid {
     display: grid;
     gap: 5px;
+
+    
   }
   .form {
     border-radius: 15px;
@@ -496,6 +576,11 @@ const Create = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 20px;
+    
+    
+    @media (max-width: 680px) {
+      grid-template-columns: 1fr;
+    }
   }
   .images {
     display: grid;

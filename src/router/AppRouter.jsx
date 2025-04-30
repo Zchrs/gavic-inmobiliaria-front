@@ -49,6 +49,8 @@ import {
 import { AdvisorLogin } from "../views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
 import { AuthAdvisorHome } from "../views/home/auth/AuthAdvisorHome";
+import { Verify } from "../components/Verify";
+import { VerifyCode } from "../components/VerifyCode";
 
 
 export const AppRouter = () => {
@@ -82,6 +84,23 @@ export const AppRouter = () => {
           <Route exact path="appraisals" element={<Appraisals />} />
           <Route exact path="consultancies" element={<Consultancies />} />
         </Routes>
+    );
+  };
+  export const VerifyRouter  = () => {
+    // const dispatch = useDispatch();
+      
+    // useEffect(() => {
+    //   dispatch(startChecking());
+    // }, [dispatch]);
+
+    return (
+      <Routes>
+        <Route exact path="/*" element={ 
+            <Verify />
+      } />
+      
+        <Route exact path="clients/account/verify/:userId/:token" element={<VerifyCode />} />
+      </Routes>
     );
   };
   export const AuthRouter = () => {

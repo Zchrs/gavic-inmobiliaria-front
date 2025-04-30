@@ -5,7 +5,7 @@ import { getImg } from '../../globalActions'
 import { Avatar } from './Avatar';
 import styled from 'styled-components';
 
-export const HeaderProducts = ({headClass}) => {
+export const HeaderProduct = ({headClass, avatar, dropData, homeClick }) => {
 
     
 
@@ -13,11 +13,11 @@ export const HeaderProducts = ({headClass}) => {
     <HeAd>
       <div className={headClass}>
           <div className='headproducts-logo'>
-              <Link to={"/"}><img src={getImg('svg', 'logo', 'svg')} alt="" /></Link>
+              { homeClick ? <Link to={"/"}><img src={getImg('svg', 'logo', 'svg')} alt="" /></Link> : <img src={getImg('svg', 'logo', 'svg')} alt="" />}
           </div>
           <div className="headproducts-group">
             <div className='headproducts-useravatar'>
-                    <Avatar img={"default-avatar"} avtsmall={true} dropData={true} classWhite={"avatar white"} clas={"avatar tumb"} />
+                    <Avatar img={"default-avatar"} avtsmall={avatar} dropData={dropData} classWhite={"avatar white"} clas={"avatar tumb"} />
             </div>
           </div>
       </div>
@@ -55,9 +55,17 @@ const HeAd = styled.div`
    &-logo{
        display: grid;
        align-items: center;
-       width: 100px;
+       width: 150px;
        height: fit-content;
        // border: white 1px solid;
+
+       img{
+               width: 100%;
+               filter: invert(100%) brightness(500%);
+               @media (max-width: 920px) {
+                   height: 20%;
+                }
+           }
        a{
            align-items: center;
            display: grid;
@@ -65,7 +73,7 @@ const HeAd = styled.div`
            height: fit-content;
 
            img{
-               height: 30%;
+               width: 100%;
                filter: invert(100%) brightness(500%);
                @media (max-width: 920px) {
                    height: 20%;

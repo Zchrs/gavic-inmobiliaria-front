@@ -107,7 +107,7 @@ export const CardLeases = ({
     // if(!user) return
     
     dispatch(selectedProperty(propertyHover));
-    localStorage.setItem("propertyHover", propertyHover);
+    localStorage.setItem("property", propertyHover);
     setFormProperty((prevFormProperty) => ({
       ...prevFormProperty,
       user_id: user.id, // Assuming you want to set the user_id as well
@@ -118,7 +118,7 @@ export const CardLeases = ({
   
   const handleCLearProperty = () => {
     dispatch(clearProperty(propertyHover));
-    localStorage.removeItem("propertyHover", propertyHover);
+    localStorage.removeItem("property", propertyHover);
     setFormProperty(initialAddCartForm);
   };
 
@@ -173,7 +173,7 @@ export const CardLeases = ({
       <section className={classs}>
         <div>
           <div className="productcard-ref">
-            <p><strong>Ref:</strong> {propertyRef} </p>
+            <p><strong>Código:</strong> {propertyRef} </p>
           </div>
         <div className="productcard-addcart">
             {showToAddWish && 
@@ -260,7 +260,6 @@ export const CardLeases = ({
           </div>
         </div>
         }
-        {/* Resto del código */}
       </section>
     </ProductCard>
   );

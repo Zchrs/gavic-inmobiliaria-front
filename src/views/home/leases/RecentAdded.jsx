@@ -15,7 +15,6 @@ export const RecentAdded = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const recentProperties = useSelector((state) => state.properties.propertiesInfo);
-console.log(recentProperties)
   
   // Configuración de paginación
   const itemsPerPage = 12;
@@ -69,7 +68,7 @@ console.log(recentProperties)
 
       setLoading(true);
       try {
-        const localData = localStorage.getItem("propertiesRecent");
+        const localData = localStorage.getItem("properties");
         if (localData) {
           const parsedData = JSON.parse(localData);
           dispatch({
@@ -78,7 +77,7 @@ console.log(recentProperties)
           });
         } else {
           const response = await dispatch(fetchRecentProperties());
-          localStorage.setItem("propertiesRecent", JSON.stringify(response.payload));
+          
         }
       } catch (error) {
         console.error("Error fetching recent properties:", error);
@@ -99,12 +98,12 @@ console.log(recentProperties)
       <div className="addrecent">
         <h2 className="addrecent-h2 h2-extra-medium">Añadidos recientemente</h2>
         <div className="addrecent-contain">
-          <div className="recently pd-top-bottom">
+          <div className="recently pd-mini-full">
             {loading ? (
               <Loader />
             ) : recentProperties.length === 0 ? (
               <div className="addrecent-empty">
-                <Empty message="No hay propiedades recientes disponibles" />
+                <Empty message="No hay propiedades añadidas recientemente" />
                 </div>
             ) : (
               paginatedProperties.map((property) => (
@@ -214,7 +213,7 @@ const AddedRecent = styled.div`
       position: relative;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        gap: 30px;
         width: 100%;
         height: 100%;
         

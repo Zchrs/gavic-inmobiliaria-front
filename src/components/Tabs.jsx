@@ -111,7 +111,7 @@ padding: 20px;
 background: #fff;
 @media (max-width: 520px) {
     padding: 0px;
-      margin-top: 126px;
+      margin-top: 200px;
       /* border: black 1px solid; */
 }
 `;

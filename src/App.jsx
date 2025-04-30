@@ -1,5 +1,5 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./app.css";
 import { 
   HomeLayout, 
   About, 
@@ -55,6 +55,8 @@ import { AdvisorLogin } from "./views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "./views/home/auth/AdvisorRegister";
 import { AuthAdvisorLayout } from "./layouts/AuthAdvisorLayout";
 import { PropertiesLayout } from "./layouts/PropertiesLayout";
+import { Verify } from "./components/Verify";
+import { VerifyCode } from "./components/VerifyCode";
 
 
 
@@ -145,6 +147,12 @@ function App() {
                           
         {!isBlocked && <Route path="/bloqueado" element={<Blocked />} />}
 
+       <Route exact path="/*" element={ 
+                 <Verify />
+           } >
+           
+             <Route exact path="clients/account/verify/:userId/:token" element={<VerifyCode />} />
+      </Route>
           </Routes>
         </Provider>
       </HashRouter>

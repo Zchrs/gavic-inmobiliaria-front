@@ -45,15 +45,8 @@ export const types = {
     CLEAR_CART: 'Clear cart success',
     ADD_TO_CART_SUCCESS: 'Added to cart success',
     ADD_TO_CART_FAIL: 'ADD_TO_CART_FAIL',
-    MOVE_FROM_WISHLIST_TO_CART: 'Move to wishlist success',
-
-    // types para el estado de la lista de deseos
-    ADD_TO_WISHLIST: 'ADD_TO_WISHLIST',
-    MOVE_FROM_CART_TO_WISHLIST: 'Move to wishlist success',
-    REMOVE_FROM_WISHLIST: 'REMOVE_FROM_WISHLIST',
-    CLEAR_WISHLIST: 'Clear whislist success',
-    ADD_TO_WISHLIST_SUCCESS: 'ADD_TO_WISHLIST_SUCCESS',
-    ADD_TO_WISHLIST_FAIL: 'ADD_TO_WISHLIST_FAIL',
+    MOVE_FROM_SELL_TO_SOLD: 'Move to sold success',
+    MOVE_FROM_PROPERTIES_TO_RENTED: 'Move to sold success',
     
     // types para el estado de las calificaciones
     SET_RATINGS: 'ratings on'

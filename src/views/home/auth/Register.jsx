@@ -4,34 +4,34 @@ import { getImg } from "../../../../globalActions";
 import { BaseButton } from "../../../components/BaseButton";
 import { BaseInput } from "../../../components/BaseInput";
 import { CountrySelect } from "../../../components/CountrySelect";
-import { initialForm, useForm } from "../../../hooks/useForm";
+import { initialForm, initialFormClient, useForm } from "../../../hooks/useForm";
 import { BaseInputSelect } from "../../../components/BaseInputSelect";
 import { countries } from "../../../../apiEmulated";
+
 import departamentos from "../../../colombia/colombia.json";
 import styled from "styled-components";
 
 export const Register = () => {
-  const [cities, setCities] = useState([]);
+  //  const [cities, setCities] = useState([]);
 
-  const handleStateChange = (e) => {
-    const selectedState = e.target.value;
-    const selectedDepartment = departamentos.find(
-      (dep) => dep.departamento === selectedState
-    );
-    if (selectedDepartment) {
-      setCities(selectedDepartment.ciudades);
-    } else {
-      setCities([]);
-    }
-    setForm({
-      ...form,
-    })
-    handleChange(e); // Para actualizar el estado del formulario
-  };
+  //  const handleStateChange = (e) => {
+  //   const selectedState = e.target.value;
+  //   const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
+  //   if (selectedDepartment) {
+  //     setCities(selectedDepartment.ciudades);
+  //   } else {
+  //     setCities([]); // Set empty array instead of null
+  //   }
+  //   setFormClient({
+  //     ...formClient,
+  //     [e.target.name]: e.target.value,
+  //     city: "" // Reset city when state changes
+  //   });
+  //   handleChangeClient(e);
+  // };
+      
 
-  
-
-  const validationsForm = (form) => {
+  const validationsForm = (formClient) => {
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
@@ -50,71 +50,73 @@ export const Register = () => {
     let password = document.getElementById("password");
     let address = document.getElementById("address");
 
-    if (!form.name) {
+    if (!formClient.country) {
+      country.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.country = "Debes seleccionar el país";
+    } else {
+      country.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
+    }
+
+    if (!formClient.name) {
       name.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.name = "Debes ingresar el nombre";
-    } else if (!regexName.test(form.name.trim())) {
+    } else if (!regexName.test(formClient.name.trim())) {
       errors.name = "El nombre debe tener solo letras";
     } else {
       name.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    if (!form.lastname) {
+    if (!formClient.lastname) {
       lastName.style.cssText = "border: red 1px solid";
       errors.lastname = "Debes ingresar el apellido";
-    } else if (!regexName.test(form.lastname.trim())) {
+    } else if (!regexName.test(formClient.lastname.trim())) {
       errors.lastname = "el apellido debe tener solo letras";
     } else {
       lastName.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    if (!form.email) {
+    if (!formClient.email) {
       email.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.email = "Debes ingresar el correo electrónico";
-    } else if (!regexEmail.test(form.email.trim())) {
+    } else if (!regexEmail.test(formClient.email.trim())) {
       errors.email = "Formato de correo incorrecto";
     } else {
       email.style.cssText = "border: #34B0BE 1px solid; color: black;";
     }
-
-    if (!form.phone) {
+    if (!formClient.phone) {
       phone.style.cssText = "border: red 1px solid; border-radius: 10px;";
-      errors.phone = "Field phone is required";
-    } else if (!regexPhone.test(form.phone.trim())) {
-      errors.phone = "Phone must start with + and have 10 digits after the code";
-    } else if (form.phone.trim().length <= 11) { // mínimo: +57 3001234567
-      errors.phone = "Phone format is too short";
+      errors.phone = "Nqecesitas ingresar el teléfono";
+    } else if (!regexPhone.test(formClient.phone.trim())) {
+      errors.phone = "Formato de teléfono incorrecto";
+    } else if (formClient.phone.trim().length <= 11) { // mínimo: +57 3001234567
+      errors.phone = "Número incorrecto";
     } else {
       phone.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    if (!form.address) {
+    if (!formClient.address) {
       address.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.address = "Debes ingresar tu dirección";
     }  else {
       address.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    if (!form.country) {
-      country.style.cssText = "border: red 1px solid; border-radius: 10px;";
-      errors.country = "Debes seleccionar el país";
-    } else {
-      country.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
-    }
-    if (!form.state) {
+
+    if (!formClient.state) {
       state.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.state = "Debes seleccionar el país";
     } else {
       state.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
-    if (!form.city) {
+
+    if (!formClient.city) {
       city.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.city = "Debes seleccionar el país";
     } else {
       city.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!password.value) {
+    if (!formClient.password) {
       password.style.cssText = "border: red 1px solid";
       errors.password = "Debes ingresar una contraseña";
     } else if (password.value.length <= "6") {
@@ -129,21 +131,26 @@ export const Register = () => {
   };
 
   const {
-    form,
+    formClient,
+    departamentos,
+    cities, 
     errors,
-    setForm,
+    setFormClient,
+    handleStateChange,
     handleChange,
     handleBlur,
-    handleSubmit,
+    handleSubmitClient,
+    handleBlurClient,
     handleSubmits,
     handleCountryChange,
     handleClearCountry,
-  } = useForm(initialForm, validationsForm);
+    handleChangeClient,
+  } = useForm(initialFormClient, validationsForm);
 
   return (
     <AuTh>
     <div className="auth">
-      <form className="form" onSubmit={handleSubmits}>
+      <form className="form">
         <BaseInputSelect
           height={"100%"}
           width={"100%"}
@@ -152,7 +159,7 @@ export const Register = () => {
           placeholder="Seleccionar país"
           isSmallSelect={true}
           name="country"
-          value={form.country}
+          value={formClient.country}
           onChange={handleCountryChange}
           handleBlur={handleBlur}
           options={countries}
@@ -165,7 +172,7 @@ export const Register = () => {
           placeholder="Nombre"
           name="name"
           id="name"
-          value={form.name}
+          value={formClient.name}
           onBlur={handleBlur}
           onChange={handleChange}
           required
@@ -177,7 +184,7 @@ export const Register = () => {
           placeholder="Apellido"
           name="lastname"
           id="lastname"
-          value={form.lastname}
+          value={formClient.lastname}
           onBlur={handleBlur}
           onChange={handleChange}
           required
@@ -192,9 +199,9 @@ export const Register = () => {
             id="state"
             name="state"
             placeholder="Departamento"
-            value={form.state}
+            value={formClient.state}
             onChange={handleStateChange}
-            handleBlur={handleBlur}
+            handleBlur={handleBlurClient}
             options={departamentos.map((dep) => ({
               value: dep.departamento,
               label: dep.departamento,
@@ -211,9 +218,10 @@ export const Register = () => {
             id="city"
             name="city"
             placeholder="Ciudad"
-            value={form.city}
-            onChange={handleChange}
-            handleBlur={handleBlur}
+            value={formClient.city}
+            disabled={!formClient.state}
+            onChange={handleChangeClient}
+            handleBlur={handleBlurClient}
             options={cities.map((city) => ({
               value: city,
               label: city,
@@ -229,9 +237,9 @@ export const Register = () => {
             placeholder="Teléfono ej: +57 000 000 0000"
             name="phone"
             id="phone"
-            value={form.phone}
-            onChange={handleChange}
-            onBlur={handleBlur}
+            value={formClient.phone}
+            onChange={handleChangeClient}
+            onBlur={handleBlurClient}
             required
             isNumber
           />
@@ -241,9 +249,9 @@ export const Register = () => {
             placeholder="Correo electrónico"
             name="email"
             id="email"
-            value={form.email}
-            onBlur={handleBlur}
-            onChange={handleChange}
+            value={formClient.email}
+            onBlur={handleBlurClient}
+            onChange={handleChangeClient}
             required
             isEmail
           />
@@ -254,9 +262,9 @@ export const Register = () => {
           placeholder="Dirección de domicilio"
           name="address"
           id="address"
-          value={form.address}
-          onBlur={handleBlur}
-          onChange={handleChange}
+          value={formClient.address}
+          onBlur={handleBlurClient}
+          onChange={handleChangeClient}
           required
         />
         <BaseInput
@@ -264,16 +272,16 @@ export const Register = () => {
           placeholder="Contraseña"
           name="password"
           id="password"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={form.password}
+          onBlur={handleBlurClient}
+          onChange={handleChangeClient}
+          value={formClient.password}
           isPassword
           required
         />
         {/* {errors.password && <p className="warnings-form">{errors.password}</p>} */}
 
         <BaseButton
-          handleClick={handleSubmits}
+          handleClick={handleSubmitClient}
           classs={"button full-primary"}
           textLabel={true}
           label="Registrarme"

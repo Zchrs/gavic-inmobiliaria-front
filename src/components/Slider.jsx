@@ -13,14 +13,14 @@ export const Slider = () => {
   //   const product = useSelector(state => state.product.selectedProduct);
   const propertyThumbs = useSelector(state => state.properties.selectedProperty || []);
   let images = propertyThumbs.images || [];
-  
+
   const image = {
     Id: propertyThumbs.id,
     img_url: propertyThumbs.image
   };
 
   const allImagesSlider = image ? [image, ...images] : images;
-  console.log(allImagesSlider)
+
 
   const location = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Footer } from "../components/Footer"
-import { HeaderProducts } from "../components/HeaderProduct"
+import { HeaderProduct } from "../components/HeaderProduct"
 import { PropertiesRouter } from "../router/AppRouter"
 
 
@@ -9,7 +9,7 @@ export const PropertiesLayout = () => {
     <PropLayout>
         <section className="productslayout">
             <div className="productslayout-header">
-                <HeaderProducts headClass={"headproducts blackhead"} />
+                <HeaderProduct headClass={"headproducts blackhead"} />
             </div>
             <div className="productslayout-contain">
                 <PropertiesRouter />

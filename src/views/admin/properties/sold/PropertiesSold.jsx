@@ -7,7 +7,10 @@ export const PropertiesSold = () => {
   return (
     <ReJected>
       <div>
-        <ItemsCategory category={"vendidas"} title={"No hay propiedades vendidas en este momento"} />
+        <ItemsCategory action={"Vendido"} title={"No hay propiedades vendidas en este momento"} 
+        showSold={false}
+        showSoldText={true}
+        />
       </div>
     </ReJected>
 )

@@ -6,7 +6,11 @@ export const ForRentPropertiesw = () => {
   return (
     <ForRent>
       <div>
-        <ItemsCategory category={"for-rent"} title={"No hay propiedades para alquilar en este momento"} />
+        <ItemsCategory 
+        showRent={true} 
+        showRented={true} 
+        action={"Arrendamiento"} 
+        showToAddWish = {false} />      
       </div>
     </ForRent>
 )

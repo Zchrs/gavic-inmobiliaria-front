@@ -34,6 +34,12 @@
     padding: 20px;
   }
 }
+.pd-mini-full{
+  padding: 50px;
+  @media (max-width: 1025px) {
+    padding: 20px;
+  }
+}
 .pd-semi-full{
   padding: 100px;
   @media (max-width: 1025px) {

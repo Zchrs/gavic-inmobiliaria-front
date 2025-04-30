@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import styled from "styled-components";
 
-export const DonutChart = ({ width, height, type, option, serie }) => {
+export const DonutChart = ({ width, height, type, option, serie  }) => {
   const [state, setState] = useState({
     series: [44, 55, 41],
     options: {
@@ -265,7 +265,7 @@ export const ApexChart = ({ options, series }) => {
   );
 };
 
-export const CandlesChart = ({ series }) => {
+export const CandlesChart = ({ series, width, height }) => {
   const options = {
     chart: {
       type: "bar",
@@ -389,8 +389,8 @@ export const CandlesChart = ({ series }) => {
             },
           ]}
           type="bar"
-          height="280%"
-          width={"100%"}
+          height={height}
+          width={width}
         />
       </div>
     </CandleArea>

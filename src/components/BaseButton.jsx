@@ -20,6 +20,8 @@ export const BaseButton = ({
   onMouseLeave,
   target,
   onSubmit,
+  width,
+  height
 }) => {
   return (
     <ButtonBase>
@@ -228,14 +230,14 @@ const ButtonBase = styled.div`
       a {
         gap: 5px;
         display: flex;
-        padding: 6px 20px;
+        padding: 8px 20px;
         width: 100%;
         height: fit-content;
         background: var(--deg-fourty);
         color: white;
         border-radius: 50px;
         font-weight: 400;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         transition: all ease 0.3s;
         text-decoration: none;
         img {
@@ -288,14 +290,14 @@ const ButtonBase = styled.div`
       a {
         gap: 5px;
         display: flex;
-        padding: 6px 32px;
+        padding: 8px 32px;
         width: 100%;
         height: fit-content;
         background: var(--deg-secondary);
         color: white;
         border-radius: 50px;
         font-weight: 400;
-        font-size: 17px;
+        font-size: 1.7rem;
         transition: all ease 0.3s;
         text-decoration: none;
         img {
@@ -419,19 +421,20 @@ const ButtonBase = styled.div`
     }
     &.full-primary {
       display: grid;
-      width: 100%;
-      height: 100%;
+      width: ${({ width }) => width || 'auto'};
+      height: ${({ height }) => height || 'auto'};
       position: relative;
       background: var(--bg-primary);
       a {
+        position: relative;
         text-decoration: none;
         justify-content: center;
         align-items: center;
         gap: 5px;
         display: flex;
         padding: 10px 16px;
-        height: 100%;
-        width: 100%;
+        width: ${({ width }) => width || 'auto'};
+        height: ${({ height }) => height || 'auto'};
         color: white;
         border-radius: 10px;
         font-weight: 800;
@@ -600,13 +603,14 @@ const ButtonBase = styled.div`
         width: 100%;
         height: 100%;
         background: transparent;
-        border: var(--bg-tertiary) 1px solid;
-        color: var( --text-tertiary);
+        border: var(--bg-primary) 1px solid;
+        color: var( --text-primary);
         border-radius: 5px;
         padding: 7px 16px;
         font-weight: 400;
         font-size: 17px;
         line-height: 120%;
+        transition: all ease 0.3s;
         @media (max-width: 820px) {
           font-size: 14px;
         }
@@ -626,6 +630,11 @@ const ButtonBase = styled.div`
         img {
           width: 15%;
           filter: brightness(500%);
+        }
+        &:hover {
+          background: var(--bg-primary);
+          color: white;
+          border: var(--bg-primary) 1px solid;
         }
       }
     }
@@ -1151,7 +1160,7 @@ const ButtonBase = styled.div`
       width: 100%;
       height: fit-content;
       background: #990000;
-      border-radius: 10px;
+      border-radius: 7px;
       color: white;
       padding: 9px 16px;
       font-weight: 800;
@@ -1179,20 +1188,20 @@ const ButtonBase = styled.div`
       display: grid;
       width: 100%;
       height: 100%;
-      align-items: center;
-      justify-content: center;
       a {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         gap: 5px;
         display: flex;
-        align-items: center;
-        padding: 10px;
+        padding: 10px 10px;
         width: 100%;
         height: 100%;
         background: #990000;
         color: white;
-        border-radius: 7px;
+        border-radius: 5px;
         font-weight: 400;
-        font-size: 12px;
+        font-size: 10px;
         transition: all ease 0.3s;
         text-decoration: none;
         border: none;
@@ -1208,29 +1217,26 @@ const ButtonBase = styled.div`
           width: fit-content;
         }
       }
-      p {
-        margin: 0;
-        padding: 0;
-      }
     }
     &.update {
       display: grid;
       width: 100%;
       height: 100%;
       a {
-        font-size: 11px;
-        text-decoration: none;
-        display: flex;
+        text-align: center;
+        font-size: 10px;
         align-items: center;
-        gap: 5px;
+        text-decoration: none;
         justify-content: center;
+        display: flex;
+        gap: 5px;
         width: 100%;
         height: 100%;
         background: #1b6b84;
         border: none;
         color: white;
-        border-radius: 7px;
-        padding: 10px 8px;
+        border-radius: 5px;
+        padding: 10px 10px;
         line-height: 120%;
         transition: all ease 0.3s;
         img {
@@ -1245,10 +1251,7 @@ const ButtonBase = styled.div`
           width: fit-content;
         }
       }
-      p {
-        margin: 0;
-        padding: 0;
-      }
+
     }
   }
 `;

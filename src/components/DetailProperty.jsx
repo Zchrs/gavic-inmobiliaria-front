@@ -235,8 +235,11 @@ export const DetailProperty = ({
               </p>
             </div>
             <div className="detailproperty-contain-box">
+              <div className="detailproperty-contain-flex">
               <h2>Área e interior</h2>
-              <div className="detailproperty-contain-grid">
+              <h2>Información adicional</h2>
+              </div>
+              <div className="detailproperty-contain-flex">
                 <div>
                   <p>
                     Referencia: <strong>{property.ref}</strong>
@@ -266,38 +269,38 @@ export const DetailProperty = ({
           </div>
           <div className="detailproperty-contain-box">
             <h2>Características</h2>
-            <div className="detailproperty-contain-flex">
-              <div className={'detailproperty-contain-flex-inside'}>
+            <div className="detailproperty-contain-grid-3-cols">
+              <div className={'detailproperty-contain-grid-3-cols-inside'}>
                 <h3>Habitaciones</h3>
                 <img src={getImg('png', 'cama', 'png')} alt="" />
                 <p>{property.bedRoom}</p>
               </div>
-              <div className={'detailproperty-contain-flex-inside'}>
+              <div className={'detailproperty-contain-grid-3-cols-inside'}>
                 <h3>Closets</h3>
                 <img src={getImg('png', 'closet', 'png')} alt="" />
                 <p>{property.closets}</p>
               </div>
-              <div className={'detailproperty-contain-flex-inside'}>
+              <div className={'detailproperty-contain-grid-3-cols-inside'}>
                 <h3>Cocina</h3>
                 <img src={getImg('png', 'cocina', 'png')} alt="" />
                 <p>{property.kitchen}</p>
               </div>
-              <div className={'detailproperty-contain-flex-inside'}>
+              <div className={'detailproperty-contain-grid-3-cols-inside'}>
                 <h3>Sala comedor</h3>
                 <img src={getImg('png', 'sala', 'png')} alt="" />
                 <p>{property.diningRoom}</p>
               </div>
-              <div className={'detailproperty-contain-flex-inside'}>
+              <div className={'detailproperty-contain-grid-3-cols-inside'}>
                 <h3>Parqueadero</h3>
                 <img src={getImg('png', 'carro', 'png')} alt="" />
-                <p>{property.garage}</p>
+                <p>{property.parking}</p>
               </div>
-              <div className={'detailproperty-contain-flex-inside'}>
+              <div className={'detailproperty-contain-grid-3-cols-inside'}>
                 <h3>Baños</h3>
                 <img src={getImg('png', 'shower', 'png')} alt="" />
-                <p>{property.bathroom}</p>
+                <p>{property.bathRoom}</p>
               </div>
-              <div className={'detailproperty-contain-flex-inside'}>
+              <div className={'detailproperty-contain-grid-3-cols-inside'}>
                 <h3>Zona de ropa</h3>
                 <img src={getImg('png', 'lavadora', 'png')} alt="" />
                 <p>{property.clothing}</p>
@@ -322,6 +325,15 @@ export const DetailProperty = ({
             </div>
             
           </form>
+          <div className='detailproperty-contain-qrcode'>
+          {property.qr_code && (
+    <img
+      src={property.qr_code}
+      alt="Código QR"
+      style={{ width: 200, height: 200 }}
+    />
+  )}
+          </div>
           </div>
         </div>
       </section>
@@ -439,7 +451,7 @@ const Detailproperty = styled.section`
                 height: 10px;
             }
         }
-        &-flex{
+        &-grid-3-cols{
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 10px;
@@ -459,11 +471,27 @@ const Detailproperty = styled.section`
             }
           }
         }
-        &-grid{
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
+        &-flex{
+          display: flex;
+          width: 100%;
+         justify-content: space-between;
+         padding-right: 10px;
           p{
             font-size: 16px;
+          }
+        }
+        &-qrcode{
+          display: grid;
+          width: 100%;
+          height: 100%;
+          place-items: center;
+          background-color: #f0f0f0;
+          border-radius: 10px;
+          padding: 10px;
+          margin-top: 20px;
+        
+          img{
+            width: 150px;
           }
         }
     }
