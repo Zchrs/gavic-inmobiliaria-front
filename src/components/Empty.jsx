@@ -22,6 +22,10 @@ const EmPty = styled.div`
   img{
       width: 300px;
       filter: invert(80%);
+
+      @media (max-width: 780px) {
+        width: 100%;
+      }
   }
   h2{
     color: #00000022;

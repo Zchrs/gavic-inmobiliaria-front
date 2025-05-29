@@ -20,7 +20,7 @@ import {
 } from "../actions/propertyActions";
 import { CardLeasesAdmin, Empty } from "../../index";
 import styled from "styled-components";
-import { initialPropertyForm, useForm } from "../hooks/useForm";
+import { initialForm, useForm } from "../hooks/useForm";
 import Swal from "sweetalert2";
 
 export const ItemsCategory = ({  
@@ -59,8 +59,8 @@ export const ItemsCategory = ({
 
     const {
       deleteProperty,
-      setFormProperty,
-    } = useForm(initialPropertyForm, );
+      setForm,
+    } = useForm(initialForm, );
 
     const extraAction = {
       sold: "Vendida",
@@ -150,7 +150,7 @@ const handleUpdate = (property) => {
     dispatch(setProperty(property));
     setSelProperty(property);
     console.log(property.id, 'desde handle update')
-    setFormProperty({
+    setForm({
         id: property.id,
         name: property.name,
         price: property.price,

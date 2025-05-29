@@ -1,181 +1,160 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
-import { BaseInputSelect, BaseButton, CardLeases, Loader, Pagination } from "../../../../index";
+import { useEffect, useState } from "react";
+import { CardLeases, Empty, Loader, Pagination } from "../../../../index";
 import styled from "styled-components";
-import { leases, propertyTypes } from "../../../../apiEmulated";
-import { values } from "../../../sectors/dataSectors";
-
+import { HeaderForm } from "../../../components/HeaderForm";
+import { fetchPropertiesByFilter, fetchSellProperties, selectedProperty } from "../../../actions/propertyActions";
+import { useDispatch, useSelector } from "react-redux";
+import { types } from "../../../types/types";
 
 export const Sales = () => {
-  const [selectedWant, setSelectedWant] = useState("");
-  const [selectedSector, setSelectedSector] = useState("");
-  const [selectedBudget, setSelectedBudget] = useState("");
-  const [selectedProperty, setSelectedProperty] = useState("");
-  const [selectedCode, setSelectedCode] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState(null); // Para almacenar los filtros activos
+  const dispatch = useDispatch();
+  const sellProperties = useSelector((state) => state.properties.propertiesInfo); // Propiedades desde Redux
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-  const totalPages = Math.ceil(leases.length / itemsPerPage);
+  const totalPages = Math.ceil(sellProperties.length / itemsPerPage);
+  
+  const onlySellProperties = sellProperties.filter(p => p.action === 'Venta');
+  const currentProperties = onlySellProperties.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const selectedSell = leases.slice(startIndex, startIndex + itemsPerPage);
 
+    useEffect(() => {
+      const init = async () => {
+        if (sellProperties.length > 0) return; // ya cargado en Redux
+    
+        setLoading(true);
+        try {
+          const localData = localStorage.getItem("sellProperties");
+          if (localData) {
+            const parsedData = JSON.parse(localData);
+            dispatch({
+              type: types.propertyView,
+              payload: parsedData.filter((prop) => prop.action === "Venta"),
+            });
+          } else {
+            // Aquí aplicamos directamente el filtro para propiedades en venta
+            await dispatch(fetchSellProperties("Venta"));
+          }
+        } catch (error) {
+          console.error("Error fetching sale properties:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+    
+      init();
+    }, [dispatch]);
 
-  const handleWant = (e) => {
-    console.log("Sector seleccionado:", e.target.value);
-    setSelectedWant(e.target.value); // Actualizar el estado con la opción seleccionada
+  const handleSearch = async (filters) => {
+    setLoading(true);
+    try {
+      await dispatch(fetchPropertiesByFilter(filters)); // Despacha la acción para obtener propiedades filtradas
+      setFilters(filters); // Guarda los filtros actuales
+      setCurrentPage(1); // reset a la primera página
+    } catch (error) {
+      console.error("Error al buscar propiedades:", error);
+    }
+    setLoading(false);
   };
-  const handleSector = (e) => {
-    console.log("Sector seleccionado:", e.target.value);
-    setSelectedSector(e.target.value); // Actualizar el estado con la opción seleccionada
+
+  const handleClearFilters = async () => {
+    setLoading(true);
+    try {
+      await dispatch(fetchSellProperties()); // Despacha la acción para obtener todas las propiedades
+      setFilters(null); // Limpiar filtros
+      setCurrentPage(1); // Reiniciar paginación
+    } catch (err) {
+      console.error("Error al limpiar filtros:", err);
+    }
+    setLoading(false);
   };
-  const handleProperty = (p) => {
-    setSelectedProperty(p.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleBudget = (b) => {
-    setSelectedBudget(b.target.value); // Actualizar el estado con la opción seleccionada
-  };
-  const handleCode = (c) => {
-    setSelectedCode(c.target.value); // Actualizar el estado con la opción seleccionada
-  };
+
+    const handleSetProductClick = (property) => {
+      dispatch(selectedProperty(property));
+    };
+
   return (
     <SaLes>
-            <div className="sales">
+      <div className="sales">
         <div className="sales-header">
-          <div>
-            <BaseInputSelect
-              placeholder="Quiero"
-              isSmallSelect={true}
-              options={[
-                { value: "Comprar", label: "Comprar" },
-              ]}
-              name="want"
-              value={selectedWant}
-              onChange={handleWant}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Sector"
-              isSelect={true}
-              options={values}
-              name="budget"
-              value={selectedSector}
-              onChange={handleSector}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Tipo de inmueble"
-              isSelect={true}
-              name="property"
-              value={selectedProperty}
-              onChange={handleProperty}
-              options={propertyTypes}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Presupuesto"
-              isSelect={true}
-              name="budget"
-              value={selectedBudget}
-              onChange={handleBudget}
-              options={[
-                { value: "option1", label: "$1000 - $5000" },
-                { value: "option2", label: "$5000 - $10,000" },
-                { value: "option3", label: "Más de $10,000" },
-                { value: "option4", label: "Más de $10,000" },
-                { value: "option5", label: "Más de $10,000" },
-                { value: "option6", label: "Más de $10,000" },
-                { value: "option7", label: "Más de $10,000" },
-              ]}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Código"
-              classs={"inputs normal"}
-              name="code"
-              value={selectedCode}
-              onChange={handleCode}
-              options={[
-                { value: "option1", label: "Código 1" },
-                { value: "option2", label: "Código 2" },
-                { value: "option3", label: "Código 3" },
-              ]}
-            />
-          </div>
-          <div className="flex-s">
-            <BaseButton
-              classs={"button full-outline"}
-              textLabel={true}
-              label={"Limpiar"}
-              img={true}
-              icon={"trash"}
-            />
-
-            <BaseButton
-              classs={"button full-primary"}
-              textLabel={true}
-              label={"Buscar"}
-              svg={true}
-              // handleClick={whatsapp}
-            />
-          </div>
+          <HeaderForm
+            color={"var(--bg-secondary)"}
+            colorbtn={"var(--bg-primary)"}
+            colorbtnhoverprimary={"white"}
+            colortextbtnprimary={"white"}
+            colortextbtnhoverprimary={"var(--text-primary)"}
+            filterprimary={"brightness(0%) invert(100%)"}
+            filterprimaryhover={"brightness(0%) invert(0%)"}
+            action={[{ value: "Vender", label: "Vender" }]}
+            filteroutline={"brightness(0%) invert(0%)"}
+            filterhoveroutline={"brightness(0%) invert(0%)"}
+            colortextbtnoutline={"var(--text-primary)"}
+            colortextbtnhoveroutline={"var(--text-primary)"}
+            borderbtn={"var(--bg-primary)"}
+            hovercolorbtnoutline={"#ffffff5d"}
+            borderbtnhoveroutline={"var(--bg-primary)"}
+            onSearch={handleSearch}
+            onClear={handleClearFilters}
+          />
         </div>
-        <div className="sales-content grid-4fr">
-          {
-            loading ? (
-              <Loader />
-            ) : selectedSell.length === 0 ? (
-              <p>Sin datos</p>
-            ) : (
-            selectedSell.map((itemL) => (
+
+        <div className="sales grid-4fr">
+          {loading ? (
+            <Loader />
+          ) : currentProperties.length === 0 ? (
+              <div className="sales-empty">
+                <Empty message="No hay propiedades" />
+              </div>
+          ) : (
+            currentProperties.map((property) => (
               <CardLeases
-                key={itemL.id}
-                productLink={`/products/${itemL.id}`}
-                addToWish={"addwishlist-red"}
-                addTocart={"addcart-red"}
-                img={"default"}
-                boxFlex={true}
-                sellingsText={true}
-                sellings={"999"}
-                priceText={true}
-                price={itemL.price}
-                productInfo={itemL}
-                classs={"productcard background"}
-                // onClick={() => handleSetProductClick(itemL)}
-                // prodHover={() => handleSetProductClick(itemL)}
-                jpg="true"
-                description={itemL.description}
-                beforePrice={itemL.previousPrice}
-                title={itemL.title}
-                thumbnails={itemL.thumbnails}
-                // products="portatiles"
-                // ratingss={true}
-                // ratings={ratings}
-                product_id={itemL.id}
-              />
-              )
+              key={property.id}
+              quantityBathrooms={property.bathRoom}
+              quantityCloset={property.closets}
+              quantityRooms={property.bedRoom}
+              location={property.district || "Ubicación no disponible"}
+              productLink={`/properties/${property.id}`}
+              addToWish="addwishlist-red"
+              img={property.image || '/default-property.jpg'}
+              sellingsText={true}
+              priceText={true}
+              price={property.price || "Consultar"}
+              productInfo={property}
+              boxFlex={true}
+              classs="productcard background"
+              onClick={() => handleSetProductClick(property)}
+              prodHover={() => handleSetProductClick(property)}
+              jpg="true"
+              title={property.title || "Propiedad sin título"}
+              thumbnails={property.images || []}
+              showToAddWish={true}
+              property_id={property.id}
+              propertyRef={property.ref}
+            />
             ))
-          }
+          )}
         </div>
       </div>
-            <div>
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-                colorText="dark"
-                arrowPrev="button bg-dark"
-                arrowNext="button bg-dark"
-              />
-            </div>
+
+      <div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          colorText="dark"
+          arrowPrev="button bg-dark"
+          arrowNext="button bg-dark"
+        />
+      </div>
     </SaLes>
-  )
-}
+  );
+};
 
 const SaLes = styled.div`
   display: grid;
@@ -191,25 +170,28 @@ const SaLes = styled.div`
     height: 100%;
     padding: 25px;
     gap: 72px;
+
     @media (max-width: 1024px) {
       padding: 12px;
     }
 
     &-header {
-      display: flex;
-      gap: 10px;
-      background: #ff7300;
-      padding: 24px;
-      border-radius: 5px 5px 0px 0px;
-      @media (max-width: 1024px) {
-        padding: 12px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-      }
+      display: grid;
+      width: 100%;
+      height: fit-content;
+    }
+
+    &-empty{
+      display: grid;
+      width: fit-content;
+      height: fit-content;
+      margin  : auto;
+      grid-column: 1 / 5;
     }
 
     &-content {
-      display: grid;
-    }
+  display: grid;
+  width: 100%;
+}
   }
 `;

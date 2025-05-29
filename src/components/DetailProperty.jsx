@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import { clearProperty, selectedProperty } from '../actions/propertyActions';
-import { initialAddCartForm, useForm } from '../hooks/useForm';
+import { initialForm, useForm } from '../hooks/useForm';
 
 export const DetailProperty = ({
   user_id, 
@@ -33,7 +33,7 @@ export const DetailProperty = ({
     scrollTop();
   }, [])
   
-  const dataFormErrors = (formProperty) =>{
+  const dataFormErrors = (form) =>{
     let user_id = document.getElementById("user_id")
     let property_id = document.getElementById("property_id")
     let price = document.getElementById("price")
@@ -42,27 +42,27 @@ export const DetailProperty = ({
     let data = {};
     let errors = {};
 
-    if (!formProperty.user_id && formProperty.user_id ==! formProperty.user_id) {
+    if (!form.user_id && form.user_id ==! form.user_id) {
       user_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.user_id = "no permitido";
       return
     }  
   
-    if (!formProperty.property_id && formProperty.property_id ==! formProperty.property_id) {
+    if (!form.property_id && form.property_id ==! form.property_id) {
       property_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.property_id = "no permitido";
     }  else {
       property_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
     }
   
-    if (!formProperty.price && formProperty.price ==! formProperty.price) {
+    if (!form.price && form.price ==! form.price) {
       price.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.price = "no permitido.";
     } else {
       price.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px; color: black;";
     }
   
-    if (!formProperty.quantity) {
+    if (!form.quantity) {
       quantity.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.quantity = "no permitido.";
     }else {
@@ -76,13 +76,13 @@ export const DetailProperty = ({
   }
   
   const {
-    formProperty,
+    form,
     errors,
     handleChangeproperty,
     handleSubmitAddCart,
     handleSubmitAddWishlist,
-    setFormProperty
-  } = useForm(initialAddCartForm, dataFormErrors);
+    setForm
+  } = useForm(initialForm, dataFormErrors);
 
 
   const handleSetpropertyInfo = () => {
@@ -91,8 +91,8 @@ export const DetailProperty = ({
     
     dispatch(selectedProperty(propertyHover));
     localStorage.setItem("propertiesRecent", propertyHover);
-    setFormProperty((prevFormProperty) => ({
-      ...prevFormProperty,
+    setForm((prevForm) => ({
+      ...prevForm,
       user_id: user.id, // Assuming you want to set the user_id as well
       property_id: propertyHover.id,
       price: propertyHover.price,
@@ -105,7 +105,7 @@ export const DetailProperty = ({
     // console.log(propertyHover, 'propertyo quitado')
     dispatch(clearProperty(propertyHover));
     localStorage.removeItem("propertiesRecent", propertyHover);
-    setFormProperty(initialAddCartForm);
+    setForm(initialForm);
   };
 
 
@@ -236,8 +236,8 @@ export const DetailProperty = ({
             </div>
             <div className="detailproperty-contain-box">
               <div className="detailproperty-contain-flex">
-              <h2>Área e interior</h2>
               <h2>Información adicional</h2>
+              <h2>Área e interior</h2>
               </div>
               <div className="detailproperty-contain-flex">
                 <div>
@@ -308,19 +308,19 @@ export const DetailProperty = ({
             </div>
             <form encType="multipart/form-data">
             <div>
-              <input id="user_id" name="user_id" type="text" value={formProperty.user_id} onChange={handleChangeproperty} />
+              <input id="user_id" name="user_id" type="text" value={form.user_id} onChange={handleChangeproperty} />
               {errors.user_id && <p className="warnings-form">{errors.user_id}</p>}
             </div>
             <div>
-              <input id="property_id" name="property_id" type="text" value={formProperty.property_id} onChange={handleChangeproperty} />
+              <input id="property_id" name="property_id" type="text" value={form.property_id} onChange={handleChangeproperty} />
               {errors.property_id && <p className="warnings-form">{errors.property_id}</p>}
             </div>
             <div>
-              <input id="price" name="price" type="text" value={formProperty.price} onChange={handleChangeproperty} />
+              <input id="price" name="price" type="text" value={form.price} onChange={handleChangeproperty} />
               {errors.price && <p className="warnings-form">{errors.price}</p>}
             </div>
             <div>
-              <input id="quantity" name="quantity" type="text" value={formProperty.quantity} onChange={handleChangeproperty} />
+              <input id="quantity" name="quantity" type="text" value={form.quantity} onChange={handleChangeproperty} />
               {errors.quantity && <p className="warnings-form">{errors.quantity}</p>}
             </div>
             

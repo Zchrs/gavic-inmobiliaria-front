@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearProperty, selectedProperty } from "../actions/propertyActions";
 import { AddCartWishlist } from "./AddCartWishlist";
 import { useNavigate } from "react-router-dom";
-import { useForm, initialAddCartForm } from "../hooks/useForm";
+import { useForm, initialForm } from "../hooks/useForm";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Swal from "sweetalert2";
@@ -49,7 +49,7 @@ export const CardLeases = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const dataFormErrors = (formProperty) =>{
+  const dataFormErrors = (form) =>{
     let user_id = document.getElementById("user_id")
     let property_id = document.getElementById("property_id")
     let price = document.getElementById("price")
@@ -58,27 +58,27 @@ export const CardLeases = ({
     let data = {};
     let errors = {};
 
-    if (!formProperty.user_id && formProperty.user_id ==! formProperty.user_id) {
+    if (!form.user_id && form.user_id ==! form.user_id) {
       user_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.user_id = "no permitido";
       return
     }  
   
-    if (!formProperty.property_id && formProperty.property_id ==! formProperty.property_id) {
+    if (!form.property_id && form.property_id ==! form.property_id) {
       property_id.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.property_id = "no permitido";
     }  else {
       property_id.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px;";
     }
   
-    if (!formProperty.price && formProperty.price ==! formProperty.price) {
+    if (!form.price && form.price ==! form.price) {
       price.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.price = "no permitido.";
     } else {
       price.style.cssText = "box-shadow: #34B0BE 1px 1px 2px, #34B0BE -1px -1px 2px; color: black;";
     }
   
-    if (!formProperty.quantity) {
+    if (!form.quantity) {
       quantity.style.cssText = "box-shadow: red 1px 1px 2px, red -1px -1px 2px";
       errors.quantity = "no permitido.";
     }else {
@@ -92,11 +92,11 @@ export const CardLeases = ({
   }
   
   const {
-    formProperty,
+    form,
     errors,
     handleSubmitAddWishlist,
-    setFormProperty
-  } = useForm(initialAddCartForm, dataFormErrors);
+    setForm
+  } = useForm(initialForm, dataFormErrors);
   
 
   // Cuando quieras establecer el estado del producto
@@ -108,8 +108,8 @@ export const CardLeases = ({
     
     dispatch(selectedProperty(propertyHover));
     localStorage.setItem("property", propertyHover);
-    setFormProperty((prevFormProperty) => ({
-      ...prevFormProperty,
+    setForm((prevForm) => ({
+      ...prevForm,
       user_id: user.id, // Assuming you want to set the user_id as well
       property_id: propertyHover.id,
       price: propertyHover.price,
@@ -119,7 +119,7 @@ export const CardLeases = ({
   const handleCLearProperty = () => {
     dispatch(clearProperty(propertyHover));
     localStorage.removeItem("property", propertyHover);
-    setFormProperty(initialAddCartForm);
+    setForm(initialForm);
   };
 
   const handleMouseEnter = () => {
@@ -272,6 +272,7 @@ display: grid;
   .productcard {
     position: relative;
     display: grid;
+    width: 100%;
     height: 100%;
     border-radius: 15px;
     align-content: space-between;
@@ -296,6 +297,7 @@ display: grid;
     }
 
     &-box {
+    position: relative;
       display: grid;
       padding: 10px;
       gap: 2px;
@@ -440,6 +442,7 @@ display: grid;
       }
       
       &-details{
+        position: relative;
         width: 100%;
         padding-top: 5px;
         border-top: 1px solid var(--primary-semi);

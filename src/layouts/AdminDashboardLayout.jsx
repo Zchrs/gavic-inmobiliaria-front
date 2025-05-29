@@ -1,9 +1,19 @@
 import styled from "styled-components"
 import { DashboardAdminRouter } from "../router/AppRouter"
 import { HeaderAdmin } from "../components/HeaderAdmin"
+import { useDispatch } from "react-redux";
+import { startCheckingAdmin } from "../actions/authActions";
+import { useEffect } from "react";
 
 
 export const AdminDashboardLayout = () => {
+
+      const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(startCheckingAdmin());
+    }, [dispatch]);
+
   return (
     <DashboardAdmin>
       <div className="admindashboard">

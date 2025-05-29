@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { 
   About,
-  AdminHome, 
+  LoginAdmin,
+  AdminHome,
+RegisterAdmin, 
   Advisors, 
   Appraisals, 
   Approved, 
@@ -51,6 +53,10 @@ import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
 import { AuthAdvisorHome } from "../views/home/auth/AuthAdvisorHome";
 import { Verify } from "../components/Verify";
 import { VerifyCode } from "../components/VerifyCode";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { startCheckingAdmin } from "../actions/authActions";
+import { AuthHomeAdmin } from "../views/admin/auth/AuthHomeAdmin";
 
 
 export const AppRouter = () => {
@@ -140,19 +146,37 @@ export const AppRouter = () => {
       </Routes>
     );
   };
-
-  export const DashboardAdminRouter = () => {
-
+  export const AuthAdminRouter = () => {
     // const dispatch = useDispatch();
+      
     // useEffect(() => {
     //   dispatch(startCheckingAdmin());
     // }, [dispatch]);
+
+    return (
+      <Routes>
+        <Route exact path="/*" element={ 
+            <AuthHomeAdmin />
+      } />
+
+        <Route exact path="login" element={<LoginAdmin />} />
+        <Route exact path="register" element={<RegisterAdmin />} />
+      </Routes>
+    );
+  };
+
+  export const DashboardAdminRouter = () => {
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(startCheckingAdmin());
+    }, [dispatch]);
       
     
     return (
       <>
       <Routes>
-            <Route path="/*" element={<AdminHome />} />
+            <Route exact path="/*" element={<AdminHome />} />
             <Route exact path="sales" element={<DetailSales />} />
             <Route exact path="properties-for-rent" element={<ForRentPropertiesw />} />
             <Route exact path="recent-properties" element={<RecentProperties />} />

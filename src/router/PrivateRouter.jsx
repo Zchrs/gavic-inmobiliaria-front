@@ -11,15 +11,15 @@ import { startChecking } from "../actions/authActions";
 export const PrivateRoute = ({ children }) =>{
     const user = useSelector((state) => state.auth.user);
 
-    return (user) ? children : <Navigate to="/users/auth/login" replace />;
+    return (user) ? children : <Navigate to="/auth/login" replace />;
 }
 export const PrivateRouteAdmin = ({ children }) =>{
     const admin = useSelector((state) => state.authAdmin.admin);
 
-    return (admin) ? children : <Navigate to="/admin/auth" replace />;
+    return (admin) ? children : <Navigate to="/admin/auth/login" replace />;
 }
 export const PrivateRouteAdvisor = ({ children }) =>{
     const advisor = useSelector((state) => state.authAdvisor.advisor);
 
-    return (advisor) ? children : <Navigate to="/advisor/auth" replace />;
+    return (advisor) ? children : <Navigate to="/advisor/auth/login" replace />;
 }

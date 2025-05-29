@@ -4,17 +4,17 @@ import styled from "styled-components";
 import { getImg } from "../../../globalActions";
 import { BaseInput } from "../../components/BaseInput";
 import { BaseButton } from "../../components/BaseButton";
-import Select from 'react-select'
 import { useState } from "react";
-import { BaseInputSelect } from "../../components/BaseInputSelect";
 import { RecentAdded, Services } from "../../../index";
 import { values } from "../../sectors/dataSectors";
+import { useValidations } from "../../hooks/useValidations";
 
 export const Home = () => {
   const [selectedSector, setSelectedSector] = useState("");
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedProperty, setSelectedProperty] = useState("");
   const [selectedCode, setSelectedCode] = useState("");
+  const { formRefs, validateForm } = useValidations();
 
   const handleSector = (e) => {
     console.log("Sector seleccionado:", e.target.value);
@@ -48,52 +48,70 @@ export const Home = () => {
           </div>
             
               
-                <BaseInputSelect
+                <BaseInput
+                id={"sector"}
+                isSelect
+                inputRef={false}
+                classs={"inputs normal"}
                 height={"40px"}
                 placeholder="Sector"
-                isSelect={true}
                 options={values}
                 name="budget"
                     value={selectedSector}
                     onChange={handleSector}
                 />
-                  <BaseInputSelect
-                  height={"40px"}
-                    placeholder="Tipo de inmueble"
-                    isSelect={true}
-                    name="property"
-                    value={selectedProperty}
-                    onChange={handleProperty}
-                    options={[
-                      { value: "option1", label: "Casa" },
-                      { value: "option2", label: "Apartamento" },
-                      { value: "option3", label: "Apartaestudio" },
-                      { value: "option4", label: "Local" },
-                      { value: "option5", label: "Casa Local" },
-                      { value: "option6", label: "Finca" },
-                      { value: "option7", label: "Casa Finca" },
-                      { value: "option8", label: "Oficina" },
-                    ]}
-                  />               
+                  <div className="home-banner-group-flex">
+                    <BaseInput
+                    id={"propeerty"}
+                    isSelect
+                    inputRef={false}
+                    classs={"inputs normal"}
+                    height={"40px"}
+                      placeholder="Tipo de inmueble"
+                      name="property"
+                      value={selectedProperty}
+                      onChange={handleProperty}
+                      options={[
+                        { value: "Casa", label: "Casa" },
+                        { value: "Apartamento", label: "Apartamento" },
+                        { value: "Apartaestudio", label: "Apartaestudio" },
+                        { value: "Local", label: "Local" },
+                        { value: "Casa Local", label: "Casa Local" },
+                        { value: "Finca", label: "Finca" },
+                        { value: "Casa Finca", label: "Casa Finca" },
+                        { value: "Oficina", label: "Oficina" },
+                      ]}
+                    />
+                    <BaseInput
+                    id={"action"}
+                    isSelect
+                    inputRef={false}
+                    classs={"inputs normal"}
+                    height={"40px"}
+                      placeholder="Quiero"
+                      name="property"
+                      value={selectedProperty}
+                      onChange={handleProperty}
+                      options={[
+                        { value: "Comprar", label: "Comprar" },
+                        { value: "Arrendar", label: "Arrendar" },
+                      ]}
+                    />
+
+                  </div>             
                 <div className="home-banner-group-flex">
-                    <BaseInputSelect
+                    <BaseInput
+                    id={"budget"}
+                    inputRef={false}
+                    classs={"inputs normal"}
                     height={"40px"}
                       placeholder="Presupuesto"
-                      isSelect={true}
                       name="budget"
                       value={selectedBudget}
                       onChange={handleBudget}
-                      options={[
-                        { value: "option1", label: "$1000 - $5000" },
-                        { value: "option2", label: "$5000 - $10,000" },
-                        { value: "option3", label: "Más de $10,000" },
-                        { value: "option4", label: "Más de $10,000" },
-                        { value: "option5", label: "Más de $10,000" },
-                        { value: "option6", label: "Más de $10,000" },
-                        { value: "option7", label: "Más de $10,000" },
-                      ]}
                     />             
                     <BaseInput
+                    inputRef={false}
                     height={"40px"}
                       placeholder="Código"
                       classs={"inputs normal"}
@@ -106,11 +124,13 @@ export const Home = () => {
                 </div>
                 <div>
                   <BaseButton
-                    classs={"button full-primary"}
+                    classs={"button secondary"}
                     textLabel={true}
                     label={"Buscar"}
-                    // svg={true}
-                    // handleClick={whatsapp}
+                    colorbtn={"var(--bg-secondary)"}
+                    colortextbtnsecondary={"black"}
+                    colorbtnhoversecondary={"var(--bg-primary)"}
+                    hovercolorbtntextsecondary={"var(--bg-secondary)"}
                   />
                 
               </div>
@@ -144,6 +164,9 @@ const HoMe = styled.div`
       width: 100%;
       height: 550px;
       margin-bottom: 50px;
+      @media (max-width: 680px) {
+        padding: 0 12px;
+      }
       
       &-img {
         position: absolute;
@@ -182,6 +205,7 @@ const HoMe = styled.div`
            grid-template-columns: repeat(2, 1fr);
            width: 100%;
            gap: 5px;
+           
          }
       }
 

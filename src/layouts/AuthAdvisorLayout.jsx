@@ -31,8 +31,8 @@ export const AuthAdvisorLayout = () => {
         </div>
         <div className="advisorlayout-container">
         <div className="advisorlayout-container-group">
-          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/auth/advisor/register"}>Registrarme</NavLink>
-          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/auth/advisor/login"}>Iniciar sesión</NavLink>
+          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/advisor/auth/register"}>Registrarme</NavLink>
+          <NavLink className={ ({isActive}) => ` ${ isActive ? 'active' : '' } ` } to={"/advisor/auth/login"}>Iniciar sesión</NavLink>
         </div>
           <AuthAdvisorRouter />
         </div>
@@ -225,6 +225,7 @@ height: fit-content;
     height: fit-content;
     align-items: center;
     border-radius: 0 0 5px 5px;
+    
    
     // border: #EC3337 1px solid;
 

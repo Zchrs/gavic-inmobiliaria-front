@@ -1,209 +1,219 @@
+/* eslint-disable react/display-name */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { getImg } from '../../globalActions';
-import styled from 'styled-components';
+import React, {
+  useRef,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
+import PropTypes from "prop-types";
+import { getImg } from "../../globalActions";
+import styled from "styled-components";
 
-// export const BaseInput = ({
-//   label,
-//   placeholder,
-//   classs,
-//   id,
-//   name,
-//   value,
-//   required,
-//   onChange,
-//   onBlur,
-//   isTextarea,
-//   isNumber,
-//   isEmail,
-//   isPassword,
-//   isSelect, // Nuevo prop para determinar si es un select
-//   options = [], // Lista de opciones para el select
-//   isDate, // Nuevo prop para determinar si es un input de fecha
-// }) => {
-//   const [showPassword, setShowPassword] = useState(false);
-//   const [isEmpty, setIsEmpty] = useState(!value);
+export const BaseInput = forwardRef((props, ref) => {
+  const {
+    label,
+    placeholder,
+    classs = "",
+    id,
+    name,
+    value,
+    required,
+    onChange,
+    onBlur,
+    isTextarea,
+    isNumber,
+    isEmail,
+    isPassword,
+    isSelect,
+    isSearchableSelect = false,
+    options = [],
+    isDate,
+    error,
+    onFocus,
+    inputRef, // 👈 este es el ref real que viene de useValidations
+  } = props;
 
-//   const togglePasswordVisibility = () => {
-//     setShowPassword(!showPassword);
-//   };
+  const internalRef = useRef(null);
+  const resolvedRef = inputRef || ref || internalRef;
 
-//   return (
-//     <InputBase>
-//       <div className={classs}>
-//         <label htmlFor={id}>
-//           {required && <span>*</span>}
-//           {label}
-//         </label>
-//         {isSelect ? (
-//           <select
-//             className='select'
-//             id={id}
-//             name={name}
-//             value={value}
-//             onChange={onChange}
-//             onBlur={onBlur}
-//           >
-//             <option value="" disabled>
-//               {placeholder || "Seleccione una opción"}
-//             </option>
-//             {options.map((option, index) => (
-//               <option key={index} value={option.value}>
-//                 {option.label}
-//               </option>
-//             ))}
-//           </select>
-//         ) : isTextarea ? (
-//           <textarea
-//             {...(placeholder && { placeholder })}
-//             id={id}
-//             name={name}
-//             value={value}
-//             onChange={onChange}
-//             onBlur={onBlur}
-//           />
-//         ) : (
-//           <>
-//             {isEmpty && isDate && (
-//               <span className="placeholder">{placeholder}</span>
-//             )}
-//             <input
-//               {...(placeholder && { placeholder })}
-//               id={id}
-//               name={name}
-//               value={value}
-//               onChange={onChange}
-//               onBlur={onBlur}
-//               type={
-//                 isPassword && !showPassword
-//                   ? "password"
-//                   : isEmail
-//                   ? "email"
-//                   : isNumber
-//                   ? "number"
-//                   : isDate
-//                   ? "date"
-//                   : "text"
-//               }
-//             />
-
-//             {isPassword && (
-//               <div
-//                 type="button"
-//                 className="inputs-show-hide-pass"
-//                 onClick={togglePasswordVisibility}
-//               >
-//                 <img
-//                   src={
-//                     showPassword
-//                       ? getImg("svg", "hide-icon", "svg")
-//                       : getImg("svg", "show-icon", "svg")
-//                   }
-//                   alt={showPassword ? "Hide" : "Show"}
-//                   className="eye-icon"
-//                 />
-//               </div>
-//             )}
-//           </>
-//         )}
-//       </div>
-//     </InputBase>
-//   );
-// };
-
-export const BaseInput = ({
-  label,
-  placeholder,
-  classs,
-  id,
-  name,
-  value,
-  required,
-  onChange,
-  onBlur,
-  isTextarea,
-  isNumber,
-  isEmail,
-  isPassword,
-  isSelect,
-  options = [],
-  isDate,
-}) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showOptions, setShowOptions] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  useImperativeHandle(ref, () => resolvedRef.current);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        resolvedRef.current &&
+        !resolvedRef.current.contains(event.target)
+      ) {
+        setShowOptions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
+  const handleFocus = (e) => {
+    setIsFocused(true);
+    if (isSearchableSelect) setShowOptions(true);
+    if (onFocus) onFocus(e);
+  };
+
+  const handleBlurInternal = (e) => {
+    setIsFocused(false);
+    if (onBlur) onBlur(e);
+  };
+
+  const handleSelectChange = (selectedValue) => {
+    onChange({ target: { name, value: selectedValue } });
+    if (isSearchableSelect) {
+      setShowOptions(false);
+      const selectedOption = options.find((opt) => opt.value === selectedValue);
+      if (selectedOption) setSearchTerm(selectedOption.label);
+    }
+  };
+
+  const filteredOptions = options.filter((opt) =>
+    opt.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const getDisplayValue = () => {
+    if (!isSearchableSelect) return value;
+    const selected = options.find((o) => o.value === value);
+    return selected ? selected.label : "";
   };
 
   return (
     <InputBase>
       <div className={classs}>
-        <label htmlFor={id}>
-          {required && <span>*</span>}
-          {label}
-        </label>
-        {isSelect ? (
+        {label && (
+          <label htmlFor={id}>
+            {required && <span>*</span>}
+            {label}
+          </label>
+        )}
+
+        {isSearchableSelect ? (
+          <div className="search-select-container">
+            <input
+              ref={resolvedRef}
+              type="text"
+              value={showOptions ? searchTerm : getDisplayValue()}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                if (!showOptions) setShowOptions(true);
+              }}
+              onFocus={handleFocus}
+              onBlur={handleBlurInternal}
+              placeholder={placeholder || "Buscar..."}
+            />
+            {showOptions && (
+              <div className="options-dropdown" ref={dropdownRef}>
+                {filteredOptions.length ? (
+                  filteredOptions.map((opt) => (
+                    <div
+                      key={opt.value}
+                      className={`option-item ${
+                        value === opt.value ? "selected" : ""
+                      }`}
+                      onClick={() => handleSelectChange(opt.value)}>
+                      {opt.label}
+                    </div>
+                  ))
+                ) : (
+                  <div className="option-item">
+                    No se encontraron resultados
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ) : isSelect ? (
           <select
-            className="select"
+            ref={resolvedRef}
             id={id}
             name={name}
             value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-          >
-            <option value="" disabled>
-              {placeholder || "Seleccione una opción"}
+            onChange={(e) => handleSelectChange(e.target.value)}
+            onBlur={handleBlurInternal}
+            onFocus={handleFocus}
+            required>
+            <option value="" disabled hidden>
+              {placeholder}
             </option>
-            {options.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
+            {options.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
               </option>
             ))}
           </select>
         ) : isTextarea ? (
           <textarea
-            {...(placeholder && { placeholder })}
+            ref={resolvedRef}
             id={id}
             name={name}
+            placeholder={placeholder}
             value={value}
             onChange={onChange}
-            onBlur={onBlur}
-            className='textarea'
+            onBlur={handleBlurInternal}
+            onFocus={handleFocus}
           />
         ) : (
           <>
-            {isDate && !value && (
-              <span className="date-placeholder">{placeholder}</span>
+            {isDate ? (
+              <div className="date-wrapper">
+                    {!value && !isFocused && (
+      <span className="date-placeholder">{placeholder}</span>
+    )}
+                <input
+                  ref={resolvedRef}
+                  id={id}
+                  name={name}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={handleBlurInternal}
+                  onFocus={handleFocus}
+                  type="date"
+                />
+              </div>
+            ) : (
+              <input
+                ref={resolvedRef}
+                id={id}
+                name={name}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                onBlur={handleBlurInternal}
+                onFocus={handleFocus}
+                type={
+                  isPassword && !showPassword
+                    ? "password"
+                    : isEmail
+                    ? "email"
+                    : isNumber
+                    ? "number"
+                    : "text"
+                }
+              />
             )}
-            <input
-              id={id}
-              name={name}
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              type={
-                isPassword && !showPassword
-                  ? "password"
-                  : isEmail
-                  ? "email"
-                  : isNumber
-                  ? "number"
-                  : isDate
-                  ? "date"
-                  : "text"
-              }
-              className={isDate && !value ? "input-with-placeholder" : ""}
-              placeholder={isDate ? "" : placeholder}
-            />
-
             {isPassword && (
               <div
                 type="button"
                 className="inputs-show-hide-pass"
-                onClick={togglePasswordVisibility}
-              >
+                onClick={togglePasswordVisibility}>
                 <img
                   src={
                     showPassword
@@ -217,10 +227,12 @@ export const BaseInput = ({
             )}
           </>
         )}
+
+        {error && !isFocused && <p className="error-message">{error}</p>}
       </div>
     </InputBase>
   );
-};
+});
 
 BaseInput.propTypes = {
   label: PropTypes.string,
@@ -240,9 +252,6 @@ BaseInput.propTypes = {
   options: PropTypes.array,
   isDate: PropTypes.bool,
 };
-
-
-
 
 const InputBase = styled.div`
   .inputs {
@@ -266,7 +275,6 @@ const InputBase = styled.div`
     &.outline {
       position: relative;
       outline: none;
-      
 
       .textarea {
         border: 1px solid #ec333632;
@@ -280,7 +288,7 @@ const InputBase = styled.div`
         font-weight: 400;
         position: relative;
         padding: 5px 15px;
-        
+
         &::placeholder {
           padding: 5px 15px;
           font-weight: 300;
@@ -302,7 +310,7 @@ const InputBase = styled.div`
         position: relative;
         border: 1px solid var(--bg-secondary-semi-soft);
       }
-      &:focus{
+      &:focus {
         padding: 10px 16px;
       }
     }
@@ -339,7 +347,8 @@ const InputBase = styled.div`
       display: grid;
       background: transparent;
       border-radius: 10px;
-      
+      outline: none;
+
       input {
         border-radius: 10px;
         position: relative;
@@ -351,11 +360,30 @@ const InputBase = styled.div`
         font-weight: 200;
         width: 100%;
         transition: all ease 0.3s;
+        outline: none;
 
+        &::placeholder {
+          font-weight: 300;
+          font-size: 14px;
+          line-height: 140%;
+          color: #bdbbbb;
+        }
+      }
+      select {
+        border-radius: 10px;
+        position: relative;
+        background: white;
+        border: 1px solid var(--trans-primary);
+        padding: 8px 10px;
+        color: black;
+        font-size: 1.6rem;
+        font-weight: 200;
+        width: 100%;
+        transition: all ease 0.3s;
         outline: none;
       }
-      
-      .textarea {
+
+      textarea {
         outline: none;
         border: 1px solid var(--trans-primary);
         background: white;
@@ -367,7 +395,7 @@ const InputBase = styled.div`
         font-weight: 400;
         position: relative;
         padding: 5px 10px;
-        
+
         &::placeholder {
           font-weight: 300;
           font-size: 14px;
@@ -390,41 +418,62 @@ const InputBase = styled.div`
         margin-left: -5px;
       }
     }
-
-    input {
-      position: relative;
-      padding: 5px 10px;
-      background: transparent;
-      border: 1px solid #dde4ed;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
-
-      &:focus {
-        outline: none;
-      }
-
-      &::placeholder {
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 140%;
-        color: #bdbbbb;
-      }
-    }
   }
 
-  .select {
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 300;
-    color: #00000078;
-    outline: none;
+  /* Aplica color gris solo si la opción seleccionada tiene valor vacío */
+  .inputs.normal select {
+    color: black; /* por defecto */
   }
 
+  .inputs.normal select option[value=""] {
+    color: #bdbbbb; /* placeholder */
+  }
 
+  .inputs.normal select option {
+    color: black;
+  }
+
+  .inputs.normal select:invalid {
+    color: #bdbbbb; /* color placeholder si no se ha seleccionado nada */
+  }
+
+  .inputs.error input {
+    border: 1px solid red !important;
+  }
+  .inputs.success input {
+    border: 1px solid #34b0be !important;
+  }
+
+  .inputs.normal .date-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputs.normal .date-wrapper input[type="date"] {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  border: 1px solid var(--trans-primary);
+  padding: 8px 10px;
+  font-size: 1.6rem;
+  font-weight: 200;
+  width: 100%;
+  outline: none;
+}
+
+.inputs.normal .date-wrapper .date-placeholder {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #bdbbbb;
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 2;
+  background: white;
+  padding-right: 8px;
+}
 `;
-
-
-
-

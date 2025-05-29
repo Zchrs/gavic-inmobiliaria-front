@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components"
-import { leases } from "../../../../apiEmulated"
 import { Loader, CardLeases, Pagination, Empty } from "../../../../index"
 import { selectedProperty, fetchRecentProperties } from "../../../actions/propertyActions";
 
@@ -175,6 +174,10 @@ const AddedRecent = styled.div`
           position: absolute;
           width: fit-content;
           top: -35px;
+          @media (max-width: 720px) {
+            word-break: break-all;
+            z-index: 10;
+          }
         }
 
         &-empty{
@@ -182,10 +185,13 @@ const AddedRecent = styled.div`
           display: grid;
           width: 100%;
           height: 100%;
-          
           place-items: center;
           place-content: center;
           justify-content: center;
+          @media (max-width: 720px) {
+            grid-template-columns: 1fr;
+            width: 100%;
+          }
         }
 
       

@@ -9,7 +9,7 @@ export const PropertiesLayout = () => {
     <PropLayout>
         <section className="productslayout">
             <div className="productslayout-header">
-                <HeaderProduct headClass={"headproducts blackhead"} />
+                <HeaderProduct homeClick headClass={"headproducts blackhead"} />
             </div>
             <div className="productslayout-contain">
                 <PropertiesRouter />

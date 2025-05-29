@@ -357,10 +357,10 @@ export const values = [
     value: "López de Mesa",
     label: "López de Mesa"
 },
-{
-    value: "El Diamante",
-    label: "El Diamante"
-},
+// {
+//     value: "El Diamante",
+//     label: "El Diamante"
+// },
 {
     value: "Aures Nº 1",
     label: "Aures Nº 1"

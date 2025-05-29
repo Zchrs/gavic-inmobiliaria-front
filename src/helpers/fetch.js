@@ -1,6 +1,5 @@
 /* eslint-disable no-debugger */
 const baseUrl = import.meta.env.VITE_APP_API_URL;
-const baseUrlAdmin = import.meta.env.VITE_APP_API_URL_ADMIN;
 
 // fetch usuario
  export const fetchWithoutToken = ( endpoint, data, method = "GET" ) => {
@@ -46,7 +45,7 @@ const baseUrlAdmin = import.meta.env.VITE_APP_API_URL_ADMIN;
 
 // fetch admin
 export const fetchWithoutTokenAdmin = ( endpoint, data, method = "GET" ) => {
-    const url = `${ baseUrlAdmin }/${ endpoint }`
+    const url = `${ baseUrl }/${ endpoint }`
 
     if (method === "GET") {
         return fetch( url )
@@ -63,7 +62,7 @@ export const fetchWithoutTokenAdmin = ( endpoint, data, method = "GET" ) => {
 }
 
 export const fetchWithTokenAdmin = ( endpoint, data, method = "GET" ) => {
-    const url = `${ baseUrlAdmin }/${ endpoint }`
+    const url = `${ baseUrl }/${ endpoint }`
     const token = localStorage.getItem('token') || '';
     if (method === "GET") {
         return fetch( url,  {
@@ -88,7 +87,7 @@ export const fetchWithTokenAdmin = ( endpoint, data, method = "GET" ) => {
 
 // fetch asesor
 export const fetchWithoutTokenAdvisor = ( endpoint, data, method = "GET" ) => {
-    const url = `${ baseUrlAdmin }/${ endpoint }`
+    const url = `${ baseUrl }/${ endpoint }`
 
     if (method === "GET") {
         return fetch( url )
@@ -105,7 +104,7 @@ export const fetchWithoutTokenAdvisor = ( endpoint, data, method = "GET" ) => {
 }
 
 export const fetchWithTokenAdvisor = ( endpoint, data, method = "GET" ) => {
-    const url = `${ baseUrlAdmin }/${ endpoint }`
+    const url = `${ baseUrl }/${ endpoint }`
     const token = localStorage.getItem('token') || '';
     if (method === "GET") {
         return fetch( url,  {

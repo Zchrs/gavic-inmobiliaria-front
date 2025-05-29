@@ -8,7 +8,6 @@ import {
 } from "../../../components/MultiChart";
 import { BaseButton } from "../../../components/BaseButton";
 import { getImg } from "../../../../globalActions";
-import { useState } from "react";
 import { VisitorsTracker } from "../../../components/VisitorsTracker";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +18,7 @@ export const AdminHome = () => {
       data: [25, 56, 30],
     },
     sales: {
-      names: ["Vendidas", "Arrendadas", "Consignadas", "Canceladas", "Devueltas"],
+      names: ["Vendidas", "Arrendadas", "Consignadas", "Eliminadas", "Canceladas"],
       data: [44, 55, 41, 17, 15],
     },
     finance: {
@@ -198,7 +197,7 @@ export const AdminHome = () => {
         <div className="adminhome-right">
           <div className="adminhome-right-card">
             <h2>Finanzas</h2>
-            <CandlesChart width={"140%"} height={"270%"} series={data.finance.data} />
+            <CandlesChart width={"100%"} height={"270%"} series={data.finance.data} />
             <div className="flex z-index">
               <BaseButton
                 textLabel={true}

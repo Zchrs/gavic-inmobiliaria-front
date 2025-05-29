@@ -1,240 +1,115 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
-import { BaseButton, BaseInput, BaseInputSelect } from "../../../../index"
+import { BaseButton, BaseInput } from "../../../../index"
 import { countries } from "../../../../apiEmulated";
 import  departamentos  from "../../../colombia/colombia.json";
-import { initialFormAdvisor, useForm } from "../../../hooks/useForm";
-import { getImg } from "../../../../globalActions";
+import { useForm } from "../../../hooks/useForm";
+import { useValidations } from "../../../hooks/useValidations";
+
 import styled from "styled-components";
 
 export const AdvisorRegister = () => {
+const { formRefs, validateForm } = useValidations();
 
-    const [selectedDnaType, setSelectedDnaType] = useState("");
-    const [cities, setCities] = useState([]);
-  
-    const handleStateChange = (e) => {
-      const selectedState = e.target.value;
-      const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
-      if (selectedDepartment) {
-        setCities(selectedDepartment.ciudades);
+    const initialForm = {
+      // country: "Colombia",
+      // name: "john",
+      // lastname: "doe",
+      // typeDoc: "Cédula de ciudadanía",
+      // dnaId: "1123589464",
+      // expDate: "12/12/2022",
+      // state: "Antioquia",
+      // city: "Medellín",
+      // address: "Calle 123 #45 67",
+      // phone: "571234567895",
+      // email: "john@doe.com",
+      // password: "Perrito@123",
 
-      } else {
-        setCities([]);
-      }
-      setFormAdvisor({
-        ...formAdvisor,
-      });
-      handleChangeAdvisor(e); // Para actualizar el estado del formulario
-    };
+      country: "",
+      name: "",
+      lastname: "",
+      typeDoc: "",
+      dnaId: "",
+      expDate: "",
+      state: "",
+      city: "",
+      address: "",
+      phone: "",
+      email: "",
+      password: "",
+    }    
 
-    const handleDnaType = (e) => {
-      setSelectedDnaType(e.target.value); // Actualizar el estado con la opción seleccionada
-      setFormAdvisor({
-        ...formAdvisor,
-      });
-      handleChangeAdvisor(e); 
-    };
-  
-    const validationsForm = (formAdvisor) => {
-    
-      let errors = {};
-      let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-      let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-      let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]+$/;
-      let regexDateExp = /^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[0-2])[/]\d{4}$/;
-      let regexMessage = /^.{1,300}$/;
-      // let regexPhone = /^\+[0-9]{1,3}\s?[0-9]{10}$/;
-      let regexPhone = /^\+?[\d\s-]{8,20}$/;
-      let country = document.getElementById("country");
-      let name = document.getElementById("name");
-      let lastName = document.getElementById("lastname");
-      let typeDoc = document.getElementById("dna-type");
-      let dnaId = document.getElementById("dna-id");
-      let expDate = document.getElementById("exp-date");
-      let state = document.getElementById("state");
-      let city = document.getElementById("city");
-      let address = document.getElementById("address");
-      let email = document.getElementById("email");
-      let phone = document.getElementById("phone");
-      let password = document.getElementById("password");
-
-          
-      if (!formAdvisor.country) {
-        country.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.country = "Debes seleccionar el país";
-      } else {
-        country.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
-      }
-    
-      if (!formAdvisor.name) {
-        name.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.name = "Debes ingresar el nombre";
-      } else if (!regexName.test(formAdvisor.name.trim())) {
-        errors.name = "El nombre debe tener solo letras";
-      } else {
-        name.style.cssText = "border: #34B0BE 1px solid;";
-      }
-    
-      if (!formAdvisor.lastname) {
-        lastName.style.cssText = "border: red 1px solid; border-radius: 10px; ";
-        errors.lastname = "Debes ingresar el apellido";
-      } else if (!regexName.test(formAdvisor.lastname.trim())) {
-        errors.lastname = "el apellido debe tener solo letras";
-      } else {
-        lastName.style.cssText = "border: #34B0BE 1px solid;";
-      }
-    
-      if (!formAdvisor.email) {
-        email.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.email = "Debes ingresar el correo electrónico";
-      } else if (!regexEmail.test(formAdvisor.email.trim())) {
-        errors.email = "Formato de correo incorrecto";
-      } else {
-        email.style.cssText = "border: #34B0BE 1px solid; color: black;";
-      }
-      
-      if (!formAdvisor.typeDoc) {
-        typeDoc.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.typeDoc = "Debes seleccionar el tipo de documento";
-      }  else if (typeDoc.value.length <= '6') {
-        errors.typeDoc = "Opción incorrecta";
-      }else {
-        expDate.style.cssText = "border: #34B0BE 1px solid;";
-      }
-
-      if (!formAdvisor.expDate) {
-        expDate.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.expDate = "Field expDate are required";
-      } else if (expDate.value.length < '6') {
-        errors.expDate = "Fecha de expedición incorrecta";
-      }else {
-        expDate.style.cssText = "border: #34B0BE 1px solid;";
-      }
-
-      if (!formAdvisor.dnaId) {
-        dnaId.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.dnaId = "Field dnaId are required";
-      }  else if (dnaId.value.length < '6') {
-        errors.dnaId = "Formato de cédula incorrecto";
-      }else {
-        dnaId.style.cssText = "border: #34B0BE 1px solid;";
-      }
-
-      if (!formAdvisor.city) {
-        city.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.city = "Debes seleccionar una ciudad";
-      } else {
-        city.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
-      }
-    
-      if (!formAdvisor.state) {
-        state.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.state = "Debes seleccionar un departamento";
-      } else {
-        state.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
-      }
-
-      if (!formAdvisor.address) {
-        address.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.address = "Debes ingresar la dirección";
-      } else if (!regexName.test(formAdvisor.address.trim())) {
-        errors.address = "formato de dirección incorrecto";
-      } else {
-        address.style.cssText = "border: #34B0BE 1px solid;";
-      }
-    
-      if (!formAdvisor.phone) {
-        phone.style.cssText = "border: red 1px solid; border-radius: 10px;";
-        errors.phone = "Nqecesitas ingresar el teléfono";
-      } else if (!regexPhone.test(formAdvisor.phone.trim())) {
-        errors.phone = "Formato de teléfono incorrecto";
-      } else if (formAdvisor.phone.trim().length <= 11) { // mínimo: +57 3001234567
-        errors.phone = "Número incorrecto";
-      } else {
-        phone.style.cssText = "border: #34B0BE 1px solid;";
-      }
-    
-      if (!password.value ) {
-        password.style.cssText = "border: red 1px solid";
-        errors.password = "Debes ingresar una contraseña";
-      } else if (password.value.length <= '6') {
-        errors.password = "la contraseña debe tener al menos 6 caracteres";
-      } else if (!regexPassword.test(password.value.trim())) {
-        errors.password = "La contraseña debe tener letras y números";
-      }
-    
-      else{
-        password.style.cssText = "border: #34B0BE 1px solid;";
-      }
-    
-
-      return errors;
-    };
-  
     const {
-      formAdvisor,
+      form,
+      cities, 
       errors,
-      handleChangeAdvisor,
-      handleBlurAdvisor,
+      handleChange,
+      handleBlur,
       handleSubmitsAdvisor,
-      handleCountryChangeAdvisor,
-      setFormAdvisor,
-    } = useForm(initialFormAdvisor, validationsForm);
-  
+      handleCountryChange,
+      handleStateChange,
+    } = useForm(initialForm, validateForm);
 
   return (
     <RegisterAdvisor>
             <div className="auth">
               <form className="form">
-                <BaseInputSelect
+                <BaseInput
+                  isSelect
+                  inputRef={formRefs.country}
+                  isLabel
                   height={"100%"}
                   width={"100%"}
                   classs={"inputs normal"}
                   id="country"
+                  name="country"
                   placeholder="Seleccionar país"
                   isSmallSelect={true}
-                  name="country"
-                  value={formAdvisor.country}
-                  onChange={handleCountryChangeAdvisor}
-                  handleBlur={handleBlurAdvisor}
+                  value={form.country}
+                  onBlur={ handleBlur }
+                  onChange={ handleCountryChange }
                   options={countries}
                   required
                 />
-                {/* {errors.country && <p className="warnings-formAdvisor">{errors.country}</p>} */}
+                {/* {errors.country && <p className="warnings-form">{errors.country}</p>} */}
         
                 <BaseInput
+                  inputRef={formRefs.name}
                   classs={"inputs normal"}
                   placeholder="Nombre"
                   name="name"
                   id="name"
-                  value={formAdvisor.name}
-                  onBlur={handleBlurAdvisor}
-                  onChange={handleChangeAdvisor}
+                  value={form.name}
+                  onBlur={ handleBlur }
+                  onChange={ handleChange }
                   required
                 />
-                {/* {errors.name && <p className="warnings-formAdvisor">{errors.name}</p>} */}
+                {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
         
                 <BaseInput
+                  inputRef={formRefs.lastname}
                   classs={"inputs normal"}
                   placeholder="Apellido"
                   name="lastname"
                   id="lastname"
-                  value={formAdvisor.lastname}
-                  onBlur={handleBlurAdvisor}
-                  onChange={handleChangeAdvisor}
+                  value={form.lastname}
+                  onBlur={ handleBlur }
+                  onChange={ handleChange }
                   required
                 />
-                {/* {errors.lastname && <p className="warnings-formAdvisor">{errors.lastname}</p>} */}
-                <BaseInputSelect
+                {/* {errors.lastname && <p className="warnings-form">{errors.lastname}</p>} */}
+                <BaseInput
+                isSelect
+                  inputRef={formRefs.typeDoc}
+                  isLabel
                     height={"100%"}
                     width={"100%"}
                     classs={"inputs normal"}
-                    id="dna-type"
-                    name="dna-type"
+                    id="typeDoc"
+                    name="typeDoc"
                     placeholder="Documento"
-                    value={formAdvisor.typeDoc}
-                    onChange={handleDnaType}
-                    handleBlur={handleBlurAdvisor}
+                    value={form.typeDoc}
+                    onBlur={ handleBlur }
+                    onChange={ handleChange }
                     options={[
                       { value: "Cédula de ciudadanía", label: "Cédula de ciudadanía" },
                       { value: "Cédula de extranjería", label: "Cédula de extranjería" },
@@ -243,43 +118,52 @@ export const AdvisorRegister = () => {
                     isSmallSelect={true}
                     required
                   />
+                  {/* {errors.typeDoc && <p className="warnings-form">{errors.typeDoc}</p>} */}
                 <div className="grid-l">
 
                   <div className="group">
                   <BaseInput
+                    inputRef={formRefs.dnaId}
                     classs={"inputs normal"}
                     placeholder="Número de cédula"
                     name="dnaId"
-                    id="dna-id"
-                    value={formAdvisor.dnaId}
-                    onBlur={handleBlurAdvisor}
-                    onChange={handleChangeAdvisor}
+                    id="dnaId"
+                    value={form.dnaId}
+                    onBlur={ handleBlur }
+                    onChange={ handleChange }
                     required
                     isNumber
                   />
+                  {/* {errors.dnaId && <p className="warnings-form">{errors.dnaId}</p>} */}
                   </div>
                   <BaseInput
-                    classs={"inputs normal"}
-                    name="expDate"
-                    id="exp-date"
-                    value={formAdvisor.expDate}
-                    onBlur={handleBlurAdvisor}
-                    onChange={handleChangeAdvisor}
-                    required
-                    isDate
-                  />
+                  inputRef={formRefs.expDate}
+                  classs={"inputs normal"}
+                  placeholder="Fecha de expedición"
+                  name="expId"
+                  id="expId"
+                  value={form.expDate}
+                  onBlur={ handleBlur }
+                  onChange={ handleChange }
+                  required
+                  isDate
+                />
+                  {/* {errors.expDate && <p className="warnings-form">{errors.expDate}</p>} */}
                 </div>
                 <div className="grid-l">
-                  <BaseInputSelect
+                  <BaseInput
+                  isSelect
+                    inputRef={formRefs.state}
+                    isLabel
                     height={"100%"}
                     width={"100%"}
                     classs={"inputs normal"}
                     id="state"
                     name="state"
                     placeholder="Departamento"
-                    value={formAdvisor.state}
-                    onChange={handleStateChange}
-                    handleBlur={handleBlurAdvisor}
+                    value={form.state}
+                    onBlur={ handleBlur }
+                    onChange={ handleStateChange }
                     options={departamentos.map((dep) => ({
                       value: dep.departamento,
                       label: dep.departamento,
@@ -287,18 +171,21 @@ export const AdvisorRegister = () => {
                     isSmallSelect={true}
                     required
                   />
-                  {/* {errors.state && <p className="warnings-formAdvisor">{errors.state}</p>} */}
+                  {/* {errors.state && <p className="warnings-form">{errors.state}</p>} */}
         
-                  <BaseInputSelect
+                  <BaseInput
+                  isSelect
+                    inputRef={formRefs.city}
+                    isLabel
                     height={"100%"}
                     width={"100%"}
                     classs={"inputs normal"}
                     id="city"
                     name="city"
                     placeholder="Ciudad"
-                    value={formAdvisor.city}
-                    onChange={handleChangeAdvisor}
-                    handleBlur={handleBlurAdvisor}
+                    value={form.city}
+                    onBlur={ handleBlur }
+                    onChange={ handleChange }
                     options={cities.map((city) => ({
                       value: city,
                       label: city,
@@ -306,82 +193,85 @@ export const AdvisorRegister = () => {
                     isSmallSelect={true}
                     required
                   />
-                  {/* {errors.city && <p className="warnings-formAdvisor">{errors.city}</p>} */}
+                  {/* {errors.city && <p className="warnings-form">{errors.city}</p>} */}
                 </div>
                 <BaseInput
+                  inputRef={formRefs.address}
                   classs={"inputs normal"}
                   placeholder="Dirección de residencia"
                   name="address"
                   id="address"
-                  onBlur={handleBlurAdvisor}
-                  onChange={handleChangeAdvisor}
-                  value={formAdvisor.address}
+                  onBlur={ handleBlur }
+                  onChange={ handleChange }
+                  value={form.address}
                   required
                 />
+                {/* {errors.address && <p className="warnings-form">{errors.address}</p>} */}
                 <div className="grid-l">
                   <BaseInput
+                    inputRef={formRefs.phone}
                     classs={"inputs normal"}
                     placeholder="Teléfono"
                     name="phone"
                     id="phone"
-                    value={formAdvisor.phone}
-                    onBlur={handleBlurAdvisor}
-                    onChange={handleChangeAdvisor}
+                    value={form.phone}
+                    onBlur={ handleBlur }
+                    onChange={ handleChange }
                     required
                     isNumber
                   />
         
                   <BaseInput
+                    inputRef={formRefs.email}
                     classs={"inputs normal"}
                     placeholder="Correo electrónico"
                     name="email"
                     id="email"
-                    value={formAdvisor.email}
-                    onBlur={handleBlurAdvisor}
-                    onChange={handleChangeAdvisor}
+                    value={form.email}
+                    onBlur={ handleBlur }
+                    onChange={ handleChange }
                     required
                     isEmail
                   />
-                  {/* {errors.email && <p className="warnings-formAdvisor">{errors.email}</p>} */}
+                  {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
                 </div>
         
                 <BaseInput
+                  inputRef={formRefs.password}
                   classs={"inputs normal"}
                   placeholder="Contraseña"
                   name="password"
                   id="password"
-                  onBlur={handleBlurAdvisor}
-                  onChange={handleChangeAdvisor}
-                  value={formAdvisor.password}
+                  onBlur={ handleBlur }
+                  onChange={ handleChange }
+                  value={form.password}
                   isPassword
                   required
                 />
-                {/* {errors.password && <p className="warnings-formAdvisor">{errors.password}</p>} */}
+                {/* {errors.password && <p className="warnings-form">{errors.password}</p>} */}
         
                 <BaseButton
-                  handleClick={handleSubmitsAdvisor}
-                  classs={"button full-primary"}
+                  type="submit"
+                  classs={"button primary"}
+                  colorbtnhoverprimary={"var(--bg-secondary-tr)"}
+                  colorbtn={"var(--bg-secondary)"}
+                  colortextbtnprimary={"var(--text-primary)"}
+                  colortextbtnhoverprimary={"var(--text-primary)"}
+                  handleClick={(e) => handleSubmitsAdvisor(e)}
                   textLabel={true}
                   label="Registrarme"
                 />
               </form>
-              <div className="auth-gruop2">
-                <h3>Continuar con</h3>
-              </div>
-              <div className="auth-social">
-                <img src={getImg("svg", "facebook", "svg")} alt="facebook-logo" />
-                <img src={getImg("svg", "google-icon", "svg")} alt="google-logo" />
-                <img src={getImg("svg", "twitter", "svg")} alt="twitter-logo" />
-                <img src={getImg("svg", "linkedin", "svg")} alt="linkedin-linkedin" />
-                <img src={getImg("svg", "apple-logo", "svg")} alt="apple-logo" />
-              </div>
               <div className="auth-tyc">
-                <p>{/* {t('globals.tycText')} */}</p>
+                <p>Al registrarte indicas que estás aceptando nustros 
+                  términos y condiciones y política de tratamiento de datos.
+                </p>
               </div>
             </div>
     </RegisterAdvisor>
   )
 }
+
 
 const RegisterAdvisor = styled.div`
   .grid-l{

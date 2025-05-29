@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { useState } from "react";
-import { BaseInputSelect, BaseButton, CardLeases, Loader, Pagination } from "../../../../index";
+import { CardLeases, Loader, Pagination } from "../../../../index";
 import { leases, propertyTypes } from "../../../../apiEmulated";
 import { values } from "../../../sectors/dataSectors";
+import { HeaderForm } from "../../../components/HeaderForm";
 
 
 export const Immovables = () => {
@@ -46,88 +47,23 @@ export const Immovables = () => {
     <ImmoVables>
       <div className="immovables">
         <div className="immovables-header">
-          <div>
-            <BaseInputSelect
-              placeholder="Quiero"
-              isSmallSelect={true}
-              options={[
-                { value: "Comprar", label: "Comprar" },
-                { value: "Arrendar", label: "Arrendar" },
-              ]}
-              name="want"
-              value={selectedWant}
-              onChange={handleWant}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Sector"
-              isSelect={true}
-              options={values}
-              name="budget"
-              value={selectedSector}
-              onChange={handleSector}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Tipo de inmueble"
-              isSelect={true}
-              name="property"
-              value={selectedProperty}
-              onChange={handleProperty}
-              options={propertyTypes}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Presupuesto"
-              isSelect={true}
-              name="budget"
-              value={selectedBudget}
-              onChange={handleBudget}
-              options={[
-                { value: "option1", label: "$1000 - $5000" },
-                { value: "option2", label: "$5000 - $10,000" },
-                { value: "option3", label: "Más de $10,000" },
-                { value: "option4", label: "Más de $10,000" },
-                { value: "option5", label: "Más de $10,000" },
-                { value: "option6", label: "Más de $10,000" },
-                { value: "option7", label: "Más de $10,000" },
-              ]}
-            />
-          </div>
-          <div>
-            <BaseInputSelect
-              placeholder="Código"
-              classs={"inputs normal"}
-              name="code"
-              value={selectedCode}
-              onChange={handleCode}
-              options={[
-                { value: "option1", label: "Código 1" },
-                { value: "option2", label: "Código 2" },
-                { value: "option3", label: "Código 3" },
-              ]}
-            />
-          </div>
-          <div className="flex-s">
-            <BaseButton
-              classs={"button full-outline"}
-              textLabel={true}
-              label={"Limpiar"}
-              img={true}
-              icon={"trash"}
-            />
-
-            <BaseButton
-              classs={"button small-gray"}
-              textLabel={true}
-              label={"Buscar"}
-              svg={true}
-              // handleClick={whatsapp}
-            />
-          </div>
+          <HeaderForm 
+          color={"var(--bg-primary)"}
+          borderbtn={"white"}
+          colortextbtnhoveroutline={"white"}
+          colortextbtnoutline={"white"}
+          filterhoveroutline="brightness(0%) invert(100%)"
+          filteroutline={"brightness(0%) invert(100%)"}
+          hovercolorbtnoutline={"#ffffff2e"}
+          borderbtnhoveroutline={"var(--bg-tertiary)"}
+          
+          colorbtnhoverprimary={"white"}
+          filterprimary="brightness(0%) invert(0%)"
+          filterprimaryhover="brightness(0%) invert(0%)"
+          colorbtn={"var(--bg-secondary)"}
+          colortextbtnprimary={"var(--text-primary)"}
+          colortextbtnhoverprimary={"var(--text-primary)"}
+          />
         </div>
         <div className="immovables-content grid-5fr">
           {

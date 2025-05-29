@@ -7,11 +7,11 @@ import styled from "styled-components";
 import { BaseButton } from "./BaseButton";
 // import { useDispatch, useSelector } from "react-redux";
 // import { clearProduct, selectedProduct } from "../actions/productActions";
-import { AddCartWishlist } from "./AddCartWishlist";
+
 import { useNavigate } from "react-router-dom";
 // import { addToCart as addToCartAction } from "../actions/cartActions";
 import Swal from "sweetalert2";
-import { useForm, initialAddCartForm } from "../hooks/useForm";
+
 
 
 import { Rating } from "./Rating";

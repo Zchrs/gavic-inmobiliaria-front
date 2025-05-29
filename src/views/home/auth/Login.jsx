@@ -57,24 +57,23 @@ export const Login = () => {
 
   return (
     <section className="auth">
-    <form>
+    <form className="form">
       <div>
         <BaseInput
-        classs={"inputs outline"}
+        classs={"inputs normal"}
         placeholder="Correo electrónico"
         id="email"
         name="email"
         value={form.email}
         onBlur={handleBlur}
         onChange={handleChange}
-        
         isEmail
         />
         {errors.email && <p className="warnings-form">{errors.email}</p>}
       </div>
       <div>
         <BaseInput
-        classs={"inputs outline"}
+        classs={"inputs normal"}
         placeholder="Contraseña"
         onChange={handleChange}
         onBlur={handleBlur}
@@ -82,23 +81,24 @@ export const Login = () => {
         id="password"
         name="password" 
         isPassword
-        
         />
         {errors.email && <p className="warnings-form">{errors.password}</p>}
       </div>
       <Link className="a">Olvidé mi contraseña</Link>
-      <BaseButton handleClick={handleLogin} classs={"button full-secondary"} textLabel={true} label="Iniciar sesión" />
+      <BaseButton 
+        handleClick={handleLogin} 
+        classs={"button secondary"}
+        textLabel={true}
+        colorbtn={"var(--bg-primary)"}
+        colorbtntextsecondary={"var(--bg-tertiary)"}
+        colorbtnhoversecondary={"var(--bg-primary-semi)"}
+        hovercolorbtntextsecondary={"var(--bg-tertiary)"}
+        label="Iniciar sesión" />
     </form>
-    <div className="auth-gruop2">
-      <h3>Continuar con</h3>
-    </div>
-    <div className="auth-social">
-      <img src={getImg('svg', 'facebook', 'svg')} alt="facebook-logo" />
-      <img src={getImg('svg', 'google-icon', 'svg')} alt="google-logo" />
-      <img src={getImg('svg', 'twitter', 'svg')} alt="twitter-logo" />
-      <img src={getImg('svg', 'linkedin', 'svg')} alt="linkedin-linkedin" />
-      <img src={getImg('svg', 'apple-logo', 'svg')} alt="apple-logo" />
-    </div>
+
+
   </section>
   )
 }
+
+

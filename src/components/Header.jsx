@@ -292,7 +292,7 @@ export const Header = () => {
                 isActive ||
                 isSubmenuActive([
                   "/auth/client/register",
-                  "/auth/advisor/register",
+                  "/advisor/auth/register",
                 ])
                   ? "header-links-a-active"
                   : "header-links-a"
@@ -308,7 +308,7 @@ export const Header = () => {
               <Link onClick={handleFunctions} to={"/auth/client/register"}>
                 Como Cliente
               </Link>
-              <Link onClick={handleFunctions} to={"/auth/advisor/register"}>
+              <Link onClick={handleFunctions} to={"/advisor/auth/register"}>
                 Como Asesor inmobiliario
               </Link>
             </div>
@@ -316,15 +316,24 @@ export const Header = () => {
 
           <div className="header-btns">
             <BaseButton
-              classs={"button little-secondary"}
+              classs={"button secondary"}
               textLabel={true}
+              colorbtn={"var(--bg-secondary)"}
+              colortextbtnsecondary={"black"}
+              colorbtnhoversecondary={"var(--bg-primary)"}
+              hovercolorbtntextsecondary={"white"}
               label={"Iniciar sesión"}
               // handleClick={whatsapp}
             />
             <BaseButton
-              classs={"button little-secondary"}
+              classs={"button primary"}
+              colorbtnhoverprimary={"var(--bg-primary-semi)"}
+              colorbtn={"var(--bg-primary)"}
+              width={"fit-content"}
+              colortextbtnprimary={"var(--text-tertiary)"}
+              colortextbtnhoverprimary={"var(--text-tertiary)"}
               textLabel={true}
-              label={"Registrarse"}
+              label={"Registrarme"}
               // handleClick={whatsapp}
             />
           </div>
@@ -350,6 +359,10 @@ const HeaDer = styled.div`
     align-items: center;
     width: 100%;
 
+    @media (max-width: 720px) {
+      padding: 24px 12px;
+    }
+
     &-btns {
       display: none;
       @media (max-width: 920px) {
@@ -365,6 +378,7 @@ const HeaDer = styled.div`
       @media (max-width: 920px) {
         display: grid;
         width: 35px;
+        padding: 0;
       }
     }
     &-links {
@@ -388,7 +402,7 @@ const HeaDer = styled.div`
           color: var(--text-primary);
           @media (max-width: 920px) {
             color: var(--text-tertiary);
-            transform: translateX(-80%);
+            transform: translateX(-55%);
           }
           .header-links-img {
             height: 18px;
@@ -460,10 +474,11 @@ const HeaDer = styled.div`
             opacity: 1;
             border-radius: 0 0 5px 5px;
             transform: translateY(0%);
-
+            
             @media (max-width: 920px) {
-              right: -176%;
-              top: -15%;
+              width: 180px;
+              right: -105%;
+              top: -55%;
               border-radius: 0 5px 5px 0;
               a {
                 font-size: 18px;
@@ -480,9 +495,10 @@ const HeaDer = styled.div`
             height: fit-content;
             opacity: 1;
             border-radius: 0 0 5px 5px;
-
+            
             @media (max-width: 920px) {
-              right: -196%;
+              width: 180px;
+              right: -136%;
               top: -110%;
               border-radius: 0 5px 5px 0;
               gap: 0px;
@@ -501,9 +517,10 @@ const HeaDer = styled.div`
             height: fit-content;
             opacity: 1;
             border-radius: 0 0 5px 5px;
-
+            
             @media (max-width: 920px) {
-              right: -166%;
+              width: 180px;
+              right: -106%;
               top: -70%;
               border-radius: 0 5px 5px 0;
               a {

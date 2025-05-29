@@ -3,35 +3,13 @@ import { useState } from "react";
 import { getImg } from "../../../../globalActions";
 import { BaseButton } from "../../../components/BaseButton";
 import { BaseInput } from "../../../components/BaseInput";
-import { CountrySelect } from "../../../components/CountrySelect";
-import { initialForm, initialFormClient, useForm } from "../../../hooks/useForm";
-import { BaseInputSelect } from "../../../components/BaseInputSelect";
+import { initialForm, useForm } from "../../../hooks/useForm";
 import { countries } from "../../../../apiEmulated";
-
-import departamentos from "../../../colombia/colombia.json";
 import styled from "styled-components";
 
 export const Register = () => {
-  //  const [cities, setCities] = useState([]);
 
-  //  const handleStateChange = (e) => {
-  //   const selectedState = e.target.value;
-  //   const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
-  //   if (selectedDepartment) {
-  //     setCities(selectedDepartment.ciudades);
-  //   } else {
-  //     setCities([]); // Set empty array instead of null
-  //   }
-  //   setFormClient({
-  //     ...formClient,
-  //     [e.target.name]: e.target.value,
-  //     city: "" // Reset city when state changes
-  //   });
-  //   handleChangeClient(e);
-  // };
-      
-
-  const validationsForm = (formClient) => {
+  const validationsForm = (form) => {
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
@@ -50,51 +28,51 @@ export const Register = () => {
     let password = document.getElementById("password");
     let address = document.getElementById("address");
 
-    if (!formClient.country) {
+    if (!form.country) {
       country.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.country = "Debes seleccionar el país";
     } else {
       country.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!formClient.name) {
+    if (!form.name) {
       name.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.name = "Debes ingresar el nombre";
-    } else if (!regexName.test(formClient.name.trim())) {
+    } else if (!regexName.test(form.name.trim())) {
       errors.name = "El nombre debe tener solo letras";
     } else {
       name.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    if (!formClient.lastname) {
+    if (!form.lastname) {
       lastName.style.cssText = "border: red 1px solid";
       errors.lastname = "Debes ingresar el apellido";
-    } else if (!regexName.test(formClient.lastname.trim())) {
+    } else if (!regexName.test(form.lastname.trim())) {
       errors.lastname = "el apellido debe tener solo letras";
     } else {
       lastName.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    if (!formClient.email) {
+    if (!form.email) {
       email.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.email = "Debes ingresar el correo electrónico";
-    } else if (!regexEmail.test(formClient.email.trim())) {
+    } else if (!regexEmail.test(form.email.trim())) {
       errors.email = "Formato de correo incorrecto";
     } else {
       email.style.cssText = "border: #34B0BE 1px solid; color: black;";
     }
-    if (!formClient.phone) {
+    if (!form.phone) {
       phone.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.phone = "Nqecesitas ingresar el teléfono";
-    } else if (!regexPhone.test(formClient.phone.trim())) {
+    } else if (!regexPhone.test(form.phone.trim())) {
       errors.phone = "Formato de teléfono incorrecto";
-    } else if (formClient.phone.trim().length <= 11) { // mínimo: +57 3001234567
+    } else if (form.phone.trim().length <= 11) { // mínimo: +57 3001234567
       errors.phone = "Número incorrecto";
     } else {
       phone.style.cssText = "border: #34B0BE 1px solid;";
     }
 
-    if (!formClient.address) {
+    if (!form.address) {
       address.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.address = "Debes ingresar tu dirección";
     }  else {
@@ -102,21 +80,21 @@ export const Register = () => {
     }
 
 
-    if (!formClient.state) {
+    if (!form.state) {
       state.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.state = "Debes seleccionar el país";
     } else {
       state.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!formClient.city) {
+    if (!form.city) {
       city.style.cssText = "border: red 1px solid; border-radius: 10px;";
       errors.city = "Debes seleccionar el país";
     } else {
       city.style.cssText = "border: #34B0BE 1px solid; border-radius: 10px;";
     }
 
-    if (!formClient.password) {
+    if (!form.password) {
       password.style.cssText = "border: red 1px solid";
       errors.password = "Debes ingresar una contraseña";
     } else if (password.value.length <= "6") {
@@ -131,37 +109,32 @@ export const Register = () => {
   };
 
   const {
-    formClient,
+    form,
     departamentos,
     cities, 
     errors,
-    setFormClient,
     handleStateChange,
     handleChange,
     handleBlur,
     handleSubmitClient,
-    handleBlurClient,
-    handleSubmits,
     handleCountryChange,
-    handleClearCountry,
-    handleChangeClient,
-  } = useForm(initialFormClient, validationsForm);
+  } = useForm(initialForm, validationsForm);
 
   return (
     <AuTh>
     <div className="auth">
       <form className="form">
-        <BaseInputSelect
+        <BaseInput
+         isSelect
           height={"100%"}
           width={"100%"}
           classs={"inputs normal"}
           id="country"
           placeholder="Seleccionar país"
-          isSmallSelect={true}
           name="country"
-          value={formClient.country}
-          onChange={handleCountryChange}
-          handleBlur={handleBlur}
+          value={form.country}
+          onChange={ handleCountryChange }
+          onBlur={ handleBlur }
           options={countries}
           required
         />
@@ -172,9 +145,9 @@ export const Register = () => {
           placeholder="Nombre"
           name="name"
           id="name"
-          value={formClient.name}
-          onBlur={handleBlur}
-          onChange={handleChange}
+          value={form.name}
+          onBlur={ handleBlur }
+          onChange={(e) => handleChange(e, 'client')}
           required
         />
         {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
@@ -184,24 +157,25 @@ export const Register = () => {
           placeholder="Apellido"
           name="lastname"
           id="lastname"
-          value={formClient.lastname}
-          onBlur={handleBlur}
-          onChange={handleChange}
+          value={form.lastname}
+          onBlur={ handleBlur }
+          onChange={(e) => handleChange(e, 'client')}
           required
         />
         {/* {errors.lastname && <p className="warnings-form">{errors.lastname}</p>} */}
 
         <div className="grid-l">
-          <BaseInputSelect
+          <BaseInput
+           isSelect
             height={"100%"}
             width={"100%"}
             classs={"inputs normal"}
             id="state"
             name="state"
             placeholder="Departamento"
-            value={formClient.state}
-            onChange={handleStateChange}
-            handleBlur={handleBlurClient}
+            value={form.state}
+            onChange={(e) => handleStateChange(e, 'client')}
+            onBlur={ handleBlur }
             options={departamentos.map((dep) => ({
               value: dep.departamento,
               label: dep.departamento,
@@ -211,17 +185,18 @@ export const Register = () => {
           />
           {/* {errors.state && <p className="warnings-form">{errors.state}</p>} */}
 
-          <BaseInputSelect
+          <BaseInput
+           isSelect
             height={"100%"}
             width={"100%"}
             classs={"inputs normal"}
             id="city"
             name="city"
             placeholder="Ciudad"
-            value={formClient.city}
-            disabled={!formClient.state}
-            onChange={handleChangeClient}
-            handleBlur={handleBlurClient}
+            value={form.city}
+            disabled={!form.state}
+            onChange={(e) => handleChange(e, 'client')}
+            onBlur={ handleBlur }
             options={cities.map((city) => ({
               value: city,
               label: city,
@@ -237,9 +212,9 @@ export const Register = () => {
             placeholder="Teléfono ej: +57 000 000 0000"
             name="phone"
             id="phone"
-            value={formClient.phone}
-            onChange={handleChangeClient}
-            onBlur={handleBlurClient}
+            value={form.phone}
+            onChange={(e) => handleChange(e, 'client')}
+            onBlur={ handleBlur }
             required
             isNumber
           />
@@ -249,9 +224,9 @@ export const Register = () => {
             placeholder="Correo electrónico"
             name="email"
             id="email"
-            value={formClient.email}
-            onBlur={handleBlurClient}
-            onChange={handleChangeClient}
+            value={form.email}
+            onBlur={ handleBlur }
+            onChange={(e) => handleChange(e, 'client')}
             required
             isEmail
           />
@@ -262,9 +237,9 @@ export const Register = () => {
           placeholder="Dirección de domicilio"
           name="address"
           id="address"
-          value={formClient.address}
-          onBlur={handleBlurClient}
-          onChange={handleChangeClient}
+          value={form.address}
+          onBlur={ handleBlur }
+          onChange={(e) => handleChange(e, 'client')}
           required
         />
         <BaseInput
@@ -272,9 +247,9 @@ export const Register = () => {
           placeholder="Contraseña"
           name="password"
           id="password"
-          onBlur={handleBlurClient}
-          onChange={handleChangeClient}
-          value={formClient.password}
+          onBlur={ handleBlur }
+          onChange={(e) => handleChange(e, 'client')}
+          value={form.password}
           isPassword
           required
         />
@@ -282,23 +257,21 @@ export const Register = () => {
 
         <BaseButton
           handleClick={handleSubmitClient}
-          classs={"button full-primary"}
+          classs={"button primary"}
+          colorbtnhoverprimary={"var(--bg-primary-semi)"}
+          colorbtn={"var(--bg-primary)"}
+          width={"fit-content"}
+          colortextbtnprimary={"var(--text-tertiary)"}
+          colortextbtnhoverprimary={"var(--text-tertiary)"}
           textLabel={true}
           label="Registrarme"
         />
       </form>
-      <div className="auth-gruop2">
-        <h3>Continuar con</h3>
-      </div>
-      <div className="auth-social">
-        <img src={getImg("svg", "facebook", "svg")} alt="facebook-logo" />
-        <img src={getImg("svg", "google-icon", "svg")} alt="google-logo" />
-        <img src={getImg("svg", "twitter", "svg")} alt="twitter-logo" />
-        <img src={getImg("svg", "linkedin", "svg")} alt="linkedin-linkedin" />
-        <img src={getImg("svg", "apple-logo", "svg")} alt="apple-logo" />
-      </div>
+
       <div className="auth-tyc">
-        <p>{/* {t('globals.tycText')} */}</p>
+        <p>Al registrarte indicas que estás aceptando nustros 
+          términos y condiciones y política de tratamiento de datos.
+        </p>
       </div>
     </div>
     </AuTh>

@@ -147,6 +147,9 @@ const FooTer = styled.div`
     @media (max-width: 920px) {
       grid-template-columns: repeat(2, 1fr);
     }
+    @media (max-width: 480px) {
+      grid-template-columns: 2fr;
+    }
 
     &-logo {
       filter: brightness(1%) invert(50%);
@@ -176,15 +179,21 @@ const FooTer = styled.div`
       height: 100%;
       display: grid;
       border-left: 1px solid var(--bg-secondary-semi);
-      text-align: center;
+      /* text-align: center; */
+      justify-content: center;
+      padding-left: 20px;
       align-content: start;
       align-items: start;
+      @media (max-width: 820px) {
+        width: fit-content;
+      }
       &-a {
         cursor: pointer;
         color: var(--text-secondary-light);
         font-weight: 300;
         &:hover {
           color: var(--text-dark);
+          font-weight: 500;
         }
       }
       &-h2 {

@@ -99,6 +99,7 @@ export const clearProperty = (propertyInfo) => {
           };
         }
       }));
+      localStorage.setItem('leasesProperties', JSON.stringify(propertiesComplete));
       dispatch(setProperty(propertiesComplete));
     } catch (error) {
       console.error('Error al obtener las propiedades vendidas:', error);
@@ -175,6 +176,7 @@ export const clearProperty = (propertyInfo) => {
           };
         }
       }));
+      localStorage.setItem('rentProperties', JSON.stringify(propertiesComplete));
       dispatch(setProperty(propertiesComplete));
     } catch (error) {
       console.error('Error al obtener los inmuebles arrendados:', error);
@@ -205,6 +207,36 @@ export const clearProperty = (propertyInfo) => {
         throw error;
     }
 };
+
+export const fetchPropertiesByFilter = (filters = {}) => async (dispatch) => {
+  try {
+    // Construir la query string con filtros
+    const params = new URLSearchParams(filters).toString();
+    const url = `${import.meta.env.VITE_APP_API_GET_PROPERTIES_URL}?${params}`;
+
+    const response = await axios.get(url);
+    const propertiesComplete = await Promise.all(
+      response.data.map(async (propertyInfo) => {
+        const imagesRes = await axios.get(
+          `${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`
+        );
+        return {
+          ...propertyInfo,
+          images: imagesRes.data.images || [],
+        };
+      })
+    );
+
+    localStorage.setItem("propertiesRecent", JSON.stringify(propertiesComplete));
+    dispatch(setProperty(propertiesComplete));
+    return propertiesComplete;
+  } catch (error) {
+    console.error("Error al obtener las propiedades filtradas:", error);
+    dispatch(setProperty([]));
+    throw error;
+  }
+};
+
 export const fetchRecentProperties = () => async (dispatch) => {
   try {
     // 1. Verificar si hay datos en localStorage

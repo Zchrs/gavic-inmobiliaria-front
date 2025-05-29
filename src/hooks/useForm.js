@@ -14,37 +14,7 @@ import { fetchWithoutToken } from "../helpers/fetch";
 import departamentos from "../colombia/colombia.json";
 import Swal from "sweetalert2";
 
-export const initialFormAdmin = {
-  fullname: "",
-  email: "",
-  pass: "",
-  codeAccess: "",
-};
-
-export const initialFormClient = {
-    country: "Colombia",
-    name: "John", 
-    lastname: "Doe",
-    state: "Antioquia",
-    city: "Medellín",
-    phone: "573122057896",
-    email: "sacuroyim@gmail.com",
-    address: "carrera 111 #34b 46",
-    password: "Perrito@123"
-};
-
 export const initialForm = {
-  country: "",
-  name: "",
-  lastname: "",
-  state: "",
-  city: "",
-  phone: "",
-  email: "",
-  password: "",
-};
-
-export const initialFormAdvisor = {
   country: "",
   name: "",
   lastname: "",
@@ -53,14 +23,15 @@ export const initialFormAdvisor = {
   expDate: "",
   state: "",
   city: "",
+  address: "",
   phone: "",
   email: "",
   password: "",
-};
 
-export const initialPropertyForm = {
-  name: "",
-  city: "",
+  fullname: "",
+  codeAccess: "",
+
+  title: "",
   price: "",
   district: "",
   category: "",
@@ -79,23 +50,23 @@ export const initialPropertyForm = {
   action: "",
   image: "",
   img_url: [],
-};
 
-export const initialAddCartForm = {
+  nameManager: "",
+  idNumberManager: "",
+  docIdManager: "",
+  phoneManager: "",
+
   user_id: "",
   product_id: "",
-  price: "",
   quantity: "1",
+
 };
+
+
 
 export const useForm = (initialForm, validateForm) => {
   // ---------------- variables de estado -----------------------
   const [form, setForm] = useState(initialForm);
-  const [formProperty, setFormProperty] = useState(initialPropertyForm);
-  const [formAdmin, setFormAdmin] = useState(initialFormAdmin);
-  const [formClient, setFormClient] = useState(initialFormClient);
-  const [formAdvisor, setFormAdvisor] = useState(initialFormAdvisor);
-  const [formCart, setFormCart] = useState(initialAddCartForm);
   const [errors, setErrors] = useState({});
   const [errorsCart, setErrorsCart] = useState({});
   // const [active, setActive] = useState(null);
@@ -106,7 +77,9 @@ export const useForm = (initialForm, validateForm) => {
   const [filteredCities, setFilteredCities] = useState([]);
   const [selected, setSelected] = useState(null);
   const [cities, setCities] = useState([]);
+  const [city, setCity] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [hasManager, setHasManager] = useState(false);
   const user = useSelector((state) => state.auth.user);
   // ----------------- funciones form -------------------------
 
@@ -134,25 +107,14 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleCountryChange = (options) => {
-    if (!options) {
-      setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
-    } else {
-      setForm({
-        ...form,
-        country: options.target.value,
-      });
-    }
-  };
-
-  const handleCountryChangeAdvisor = (options) => {
-    if (!options) {
-      setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
-    } else {
-      setFormAdvisor({
-        ...formAdvisor,
-        country: options.target.value,
-      });
-    }
+      if (!options) {
+        setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
+      } else {
+        setForm({
+          ...form,
+          country: options.target.value,
+        });
+      }
   };
 
   const handleClearCountry = (label, value) => {
@@ -170,93 +132,41 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(value)
-    setForm({
-      ...form,
-      [name]: value,
-    });
+      setForm({
+        ...form,
+        [name]: value,
+      });
 
     if (value === "email") {
       validateEmails(name);
-      debugger;
     } else {
       return;
     }
+  };
+
+  const handleBlur = (e) => {
+      handleChange(e);
+      setErrors(validateForm(form));
   };
 
   const handleStateChange = (e) => {
-    const selectedState = e.target.value;
-    const selectedDepartment = departamentos.find(dep => dep.departamento === selectedState);
+    const { value } = e.target;
+    const selectedDepartment = departamentos.find(dep => dep.departamento === value);
+    
     if (selectedDepartment) {
       setCities(selectedDepartment.ciudades);
-
     } else {
       setCities([]);
     }
-    setFormClient({
-      ...formClient,
-    });
-    handleChangeClient(e); // Para actualizar el estado del formulario
-  };
 
-  const handleChangeClient = (e) => {
-    const { name, value } = e.target;
-    // console.log(value)
-    setFormClient({
-      ...formClient,
-      [name]: value,
-    });
-
-    if (value === "email") {
-      validateEmails(name);
-    } else {
-      return;
-    }
-  };
-
-  const handleBlurClient = (e) => {
-    handleChangeClient(e);
-    setErrors(validateForm(formClient));
-  };
-
-  const handleChangeAdvisor = (e) => {
-    const { name, value } = e.target;
-    // console.log(value)
-    setFormAdvisor({
-      ...formAdvisor,
-      [name]: value,
-    });
-
-    if (value === "email") {
-      validateEmails(name);
-    } else {
-      return;
-    }
-  };
-
-  const handleBlurAdvisor = (e) => {
-    handleChangeAdvisor(e);
-    setErrors(validateForm(formAdvisor));
-  };
-
-  const handleChangeAdmin = (e) => {
-    const { name, value } = e.target;
-    setFormAdmin({
-      ...formAdmin,
-      [name]: value,
-    });
-
-    if (value === "email") {
-      validateEmails(name);
-    } else {
-      return;
-    }
-  };
+    setForm(prev => ({ 
+      ...prev, 
+      state: value,
+      city: '' // Limpiar la ciudad cuando cambia el departamento
+    }));
   
-  const handleBlurAdmin = (e) => {
-    handleChangeAdmin(e);
-    setErrors(validateForm(formAdmin));
   };
+
 
   const handleChecked = (e, checked) => {
     setChecked(e.target.checked);
@@ -268,33 +178,39 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleSetImages = (imageUrls) => {
-    setForm({
-      ...form,
-      img_url: imageUrls,
-    });
+      setForm({
+        ...form,
+        img_url: imageUrls,
+      });
   };
 
   const handleSetImage = (imageUrl) => {
-    setForm({
-      ...form,
-      image: imageUrl,
-    });
+      setForm({
+        ...form,
+        image: imageUrl,
+      });
   };
 
-  // formularios y estados del producto
-  const handleChangeProperty = (e) => {
-    const { name, value } = e.target;
-    // console.log(value)
-    setFormProperty({
-      ...formProperty,
-      [name]: value,
-    });
+  const handleImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    const imgUrls = files.map((file) => URL.createObjectURL(file));
+    setForm((form) => ({
+      ...form,
+      img_url: imgUrls, // Guardar las URLs de las imágenes
+    }));
   };
   
-  const handleBlurProperty = (e) => {
-    handleChangeProperty(e);
-    setErrors(validateForm(formProperty));
+  const handleImageChange = (e) => {
+    const file = e.target.files;
+    const imageUrl =  URL.createObjectURL(file);
+    setForm((form) => ({
+      ...form,
+      image: imageUrl, // Guardar las URLs de las imágenes
+    }));
   };
+
+
+  // formularios y estados del producto
 
   const handleUpdateProperty = async (id) => {
     setLoading(true);
@@ -317,13 +233,13 @@ export const useForm = (initialForm, validateForm) => {
       if (result.isConfirmed) {
         try {
           const formData = new FormData();
-          formData.append("name", formProperty.name);
-          formData.append("price", formProperty.price);
-          formData.append("previousPrice", formProperty.previousPrice);
-          formData.append("category", formProperty.category);
-          formData.append("quantity", formProperty.quantity);
-          formData.append("description", formProperty.description);
-          formData.append("img_url", formProperty.img_url);
+          formData.append("name", form.name);
+          formData.append("price", form.price);
+          formData.append("previousPrice", form.previousPrice);
+          formData.append("category", form.category);
+          formData.append("quantity", form.quantity);
+          formData.append("description", form.description);
+          formData.append("img_url", form.img_url);
           const response = axios.put(
             `${import.meta.env.VITE_APP_API_UPDATE_PRODUCT_URL}/${id}`,
             formData,
@@ -376,49 +292,89 @@ export const useForm = (initialForm, validateForm) => {
     });
   };
 
-  const handleSubmitProperty = async (e) => {
+  const handleSubmitProperty = async (e, submitClient = "client") => {
     e.preventDefault();
 
     const formData = {
-      name: formProperty.name,
-      city: formProperty.city,
-      price: formProperty.price,
-      district: formProperty.district,
-      category: formProperty.category,
-      furnished: formProperty.furnished,
-      admon: formProperty.admon,
-      description: formProperty.description,
-      bedRoom: formProperty.bedRoom,
-      bathRoom: formProperty.bathRoom,
-      diningRoom: formProperty.diningRoom,
-      closets: formProperty.closets,
-      kitchen: formProperty.kitchen,
-      floor: formProperty.floor,
-      parking: formProperty.parking,
-      stratum: formProperty.stratum,
-      clothing: formProperty.clothing,
-      action: formProperty.action,
-      image: formProperty.image,
-      img_url: formProperty.img_url, // Asumiendo que img_url es un array de objetos con una propiedad 'url'
+      name: form.name,
+      city: form.city,
+      price: form.price,
+      district: form.district,
+      category: form.category,
+      furnished: form.furnished,
+      admon: form.admon,
+      description: form.description,
+      bedRoom: form.bedRoom,
+      bathRoom: form.bathRoom,
+      diningRoom: form.diningRoom,
+      closets: form.closets,
+      kitchen: form.kitchen,
+      floor: form.floor,
+      parking: form.parking,
+      stratum: form.stratum,
+      clothing: form.clothing,
+      action: form.action,
+      image: form.image,
+      img_url: form.img_url, // Asumiendo que img_url es un array de objetos con una propiedad 'url'
+      nameManager: form.nameManager,
+      docIdManager: form.docIdManager,
+      emailManager: form.emailManager,
+      phoneManager: form.phoneManager,
+      submitClient: submitClient,
     };
 
-    if (!formData.name) return;
-    if (!formData.city) return;
-    if (!formData.price) return;
-    if (!formData.district) return;
-    if (!formData.category) return;
-    if (!formData.furnished) return;
-    if (!formData.admon) return;
-    if (!formData.description) return;
-    if (!formData.diningRoom) return;
-    if (!formData.bathRoom) return;
-    if (!formData.closets) return;
-    if (!formData.floor) return;
-    if (!formData.parking) return;
-    if (!formData.stratum) return;
-    if (!formData.clothing) return;
-    if (!formData.action) return;
+    if (submitClient === "client"){
+      if (formData.name === "") return;
+      if (formData.city === "") return;
+      if (formData.price === "") return;
+      if (formData.district === "") return;
+      if (formData.category === "") return;
+      if (formData.furnished === "") return;
+      if (formData.admon === "") return;
+      if (formData.description === "") return;
+      if (formData.diningRoom === "") return;
+      if (formData.bathRoom === "") return;
+      if (formData.closets === "") return;
+      if (formData.floor === "") return;
+      if (formData.parking === "") return;
+      if (formData.stratum === "") return;
+      if (formData.clothing === "") return;
+      if (formData.action === "") return;
 
+        if(hasManager == true){
+         if (formData.nameManager === "") return;
+         if (formData.docIdManager === "") return;
+         if (formData.emailManager === "") return;
+         if (formData.phoneManager === "") return;
+        }
+      
+      if (formData.phone === "") return;
+      if (formData.lastname === "") return;
+      if (formData.dnaId === "") return;
+      if (formData.expDate === "") return;
+      if (formData.email === "") return;
+      if (formData.phone === "") return;
+    } 
+    
+    if (submitClient === "admin") {
+      if (formData.name === "") return;
+      if (formData.city === "") return;
+      if (formData.price === "") return;
+      if (formData.district === "") return;
+      if (formData.category === "") return;
+      if (formData.furnished === "") return;
+      if (formData.admon === "") return;
+      if (formData.description === "") return;
+      if (formData.diningRoom === "") return;
+      if (formData.bathRoom === "") return;
+      if (formData.closets === "") return;
+      if (formData.floor === "") return;
+      if (formData.parking === "") return;
+      if (formData.stratum === "") return;
+      if (formData.clothing === "") return;
+      if (formData.action === "") return;
+    }
+    
     if (!formData.image) {
       console.error("Selecciona 1 imagen");
       return
@@ -433,7 +389,69 @@ export const useForm = (initialForm, validateForm) => {
 
     setLoading(true);
 
+    if (submitClient === "client") {
     Swal.fire({
+      title: "Estás agregando un inmueble",
+      text: "¿Deseas agregar este inmueble?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Volver",
+      background: "#f0f0f0",
+      customClass: {
+        popup: "custom-popup",
+        title: "custom-title",
+        content: "custom-content",
+        confirmButton: "custom-confirm-button",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = axios.post(
+            import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
+            formData, 
+            {
+              headers: {
+                "Content-type": "application/json",
+                Accept: "application/json",
+              },
+            }
+          );
+
+          console.log(response);
+          setLoading(false);
+          setResponse(true);
+          setForm(initialForm);
+         
+
+          Swal.fire({
+            title: "¡Éxito!",
+            text: "Inmueble agregado correctamente.",
+            icon: "success",
+            showCancelButton: false,
+            confirmButtonText: "Volver",
+            background: "#f0f0f0",
+            customClass: {
+              popup: "custom-popup",
+              title: "custom-title",
+              content: "custom-content",
+              confirmButton: "custom-confirm-button",
+            },
+          });
+          // Manejar acciones adicionales si es necesario
+        } catch (error) {
+  console.error("Error al enviar el inmueble:", error);
+  setLoading(false);
+  Swal.fire({
+    title: "Error",
+    text: error.response?.data?.error || "Ocurrió un error al enviar el formulario",
+    icon: "error"
+  });
+}
+      } else return;
+    });
+  } else if (submitClient === "admin") {
+     Swal.fire({
       title: "Estás agregando un inmueble",
       text: "¿Deseas agregar este inmueble?",
       icon: "warning",
@@ -464,7 +482,7 @@ export const useForm = (initialForm, validateForm) => {
           console.log(response);
           setLoading(false);
           setResponse(true);
-          setFormProperty(initialPropertyForm);
+          setForm(initialForm);
          
 
           Swal.fire({
@@ -483,47 +501,17 @@ export const useForm = (initialForm, validateForm) => {
           });
           // Manejar acciones adicionales si es necesario
         } catch (error) {
-          console.error("Error al enviar el inmueble:", error);
-          setLoading(false);
-          // Manejar el error de manera adecuada, como mostrar un mensaje al usuario
-        }
-      } else {
-        return;
-      }
+  console.error("Error al enviar el inmueble:", error);
+  setLoading(false);
+  Swal.fire({
+    title: "Error",
+    text: error.response?.data?.error || "Ocurrió un error al enviar el formulario",
+    icon: "error"
+  });
+}
+      } else return;
     });
-  };
-
-  const handleSetImagesProperty = (imageUrls) => {
-    setFormProperty({
-      ...formProperty,
-      img_url: imageUrls,
-    });
-  };
-
-  const handleSetImageProperty = (imageUrl) => {
-    setFormProperty({
-      ...formProperty,
-      image: imageUrl,
-    });
-  };
-
-  const handleImagesChangeProperty = (e) => {
-    const files = Array.from(e.target.files);
-    const imgUrls = files.map((file) => URL.createObjectURL(file));
-    setFormProperty((formProperty) => ({
-      ...formProperty,
-      img_url: imgUrls, // Guardar las URLs de las imágenes
-    }));
-  };
-
-  const handleImageChangeProperty = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const imageUrl = URL.createObjectURL(file);
-    setFormProperty((formProperty) => ({
-      ...formProperty,
-      image: imageUrl, // Guardar la URL de la imagen
-    }));
+  }
   };
 
   const deleteProperty = async (id) => {
@@ -612,11 +600,6 @@ export const useForm = (initialForm, validateForm) => {
     }
   };
 
-  const handleBlur = (e) => {
-    handleChange(e);
-    setErrors(validateForm(form));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validateForm);
@@ -659,7 +642,7 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleSubmitAddCart = async (e) => {
     const finalFormAddCart = {
-      ...formCart,
+      ...form,
     };
     e.preventDefault();
     setLoading(true);
@@ -667,7 +650,7 @@ export const useForm = (initialForm, validateForm) => {
     try {
       const token = user.token;
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_API_POST_CART_URL}/${formCart.product_id}`,
+        `${import.meta.env.VITE_APP_API_POST_CART_URL}/${form.product_id}`,
         finalFormAddCart,
         {
           body: finalFormAddCart,
@@ -681,13 +664,13 @@ export const useForm = (initialForm, validateForm) => {
       console.log(response);
       setLoading(false);
       setResponse(true);
-      setFormCart(initialAddCartForm);
+      setForm(initialForm);
       // setTimeout(() => setResponse(false, initialForm, ));
       setTimeout(
         () =>
           setResponse(
             false,
-            initialAddCartForm,
+            initialForm,
             Swal.fire({
               title: "¡Correcto!",
               text: `Agregaste un producto al carrito!`,
@@ -728,7 +711,7 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleSubmitAddWishlist = async (e) => {
     const finalFormAddWishlist = {
-      ...formCart,
+      ...form,
     };
     e.preventDefault();
     setLoading(true);
@@ -737,7 +720,7 @@ export const useForm = (initialForm, validateForm) => {
       const token = user.token;
       const response = await axios.post(
         `${import.meta.env.VITE_APP_API_POST_WISHLIST_URL}/${
-          formCart.product_id
+          form.product_id
         }`,
         finalFormAddWishlist,
         {
@@ -752,13 +735,13 @@ export const useForm = (initialForm, validateForm) => {
       console.log(response);
       setLoading(false);
       setResponse(true);
-      setFormCart(initialAddCartForm);
+      setForm(initialForm);
       // setTimeout(() => setResponse(false, initialForm, ));
       setTimeout(
         () =>
           setResponse(
             false,
-            initialAddCartForm,
+            initialForm,
             Swal.fire({
               title: "¡Correcto!",
               text: `Agregaste un producto en la lista de deseos!`,
@@ -797,14 +780,9 @@ export const useForm = (initialForm, validateForm) => {
     }
   };
 
-  const handleBlurAdm = (e) => {
-    handleChange(e);
-    setErrors(validateForm(formAdmin));
-  };
-
   const handleSubmitsAdmin = async (e, label) => {
     const finalForm = {
-      ...formAdmin,
+      ...form,
     };
     if (!finalForm.fullname) return;
     if (!finalForm.email) return;
@@ -831,7 +809,7 @@ export const useForm = (initialForm, validateForm) => {
       );
       setLoading(false);
       setResponse(true);
-      setFormAdmin(initialFormAdmin);
+      setForm(initialForm);
       setTimeout(
         () =>
           setResponse(
@@ -853,7 +831,7 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleSubmitClient = async (e, label) => {
     const finalForm = {
-      ...formClient,
+      ...form,
     };
     if (!finalForm.country) return;
     if (!finalForm.name) return;
@@ -885,12 +863,12 @@ export const useForm = (initialForm, validateForm) => {
       );
       setLoading(false);
       setResponse(true);
-      setFormClient(initialFormClient);
+      setForm(initialForm);
       setTimeout(
         () =>
           setResponse(
             false,
-            initialFormClient,
+            initialForm,
             Swal.fire({
               title: "¡Hecho!",
               html: `Te has registrado correctamente`,
@@ -920,52 +898,45 @@ export const useForm = (initialForm, validateForm) => {
     setModal(true);
   };
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    const imgUrls = files.map((file) => URL.createObjectURL(file));
-    setForm((form) => ({
-      ...form,
-      img_url: imgUrls, // Guardar las URLs de las imágenes
-    }));
-  };
-
   const handleLoginAdmin = (e) => {
     debugger;
-    if (!formAdmin.email) return;
-    if (!formAdmin.pass) return;
+    if (!form.email) return;
+    if (!form.password) return;
 
     e.preventDefault();
-    dispatch(startLoginAdmin(formAdmin.email, formAdmin.pass));
+    dispatch(startLoginAdmin(form.email, form.password));
 
     // console.log(form)
     loadingActive();
     navigate("/admin/dashboard");
   };
 
-  const handleSubmitsAdvisor = async (e, label) => {
+  const handleSubmitsAdvisor = async (e) => {
+
+    
     const finalForm = {
-      ...formAdvisor,
+      ...form,
     };
-    if (!finalForm.country) return;
-    if (!finalForm.name) return;
-    if (!finalForm.lastname) return;
-    if (!finalForm.dnaType) return;
-    if (!finalForm.dnaId) return;
-    if (!finalForm.expDate) return;
-    if (!finalForm.state) return;
-    if (!finalForm.city) return;
-    if (!finalForm.phone) return;
-    if (!finalForm.email) return;
-    if (!finalForm.pass) return;
+    if (finalForm.country == "") return;
+    if (finalForm.name == "") return;
+    if (finalForm.lastname == "") return;
+    if (finalForm.dnaType == "") return;
+    if (finalForm.dnaId == "") return;
+    if (finalForm.expDate == "") return;
+    if (finalForm.state == "") return;
+    if (finalForm.city == "") return;
+    if (finalForm.phone == "") return;
+    if (finalForm.email == "") return;
+    if (finalForm.password == "") return;
 
     e.preventDefault();
     setErrors(validateForm);
     setLoading(true);
     try {
       helpHttp();
-      console.log("API URL:", import.meta.env.VITE_APP_API_REGISTER_URL);
+      console.log("API URL:", import.meta.env.VITE_APP_API_REGISTER_ADVISORS_URL);
       const response = await axios.post(
-        import.meta.env.VITE_APP_API_REGISTER_URL,
+        import.meta.env.VITE_APP_API_REGISTER_ADVISORS_URL,
         finalForm,
         {
           body: finalForm,
@@ -978,13 +949,13 @@ export const useForm = (initialForm, validateForm) => {
       console.log(response);
       setLoading(false);
       setResponse(true);
-      setFormAdvisor(initialFormAdvisor);
+      setForm(initialForm);
       // setTimeout(() => setResponse(false, initialForm, ));
       setTimeout(
         () =>
           setResponse(
             false,
-            initialFormAdvisor,
+            initialForm,
             Swal.fire({
               title: "¡Hecho!",
               html: `Te has registrado correctamente`,
@@ -1118,48 +1089,30 @@ export const useForm = (initialForm, validateForm) => {
 
   return {
     form,
-    formAdmin,
-    formCart,
-    formClient,
     errorsCart,
     errors,
     loading,
     response,
     modal,
-    formProperty,
     filteredCities,
     departamentos,
     cities,
+    city,
+    hasManager, 
+    setHasManager,
+    setCities,
     setForm,
-    setFormClient,
-    handleChangeClient,
-    handleBlurClient,
     setLoading,
-    handleBlurAdmin,
-    setFormAdmin,
     handleLoginAdmin,
-    handleChangeAdmin,
     handleSubmitsAdmin,
     handleSubmitClient,
-    handleBlurAdm,
-    setFormAdvisor,
-    handleBlurAdvisor,
-    handleChangeAdvisor,
-    handleCountryChangeAdvisor,
     handleSubmitsAdvisor,
-    setFormCart,
     handleSubmitAddCart,
+    handleImagesChange,
     handleImageChange,
-    handleChangeProperty,
     handleSubmitProperty,
-    handleImageChangeProperty,
-    handleSetImagesProperty,
-    handleSetImageProperty,
-    handleImagesChangeProperty,
-    handleBlurProperty,
     handleUpdateProperty,
     deleteProperty,
-    setFormProperty,
     handleSetImage,
     handleSetImages,
     handleChecked,
