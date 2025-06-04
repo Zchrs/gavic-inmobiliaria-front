@@ -71,11 +71,14 @@ form{
     display: grid;
     padding: 25px;
     width: 70%;
+    height: fit-content;
     place-content: center;
     place-items: center;
     border: 1px solid white;
+    overflow: hidden;
     border-radius: 10px;
     gap: 5px;
+    transition: all .5s ease;
 
     @media (max-width: 680px) {
       width: 100%;

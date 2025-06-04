@@ -20,6 +20,6 @@ export const PublicRouteAdmin = ({children}) => {
 export const PublicRouteAdvisor = ({children}) => {
   const advisor = useSelector((state) => state.authAdvisor.advisor);
 
-    return (!advisor) ? children : <Navigate to="/admin/dashboard" replace />;
+    return (!advisor) ? children : <Navigate to="/advisor/dashboard" replace />;
   };
 

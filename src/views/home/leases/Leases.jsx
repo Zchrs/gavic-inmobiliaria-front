@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { types } from "../../../types/types";
 
 export const Leases = () => {
-  const rentProperties = useSelector((state) => state.properties.propertiesInfo);
+  const rentProperties = useSelector((state) => state.properties.filtered);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState(null);
   const dispatch = useDispatch();

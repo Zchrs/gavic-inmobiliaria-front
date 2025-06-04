@@ -1,40 +1,37 @@
 import { types } from "../types/types";
 
-
 const propertiesInitiaState = {
   propertiesInfo: [],
   selectedProperty: [],
   removeProperties: [],
-  likes: {}
+  filtered: [],
+  likes: {},
 };
-
-
-
 
 export const propertiesReducer = (state = propertiesInitiaState, action) => {
   switch (action.type) {
     case types.propertyView:
       return {
         ...state,
-        propertiesInfo: action.payload
+        propertiesInfo: action.payload,
       };
 
     case types.propertiesViewedFinish:
       return {
         ...state,
-        propertiesInfo: action.payload
+        propertiesInfo: action.payload,
       };
 
     case types.REMOVE_PROPERTY:
       return {
         ...state,
-        removeProperties: action.payload
+        removeProperties: action.payload,
       };
 
     case types.SELECTED_PROPERTY:
       return {
         ...state,
-        selectedProperty: action.payload
+        selectedProperty: action.payload,
       };
 
     case types.SET_LIKES:
@@ -42,8 +39,14 @@ export const propertiesReducer = (state = propertiesInitiaState, action) => {
         ...state,
         likes: {
           ...state.likes,
-          ...action.payload
-        }
+          ...action.payload,
+        },
+      };
+
+    case types.setFilteredProperties:
+      return {
+        ...state,
+        filtered: action.payload,
       };
 
     default:

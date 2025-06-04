@@ -39,6 +39,7 @@
   
     /* BACKGROUNDS */
     --bg-primary: #162F47;
+    --bg-primary-tr: #32587c;
     --bg-primary-semi: #6D859F;
     --bg-primary-light: #CBD6DA;
     --bg-primary-semi-soft: #f7ffff;
@@ -68,6 +69,7 @@
     --deg-primary: linear-gradient(180deg, #162F47 0%, #6D859F 100%);
     --deg-secondary: linear-gradient(180deg, #717478 0%, #4f5257 100%);
     --deg-tertiary: linear-gradient(180deg, #e2e6ec 0%, #babcc5 100%);
+    --deg-tertiary-semi: linear-gradient(180deg, #d8dce2 0%, #989aa2 100%);
     --deg-fourty: linear-gradient(180deg, #445464 0%, #162F47 100%);
     --deg-fift: linear-gradient(180deg, #76797c 0%, #5b5d5f 100%);
     --deg-six: linear-gradient(180deg, #868d9a 0%, #555d67 100%);

@@ -29,7 +29,7 @@ export const CardLeases = ({
   prodHover,
   prodLeave,
   quantityRooms,
-  quantityBathrooms,
+  area,
   showToAddWish,
   quantityCloset,
   preview,
@@ -243,14 +243,14 @@ export const CardLeases = ({
           </div>
           <div className="productcard-flex">
             <div className="productcard-flex-details">
+              <img src={getImg('svg', 'area', 'svg')} alt="" />
+              <strong>Área</strong>
+              <p>{area} m&sup2;</p>
+            </div>
+            <div className="productcard-flex-details">
               <img src={getImg('png', 'cama', 'png')} alt="" />
               <strong>Habitaciones</strong>
               <p>{quantityRooms}</p>
-            </div>
-            <div className="productcard-flex-details">
-              <img src={getImg('png', 'shower', 'png')} alt="" />
-              <strong>Baños</strong>
-              <p>{quantityBathrooms}</p>
             </div>
             <div className="productcard-flex-details">
               <img src={getImg('png', 'closet', 'png')} alt="" />

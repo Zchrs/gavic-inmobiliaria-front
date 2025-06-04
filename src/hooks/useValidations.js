@@ -18,6 +18,7 @@ export const useValidations = () => {
     city: useRef(null),
     address: useRef(null),
     phone: useRef(null),
+    area: useRef(null),
     phoneManager: useRef(null),
     email: useRef(null),
     emailManager: useRef(null),
@@ -135,6 +136,13 @@ export const useValidations = () => {
 
     errors.docIdManager = validateField('docIdManager', form.docIdManager, 
       (val) => val.length >= 6, {
+        required: "Número de documento requerido",
+        invalid: "Formato de documento incorrecto"
+      }
+    );
+
+    errors.area = validateField('area', form.area, 
+      (val) => val.length >= 2, {
         required: "Número de documento requerido",
         invalid: "Formato de documento incorrecto"
       }

@@ -117,8 +117,8 @@ const ButtonBase = styled.div`
         height: ${({ height }) => height || 'auto'};
         color: ${props => props.colortextbtnprimary || "transparent"};
         border-radius: 10px;
-        font-weight: 600;
-        font-size: 17px;
+        font-weight: 500;
+        font-size: 15px;
         transition: all ease 0.3s;
         img {
           filter: ${props => props.filterprimary || "brightness(500%)"};

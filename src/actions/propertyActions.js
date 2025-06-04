@@ -12,6 +12,13 @@ export const setProperty = (propertyInfo) => {
     };
   };
 
+export const setPropertiesFiltered = (filtered) => {
+    return {
+      type: types.setFilteredProperties,
+      payload: Array.isArray(filtered) ? filtered : [],
+    };
+  };
+
 export const clearProperty = (propertyInfo) => {
     return {
       type: types.REMOVE_PROPERTY,
@@ -210,29 +217,37 @@ export const clearProperty = (propertyInfo) => {
 
 export const fetchPropertiesByFilter = (filters = {}) => async (dispatch) => {
   try {
-    // Construir la query string con filtros
-    const params = new URLSearchParams(filters).toString();
-    const url = `${import.meta.env.VITE_APP_API_GET_PROPERTIES_URL}?${params}`;
+    // Limpiar y mapear correctamente los filtros
+    const cleanFilters = {
+      ...(filters.sector && { sector: filters.sector }),
+      ...(filters.type && { type: filters.type }),
+      ...(filters.action && { action: filters.action }),
+      ...(filters.budget && { budget: filters.budget }),
+      ...(filters.ref && { ref: filters.ref }),
+    };
+
+    const params = new URLSearchParams(cleanFilters).toString();
+    const url = `${import.meta.env.VITE_APP_API_GET_PROPERTIES_BY_FILTERS_URL}?${params}`;
 
     const response = await axios.get(url);
+    
     const propertiesComplete = await Promise.all(
-      response.data.map(async (propertyInfo) => {
-        const imagesRes = await axios.get(
-          `${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`
-        );
-        return {
-          ...propertyInfo,
-          images: imagesRes.data.images || [],
-        };
-      })
+  response.data.results.map(async (filtered) => {
+    const imagesRes = await axios.get(
+      `${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${filtered.id}`
     );
+    return {
+      ...filtered,
+      images: imagesRes.data.images || [],
+    };
+  })
+);
 
-    localStorage.setItem("propertiesRecent", JSON.stringify(propertiesComplete));
-    dispatch(setProperty(propertiesComplete));
+    dispatch(setPropertiesFiltered(propertiesComplete));
     return propertiesComplete;
   } catch (error) {
     console.error("Error al obtener las propiedades filtradas:", error);
-    dispatch(setProperty([]));
+    dispatch(setPropertiesFiltered([]));
     throw error;
   }
 };
@@ -279,7 +294,7 @@ export const fetchRecentProperties = () => async (dispatch) => {
     // const propertiesWithImages = propertiesComplete.filter(prop => prop.images.length > 0);
 
     // 6. Guardar en localStorage y actualizar el estado
-    localStorage.setItem('properties', JSON.stringify(propertiesComplete));
+    // localStorage.setItem('properties', JSON.stringify(propertiesComplete));
     dispatch(setProperty(propertiesComplete));
     
     return propertiesComplete;

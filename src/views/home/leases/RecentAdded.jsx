@@ -108,7 +108,7 @@ export const RecentAdded = () => {
               paginatedProperties.map((property) => (
                 <CardLeases
                   key={property.id}
-                  quantityBathrooms={property.bathRoom}
+                  area={property.area}
                   quantityCloset={property.closets}
                   quantityRooms={property.bedRoom}
                   location={property.district || "Ubicación no disponible"}

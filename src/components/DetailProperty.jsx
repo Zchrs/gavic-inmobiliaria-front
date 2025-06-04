@@ -21,8 +21,16 @@ export const DetailProperty = ({
 }) => {
   const location = useLocation();
   const showLocation = useLocation();
-  const property = useSelector((state) => state.properties.selectedProperty);
-  const propertyHover = useSelector((state) => state.properties.selectedProperty);
+  const property = useSelector((state) => 
+    state.properties.selectedProperty ||
+    state.properties.filtered ||
+    []
+);
+  const propertyHover = useSelector((state) => 
+    state.properties.selectedProperty ||
+    state.properties.filtered ||
+    []
+);
 
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -248,7 +256,7 @@ export const DetailProperty = ({
                     Sector: <strong>{property.district}</strong>
                   </p>
                   <p>
-                    Área: <strong>{property.area}</strong>
+                    Área: <strong>{property.area} m&sup2; </strong>
                   </p>
                 </div>
                 <div>

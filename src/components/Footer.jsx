@@ -143,7 +143,7 @@ const FooTer = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     @media (max-width: 920px) {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -192,12 +192,12 @@ const FooTer = styled.div`
         color: var(--text-secondary-light);
         font-weight: 300;
         &:hover {
-          color: var(--text-dark);
+          color: var(--text-tertiary);
           font-weight: 500;
         }
       }
       &-h2 {
-        color: var(--text-dark);
+        color: var(--text-tertiary);
       }
       &-img {
         width: 40px;
@@ -213,10 +213,10 @@ const FooTer = styled.div`
       text-align: center;
       align-items: center;
       border-top: 1px solid var(--bg-secondary-semi);
-      background: var(--bg-secondary);
+      background: var(--bg-secondary-tr);
       p {
         padding: 20px;
-        color: var(--text-secondary-light);
+        color: var(--text-primary);
         font-weight: 300;
       }
     }

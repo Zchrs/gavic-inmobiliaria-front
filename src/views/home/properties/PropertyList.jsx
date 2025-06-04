@@ -419,6 +419,19 @@ const MultiStepForm = () => {
                   />
                   <BaseInput
                     required
+                    inputRef={formRefs.area}
+                    placeholder={"Precio"}
+                    isNumber
+                    classs={"inputs normal"}
+                    id="area"
+                    name="area"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={form.area}
+                  />
+                </div>
+                  <BaseInput
+                    required
                     inputRef={formRefs.district}
                     classs={"inputs normal"}
                     placeholder={"Sector"}
@@ -430,7 +443,6 @@ const MultiStepForm = () => {
                     id="district"
                     name="district"
                   />
-                </div>
                 <div className="grid-three">
                   <BaseInput
                     required

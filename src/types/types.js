@@ -36,6 +36,7 @@ export const types = {
     REMOVE_PROPERTY: `[remove], deleted`,
     UPDATE_PROPERTY: `[update], Updated`,
     propertyViewedFinish: `[finish], viewed finish`,
+    setFilteredProperties: `[filtered], filtered success`,
 
     CHANGE_LANG: 'CHANGE_LANG',
 

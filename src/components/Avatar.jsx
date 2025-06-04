@@ -1,15 +1,28 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
-import { getFile } from "../../globalActions"
-import { NavLink } from "react-router-dom"
+import { getFile, getImg } from "../../globalActions"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { startChecking, startLogout } from "../actions/authActions";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export const Avatar = ({avtsmall, avtMedium, img, clas, dropData, classWhite, nameSmall}) => {
+export const Avatar = ({
+    avtsmall, 
+    avtMedium, 
+    img, 
+    clas, 
+    dropData, 
+    classWhite, 
+    nameSmall, 
+    userAdmin, 
+    userAdvisor, 
+    userClient,
+    classs
+}) => {
     const user = useSelector((state) => state.auth.user);
+    const advisor = useSelector((state) => state.authAdvisor.advisor);
+    const admin = useSelector((state) => state.authAdmin.admin);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -19,28 +32,24 @@ export const Avatar = ({avtsmall, avtMedium, img, clas, dropData, classWhite, na
 
     const handleLogout = () => {
       dispatch(startLogout());
-      navigate("/auth/login");
+      navigate("/auth/admin/login");
     };
     
   return (
     <AvaTar>
       <div className={clas}>
           {avtMedium && (<div className="avatar-default"><img src={getFile('png', `${img}`, 'png')} alt="" /></div>)}
-          {avtsmall && (<div className="tumb-default"><img src={getFile('png', `${img}`, 'png')} alt="" /></div>)}
-          <span className={classWhite}>
+          {avtsmall && (<div className="tumb-default"><img src={getImg('png', `${img}`, 'png')} alt="" /></div>)}
+          { userClient && <span className={classWhite}>
             {user ? <strong className={nameSmall}>{user.name} {user.lastname}</strong> : <strong className={nameSmall}>Default name</strong>}
-          </span>
-          {dropData && (<div className="avatar-usersession">
-              <NavLink to={"/dashboard"}><i><img src={getFile('svg', 'panel-red', 'svg')} alt="" /></i>Panel</NavLink>
-              <NavLink><i><img src={getFile('svg', 'order-red', 'svg')} alt="" /></i>Inmueble actual</NavLink>
-              <NavLink><i><img src={getFile('svg', 'wishlist', 'svg')} alt="" /></i>Me gusta</NavLink>
-              <NavLink><i><img src={getFile('svg', 'coupon', 'svg')} alt="" /></i>Cupones</NavLink>
-              <div className="avatar-box">
-                <NavLink>Iniciar como asesor</NavLink>
-                <NavLink>Pagos seguros</NavLink>
-                <NavLink>Soporte</NavLink>
-                <NavLink>Contacto</NavLink>
-              </div>
+          </span>}
+          {userAdmin && <span className={classWhite}>
+            {admin ? <strong className={nameSmall}>{admin.fullname}</strong> : <strong className={nameSmall}>Default name</strong>}
+          </span>}
+          { userAdvisor && <span className={classWhite}>
+            {advisor ? <strong className={nameSmall}>{advisor.name} {advisor.lastname}</strong> : <strong className={nameSmall}>Default name</strong>}
+          </span>}
+          {dropData && (<div className={classs}>
               <button onClick={handleLogout}><i><img src={getFile('svg', 'off', 'svg')} alt="" /></i>Cerrar sesión</button>
           </div>)}
       </div>
@@ -53,12 +62,14 @@ const AvaTar = styled.div`
     position: relative;
     cursor: pointer;
     display: grid;
-    gap: 10px;
+    gap: 2px;
     align-items: start;
     text-align: center;
     position: relative;
     height: fit-content;
     width: 100%;
+    height: 100%;
+    z-index: 50;
     @media (max-width: 920px) {
         display: flex;
     }
@@ -97,9 +108,13 @@ const AvaTar = styled.div`
     }
     &.white{
         color: white;
+        font-size: 11px;
+        font-weight: 400;
     }
-    .black{
+    &.black{
         color: black;
+        font-size: 11px;
+        font-weight: 400;
     }
 
     &-usersession{
@@ -187,11 +202,102 @@ const AvaTar = styled.div`
 
 
     }
+    &-dinamyc{
+        display: grid;
+        position: absolute;
+        gap: 1px;
+        z-index: 999;
+        top: 0px;
+        left: 0;
+        padding: 0px 0px;
+        width: 100%;
+        height: fit-content;
+        transform: translateY(-100%);
+        background: white;
+        border-radius: 10px;
+        transition: all ease .3s;
+        box-shadow: gray 1px 1px 4px, gray -1px -1px 4px, ;
+        cursor: default;
+        overflow: hidden;
+
+        hr{
+            margin: 5px 0;
+        }
+
+        @media (max-width: 301px) {
+            left: -192px;
+        }
+
+        button{
+            display: flex;
+            text-decoration: none;
+            font-size: 14px;
+            border: none;
+            font-weight: 400;
+            cursor: pointer;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            place-items: center;
+            align-self: center;
+            color: rgb(68, 66, 66);
+            &:hover{
+                color: #EC3337;
+                img{
+                    filter: grayscale(0%);
+                    
+                }
+            }
+            &:focus-visible{
+                border: none;
+                outline: none;
+            }
+            &:focus{
+                border: none;
+                outline: none;
+            }
+
+        }
+
+        a, i{
+            color: rgb(68, 66, 66);
+            text-decoration: none;
+            font-size: 17px;
+            border: none;
+            text-align: left;
+            font-weight: 400;
+
+            img{
+                top: 0;
+                left: 0;
+                width: 18px;
+                fill: #EC3337;
+                filter: grayscale(200%);
+            }
+        
+            &:hover{
+                color: #EC3337;
+                img{
+                    filter: grayscale(0%);
+                    
+                }
+            }
+        }
+
+
+    }
     &:hover .avatar-usersession{
         padding:10px 15px;
         transform: scaleY(1);
         transition: all ease .3s;
         left: -145px;
+    }
+    &:hover .avatar-dinamyc{
+        padding:10px 15px;
+        transform: translateY(4%);
+        transition: all ease .3s;
+        left: 0;
     }
 
     &-box{
@@ -244,15 +350,14 @@ const AvaTar = styled.div`
     &-default{
         margin: auto;
         display: grid;
-        width: 30px;
-        height: 30px;
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
         overflow: hidden;
         align-items: center;
         strong{
             margin-top: 20px;
         }
-
     }
     
     span{
@@ -280,7 +385,7 @@ const AvaTar = styled.div`
     }
 
     img{
-        height: 100%;
+        width: 30px;
         @media (max-width: 500px) {
             width: 100%;
         }

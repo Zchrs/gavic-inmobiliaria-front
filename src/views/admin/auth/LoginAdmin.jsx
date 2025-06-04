@@ -65,6 +65,18 @@ width: 100%;
 height: 100%;
 
 .login{
-
+  animation: smooth .5s ease;
+  
 }
+@keyframes smooth {
+    0% {
+      opacity: 0;
+      transform: translateX(50%);
+    }
+  
+    100% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
 `

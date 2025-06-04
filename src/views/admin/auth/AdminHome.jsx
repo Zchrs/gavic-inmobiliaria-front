@@ -10,15 +10,26 @@ import { BaseButton } from "../../../components/BaseButton";
 import { getImg } from "../../../../globalActions";
 import { VisitorsTracker } from "../../../components/VisitorsTracker";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const AdminHome = () => {
+  useEffect(() => {
+    document.title = "Gavic Inmobiliaria - Admin Panel v1.0";
+  }, []);
+
   const data = {
     series: {
       name: ["Enero", "Febrero", "Marzo"],
       data: [25, 56, 30],
     },
     sales: {
-      names: ["Vendidas", "Arrendadas", "Consignadas", "Eliminadas", "Canceladas"],
+      names: [
+        "Vendidas",
+        "Arrendadas",
+        "Consignadas",
+        "Eliminadas",
+        "Canceladas",
+      ],
       data: [44, 55, 41, 17, 15],
     },
     finance: {
@@ -71,17 +82,16 @@ export const AdminHome = () => {
       ],
     },
   };
-  
 
   const navigate = useNavigate();
 
   const handleScrollToSection = (route) => {
     const [path, hash] = route.split("#");
-  
+
     if (path) {
       navigate(path); // Navega a la página base
     }
-  
+
     if (hash) {
       setTimeout(() => {
         const section = document.getElementById(hash);
@@ -96,13 +106,12 @@ export const AdminHome = () => {
               observer.disconnect();
             }
           });
-  
+
           observer.observe(document.body, { childList: true, subtree: true });
         }
       }, 300); // Espera para asegurarse de que se cargue la vista
     }
   };
-
 
   return (
     <HomeAdmin>
@@ -116,13 +125,17 @@ export const AdminHome = () => {
                 daysColor={"#ffffff"}
                 theme={"light"}
                 series={[{ data: data.users.data }]}
-                labels={ data.users.dates }
-               />
+                labels={data.users.dates}
+              />
               <div className="adminhome-left-mediumcontainer-card-btn">
                 <BaseButton
                   textLabel={true}
                   label={"Ver detalle"}
-                  classs={"button little-primary-gradient"}
+                  classs={"button primary"}
+                  colorbtnhoverprimary={"var(--deg-six)"}
+                  colortextbtnhoverprimary={"var(--text-tertiary)"}
+                  colortextbtnprimary={"var(--text-tertiary)"}
+                  colorbtn={"var(--deg-secondary)"}
                 />
               </div>
             </div>
@@ -130,33 +143,50 @@ export const AdminHome = () => {
               <div className="adminhome-left-container-card-titles">
                 <h2>Propiedades</h2>
               </div>
-              <SimpleChart
-                  series={data.sales.data}
-                  labels={data.sales.names}
-                />
+              <SimpleChart series={data.sales.data} labels={data.sales.names} />
               <div className="flex">
                 <BaseButton
                   textLabel={true}
                   label={"Ver detalle"}
-                  classs={"button little-primary-gradient"}
-                  handleClick={() => handleScrollToSection("/admin/dashboard/properties#sold")}
+                  classs={"button primary"}
+                  colorbtnhoverprimary={"var(--deg-six)"}
+                  colortextbtnhoverprimary={"var(--text-tertiary)"}
+                  colortextbtnprimary={"var(--text-tertiary)"}
+                  colorbtn={"var(--deg-secondary)"}
+                  handleClick={() =>
+                    handleScrollToSection("/admin/dashboard/properties#sold")
+                  }
                 />
                 <BaseButton
                   textLabel={true}
-                  label={"Añadir propiedad"}
-                  classs={"button little-primary-gradient"}
-                  handleClick={() => handleScrollToSection("/admin/dashboard/properties#create-property")}
+                  label={"Añadir"}
+                  classs={"button primary"}
+                  colorbtnhoverprimary={"var(--deg-six)"}
+                  colortextbtnhoverprimary={"var(--text-tertiary)"}
+                  colortextbtnprimary={"var(--text-tertiary)"}
+                  colorbtn={"var(--deg-secondary)"}
+                  handleClick={() =>
+                    handleScrollToSection(
+                      "/admin/dashboard/properties#create-property"
+                    )
+                  }
                 />
               </div>
             </div>
             <div className="adminhome-left-container-card">
               <h2>Ventas</h2>
-              <GradientChart series={data.series.data} labels={data.series.name} />
+              <GradientChart
+                series={data.series.data}
+                labels={data.series.name}
+              />
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
-                classs={"button button little-primary-gradient"}
-                
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-six)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-tertiary)"}
+                colorbtn={"var(--deg-secondary)"}
               />
             </div>
           </div>
@@ -168,8 +198,8 @@ export const AdminHome = () => {
                 daysColor={"#000000"}
                 theme={"dark"}
                 series={[{ data: data.admins.data }]}
-                labels={ data.admins.dates }
-               />
+                labels={data.admins.dates}
+              />
             </div>
             <div className="adminhome-left-mediumcontainer-card">
               <h2>Clientes</h2>
@@ -178,8 +208,8 @@ export const AdminHome = () => {
                 daysColor={"#ffffff"}
                 theme={"light"}
                 series={[{ data: data.clients.data }]}
-                labels={ data.clients.dates }
-               />
+                labels={data.clients.dates}
+              />
             </div>
             <div className="adminhome-left-mediumcontainer-card">
               <h2>Tráfico</h2>
@@ -197,17 +227,29 @@ export const AdminHome = () => {
         <div className="adminhome-right">
           <div className="adminhome-right-card">
             <h2>Finanzas</h2>
-            <CandlesChart width={"100%"} height={"270%"} series={data.finance.data} />
+            <CandlesChart
+              width={"100%"}
+              height={"270%"}
+              series={data.finance.data}
+            />
             <div className="flex z-index">
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
-                classs={"button little-secondary-gradient"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
               />
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
-                classs={"button little-secondary-gradient"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
               />
             </div>
           </div>
@@ -234,27 +276,43 @@ export const AdminHome = () => {
             </div>
           </div>
           <div className="adminhome-right-content">
-              <h2>Comunicaciones</h2>
+            <h2>Comunicaciones</h2>
             <div className="adminhome-right-content-inside">
-                <div>
-                  <img className="adminhome-right-content-img" src={getImg("svg", "sms", "svg")} alt="" />
-                  <h3>Enviar sms</h3>
-                </div>
-                <div>
-                  <img className="adminhome-right-content-img" src={getImg("svg", "email", "svg")} alt="" />
-                  <h3>Enviar email</h3>
-                </div>
+              <div>
+                <img
+                  className="adminhome-right-content-img"
+                  src={getImg("svg", "sms", "svg")}
+                  alt=""
+                />
+                <h3>Enviar sms</h3>
+              </div>
+              <div>
+                <img
+                  className="adminhome-right-content-img"
+                  src={getImg("svg", "email", "svg")}
+                  alt=""
+                />
+                <h3>Enviar email</h3>
+              </div>
             </div>
             <div className="flex-s z-index">
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
-                classs={"button little-secondary-gradient"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-six)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-tertiary)"}
+                colorbtn={"var(--deg-secondary)"}
               />
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
-                classs={"button little-secondary-gradient"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-six)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-tertiary)"}
+                colorbtn={"var(--deg-secondary)"}
               />
             </div>
           </div>
@@ -395,7 +453,6 @@ const HomeAdmin = styled.section`
             }
           }
           &:nth-child(3) {
-            
             @media (max-width: 820px) {
               margin: auto;
               width: 100%;
@@ -473,22 +530,22 @@ const HomeAdmin = styled.section`
         background: var(--deg-tertiary);
         box-shadow: var(--ds-s);
         gap: 10px;
-        
-        &-img{
+
+        &-img {
           display: grid;
           margin: auto;
           width: 80%;
           filter: invert(100%);
           height: fit-content;
         }
-        &-inside{
+        &-inside {
           place-content: center;
           text-align: center;
           padding: 20px 0;
           display: flex;
           gap: 30px;
           height: fit-content;
-          div{
+          div {
             display: grid;
             gap: 5px;
             cursor: pointer;
@@ -499,15 +556,15 @@ const HomeAdmin = styled.section`
             padding: 20px;
             border-radius: 14px;
             margin: 0;
-            transition: all ease .5s;
-            h3{
+            transition: all ease 0.5s;
+            h3 {
               font-weight: 400;
             }
-            &:hover{
+            &:hover {
               background: var(--deg-fift);
               color: var(--text-tertiary);
               box-shadow: var(--ds-l);
-/* 
+              /* 
               .adminhome-right-content-img{
                 filter: invert(50%);
               } */
@@ -538,14 +595,14 @@ const HomeAdmin = styled.section`
       }
     }
   }
-  .z-index{
+  .z-index {
     display: flex;
     z-index: 100;
     justify-content: center;
     gap: 20px;
     margin: auto;
   }
-  .flex{
+  .flex {
     display: flex;
     width: 100%;
     justify-content: space-between;

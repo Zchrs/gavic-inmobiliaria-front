@@ -33,6 +33,7 @@ export const initialForm = {
 
   title: "",
   price: "",
+  area: "",
   district: "",
   category: "",
   furnished: "",
@@ -299,6 +300,7 @@ export const useForm = (initialForm, validateForm) => {
       name: form.name,
       city: form.city,
       price: form.price,
+      area: form.area,
       district: form.district,
       category: form.category,
       furnished: form.furnished,
@@ -360,6 +362,7 @@ export const useForm = (initialForm, validateForm) => {
       if (formData.name === "") return;
       if (formData.city === "") return;
       if (formData.price === "") return;
+      if (formData.area === "") return;
       if (formData.district === "") return;
       if (formData.category === "") return;
       if (formData.furnished === "") return;
@@ -786,7 +789,7 @@ export const useForm = (initialForm, validateForm) => {
     };
     if (!finalForm.fullname) return;
     if (!finalForm.email) return;
-    if (!finalForm.pass) return;
+    if (!finalForm.password) return;
     if (!finalForm.codeAccess) return;
 
     e.preventDefault();

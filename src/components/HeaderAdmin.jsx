@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { getImg, scrollTop } from "../../globalActions";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { Avatar } from "./Avatar";
+import { useSelector } from "react-redux";
 
 export const HeaderAdmin = () => {
   let contador = 0;
@@ -112,6 +114,17 @@ export const HeaderAdmin = () => {
             `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
           }>Comunicaciones</NavLink>
         </div>
+        <div className="headeradmin-group">
+          <Avatar 
+            clas={"avatar"} 
+            classs={"avatar-dinamyc"}
+            dropData={true} 
+            avtsmall={true} 
+            img={"default-avatar"}
+            classWhite={"avatar white"} 
+            userAdmin={true}
+          />
+        </div>
       </div>
       <div className="headeradmin-mobile">
         <div id="header-admin" className="headeradmin-mobile-header">
@@ -167,7 +180,7 @@ const AdminHeader = styled.header`
     height: fit-content;
     background: transparent;
     align-items: center;
-    grid-template-columns: 10% 30% 30% 30%;
+    grid-template-columns: 10% 1fr 1fr 1fr 10%;
     border-radius: 50px;
     z-index: 500;
     gap: 5px;
@@ -206,6 +219,20 @@ const AdminHeader = styled.header`
         background: var(--deg-secondary);
         a {
           color: var(--text-tertiary);
+        }
+      }
+      &:nth-child(4) {
+        background: var(--deg-tertiary);
+        a {
+          color: var(--text-primary);
+        }
+      }
+      &:nth-child(5) {
+        background: var(--deg-secondary);
+        display: grid;
+        align-items: center;
+        a {
+          color: var(--text-primary);
         }
       }
 

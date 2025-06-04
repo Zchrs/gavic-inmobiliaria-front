@@ -24,6 +24,7 @@ export const CreateProperty = () => {
     name: "",
     city: "Medellín",
     price: "1000000",
+    area: "60",
     district: "",
     category: "Apartamento",
     furnished: "Sí",
@@ -111,6 +112,20 @@ export const CreateProperty = () => {
                 onBlur={ handleBlur}
                 value={form.price}
               />
+          <BaseInput
+           inputRef={formRefs.area}
+           isNumber
+           id="area"
+           name="area"
+           placeholder={"Área"}
+           classs={"inputs normal"}
+           onChange={ handleChange}
+           onBlur={ handleBlur}
+           value={form.area}
+           required
+            />
+            </div>
+
               <BaseInput
              required
              inputRef={formRefs.district}
@@ -124,7 +139,6 @@ export const CreateProperty = () => {
                 id="district"
                 name="district"
               />
-            </div>
                 <div className="grid-three">
                 <BaseInput
                required
@@ -428,8 +442,12 @@ export const CreateProperty = () => {
         <BaseButton 
             disabled={!formComplete} 
             handleClick={(e) => {handleSubmitProperty (e, "admin")}}
-            classs={`button full-primary ${!isFormComplete ? 'button full-primary disabled' : ''}`} 
-            textLabel={true} 
+            classs={`button primary ${!isFormComplete ? 'button primary disabled' : ''}`} 
+            textLabel={true}
+            colorbtn={"var(--bg-primary)"}
+            colortextbtnprimary={"white"}
+            colorbtnhoverprimary={"var(--bg-primary-tr)"}
+            colortextbtnhoverprimary={"white"}
             label={"Enviar"} 
          />
           </div>
