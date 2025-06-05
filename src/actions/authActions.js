@@ -10,7 +10,7 @@ import { types } from "../types/types";
 export const startLogin = (email, password) => {
   return async (dispatch) => {
     const res = await fetchWithoutToken(
-      "clients/auth/login",
+      "users/auth/renew",
       { email, password },
       "POST"
     );
@@ -349,7 +349,7 @@ export const startLoginAdvisor = (email, password, ) => {
     export const startCheckingAdvisor = () => {
       
       return async (dispatch) => {
-        const res = await fetchWithTokenAdvisor("advisor/auth/renew");
+        const res = await fetchWithTokenAdvisor("advisors/auth/renew");
         const body = await res.json();
     
         if (body.ok) {

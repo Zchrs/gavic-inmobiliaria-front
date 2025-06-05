@@ -96,7 +96,7 @@ export const HeaderAdmin = () => {
           }>Propiedades</NavLink>
           <NavLink to={"sales"} className={({ isActive }) =>
             `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
-          }>Ventas</NavLink>
+          }>Reportes</NavLink>
         </div>
         <div className="headeradmin-group">
           <NavLink to={"statics"} className={({ isActive }) =>

@@ -46,7 +46,8 @@ RegisterAdmin,
   UserStatuses, 
   Validations, 
   Values, 
-  Vision 
+  Vision, 
+  AdvisorDashboard
 } from "../../index";
 import { AdvisorLogin } from "../views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
@@ -55,8 +56,9 @@ import { Verify } from "../components/Verify";
 import { VerifyCode } from "../components/VerifyCode";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { startCheckingAdmin } from "../actions/authActions";
+import { startChecking, startCheckingAdmin, startCheckingAdvisor } from "../actions/authActions";
 import { AuthHomeAdmin } from "../views/admin/auth/AuthHomeAdmin";
+
 
 
 export const AppRouter = () => {
@@ -110,11 +112,11 @@ export const AppRouter = () => {
     );
   };
   export const AuthRouter = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
       
-    // useEffect(() => {
-    //   dispatch(startChecking());
-    // }, [dispatch]);
+    useEffect(() => {
+      dispatch(startChecking());
+    }, [dispatch]);
 
     return (
       <Routes>
@@ -128,12 +130,34 @@ export const AppRouter = () => {
     );
   };
 
-  export const AuthAdvisorRouter = () => {
-    // const dispatch = useDispatch();
+  export const DashboardClientsRouter = () => {
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(startChecking());
+    }, [dispatch]);
       
-    // useEffect(() => {
-    //   dispatch(startChecking());
-    // }, [dispatch]);
+    
+    return (
+      <>
+      <Routes>
+            <Route exact path="/*" element={<AdminHome />} />
+            <Route exact path="profile" element={<Reports />} />
+            <Route exact path="statics" element={<Statics />} />
+            <Route exact path="properties" element={<Properties />} />
+            <Route exact path="documents" element={<Clients />} />
+            <Route exact path="settings" element={<Settings/>} />
+      </Routes>
+      </>
+    );
+  };
+
+  export const AuthAdvisorRouter = () => {
+    const dispatch = useDispatch();
+      
+    useEffect(() => {
+      dispatch(startCheckingAdvisor());
+    }, [dispatch]);
 
     return (
       <Routes>
@@ -146,12 +170,38 @@ export const AppRouter = () => {
       </Routes>
     );
   };
-  export const AuthAdminRouter = () => {
-    // const dispatch = useDispatch();
+
+    export const DashboardAdvisorRouter = () => {
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(startCheckingAdvisor());
+    }, [dispatch]);
       
-    // useEffect(() => {
-    //   dispatch(startCheckingAdmin());
-    // }, [dispatch]);
+    
+    return (
+      <>
+      <Routes>
+            <Route exact path="/*" element={<AdvisorDashboard />} />
+            <Route exact path="sales" element={<DetailSales />} />
+            <Route exact path="profile" element={<DetailSales />} />
+            <Route exact path="finances" element={<Finances />} />
+            <Route exact path="reports" element={<Reports />} />
+            <Route exact path="statics" element={<Statics />} />
+            <Route exact path="properties" element={<Properties />} />
+            <Route exact path="clients" element={<Clients />} />
+            <Route exact path="settings" element={<Settings/>} />
+      </Routes>
+      </>
+    );
+  };
+
+  export const AuthAdminRouter = () => {
+    const dispatch = useDispatch();
+      
+    useEffect(() => {
+      dispatch(startCheckingAdmin());
+    }, [dispatch]);
 
     return (
       <Routes>

@@ -3,7 +3,7 @@
 import { getFile, getImg } from "../../globalActions"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import { startChecking, startLogout } from "../actions/authActions";
+import { startChecking, startLogout, startLogoutAdmin, startLogoutAdvisor } from "../actions/authActions";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -31,8 +31,16 @@ export const Avatar = ({
     }, [dispatch]);
 
     const handleLogout = () => {
-      dispatch(startLogout());
-      navigate("/auth/admin/login");
+    if (admin) {
+        dispatch(startLogoutAdmin());
+        navigate("/admin/auth/login");
+    } else if (advisor) {
+        dispatch(startLogoutAdvisor());
+        navigate("/advisor/auth/login");
+    } else {
+        dispatch(startLogout());
+        navigate("/client/auth/login");
+    }
     };
     
   return (
@@ -295,7 +303,7 @@ const AvaTar = styled.div`
     }
     &:hover .avatar-dinamyc{
         padding:10px 15px;
-        transform: translateY(4%);
+        transform: translateY(1%);
         transition: all ease .3s;
         left: 0;
     }

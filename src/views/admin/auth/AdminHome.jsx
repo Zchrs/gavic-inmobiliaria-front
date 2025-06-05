@@ -120,22 +120,25 @@ export const AdminHome = () => {
           <div className="adminhome-left-container">
             <div className="adminhome-left-container-card">
               <h2>Usuarios</h2>
-              <AreaChart
-                dayColor={"#ffffff"}
-                daysColor={"#ffffff"}
-                theme={"light"}
-                series={[{ data: data.users.data }]}
-                labels={data.users.dates}
-              />
+              <div className="adminhome-left-container-card-inside">
+                <AreaChart
+                  dayColor={"#ffffff"}
+                  daysColor={"#ffffff"}
+                  theme={"light"}
+                  series={[{ data: data.users.data }]}
+                  labels={data.users.dates}
+                  height={"300px"}
+                />
+              </div>
               <div className="adminhome-left-mediumcontainer-card-btn">
                 <BaseButton
                   textLabel={true}
                   label={"Ver detalle"}
-                  classs={"button primary"}
-                  colorbtnhoverprimary={"var(--deg-six)"}
-                  colortextbtnhoverprimary={"var(--text-tertiary)"}
-                  colortextbtnprimary={"var(--text-tertiary)"}
-                  colorbtn={"var(--deg-secondary)"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
                 />
               </div>
             </div>
@@ -143,16 +146,22 @@ export const AdminHome = () => {
               <div className="adminhome-left-container-card-titles">
                 <h2>Propiedades</h2>
               </div>
-              <SimpleChart series={data.sales.data} labels={data.sales.names} />
+              <div className="adminhome-left-container-card-inside">
+                <SimpleChart
+                  series={data.sales.data}
+                  labels={data.sales.names}
+                  width={"60%"}
+                />
+              </div>
               <div className="flex">
                 <BaseButton
                   textLabel={true}
                   label={"Ver detalle"}
-                  classs={"button primary"}
-                  colorbtnhoverprimary={"var(--deg-six)"}
-                  colortextbtnhoverprimary={"var(--text-tertiary)"}
-                  colortextbtnprimary={"var(--text-tertiary)"}
-                  colorbtn={"var(--deg-secondary)"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
                   handleClick={() =>
                     handleScrollToSection("/admin/dashboard/properties#sold")
                   }
@@ -160,11 +169,11 @@ export const AdminHome = () => {
                 <BaseButton
                   textLabel={true}
                   label={"Añadir"}
-                  classs={"button primary"}
-                  colorbtnhoverprimary={"var(--deg-six)"}
-                  colortextbtnhoverprimary={"var(--text-tertiary)"}
-                  colortextbtnprimary={"var(--text-tertiary)"}
-                  colorbtn={"var(--deg-secondary)"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
                   handleClick={() =>
                     handleScrollToSection(
                       "/admin/dashboard/properties#create-property"
@@ -175,18 +184,21 @@ export const AdminHome = () => {
             </div>
             <div className="adminhome-left-container-card">
               <h2>Ventas</h2>
+              <div className="adminhome-left-container-card-inside">
               <GradientChart
                 series={data.series.data}
                 labels={data.series.name}
+                width={"78%"}
               />
+              </div>
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
                 classs={"button primary"}
-                colorbtnhoverprimary={"var(--deg-six)"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
                 colortextbtnhoverprimary={"var(--text-tertiary)"}
-                colortextbtnprimary={"var(--text-tertiary)"}
-                colorbtn={"var(--deg-secondary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
               />
             </div>
           </div>
@@ -199,7 +211,17 @@ export const AdminHome = () => {
                 theme={"dark"}
                 series={[{ data: data.admins.data }]}
                 labels={data.admins.dates}
+                height={"300px"}
               />
+                <BaseButton
+                  textLabel={true}
+                  label={"Ver detalle"}
+                  classs={"button primary"}
+                  colorbtnhoverprimary={"var(--deg-six)"}
+                  colortextbtnhoverprimary={"var(--text-tertiary)"}
+                  colortextbtnprimary={"var(--text-tertiary)"}
+                  colorbtn={"var(--deg-secondary)"}
+                />
             </div>
             <div className="adminhome-left-mediumcontainer-card">
               <h2>Clientes</h2>
@@ -209,11 +231,22 @@ export const AdminHome = () => {
                 theme={"light"}
                 series={[{ data: data.clients.data }]}
                 labels={data.clients.dates}
+                height={"300px"}
+              />
+              <BaseButton
+                textLabel={true}
+                label={"Ver detalle"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
               />
             </div>
             <div className="adminhome-left-mediumcontainer-card">
               <h2>Tráfico</h2>
               <VisitorsTracker />
+              
             </div>
           </div>
           <div className="adminhome-left-footer">
@@ -236,20 +269,20 @@ export const AdminHome = () => {
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
-                classs={"button primary"}
-                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
-                colortextbtnhoverprimary={"var(--text-tertiary)"}
-                colortextbtnprimary={"var(--text-primary)"}
-                colorbtn={"var(--deg-tertiary)"}
+                  classs={"button primary"}
+                  colorbtnhoverprimary={"var(--deg-six)"}
+                  colortextbtnhoverprimary={"var(--text-tertiary)"}
+                  colortextbtnprimary={"var(--text-tertiary)"}
+                  colorbtn={"var(--deg-secondary)"}
               />
               <BaseButton
                 textLabel={true}
                 label={"Ver detalle"}
-                classs={"button primary"}
-                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
-                colortextbtnhoverprimary={"var(--text-tertiary)"}
-                colortextbtnprimary={"var(--text-primary)"}
-                colorbtn={"var(--deg-tertiary)"}
+                  classs={"button primary"}
+                  colorbtnhoverprimary={"var(--deg-six)"}
+                  colortextbtnhoverprimary={"var(--text-tertiary)"}
+                  colortextbtnprimary={"var(--text-tertiary)"}
+                  colorbtn={"var(--deg-secondary)"}
               />
             </div>
           </div>
@@ -369,9 +402,12 @@ const HomeAdmin = styled.section`
           background: var(--deg-secondary);
           box-shadow: var(--ds-s);
           align-items: center;
-          align-content: start;
+          align-content: space-between;
           gap: 10px;
           color: white;
+          &-inside{
+            margin  : auto;
+          }
           &:nth-child(1) {
             border-radius: 15px 5px 15px 15px;
             @media (max-width: 820px) {
@@ -382,6 +418,7 @@ const HomeAdmin = styled.section`
             display: grid;
             align-content: center;
             border-radius: 5px 5px 15px 15px;
+            width: 130%;
 
             @media (max-width: 820px) {
               border-radius: 0;

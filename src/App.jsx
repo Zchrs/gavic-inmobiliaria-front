@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { HashRouter, Route, Routes } from "react-router-dom";
 import "./app.css";
 import {
@@ -49,6 +50,8 @@ import {
   CheckOut,
   LoginAdmin,
   RegisterAdmin,
+  AdvisorDashboardLayout,
+  UserDashboardLayout,
 } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -59,7 +62,7 @@ import { AuthAdvisorLayout } from "./layouts/AuthAdvisorLayout";
 import { PropertiesLayout } from "./layouts/PropertiesLayout";
 import { Verify } from "./components/Verify";
 import { VerifyCode } from "./components/VerifyCode";
-import { PrivateRouteAdmin } from "./router/PrivateRouter";
+import { PrivateRoute, PrivateRouteAdmin, PrivateRouteAdvisor } from "./router/PrivateRouter";
 import { AuthAdminLayout } from "./layouts/AuthAdminLayout";
 import { PublicRouteAdmin } from "./router/PublicRouter";
 
@@ -114,6 +117,23 @@ function App() {
               <Route exact path="login" element={<Login />} />
               <Route exact path="register" element={<Register />} />
             </Route>
+                        <Route
+              path="/client/dashboard/*"
+              element={
+                // <PrivateRoute>
+                  <UserDashboardLayout />
+                // </PrivateRoute> 
+              }>
+              
+              <Route exact path="sales" element={<DetailSales />} />
+              <Route exact path="profile" element={<DetailSales />} />
+              <Route exact path="finances" element={<Finances />} />
+              <Route exact path="reports" element={<Reports />} />
+              <Route exact path="statics" element={<Statics />} />
+              <Route exact path="properties" element={<Properties />} />
+              <Route exact path="clients" element={<Clients />} />
+              <Route exact path="settings" element={<Settings/>} />
+            </Route>
 
             <Route exact path="/advisor/auth/*" element={<AuthAdvisorLayout />}>
               <Route exact path="login" element={<AdvisorLogin />} />
@@ -123,34 +143,19 @@ function App() {
             <Route
               path="/advisor/dashboard/*"
               element={
-                <PrivateRouteAdmin>
-                  <AdminDashboardLayout />
-                </PrivateRouteAdmin>
+                // <PrivateRouteAdvisor>
+                  <AdvisorDashboardLayout />
+                // </PrivateRouteAdvisor>
               }>
+              
               <Route exact path="sales" element={<DetailSales />} />
-              <Route
-                exact
-                path="properties-for-rent"
-                element={<ForRentPropertiesw />}
-              />
-              <Route
-                exact
-                path="recent-properties"
-                element={<RecentProperties />}
-              />
-              <Route exact path="comunications" element={<Comunications />} />
+              <Route exact path="profile" element={<DetailSales />} />
               <Route exact path="finances" element={<Finances />} />
               <Route exact path="reports" element={<Reports />} />
               <Route exact path="statics" element={<Statics />} />
-              <Route
-                exact
-                path="pending-upload-properties"
-                element={<Pending />}
-              />
-              <Route exact path="aproved-properties" element={<Approved />} />
-              <Route exact path="rejected-properties" element={<Rejected />} />
+              <Route exact path="properties" element={<Properties />} />
               <Route exact path="clients" element={<Clients />} />
-              <Route exact path="settings" element={<Settings />} />
+              <Route exact path="settings" element={<Settings/>} />
             </Route>
 
             

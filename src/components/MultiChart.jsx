@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import styled from "styled-components";
 
-export const DonutChart = ({ width, height, type, option, serie  }) => {
+export const DonutChart = ({ width, height, type, serie  }) => {
   const [state, setState] = useState({
     series: [44, 55, 41],
     options: {
@@ -88,7 +88,7 @@ export const DonutChart = ({ width, height, type, option, serie  }) => {
   );
 };
 
-export const GradientChart = ({ series, labels }) => {
+export const GradientChart = ({ series, labels, width, height }) => {
   const options = {
     labels: labels,
     chart: {
@@ -143,8 +143,8 @@ export const GradientChart = ({ series, labels }) => {
           options={options}
           series={series} // Asegúrate de pasar un arreglo de números
           type="donut"
-          width="100%"
-          height="100%"
+          width={width}
+          height={height}
         />
       </div>
       <div id="html-dist"></div>
@@ -152,7 +152,7 @@ export const GradientChart = ({ series, labels }) => {
   );
 };
 
-export const SimpleChart = ({ series, labels }) => {
+export const SimpleChart = ({ series, labels, width, height }) => {
   const options = {
     chart: {
       type: "pie",
@@ -180,7 +180,7 @@ export const SimpleChart = ({ series, labels }) => {
         breakpoint: 768, // Mejor para móviles y tablets
         options: {
           chart: {
-            width: "100%",
+            width: width,
           },
           legend: {
             show: true,
@@ -196,8 +196,9 @@ export const SimpleChart = ({ series, labels }) => {
       <ReactApexChart
         options={options}
         series={series}
+        width={width}
         type="pie"
-        height="150px"
+        height={height}
       />
     </div>
   );
@@ -397,7 +398,7 @@ export const CandlesChart = ({ series, width, height }) => {
   );
 };
 
-export const AreaChart = ({ dayColor, daysColor, theme, series, labels }) => {
+export const AreaChart = ({ dayColor, daysColor, theme, series, labels, width, height }) => {
   const options = {
     chart: {
       type: 'area',
@@ -482,7 +483,13 @@ export const AreaChart = ({ dayColor, daysColor, theme, series, labels }) => {
   return (
     <Chart theme={theme}>
       <div id="areachart">
-        <ReactApexChart options={options} series={series} type="area" height="240%" />
+        <ReactApexChart 
+        options={options} 
+        series={series} 
+        type="area" 
+        height={height}
+        width={width} 
+        />
       </div>
     </Chart>
   );
@@ -507,7 +514,7 @@ const CandleArea = styled.div`
   width: fit-content !important;
   height: 160px !important;
   padding-bottom: 24px;
-
+ 
 }
 #areachart{
   display: grid;
