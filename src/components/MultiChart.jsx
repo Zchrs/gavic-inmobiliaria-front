@@ -398,7 +398,17 @@ export const CandlesChart = ({ series, width, height }) => {
   );
 };
 
-export const AreaChart = ({ dayColor, daysColor, theme, series, labels, width, height }) => {
+export const AreaChart = ({ 
+  dayColor, 
+  daysColor, 
+  theme, 
+  series, 
+  labels, 
+  width, 
+  height, 
+  showLegend, 
+  legendPosition
+}) => {
   const options = {
     chart: {
       type: 'area',
@@ -414,6 +424,7 @@ export const AreaChart = ({ dayColor, daysColor, theme, series, labels, width, h
           zoomin: true,
           zoomout: true,
         },
+        padding: 0,
         offsetX: -10,
         offsetY: -10,
         style: {
@@ -425,6 +436,12 @@ export const AreaChart = ({ dayColor, daysColor, theme, series, labels, width, h
       show: true,
       borderColor: theme === 'dark' ? '#000000' : '#e0e0e0', // Color de las líneas de la cuadrícula
       strokeDashArray: 0,
+        padding: {
+    top: 0,
+    right: 0,
+    bottom: -5,
+    left: 0,
+  },
     },
     dataLabels: {
       enabled: false,
@@ -452,7 +469,9 @@ export const AreaChart = ({ dayColor, daysColor, theme, series, labels, width, h
       },
     },
     legend: {
-      horizontalAlign: 'left',
+      show: showLegend,
+      position: legendPosition,
+      horizontalAlign: "center",
     },
     tooltip: {
       enabled: true,
@@ -584,7 +603,7 @@ const Chart = styled.div`
 #areachart{
   display: grid;
   width: fit-content !important;
-  height: 150px !important;
+  height: fit-content!important;
   padding-bottom: 24px;
 
 }

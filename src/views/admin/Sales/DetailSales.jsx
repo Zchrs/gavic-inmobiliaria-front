@@ -107,15 +107,36 @@ export const DetailSales = () => {
             </div>
           </div>
         </div>
-          <div className="reports-services">
-            <div className="reports-services-inside">
-            <h2>Ventas de servicios</h2>
-              <GradientChart
-                series={data.services.data}
-                labels={data.services.names}
-                width={"100%"}
-              />
-            </div>
+          
+          <div className="reports-users">
+            
+              <div className="reports-users-inside">
+                <div>
+            <h2>Reporte de usuarios</h2>
+                  <AreaChart
+                    dayColor={"#000"}
+                    daysColor={"#000"}
+                    theme={"dark"}
+                    series={[{ data: data.clients.data }]}
+                    labels={data.clients.dates}
+                    width={"300%"}
+                    height={"300px"}
+                    legendPosition={"right"}
+                  />
+                </div>
+                
+                          <div className="reports-services">
+                            <div className="reports-services-inside">
+                            <h2>Ventas de servicios</h2>
+                <GradientChart
+                  series={data.services.data}
+                  labels={data.services.names}
+                  width={"100%"}
+                />
+                            </div>
+                          </div>
+              </div>
+
           </div>
       </div>
     </RePorts>
@@ -125,8 +146,8 @@ export const DetailSales = () => {
 const RePorts = styled.section`
   display: grid;
   width: 100%;
-  height: 100%;
-  min-height: 90vh;
+  height: fit-content;
+  padding: 0 0 100px 0;
   .reports{
     display: grid;
     width: 100%;
@@ -181,7 +202,7 @@ const RePorts = styled.section`
     height: 100%;
     &-inside{
       display: grid;
-      width: 40%;
+      width: 100%;
       height: 100%;
       margin: auto;
       background: var(--deg-secondary);
@@ -193,5 +214,21 @@ const RePorts = styled.section`
       }
     }
   }
+  &-users{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    background: var(--deg-tertiary);
+    box-shadow: var(--ds-s);
+    border-radius: 15px;
+    padding: 25px;
+    &-inside{
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+    }
+  }
+
 }
 `

@@ -88,6 +88,13 @@ const handleSearch = () => {
         z-index: 10;
       `;
     }
+    if (window.innerWidth < 680) {
+      searchRef.current.style.cssText = `
+        transition: all .5s ease;
+        width: 95%;
+        z-index: 10;
+      `;
+    }
 
     handleSearch();
   };
@@ -380,6 +387,10 @@ const HoMe = styled.div`
         width: 100%;
         height: 100%;
         
+      }
+      
+      @media (max-width: 680px) {
+        margin-right: 10px;
       }
     }
   }

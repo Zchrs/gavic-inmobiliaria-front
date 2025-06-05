@@ -127,7 +127,8 @@ export const AdminHome = () => {
                   theme={"light"}
                   series={[{ data: data.users.data }]}
                   labels={data.users.dates}
-                  height={"300px"}
+                  height={"100%"}
+                  legendPosition={"right"}
                 />
               </div>
               <div className="adminhome-left-mediumcontainer-card-btn">
@@ -211,7 +212,8 @@ export const AdminHome = () => {
                 theme={"dark"}
                 series={[{ data: data.admins.data }]}
                 labels={data.admins.dates}
-                height={"300px"}
+                height={"100%"}
+                legendPosition={"right"}
               />
                 <BaseButton
                   textLabel={true}
@@ -231,7 +233,8 @@ export const AdminHome = () => {
                 theme={"light"}
                 series={[{ data: data.clients.data }]}
                 labels={data.clients.dates}
-                height={"300px"}
+                height={"100%"}
+                legendPosition={"left"}
               />
               <BaseButton
                 textLabel={true}

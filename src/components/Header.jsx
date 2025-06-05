@@ -210,7 +210,7 @@ export const Header = () => {
             to={"/"}>
             <img
               className="header-links-img"
-              src={getImg("svg", "home", "svg")}
+              src={getImg("svg", "home-g", "svg")}
               alt="inicio"
             />
             Inicio
@@ -300,7 +300,7 @@ export const Header = () => {
             }>
             <img
               className="header-links-img"
-              src={getImg("svg", "register", "svg")}
+              src={getImg("svg", "paper", "svg")}
               alt="registro"
             />
             Registrarme
@@ -314,29 +314,37 @@ export const Header = () => {
             </div>
           </NavLink>
 
-          <div className="header-btns">
-            <BaseButton
-              classs={"button secondary"}
-              textLabel={true}
-              colorbtn={"var(--bg-secondary)"}
-              colortextbtnsecondary={"black"}
-              colorbtnhoversecondary={"var(--bg-primary)"}
-              hovercolorbtntextsecondary={"white"}
-              label={"Iniciar sesión"}
-              // handleClick={whatsapp}
+          <NavLink
+            onClick={handleBlockClick}
+            to={"/bloqueado"}
+            className={({ isActive }) =>
+              `${
+                isActive ||
+                isSubmenuActive([
+                  "/auth/client/login",
+                  "/advisor/auth/login",
+                ])
+                  ? "header-links-a-active"
+                  : "header-links-a"
+              }`
+            }>
+            <img
+              className="header-links-img"
+              src={getImg("svg", "register", "svg")}
+              alt="registro"
             />
-            <BaseButton
-              classs={"button primary"}
-              colorbtnhoverprimary={"var(--bg-primary-semi)"}
-              colorbtn={"var(--bg-primary)"}
-              width={"fit-content"}
-              colortextbtnprimary={"var(--text-tertiary)"}
-              colortextbtnhoverprimary={"var(--text-tertiary)"}
-              textLabel={true}
-              label={"Registrarme"}
-              // handleClick={whatsapp}
-            />
-          </div>
+            Iniciar sesión
+            <div id="submenu2" className="submenu">
+              <Link onClick={handleFunctions} to={"/auth/client/login"}>
+                Como Cliente
+              </Link>
+              <Link onClick={handleFunctions} to={"/advisor/auth/login"}>
+                Como Asesor inmobiliario
+              </Link>
+            </div>
+          </NavLink>
+
+
         </div>
       </div>
 
@@ -392,7 +400,7 @@ const HeaDer = styled.div`
       &-a {
         gap: 10px;
         position: relative;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 300;
         width: fit-content;
         transition: all ease 0.3s;
@@ -447,22 +455,34 @@ const HeaDer = styled.div`
             border-bottom: 3px solid var(--bg-tertiary);
           }
           .header-links-img {
-            height: 18px;
+            height: 17px;
+            padding-right: 2px;
             @media (max-width: 920px) {
               height: 25px;
               filter: invert(100%);
             }
           }
         }
-        &:last-child {
+
+        &:nth-child(5) {
           &:hover .submenu {
             transition: all ease 0.5s;
             top: 110%;
+            width: 150px;
             height: fit-content;
             opacity: 1;
             border-radius: 0 0 5px 5px;
             transform: translateY(0%);
-            z-index: -1;
+            
+            @media (max-width: 920px) {
+              width: 180px;
+              right: -105%;
+              top: -55%;
+              border-radius: 0 5px 5px 0;
+              a {
+                font-size: 18px;
+              }
+            }
           }
         }
         &:nth-child(4) {
@@ -531,7 +551,7 @@ const HeaDer = styled.div`
         }
       }
       &-img {
-        height: 18px;
+        height: 17px;
         @media (max-width: 920px) {
           fill: #ffffff;
           height: 25px;
