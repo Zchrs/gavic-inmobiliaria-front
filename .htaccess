@@ -1,0 +1,42 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+<IfModule mod_headers.c> SetEnvIf Origin "http(s)?://(www\.)?(gavic-api.vercel\.com|gavic-api.vercel.app/api/properties/properties\.com)$" AccessControlAllowOrigin=$0$1 Header set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin 
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Habilitar CORS para las URL especificadas
+    SetEnvIf Origin "https://gavicinmobiliaria\.com$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "https://admin\.gavicinmobiliaria\.com$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "https://gavic-api\.vercel\.app$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "https://gavic-api\.vercel\.app/api$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "http://localhost:5173$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "http://192\.168\.200\.182:5173$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "http://192\.168\.200\.182:4000$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "http://192\.168\.200\.182:4000/api$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "localhost:4173$" ORIGIN_ALLOWED=$0
+    SetEnvIf Origin "localhost:4000$" ORIGIN_ALLOWED=$0
+
+    Header always set Access-Control-Allow-Origin "%{ORIGIN_ALLOWED}e" env=ORIGIN_ALLOWED
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+    Header always set Access-Control-Allow-Credentials "true"
+
+    # Responder a solicitudes OPTIONS
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    # Asegurarse de que las solicitudes lleguen a la aplicación correcta
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.html [L]
+</IfModule>
+
