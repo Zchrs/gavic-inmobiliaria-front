@@ -6,6 +6,7 @@ export const useValidations = () => {
     country: useRef(null),
     title: useRef(null),
     name: useRef(null),
+    fullname: useRef(null),
     nameManager: useRef(null),
     codeAccess: useRef(null),
     idNumberManager: useRef(null),
@@ -22,7 +23,9 @@ export const useValidations = () => {
     phoneManager: useRef(null),
     email: useRef(null),
     emailManager: useRef(null),
+    pass: useRef(null),
     password: useRef(null),
+    rePassword: useRef(null),
     price: useRef(null),
     district: useRef(null),
     category: useRef(null),
@@ -43,7 +46,8 @@ export const useValidations = () => {
     img_url: useRef(null),
     user_id: useRef(null),
     property_id: useRef(null),
-    quantity: useRef(null)
+    quantity: useRef(null),
+    verifyCode: useRef(null)
   };
   
 
@@ -55,7 +59,7 @@ export const useValidations = () => {
     const regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]+$/;
     const regexPrice = /^\d+(\.\d{1,2})?$/;
-    // const regexOnlyNumbers = /^\d+$/;
+    const regexOnlyNumbers = /^\d{6}$/;
     const regexPhone = /^\+?[\d\s-]{8,20}$/;
 
     
@@ -109,6 +113,12 @@ export const useValidations = () => {
       }
     );
 
+    errors.fullname = validateField('fullname', form.fullname, 
+      (val) => regexName.test(val.trim()), {
+        required: "Debes ingresar el nombre completo",
+        invalid: "El nombre debe tener solo letras"
+      }
+    );
     errors.nameManager = validateField('nameManager', form.nameManager, 
       (val) => regexName.test(val.trim()), {
         required: "Debes ingresar el nombre",
@@ -196,13 +206,32 @@ export const useValidations = () => {
     );
 
     errors.codeAccess = validateField('codeAccess', form.codeAccess, 
-      (val) => val.length > 6 && regexPassword.test(val.trim()), {
+      (val) => val.length > 6 && (val.trim()), {
         required: "Código de acceso requerido",
         invalid: "La contraseña debe tener al menos 6 caracteres con letras, números y símbolos"
       }
     );
 
+    errors.verifyCode = validateField('verifyCode', form.verifyCode, 
+      (val) => val.length > 5 && regexOnlyNumbers.test(val.trim()), {
+        required: "Código de acceso requerido",
+        invalid: "Código de acceso incorrecto"
+      }
+    );
+
+    errors.pass = validateField('pass', form.pass, 
+      (val) => val.length > 6 && regexPassword.test(val.trim()), {
+        required: "Contraseña requerida",
+        invalid: "La contraseña debe tener al menos 6 caracteres con letras, números y símbolos"
+      }
+    );
     errors.password = validateField('password', form.password, 
+      (val) => val.length > 6 && regexPassword.test(val.trim()), {
+        required: "Contraseña requerida",
+        invalid: "La contraseña debe tener al menos 6 caracteres con letras, números y símbolos"
+      }
+    );
+    errors.rePassword = validateField('rePassword', form.rePassword, 
       (val) => val.length > 6 && regexPassword.test(val.trim()), {
         required: "Contraseña requerida",
         invalid: "La contraseña debe tener al menos 6 caracteres con letras, números y símbolos"

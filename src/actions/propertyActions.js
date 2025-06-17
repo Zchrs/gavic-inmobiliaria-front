@@ -164,8 +164,34 @@ export const clearProperty = (propertyInfo) => {
       dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
     }
   };
-  export const fetchRentProperties = (action) => async (dispatch) => {
+  // export const fetchRentProperties = (action) => async (dispatch) => {
 
+  //   try {
+  //     const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_RENT_PROPERTIES_URL}/${action}`);
+  //     const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
+  //       try {
+  //         const imagesRes = await axios.get(`${import.meta.env.VITE_APP_API_GET_IMAGES_PROPERTIES_URL}/${propertyInfo.id}`);
+  //         return {
+  //           ...propertyInfo,
+  //           images: imagesRes.data.images || [],
+  //         };
+  //       } catch (error) {
+  //         console.error(`Error al obtener las imágenes para el inmueble${propertyInfo.id}:`, error);
+  //         return {
+  //           ...propertyInfo,
+  //           images: [],
+  //         };
+  //       }
+  //     }));
+  //     localStorage.setItem('rentProperties', JSON.stringify(propertiesComplete));
+  //     dispatch(setProperty(propertiesComplete));
+  //   } catch (error) {
+  //     console.error('Error al obtener los inmuebles arrendados:', error);
+  //     dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
+  //   }
+  // };
+
+  export const fetchRentProperties = (action) => async (dispatch) => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_APP_API_GET_RENT_PROPERTIES_URL}/${action}`);
       const propertiesComplete = await Promise.all(response.data.map(async (propertyInfo) => {
@@ -176,20 +202,20 @@ export const clearProperty = (propertyInfo) => {
             images: imagesRes.data.images || [],
           };
         } catch (error) {
-          console.error(`Error al obtener las imágenes para el inmueble${propertyInfo.id}:`, error);
+          console.error(`Error al obtener las imágenes para el inmueble ${propertyInfo.id}:`, error);
           return {
             ...propertyInfo,
             images: [],
           };
         }
       }));
-      localStorage.setItem('rentProperties', JSON.stringify(propertiesComplete));
+      localStorage.setItem('leasesProperties', JSON.stringify(propertiesComplete));
       dispatch(setProperty(propertiesComplete));
     } catch (error) {
-      console.error('Error al obtener los inmuebles arrendados:', error);
+      console.error('Error al obtener las propiedades arrendadas:', error);
       dispatch(setProperty([])); // Asegurarse de despachar un array vacío en caso de error
     }
-  };
+};
 
   export const fetchProperties = () => async (dispatch) => {
     try {

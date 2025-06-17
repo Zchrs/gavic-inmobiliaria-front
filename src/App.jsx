@@ -20,7 +20,6 @@ import {
   Leases,
   Sales,
   Register,
-  // PublicRoute,
   Login,
   AuthLayout,
   ForRentPropertiesw,
@@ -52,6 +51,7 @@ import {
   RegisterAdmin,
   AdvisorDashboardLayout,
   UserDashboardLayout,
+  SectionsComponent,
 } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -64,7 +64,9 @@ import { Verify } from "./components/Verify";
 import { VerifyCode } from "./components/VerifyCode";
 import { PrivateRoute, PrivateRouteAdmin, PrivateRouteAdvisor } from "./router/PrivateRouter";
 import { AuthAdminLayout } from "./layouts/AuthAdminLayout";
-import { PublicRouteAdmin } from "./router/PublicRouter";
+import { PublicRoute, PublicRouteAdmin, PublicRouteAdvisor } from "./router/PublicRouter";
+import { HomeRecovery } from "./components/HomeRecovery";
+import { RecoveryPasshordHome } from "./components/RecoveryPasshordHome";
 
 function App() {
   const isBlocked = (e) => {
@@ -110,9 +112,9 @@ function App() {
               exact
               path="/auth/client/*"
               element={
-                //  <PublicRoute>
+              <PublicRoute>
                 <AuthLayout />
-                //</PublicRoute>
+              </PublicRoute>
               }>
               <Route exact path="login" element={<Login />} />
               <Route exact path="register" element={<Register />} />
@@ -120,9 +122,9 @@ function App() {
                         <Route
               path="/client/dashboard/*"
               element={
-                // <PrivateRoute>
+               <PrivateRoute>
                   <UserDashboardLayout />
-                // </PrivateRoute> 
+               </PrivateRoute> 
               }>
               
               <Route exact path="sales" element={<DetailSales />} />
@@ -132,10 +134,15 @@ function App() {
               <Route exact path="statics" element={<Statics />} />
               <Route exact path="properties" element={<Properties />} />
               <Route exact path="clients" element={<Clients />} />
+              
               <Route exact path="settings" element={<Settings/>} />
             </Route>
 
-            <Route exact path="/advisor/auth/*" element={<AuthAdvisorLayout />}>
+            <Route exact path="/advisor/auth/*" element={
+              <PublicRouteAdvisor>
+                <AuthAdvisorLayout />
+              </PublicRouteAdvisor>
+          }>
               <Route exact path="login" element={<AdvisorLogin />} />
               <Route exact path="register" element={<AdvisorRegister />} />
             </Route>
@@ -143,18 +150,19 @@ function App() {
             <Route
               path="/advisor/dashboard/*"
               element={
-                // <PrivateRouteAdvisor>
+                <PrivateRouteAdvisor>
                   <AdvisorDashboardLayout />
-                // </PrivateRouteAdvisor>
+                </PrivateRouteAdvisor>
               }>
               
-              <Route exact path="sales" element={<DetailSales />} />
-              <Route exact path="profile" element={<DetailSales />} />
-              <Route exact path="finances" element={<Finances />} />
+              <Route exact path="profile" element={<SectionsComponent />} />
+              <Route exact path="finances" element={<SectionsComponent />} />
               <Route exact path="reports" element={<Reports />} />
               <Route exact path="statics" element={<Statics />} />
               <Route exact path="properties" element={<Properties />} />
-              <Route exact path="clients" element={<Clients />} />
+              <Route exact path="clients" element={<SectionsComponent />} />
+              <Route exact path="sales" element={<DetailSales />} />
+              <Route exact path="leased" element={<Properties />} />
               <Route exact path="settings" element={<Settings/>} />
             </Route>
 
@@ -228,6 +236,20 @@ function App() {
                 path="clients/account/verify/:userId/:token"
                 element={<VerifyCode />}
               />
+            </Route>
+            <Route exact path="/*" element={<Verify />}>
+              <Route
+                exact
+                path="advisors/account/verify/:advisorId/:token"
+                element={<VerifyCode />}
+              />
+            </Route>
+
+            <Route exact path="/recovery-account/*" element={
+              <HomeRecovery />}
+              >
+              <Route exact path="recovery-password" element={<RecoveryPasshordHome />} />
+              <Route exact path="recovery-send-code" element={<CheckOut />} />
             </Route>
           </Routes>
         </Provider>

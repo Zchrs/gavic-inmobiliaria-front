@@ -6,7 +6,10 @@ export const PropertySale = () => {
   return (
     <SaLe>
       <div>
-        <ItemsCategory showSell={true} action={"Venta"} showToAddWish = {false} />
+        <ItemsCategory 
+        showSell={true} 
+        action={"Venta"} 
+        showToAddWish = {false} />
       </div>
     </SaLe>
 )

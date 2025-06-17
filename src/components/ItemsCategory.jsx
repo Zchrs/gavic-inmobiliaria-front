@@ -62,11 +62,6 @@ export const ItemsCategory = ({
       setForm,
     } = useForm(initialForm, );
 
-    const extraAction = {
-      sold: "Vendida",
-      rented: "Arrendada",
-    }
-
   useEffect(() => {
     const socket = io(import.meta.env.VITE_APP_API_WEBSOCKET_URL, {
       cors: true,

@@ -36,6 +36,7 @@ const DashboardAdmin = styled.section`
   margin: auto;
   padding: 20px;
   align-items: start;
+  background: var(--bg-primary);
 
   
   .admindashboard{

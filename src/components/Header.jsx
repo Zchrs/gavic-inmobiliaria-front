@@ -4,9 +4,13 @@ import styled from "styled-components";
 import { getImg, scrollTop } from "../../globalActions";
 import { useRoutesHome } from "../routes/routes";
 import { useEffect, useMemo, useState } from "react";
-import { BaseButton } from "./BaseButton";
+import { useSelector } from "react-redux";
+import { Avatar } from "./Avatar";
+import { ScreenResolution } from "./ScreenResolution";
 
 export const Header = () => {
+  const user = useSelector(state => state.auth.user);
+  const advisor = useSelector(state => state.authAdvisor.advisor);
   const [menuOpen, setMenuOpen] = useState(false);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   const location = useLocation();
@@ -284,7 +288,8 @@ export const Header = () => {
             </div>
           </NavLink>
 
-          <NavLink
+         { !user ?
+         <NavLink
             onClick={handleBlockClick}
             to={"/bloqueado"}
             className={({ isActive }) =>
@@ -313,8 +318,10 @@ export const Header = () => {
               </Link>
             </div>
           </NavLink>
+          : false}
 
-          <NavLink
+         { !user && !advisor ?
+         <NavLink
             onClick={handleBlockClick}
             to={"/bloqueado"}
             className={({ isActive }) =>
@@ -342,8 +349,16 @@ export const Header = () => {
                 Como Asesor inmobiliario
               </Link>
             </div>
-          </NavLink>
-
+          </NavLink> 
+            : <Avatar 
+                 clas={"avatar"} 
+                 classs={"avatar-dinamyc"}
+                 dropData={true} 
+                 avtsmall={true} 
+                 img={"default-avatar"}
+                 classWhite={"avatar white"} 
+                 userClient={true}
+              />}
 
         </div>
       </div>

@@ -55,6 +55,7 @@ export { MultiDropZone } from "./src/components/MultiDropZone";
 export { ItemsCategory } from "./src/components/ItemsCategory";
 export { Empty } from "./src/components/Empty";
 export { Modal } from "./src/components/Modal";
+export { SectionsComponent } from "./src/components/SectionsComponent";
 
 
 export { Statics } from "./src/views/admin/statics/Statics";

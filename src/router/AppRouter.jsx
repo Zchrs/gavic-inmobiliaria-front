@@ -47,7 +47,9 @@ RegisterAdmin,
   Validations, 
   Values, 
   Vision, 
-  AdvisorDashboard
+  AdvisorDashboard,
+  ClientDashboard,
+  SectionsComponent
 } from "../../index";
 import { AdvisorLogin } from "../views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
@@ -58,6 +60,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { startChecking, startCheckingAdmin, startCheckingAdvisor } from "../actions/authActions";
 import { AuthHomeAdmin } from "../views/admin/auth/AuthHomeAdmin";
+import { RecoveryPasshordHome } from "../components/RecoveryPasshordHome";
+import { Recovery } from "../components/Recovery";
 
 
 
@@ -95,11 +99,6 @@ export const AppRouter = () => {
     );
   };
   export const VerifyRouter  = () => {
-    // const dispatch = useDispatch();
-      
-    // useEffect(() => {
-    //   dispatch(startChecking());
-    // }, [dispatch]);
 
     return (
       <Routes>
@@ -111,6 +110,20 @@ export const AppRouter = () => {
       </Routes>
     );
   };
+
+  export const VerifyAdvisorRouter  = () => {
+
+    return (
+      <Routes>
+        <Route exact path="/*" element={ 
+            <Verify />
+      } />
+      
+        <Route exact path="advisors/account/verify/:advisorId/:token" element={<VerifyCode />} />
+      </Routes>
+    );
+  };
+
   export const AuthRouter = () => {
     const dispatch = useDispatch();
       
@@ -141,7 +154,7 @@ export const AppRouter = () => {
     return (
       <>
       <Routes>
-            <Route exact path="/*" element={<AdminHome />} />
+            <Route exact path="/*" element={<ClientDashboard />} />
             <Route exact path="profile" element={<Reports />} />
             <Route exact path="statics" element={<Statics />} />
             <Route exact path="properties" element={<Properties />} />
@@ -183,13 +196,14 @@ export const AppRouter = () => {
       <>
       <Routes>
             <Route exact path="/*" element={<AdvisorDashboard />} />
-            <Route exact path="sales" element={<DetailSales />} />
-            <Route exact path="profile" element={<DetailSales />} />
-            <Route exact path="finances" element={<Finances />} />
+            <Route exact path="sales" element={<SectionsComponent sales />} />
+            <Route exact path="profile" element={<SectionsComponent userAdvisor />} />
+            <Route exact path="finances" element={<SectionsComponent finances />} />
             <Route exact path="reports" element={<Reports />} />
             <Route exact path="statics" element={<Statics />} />
             <Route exact path="properties" element={<Properties />} />
-            <Route exact path="clients" element={<Clients />} />
+            <Route exact path="leased" element={<Properties />} />
+            <Route exact path="clients" element={<SectionsComponent client />} />
             <Route exact path="settings" element={<Settings/>} />
       </Routes>
       </>
@@ -211,6 +225,18 @@ export const AppRouter = () => {
 
         <Route exact path="login" element={<LoginAdmin />} />
         <Route exact path="register" element={<RegisterAdmin />} />
+      </Routes>
+    );
+  };
+
+  export const RecoveryPasswordRouter = () => {
+
+    return (
+      <Routes>
+        <Route exact path="/*" element={<Recovery />} />
+
+              <Route exact path="recovery-password" element={<RecoveryPasshordHome />} />
+              <Route exact path="recovery-send-code" element={<CheckOut />} />
       </Routes>
     );
   };

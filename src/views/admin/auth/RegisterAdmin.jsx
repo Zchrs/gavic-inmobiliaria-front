@@ -8,13 +8,14 @@ import { useValidations } from "../../../hooks/useValidations";
 export const RegisterAdmin = () => {
 
 const { formRefs, validateForm } = useValidations();
+
   
+
     const {
       form,
-      cities, 
       handleChange,
       handleBlur,
-      handleSubmitClient,
+      handleSubmitsAdmin,
     } = useForm(initialForm, validateForm);
 
   return (
@@ -24,10 +25,10 @@ const { formRefs, validateForm } = useValidations();
               <BaseInput
                 classs={"inputs normal"}
                 placeholder="Nombre completo"
-                name="name"
-                id="name"
-                value={form.name}
-                inputRef={formRefs.name}
+                name="fullname"
+                id="fullname"
+                value={form.fullname}
+                inputRef={formRefs.fullname}
                 onBlur={ handleBlur }
                 onChange={ handleChange}
                 required
@@ -50,8 +51,8 @@ const { formRefs, validateForm } = useValidations();
               <BaseInput
                 classs={"inputs normal"}
                 placeholder="Código de acceso"
-                name="codeaccess"
-                id="codeaccess"
+                name="codeAccess"
+                id="codeAccess"
                 onBlur={ handleBlur }
                 onChange={ handleChange}
                 value={form.codeAccess}
@@ -61,17 +62,17 @@ const { formRefs, validateForm } = useValidations();
               <BaseInput
                 classs={"inputs normal"}
                 placeholder="Contraseña"
-                name="password"
-                id="password"
+                name="pass"
+                id="pass"
                 onBlur={ handleBlur }
                 onChange={ handleChange}
-                value={form.password}
-                inputRef={formRefs.password}
+                value={form.pass}
+                inputRef={formRefs.pass}
                 isPassword
                 required
               />
               <BaseButton
-              // handleClick={handleLogin}
+              handleClick={handleSubmitsAdmin}
               classs={"button secondary"}
               textLabel={true}
               colorbtn={"var(--bg-secondary)"}
@@ -82,7 +83,7 @@ const { formRefs, validateForm } = useValidations();
             />
             </form>
             <div className="auth-tyc">
-              <p>Al registrarte indicas que estás aceptando nustros
+              <p>Al registrarte indicas que estás aceptando nuestros
                 términos y condiciones y política de tratamiento de datos.
               </p>
             </div>

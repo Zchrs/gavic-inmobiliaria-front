@@ -1,25 +1,19 @@
 
 import { AuthRouter } from "../router/AppRouter";
 import { Link, NavLink } from "react-router-dom"
-// import { useTranslation } from 'react-i18next';
-// import { useSelector } from 'react-redux';
-// import { useEffect } from 'react';
-// import { useDispatch } from "react-redux";
-// import { startChecking } from "../actions/authActions";
+import { useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { startChecking } from "../actions/authActions";
 import styled from "styled-components";
 import { getImg } from "../../globalActions";
 
 export const AuthLayout = () => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const lang = useSelector(state => state.langUI.lang);
-  // const { t, i18n } = useTranslation();
-
-  // useEffect(() => {
-  //   i18n.changeLanguage(lang);
-  //   dispatch(startChecking());
-  // }, [i18n, lang, dispatch]);
+  useEffect(() => {
+    dispatch(startChecking());
+  }, [dispatch]);
 
   return (
     <AuthLayOut>
@@ -60,7 +54,7 @@ height: fit-content;
         right: 0;
         height: 100%;
         width: 60%;
-        @media (max-width: 720px) {
+        @media (max-width: 1024px) {
           width: 100%;
           object-fit: cover;
         }
@@ -87,7 +81,8 @@ height: fit-content;
       background: var(--bg-secondary);
       clip-path: polygon(0 0, 100% 0, 73% 100%, 0% 100%);
     }
-    @media (max-width: 920px) {
+    @media (max-width: 1024px) {
+      
       display: grid;
       padding: 20px;
       gap: 50px;
@@ -130,7 +125,7 @@ height: fit-content;
         img{
             width: 70%;
         }
-        @media (max-width: 780px) {
+        @media (max-width: 1024px) {
           margin-top: -100px;
           width: fit-content;
           height: fit-content;
@@ -166,11 +161,13 @@ height: fit-content;
             
         }
         
-        /* @media (max-width: 980px) {
-          margin-top: -200px; 
+        @media (max-width: 1024px) {
+          align-items: start;
+          margin-top: -1400px; 
           padding: 25px 12px;
-          width: 100%;  
-          } */
+          width: 138%;
+          height: fit-content;
+          }
           
           @media (max-width: 480px) {
             
@@ -202,7 +199,13 @@ height: fit-content;
                     margin: 0;
                 }
               }
+
               @media (max-width: 480px) {
+                  width: 100%;
+                  font-size: 16px;
+                  margin: 0;
+              }
+              @media (max-width: 1024px) {
                   width: 100%;
                   font-size: 16px;
                   margin: 0;

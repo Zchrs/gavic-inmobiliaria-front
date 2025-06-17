@@ -321,7 +321,11 @@ const HoMe = styled.div`
         gap: 15px;
         margin: 25px;
 
-        @media (max-width: 820px) {
+        @media (max-width: 1024px) {
+          width: 41%;
+          padding: 12px;
+        }
+        @media (max-width: 480px) {
           width: 100%;
           margin: auto;
           padding: 12px;
@@ -388,8 +392,7 @@ const HoMe = styled.div`
         height: 100%;
         
       }
-      
-      @media (max-width: 680px) {
+      @media (max-width: 480px) {
         margin-right: 10px;
       }
     }

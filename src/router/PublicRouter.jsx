@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 export const PublicRoute = ({children}) => {
   const user = useSelector((state) => state.auth.user);
 
-    return (!user) ? children : <Navigate to="/dashboard" replace />;
+    return (!user) ? children : <Navigate to="/client/dashboard" replace />;
   };
 export const PublicRouteAdmin = ({children}) => {
   const admin = useSelector((state) => state.authAdmin.admin);

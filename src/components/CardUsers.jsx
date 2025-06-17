@@ -148,6 +148,7 @@ const UsersCard = styled.div`
     width: 100%;
     border-radius: 5px;
     gap: 2px;
+    overflow: hidden;
     &::-webkit-scrollbar {
       display: none;
     }
@@ -213,7 +214,7 @@ const UsersCard = styled.div`
         &::before {
           content: "";
           position: absolute;
-          background: white;
+          background: #d8d7d7;
           width: 1px;
           height: 250%;
           top: 0;
@@ -240,7 +241,7 @@ const UsersCard = styled.div`
       &::before {
         content: "";
         position: absolute;
-        background: white;
+        background: #d8d7d7;
         width: 1px;
         height: 300%;
         top: 0;

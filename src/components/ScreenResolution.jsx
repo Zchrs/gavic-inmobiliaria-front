@@ -21,9 +21,9 @@ export const ScreenResolution = () => {
   
     return (
       <ScrRes className='screen-resolution'>
-        <h3 style={{color: "black"}}>Resolución de pantalla:</h3>
-        <p style={{color: "black"}}>Ancho: {width}px</p>
-        <p style={{color: "black"}}>Alto: {height}px</p>
+        <h3 style={{color: "black"}}>Resolución de pantalla: </h3>
+        <p style={{color: "black"}}> Ancho: {width}px </p>
+        <p style={{color: "black"}}> Alto: {height}px </p>
       </ScrRes>
     );
   };
@@ -31,6 +31,6 @@ export const ScreenResolution = () => {
     display: flex;
     width: 550px;
     @media (max-width: 920px) {
-      width: 350px;
+      width: 100%;
     }
    `

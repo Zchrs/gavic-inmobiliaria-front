@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import { getFile, getImg } from "../../globalActions"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from 'react';
-import { startChecking, startLogout, startLogoutAdmin, startLogoutAdvisor } from "../actions/authActions";
+import { startLogout, startLogoutAdmin, startLogoutAdvisor } from "../actions/authActions";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -26,10 +25,6 @@ export const Avatar = ({
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-      dispatch(startChecking());
-    }, [dispatch]);
-
     const handleLogout = () => {
     if (admin) {
         dispatch(startLogoutAdmin());
@@ -46,7 +41,7 @@ export const Avatar = ({
   return (
     <AvaTar>
       <div className={clas}>
-          {avtMedium && (<div className="avatar-default"><img src={getFile('png', `${img}`, 'png')} alt="" /></div>)}
+          {avtMedium && (<div className="avatar-default"><img src={getImg('png', `${img}`, 'png')} alt="" /></div>)}
           {avtsmall && (<div className="tumb-default"><img src={getImg('png', `${img}`, 'png')} alt="" /></div>)}
           { userClient && <span className={classWhite}>
             {user ? <strong className={nameSmall}>{user.name} {user.lastname}</strong> : <strong className={nameSmall}>Default name</strong>}
@@ -337,6 +332,12 @@ const AvaTar = styled.div`
             margin: 0 auto;
         }
     }
+    &.grid{
+    width: 100%;
+    display: grid;
+    border: #EC3337 1px solid;
+
+    }
 }
 
 
@@ -405,4 +406,5 @@ const AvaTar = styled.div`
         color: white;
     }
 }
+
 `

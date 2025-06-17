@@ -14,7 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { types } from "../../../types/types";
 
 export const Leases = () => {
-  const rentProperties = useSelector((state) => state.properties.filtered);
+  const rentProperties = useSelector((state) => state.properties.propertiesInfo);
+ 
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState(null);
   const dispatch = useDispatch();
@@ -31,32 +32,30 @@ export const Leases = () => {
   );
 
 
-    useEffect(() => {
-      const init = async () => {
-        if (rentProperties.length > 0) return; // ya cargado en Redux
+  useEffect(() => {
+    const init = async () => {
+      if (rentProperties.length > 0) return;
     
-        setLoading(true);
-        try {
-          const localData = localStorage.getItem("rentProperties");
-          if (localData) {
-            const parsedData = JSON.parse(localData);
-            dispatch({
-              type: types.propertyView,
-              payload: parsedData.filter((prop) => prop.action === "Arrendamiento"),
-            });
-          } else {
-            // Aquí aplicamos directamente el filtro para propiedades en venta
-            await dispatch(fetchRentProperties("Arrendamiento"));
-          }
-        } catch (error) {
-          console.error("Error fetching sale properties:", error);
-        } finally {
-          setLoading(false);
+      setLoading(true);
+      try {
+        const localData = localStorage.getItem("rentProperties");
+        if (localData) {
+          dispatch({
+            type: types.propertyView,
+            payload: JSON.parse(localData),
+          });
+        } else {
+          await dispatch(fetchRentProperties());
         }
-      };
-    
-      init();
-    }, [dispatch]);
+      } catch (error) {
+        console.error("Error fetching rent properties:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    init();
+  }, [dispatch]);
   
     const handleSearch = async (filters) => {
       setLoading(true);

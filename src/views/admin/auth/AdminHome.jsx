@@ -121,15 +121,7 @@ export const AdminHome = () => {
             <div className="adminhome-left-container-card">
               <h2>Usuarios</h2>
               <div className="adminhome-left-container-card-inside">
-                <AreaChart
-                  dayColor={"#ffffff"}
-                  daysColor={"#ffffff"}
-                  theme={"light"}
-                  series={[{ data: data.users.data }]}
-                  labels={data.users.dates}
-                  height={"100%"}
-                  legendPosition={"right"}
-                />
+                <h3>999</h3>
               </div>
               <div className="adminhome-left-mediumcontainer-card-btn">
                 <BaseButton
@@ -148,11 +140,7 @@ export const AdminHome = () => {
                 <h2>Propiedades</h2>
               </div>
               <div className="adminhome-left-container-card-inside">
-                <SimpleChart
-                  series={data.sales.data}
-                  labels={data.sales.names}
-                  width={"60%"}
-                />
+                <h3>999</h3>
               </div>
               <div className="flex">
                 <BaseButton
@@ -186,11 +174,7 @@ export const AdminHome = () => {
             <div className="adminhome-left-container-card">
               <h2>Ventas</h2>
               <div className="adminhome-left-container-card-inside">
-              <GradientChart
-                series={data.series.data}
-                labels={data.series.name}
-                width={"78%"}
-              />
+                  <h3>999</h3>
               </div>
               <BaseButton
                 textLabel={true}
@@ -291,24 +275,19 @@ export const AdminHome = () => {
           </div>
           <div className="adminhome-right-card-medium">
             <div className="adminhome-right-card-medium-card">
-              <div className="flex">
-                <img src="" alt="" />
-                <p>title</p>
-              </div>
-              <div className="flex">
-                <img src="" alt="" />
-                <p>title</p>
-              </div>
+              <h4>Código de acceso actual</h4>
             </div>
             <div className="adminhome-right-card-medium-card">
-              <div className="flex">
-                <img src="" alt="" />
-                <p>title</p>
-              </div>
-              <div className="flex">
-                <img src="" alt="" />
-                <p>title</p>
-              </div>
+              <h4>Cambiar código de acceso</h4>
+                              <BaseButton
+                 textLabel={true}
+                  label={"Cambiar"}
+                classs={"button primary"}
+                colorbtnhoverprimary={"var(--deg-tertiary-semi)"}
+                colortextbtnhoverprimary={"var(--text-tertiary)"}
+                colortextbtnprimary={"var(--text-primary)"}
+                colorbtn={"var(--deg-tertiary)"}
+                />
             </div>
           </div>
           <div className="adminhome-right-content">
@@ -408,6 +387,11 @@ const HomeAdmin = styled.section`
           align-content: space-between;
           gap: 10px;
           color: white;
+          h3{
+            font-size: 70px;
+            font-weight: 500;
+            padding: 20px 0;
+          }
           &-inside{
             margin  : auto;
           }
@@ -558,6 +542,9 @@ const HomeAdmin = styled.section`
             gap: 5px;
             padding: 24px;
             border-radius: 15px;
+            h4{
+              color: var(--bg-tertiary);
+            }
           }
         }
       }

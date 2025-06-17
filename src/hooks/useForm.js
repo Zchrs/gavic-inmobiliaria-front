@@ -9,6 +9,7 @@ import {
   startLogin,
   startLoginAdmin,
   loginSuccess,
+  startLoginAdvisor,
 } from "../actions/authActions";
 import { fetchWithoutToken } from "../helpers/fetch";
 import departamentos from "../colombia/colombia.json";
@@ -26,6 +27,7 @@ export const initialForm = {
   address: "",
   phone: "",
   email: "",
+  pass: "",
   password: "",
 
   fullname: "",
@@ -81,6 +83,7 @@ export const useForm = (initialForm, validateForm) => {
   const [city, setCity] = useState([]);
   const [checked, setChecked] = useState(false);
   const [hasManager, setHasManager] = useState(false);
+  const [message, setMessage] = useState("")
   const user = useSelector((state) => state.auth.user);
   // ----------------- funciones form -------------------------
 
@@ -388,7 +391,7 @@ export const useForm = (initialForm, validateForm) => {
       return;
     }
 
-
+    
 
     setLoading(true);
 
@@ -454,67 +457,126 @@ export const useForm = (initialForm, validateForm) => {
       } else return;
     });
   } else if (submitClient === "admin") {
-     Swal.fire({
-      title: "Estás agregando un inmueble",
-      text: "¿Deseas agregar este inmueble?",
-      icon: "warning",
+  const token = localStorage.getItem("tokenAdmin");
+  
+  // Alert de confirmación inicial
+  Swal.fire({
+    title: "Agregar inmueble",
+    text: "¿Confirmas que deseas registrar este inmueble?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Sí, registrar",
+    cancelButtonText: "Volver para modificar",
+    background: "#f0f0f0",
+    reverseButtons: true,
+    customClass: {
+      popup: "custom-popup",
+      title: "custom-title",
+      content: "custom-content",
+      confirmButton: "custom-confirm-button",
+      cancelButton: "custom-cancel-button"
+    },
+    showLoaderOnConfirm: true,
+    preConfirm: async () => {
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "x-token": token
+            }
+          }
+        );
+        
+        return response.data;
+      } catch (error) {
+        Swal.showValidationMessage(
+          `Error: ${error.response?.data?.error || error.message}`
+        );
+        return false;
+      }
+    },
+    allowOutsideClick: () => !Swal.isLoading()
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Respuesta exitosa
+      setLoading(false);
+      setResponse(true);
+      setForm(initialForm);
+      
+      Swal.fire({
+        title: "¡Registro exitoso!",
+        html: `
+          <div style="text-align: center;">
+            <p>El inmueble <strong>${result.value.propertyRef}</strong> fue creado correctamente.</p>
+            <p>Tipo: ${result.value.createdBy === 'admin' ? 'Administrador' : 'Usuario'}</p>
+            ${result.value.qrCodeGenerated ? '<p>Código QR generado</p>' : ''}
+          </div>
+        `,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup-success",
+          title: "custom-title-success",
+          htmlContainer: "custom-html-container"
+        },
+        willClose: () => {
+          // Redirigir o realizar acciones adicionales
+          // window.location.href = '/propiedades';
+        }
+      });
+    } else if (result.isDismissed) {
+      // Usuario canceló la operación
+      Swal.fire({
+        title: "Operación cancelada",
+        text: "El inmueble no fue registrado",
+        icon: "info",
+        confirmButtonText: "Entendido",
+        background: "#f0f0f0"
+      });
+    }
+  }).catch((error) => {
+    // Manejo de errores
+    setLoading(false);
+    
+    let errorMessage = "Ocurrió un error al procesar la solicitud";
+    if (error.response) {
+      errorMessage = error.response.data.error || 
+                    error.response.data.message || 
+                    `Error ${error.response.status}: ${error.response.statusText}`;
+    } else if (error.request) {
+      errorMessage = "No se recibió respuesta del servidor";
+    }
+
+    Swal.fire({
+      title: "Error",
+      html: `
+        <div style="text-align: center; color: #721c24;">
+          <p>${errorMessage}</p>
+          <small>Por favor intente nuevamente</small>
+        </div>
+      `,
+      icon: "error",
+      confirmButtonText: "Reintentar",
+      cancelButtonText: "Cancelar",
       showCancelButton: true,
-      confirmButtonText: "Confirmar",
-      cancelButtonText: "Volver",
       background: "#f0f0f0",
       customClass: {
-        popup: "custom-popup",
-        title: "custom-title",
-        content: "custom-content",
-        confirmButton: "custom-confirm-button",
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        try {
-          const response = axios.post(
-            import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
-            formData,
-            {
-              headers: {
-                "Content-type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          );
-
-          console.log(response);
-          setLoading(false);
-          setResponse(true);
-          setForm(initialForm);
-         
-
-          Swal.fire({
-            title: "¡Éxito!",
-            text: "Inmueble agregado correctamente.",
-            icon: "success",
-            showCancelButton: false,
-            confirmButtonText: "Volver",
-            background: "#f0f0f0",
-            customClass: {
-              popup: "custom-popup",
-              title: "custom-title",
-              content: "custom-content",
-              confirmButton: "custom-confirm-button",
-            },
-          });
-          // Manejar acciones adicionales si es necesario
-        } catch (error) {
-  console.error("Error al enviar el inmueble:", error);
-  setLoading(false);
-  Swal.fire({
-    title: "Error",
-    text: error.response?.data?.error || "Ocurrió un error al enviar el formulario",
-    icon: "error"
+        popup: "custom-popup-error",
+        title: "custom-title-error",
+        htmlContainer: "custom-html-container-error"
+      }
+    }).then((retryResult) => {
+      if (retryResult.isConfirmed) {
+        handleSubmitProperty(event, "admin");
+      }
+    });
   });
 }
-      } else return;
-    });
-  }
   };
 
   const deleteProperty = async (id) => {
@@ -641,6 +703,7 @@ export const useForm = (initialForm, validateForm) => {
     e.preventDefault();
     dispatch(startLogin(form.email, form.password));
     loadingActive();
+    navigate("/client/dashboard");
   };
 
   const handleSubmitAddCart = async (e) => {
@@ -789,7 +852,7 @@ export const useForm = (initialForm, validateForm) => {
     };
     if (!finalForm.fullname) return;
     if (!finalForm.email) return;
-    if (!finalForm.password) return;
+    if (!finalForm.pass) return;
     if (!finalForm.codeAccess) return;
 
     e.preventDefault();
@@ -902,7 +965,6 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleLoginAdmin = (e) => {
-    debugger;
     if (!form.email) return;
     if (!form.password) return;
 
@@ -912,6 +974,18 @@ export const useForm = (initialForm, validateForm) => {
     // console.log(form)
     loadingActive();
     navigate("/admin/dashboard");
+  };
+
+  const handleLoginAdvisor = (e) => {
+    if (!form.email) return;
+    if (!form.password) return;
+
+    e.preventDefault();
+    dispatch(startLoginAdvisor(form.email, form.password));
+
+    // console.log(form)
+    loadingActive();
+    navigate("/advisor/dashboard");
   };
 
   const handleSubmitsAdvisor = async (e) => {
@@ -1003,7 +1077,7 @@ export const useForm = (initialForm, validateForm) => {
     setLoading(true);
     try {
       helpHttp();
-      console.log("API URL:", import.meta.env.VITE_APP_API_REGISTER_URL);
+      console.log("API URL:", import.meta.env.VITE_APP_API_REQUEST_RECOVERY_CODE);
       const response = await axios.post(
         import.meta.env.VITE_APP_API_REGISTER_URL,
         finalForm,
@@ -1090,6 +1164,197 @@ export const useForm = (initialForm, validateForm) => {
     setModal(true);
   };
 
+   const handleChangePassword = async (e) => {
+  e.preventDefault();
+
+  if (!form.password || !form.rePassword) return;
+
+  const finalForm = {
+    email: form.email,
+    password: form.password,
+  };
+
+  debugger;
+
+  setErrors(validateForm);
+  setLoading(true);
+
+  try {
+    const response = await axios.post(
+      import.meta.env.VITE_APP_API_RESET_PASSWORD,
+      finalForm,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+
+    console.log(response.data);
+    setResponse(true);
+    setForm(initialForm);
+    setLoading(false);
+
+    Swal.fire({
+      title: "¡Hecho!",
+      html: `Contraseña cambiada correctamente`,
+      icon: "success",
+      background: "#f0f0f0",
+      customClass: {
+        popup: "custom-popup",
+        title: "custom-title",
+        content: "custom-content",
+        confirmButton: "custom-confirm-button",
+        cancelButton: "custom-cancel-button",
+      },
+    }).then(() => {
+      navigate("/advisor/auth/login"); // ✅ Redirige después del éxito
+    });
+  } catch (error) {
+    console.error(error);
+    Swal.fire({
+      title: "¡Error!",
+      html: `Error al cambiar la contraseña`,
+      icon: "warning",
+      background: "#f0f0f0",
+      customClass: {
+        popup: "custom-popup",
+        title: "custom-title",
+        content: "custom-content",
+        confirmButton: "custom-confirm-button",
+        cancelButton: "custom-cancel-button",
+      },
+    });
+  } finally {
+    setLoading(false);
+    setModal(true);
+  }
+};
+
+const handleRequestCode = async (e) => {
+  e.preventDefault();
+
+  const finalForm = { ...form };
+  if (!finalForm.email) return false;
+
+  setErrors(validateForm);
+  setLoading(true);
+
+  try {
+    const response = await axios.post(
+      import.meta.env.VITE_APP_API_REQUEST_RECOVERY_CODE,
+      { email: finalForm.email }, // solo necesitas enviar el email
+      {
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+
+    console.log(response);
+    setLoading(false);
+    setResponse(true);
+
+    setTimeout(() => {
+      setResponse(false);
+      Swal.fire({
+        title: "¡Hecho!",
+        html: `Código enviado a: <b>${finalForm.email}</b>`,
+        icon: "success",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+      });
+    }, 200);
+
+    return true; // ✅ Éxito
+  } catch (error) {
+    console.error("Error al solicitar el código:", error);
+    setLoading(false);
+    return false; // ❌ Fallo
+  }
+};
+
+const handleVerifyCode = async (e, { email, code }) => {
+  if (e?.preventDefault) e.preventDefault();
+
+  setErrors("");
+  setMessage("");
+
+  if (!/^\d{6}$/.test(code)) {
+    setErrors("El código debe tener 6 dígitos numéricos.");
+    return;
+  }
+
+  try {
+    const res = await fetch(import.meta.env.VITE_APP_API_VERIFY_CODE, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, code }),
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      Swal.fire({
+        title: "¡Error!",
+        html: result?.error || "Código inválido o expirado.",
+        icon: "warning",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: "¡Hecho!",
+      html: "¡Código correcto!",
+      icon: "success",
+      background: "#f0f0f0",
+      customClass: {
+        popup: "custom-popup",
+        title: "custom-title",
+        content: "custom-content",
+        confirmButton: "custom-confirm-button",
+        cancelButton: "custom-cancel-button",
+      },
+    });
+
+    setMessage("Código verificado.");
+    return true;
+  } catch (err) {
+    console.error(err);
+    Swal.fire({
+      title: "¡Error!",
+      html: "Código inválido o expirado.",
+      icon: "warning",
+      background: "#f0f0f0",
+      customClass: {
+        popup: "custom-popup",
+        title: "custom-title",
+        content: "custom-content",
+        confirmButton: "custom-confirm-button",
+        cancelButton: "custom-cancel-button",
+      },
+    });
+    return false;
+  }
+};
+
+
   return {
     form,
     errorsCart,
@@ -1110,6 +1375,7 @@ export const useForm = (initialForm, validateForm) => {
     handleSubmitsAdmin,
     handleSubmitClient,
     handleSubmitsAdvisor,
+    handleLoginAdvisor,
     handleSubmitAddCart,
     handleImagesChange,
     handleImageChange,
@@ -1126,6 +1392,9 @@ export const useForm = (initialForm, validateForm) => {
     handleSubmits,
     handleLogin,
     handleSubscribeNewsletter,
+    handleChangePassword,
+    handleRequestCode,
+    handleVerifyCode,
     handleClearCountry,
     openModal,
     handleStateChange,

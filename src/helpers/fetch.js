@@ -20,7 +20,7 @@ const baseUrl = import.meta.env.VITE_APP_API_URL;
 
  export const fetchWithToken = ( endpoint, data, method = "GET" ) => {
     const url = `${ baseUrl }/${ endpoint }`
-    const token = localStorage.getItem('token') || '';
+    const token = localStorage.getItem('tokenUser') || '';
 
     if (method === "GET") {
         return fetch( url,  {
@@ -63,7 +63,7 @@ export const fetchWithoutTokenAdmin = ( endpoint, data, method = "GET" ) => {
 
 export const fetchWithTokenAdmin = ( endpoint, data, method = "GET" ) => {
     const url = `${ baseUrl }/${ endpoint }`
-    const token = localStorage.getItem('token') || '';
+    const token = localStorage.getItem('tokenAdmin') || '';
     if (method === "GET") {
         return fetch( url,  {
             method,
@@ -105,7 +105,7 @@ export const fetchWithoutTokenAdvisor = ( endpoint, data, method = "GET" ) => {
 
 export const fetchWithTokenAdvisor = ( endpoint, data, method = "GET" ) => {
     const url = `${ baseUrl }/${ endpoint }`
-    const token = localStorage.getItem('token') || '';
+    const token = localStorage.getItem('tokenAdvisor') || '';
     if (method === "GET") {
         return fetch( url,  {
             method,

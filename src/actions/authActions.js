@@ -10,7 +10,7 @@ import { types } from "../types/types";
 export const startLogin = (email, password) => {
   return async (dispatch) => {
     const res = await fetchWithoutToken(
-      "users/auth/renew",
+      "users/auth/login",
       { email, password },
       "POST"
     );
@@ -19,7 +19,7 @@ export const startLogin = (email, password) => {
     if (body.ok) {
       localStorage.setItem("id", body.user.id);
       localStorage.setItem("role", body.user.role);
-      localStorage.setItem("token", body.user.token);
+      localStorage.setItem("tokenUser", body.user.token);
       localStorage.setItem("token-init-date", new Date().getTime());
       dispatch(
         loginSuccess({
@@ -112,7 +112,7 @@ export const startChecking = () => {
       
       localStorage.setItem("id", body.id);
       localStorage.setItem("role", body.role);
-      localStorage.setItem("token", body.token);
+      localStorage.setItem("tokenUser", body.token);
       localStorage.setItem("token-init-date", new Date().getTime());
 
       dispatch(
@@ -144,7 +144,7 @@ export const startLoginAdmin = (email, pass, ) => {
     if (body.ok) {
       console.log(body)
       localStorage.setItem("role", body.admin.role);
-      localStorage.setItem("token", body.admin.token);
+      localStorage.setItem("tokenAdmin", body.admin.token);
       localStorage.setItem("token-init-date", new Date().getTime());
         dispatch(
           loginAdminSuccess({
@@ -235,7 +235,7 @@ export const startLoginAdmin = (email, pass, ) => {
         if (body.ok) {
           
           localStorage.setItem("role", body.role);
-          localStorage.setItem("token", body.token);
+          localStorage.setItem("tokenAdmin", body.token);
           localStorage.setItem("token-init-date", new Date().getTime());
          
           dispatch(
@@ -255,8 +255,8 @@ export const startLoginAdmin = (email, pass, ) => {
 
 export const startLoginAdvisor = (email, password, ) => {
   return async (dispatch) => {
-    const res = await fetchWithoutTokenAdmin(
-      "advisor/auth/login",
+    const res = await fetchWithoutTokenAdvisor(
+      import.meta.env.VITE_APP_API_ADVISORS_URL,
       { email, password },
       "POST"
     );
@@ -264,11 +264,17 @@ export const startLoginAdvisor = (email, password, ) => {
     if (body.ok) {
       console.log(body)
       localStorage.setItem("role", body.advisor.role);
-      localStorage.setItem("token", body.advisor.token);
+      localStorage.setItem("tokenAdvisor", body.advisor.token);
       localStorage.setItem("token-init-date", new Date().getTime());
         dispatch(
           loginAdvisorSuccess({
-            fullname: body.advisor.fullname,
+            name: body.advisor.name,
+            lastname: body.advisor.lastname,
+            email: body.advisor.email,
+            address: body.advisor.address,
+            phone: body.advisor.phone,
+            dnaId: body.advisor.dnaId,
+            city: body.advisor.city,
           })
           );
           let timerInterval;
@@ -336,7 +342,7 @@ export const startLoginAdvisor = (email, password, ) => {
     };
     
     export const loginAdvisorSuccess = (advisor) => ({
-      type: types.authAdminLogin,
+      type: types.advisorLogin,
       payload: { advisor },
     });
 
@@ -355,12 +361,18 @@ export const startLoginAdvisor = (email, password, ) => {
         if (body.ok) {
           
           localStorage.setItem("role", body.role);
-          localStorage.setItem("token", body.token);
+          localStorage.setItem("tokenAdvisor", body.token);
           localStorage.setItem("token-init-date", new Date().getTime());
          
           dispatch(
             loginAdvisorSuccess({
-              fullname: body.fullname,
+              name: body.name,
+              lastname: body.lastname,
+              email: body.email,
+              address: body.address,
+              phone: body.phone,
+              dnaId: body.dnaId,
+              city: body.city,
             })
           );
         } else {

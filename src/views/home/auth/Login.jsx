@@ -57,7 +57,7 @@ export const Login = () => {
 
   return (
     <section className="auth">
-    <form className="form">
+    <form className="form" onSubmit={handleLogin}>
       <div>
         <BaseInput
         classs={"inputs normal"}
