@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useState } from "react";
 import { CardLeases, Loader, Pagination } from "../../../../index";
 import { leases, propertyTypes } from "../../../../apiEmulated";
-import { values } from "../../../sectors/dataSectors";
 import { HeaderForm } from "../../../components/HeaderForm";
 
 

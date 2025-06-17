@@ -13,6 +13,7 @@ import {
 } from "../actions/authActions";
 import { fetchWithoutToken } from "../helpers/fetch";
 import departamentos from "../colombia/colombia.json";
+import ciudades from "../sectors/dataSectors.json";
 import Swal from "sweetalert2";
 
 export const initialForm = {
@@ -80,6 +81,7 @@ export const useForm = (initialForm, validateForm) => {
   const [filteredCities, setFilteredCities] = useState([]);
   const [selected, setSelected] = useState(null);
   const [cities, setCities] = useState([]);
+  const [sector, setSector] = useState([]);
   const [city, setCity] = useState([]);
   const [checked, setChecked] = useState(false);
   const [hasManager, setHasManager] = useState(false);
@@ -139,6 +141,7 @@ export const useForm = (initialForm, validateForm) => {
       setForm({
         ...form,
         [name]: value,
+          ...(name === "city" ? { district: "" } : {}),
       });
 
     if (value === "email") {
@@ -161,6 +164,24 @@ export const useForm = (initialForm, validateForm) => {
       setCities(selectedDepartment.ciudades);
     } else {
       setCities([]);
+    }
+
+    setForm(prev => ({ 
+      ...prev, 
+      state: value,
+      city: '' // Limpiar la ciudad cuando cambia el departamento
+    }));
+  
+  };
+  
+  const handleCityChange = (e) => {
+    const { value } = e.target;
+    const selectedCity = ciudades.find(cit => cit.ciudad === value);
+    
+    if (selectedCity) {
+      setSector(selectedCity.barrios);
+    } else {
+      setSector([]);
     }
 
     setForm(prev => ({ 
@@ -1369,10 +1390,12 @@ const handleVerifyCode = async (e, { email, code }) => {
     hasManager, 
     setHasManager,
     setCities,
+    setSector,
     setForm,
     setLoading,
     handleLoginAdmin,
     handleSubmitsAdmin,
+    handleCityChange,
     handleSubmitClient,
     handleSubmitsAdvisor,
     handleLoginAdvisor,

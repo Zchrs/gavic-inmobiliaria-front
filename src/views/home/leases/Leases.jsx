@@ -7,7 +7,6 @@ import {
   Pagination,
 } from "../../../../index";
 import styled from "styled-components";
-import { leases} from "../../../../apiEmulated";
 import { HeaderForm } from "../../../components/HeaderForm";
 import { fetchPropertiesByFilter, fetchRentProperties, selectedProperty } from "../../../actions/propertyActions";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,4 +1,4 @@
-export const values = [
+export const medellin = [
 {
     value: "Popular Nº 1",
     label: "Popular Nº 1"
@@ -1049,4 +1049,84 @@ export const values = [
     value: "El Nogal – Los Almendros",
     label: "El Nogal – Los Almendros"
 },
+]
+
+export const bello = [
+    {value: "Centro",
+    label: "Centro",},
+
+    {value: "La 44",
+    label: "La 44"},
+
+    {value: "Hospital Mental",
+    label: "Hospital Mental",},
+
+    {value: "Manchester",
+    label: "Manchester",},
+
+    {value: "Niquía",
+    label: "Niquía",},
+
+   { value: "Buenos Aires",
+    label: "Buenos Aires",},
+
+    {value: "Hermosa Provincia", 
+    label: "Hermosa Provincia",}, 
+
+    {value: "López de Mesa",
+    label: "López de Mesa",},
+
+    {value: "Pérez",
+    label: "Pérez"},
+
+    {value: "Granjas",
+    label: "Granjas"},
+
+    {value: "Andalucía",
+    label: "Andalucía"},
+
+   { value: "Trapiche",
+    label: "Trapiche"},
+
+    {value: "Pachelly",
+    label: "Pachelly"},
+
+    {value: "Santander",
+    label: "Santander"},
+
+    {value: "París",
+    label: "París"},
+
+    {value: "Camacol",
+    label: "Camacol"},
+
+    {value: "El Mesa",
+    label: "El Mesa"},
+
+    {value: "Los Chatas",
+    label: "Los Chatas"},
+
+    {value: "Paccelli",
+    label: "Paccelli"},
+
+    {value: "Cabañas",
+    label: "Cabañas"},
+
+    {value: "Madera",
+    label: "Madera"},
+
+    {value: "Camacol sur",
+    label: "Camacol sur"},
+
+    {value: "Turbaco",
+    label: "Turbaco"},
+
+    {value: "Bello Patio",
+    label: "Bello Patio"},
+
+    {value: "San Mateo",
+    label: "San Mateo"},
+
+    {value: "El Triana",
+    label: "El Triana"},
 ]

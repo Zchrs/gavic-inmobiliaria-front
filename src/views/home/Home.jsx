@@ -5,8 +5,10 @@ import styled from "styled-components";
 import { getImg } from "../../../globalActions";
 import { useRef, useState } from "react";
 import { RecentAdded, BaseInput, BaseButton } from "../../../index";
-import { values } from "../../sectors/dataSectors";
+import { medellin } from "../../sectors/dataSectors";
 import { ShowResultSearch } from "../../components/ShowResultSearch";
+
+
 
 export const Home = () => {
   const [selectedSector, setSelectedSector] = useState("");
@@ -155,7 +157,7 @@ const handleSearch = () => {
               classs={"inputs normal"}
               height={"40px"}
               placeholder="Sector"
-              options={values}
+              options={medellin}
               name="budget"
               value={selectedSector}
               onChange={handleSector}

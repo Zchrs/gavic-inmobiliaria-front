@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { DropZone } from "../../../components/DropZone";
 import { getImg } from "../../../../globalActions";
 import { Link } from "react-router-dom";
-import { values } from "../../../sectors/dataSectors";
+import { medellin } from "../../../sectors/dataSectors";
 import { initialForm, useForm } from "../../../hooks/useForm";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useValidations } from "../../../hooks/useValidations";
@@ -435,7 +435,7 @@ const MultiStepForm = () => {
                     inputRef={formRefs.district}
                     classs={"inputs normal"}
                     placeholder={"Sector"}
-                    options={values}
+                    options={medellin}
                     value={form.district}
                     onChange={handleChange}
                     onBlur={handleBlur}

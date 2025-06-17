@@ -6,7 +6,7 @@ import { BaseInput, MultiDropZone, BaseButton } from "../../../../index";
 import { useEffect, useState } from "react";
 import { initialForm, useForm } from "../../../hooks/useForm";
 import { DropZone } from "../../../components/DropZone";
-import { values } from "../../../sectors/dataSectors";
+import barrios from "../../../sectors/dataSectors.json";
 import departamentos from "../../../colombia/colombia.json";
 import { useValidations } from "../../../hooks/useValidations";
 
@@ -15,14 +15,16 @@ import { useValidations } from "../../../hooks/useValidations";
 export const CreateProperty = () => {
   const [isFormComplete, setIsFormComplete] = useState(null);
   const { formRefs, validateForm } = useValidations();
+  const [districtOptions, setDistrictOptions] = useState([]);
 
+  
   const cities = departamentos.find(
     (dep) => dep.departamento === "Antioquia"
   )?.ciudades || [];
 
   const initialForm = {
     name: "",
-    city: "Medellín",
+    city: "",
     price: "1000000",
     area: "60",
     district: "",
@@ -53,6 +55,7 @@ export const CreateProperty = () => {
     handleImageChange,
     handleImagesChange,
     handleSetImages,
+    handleCityChange,
     handleSetImage,
   } = useForm(initialForm, validateForm);
 
@@ -64,6 +67,17 @@ export const CreateProperty = () => {
     // console.log("Formulario vacío:", form);
     setIsFormComplete(isFormFilled);
   };
+useEffect(() => {
+  const ciudadSeleccionada = barrios.find(item => item.ciudad === form.city);
+  const barriosPorCiudad = ciudadSeleccionada?.barrios || [];
+
+  const formatted = barriosPorCiudad.map(barrio => ({
+    value: barrio,
+    label: barrio,
+  }));
+
+  setDistrictOptions(formatted);
+}, [form.city]);
 
   return (
     <Create>
@@ -131,7 +145,7 @@ export const CreateProperty = () => {
              inputRef={formRefs.district}
                 classs={"inputs normal"}
                 placeholder={"Sector"}
-                options={values}
+                  options={districtOptions}
                 value={form.district}
                 onChange={ handleChange}
                 onBlur={ handleBlur}

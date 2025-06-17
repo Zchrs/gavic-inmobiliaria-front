@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { BaseInput, BaseButton } from "../../index";
-import { values } from "../sectors/dataSectors";
+import { medellin } from "../sectors/dataSectors";
 import { propertyTypes } from "../../apiEmulated";
 import styled from "styled-components";
 import { useState } from "react";
@@ -87,7 +87,7 @@ export const HeaderForm = ({
               classs={"inputs normal"}
               placeholder="Sector"
               isSelect
-              options={values}
+              options={medellin}
               id="sector"
               name="sector"
               value={filters.sector}
