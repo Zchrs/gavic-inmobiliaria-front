@@ -84,6 +84,7 @@ form{
       width: 100%;
     }
 
+
     &-group{
       display: flex;
       gap: 10px;
@@ -96,6 +97,12 @@ form{
     }
   }
 
+}
+.auth{
+  display: grid;
+    &-tyc{
+      color: var(--text-tertiary);
+    }
 }
 .active{
   background: var(--bg-secondary);

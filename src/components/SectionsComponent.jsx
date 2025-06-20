@@ -438,6 +438,9 @@ const ComponentSections = styled.section`
           font-size: 15px;
         }
       }
+      @media (max-width: 860px) {
+        grid-template-columns: 1fr;
+    }
     }
 
     &-services {

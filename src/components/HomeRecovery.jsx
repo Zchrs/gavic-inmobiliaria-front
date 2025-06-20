@@ -1,11 +1,13 @@
 import styled from "styled-components"
 import { RecoveryPasswordRouter } from "../router/AppRouter"
 import { getImg } from "../../globalActions"
+import { Link } from "react-router-dom"
 
 
 export const HomeRecovery = () => {
   return (
     <RecoveryHome>
+      <Link>Volver a login</Link>
         <div className="recovery">
             <div className="recovery-logo">
                 <img src={getImg('svg', 'logo', 'svg')} alt="logo" />
@@ -25,6 +27,9 @@ max-width: 1920px;
 place-items: center;
 background: var(--bg-primary);
 margin: auto;
+    @media (max-width: 860px) {
+      padding: 0 12px;
+    }
 .recovery{
     display: grid;
     border-radius: 10px;
@@ -35,7 +40,8 @@ margin: auto;
     gap: 25px;
     padding: 70px 100px;
     @media (max-width: 480px) {
-        padding: 30px 10px;
+      width: 100%;
+      padding: 30px 10px;
     }
 
     &-logo{

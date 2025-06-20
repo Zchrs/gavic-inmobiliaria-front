@@ -288,10 +288,10 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
                       ×
                     </button>
                   </div>
-                  <div className="file-info">
+                  {/* <div className="file-info">
                     <span className="file-name">{file.name}</span>
                     <span className="file-size">{(file.size / 1024 / 1024).toFixed(2)} MB</span>
-                  </div>
+                  </div> */}
                 </div>
               ))}
             </div>
@@ -451,7 +451,7 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 200px;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -488,7 +488,7 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
 
 .preview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
   gap: 15px;
   width: 100%;
 }
@@ -543,6 +543,7 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 10px;
 }
 
 .file-size {

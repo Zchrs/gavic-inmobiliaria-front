@@ -557,7 +557,9 @@ export const useForm = (initialForm, validateForm) => {
         text: "El inmueble no fue registrado",
         icon: "info",
         confirmButtonText: "Entendido",
-        background: "#f0f0f0"
+        customClass:{
+          confirmButton: "custom-confirm-button",
+        }
       });
     }
   }).catch((error) => {
@@ -723,7 +725,6 @@ export const useForm = (initialForm, validateForm) => {
     if (!form.password) return;
     e.preventDefault();
     dispatch(startLogin(form.email, form.password));
-    loadingActive();
     navigate("/client/dashboard");
   };
 

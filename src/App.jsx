@@ -119,7 +119,7 @@ function App() {
               <Route exact path="login" element={<Login />} />
               <Route exact path="register" element={<Register />} />
             </Route>
-                        <Route
+            <Route
               path="/client/dashboard/*"
               element={
                <PrivateRoute>
@@ -127,14 +127,10 @@ function App() {
                </PrivateRoute> 
               }>
               
-              <Route exact path="sales" element={<DetailSales />} />
+              <Route exact path="documents" element={<DetailSales />} />
               <Route exact path="profile" element={<DetailSales />} />
-              <Route exact path="finances" element={<Finances />} />
-              <Route exact path="reports" element={<Reports />} />
               <Route exact path="statics" element={<Statics />} />
               <Route exact path="properties" element={<Properties />} />
-              <Route exact path="clients" element={<Clients />} />
-              
               <Route exact path="settings" element={<Settings/>} />
             </Route>
 

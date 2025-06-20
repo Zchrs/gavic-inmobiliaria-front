@@ -20,7 +20,7 @@ const { formRefs, validateForm } = useValidations();
 
   return (
         <AdminRegister>
-          <div className="auth">
+          <div className="authadmin">
             <form className="form">
               <BaseInput
                 classs={"inputs normal"}
@@ -82,7 +82,7 @@ const { formRefs, validateForm } = useValidations();
               label="Registrarme"
             />
             </form>
-            <div className="auth-tyc">
+            <div className="authadmin-tyc">
               <p>Al registrarte indicas que estás aceptando nuestros
                 términos y condiciones y política de tratamiento de datos.
               </p>
@@ -94,8 +94,14 @@ const { formRefs, validateForm } = useValidations();
 
 
 const AdminRegister = styled.div`
-.auth{
+.authadmin{
   animation: smooth .5s ease;
+  
+    &-tyc{
+      padding-top: 20px;
+      text-align  : center;
+      color: var(--text-tertiary);
+    }
 }
   @keyframes smooth {
     0% {

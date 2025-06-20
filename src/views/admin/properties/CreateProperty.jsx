@@ -84,6 +84,7 @@ useEffect(() => {
       <div className="create" id="create-property">
         <form className="form">
           <div className="grid">
+          <h2>Información del inmueble</h2>
             <BaseInput
            required
            inputRef={formRefs.name}
@@ -502,6 +503,7 @@ const Create = styled.div`
     background: var(--trans-secondary);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-items: start;
     padding: 20px;
     width: 70%;
     

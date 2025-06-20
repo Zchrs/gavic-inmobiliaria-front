@@ -220,6 +220,10 @@ height: 100%;
     height: 100%;
     border: none;
     gap: 15px;
+
+    @media (max-width: 860px) {
+      display: grid;
+    }
   }
   
   &-container{
@@ -275,7 +279,9 @@ height: 100%;
         border-radius: 0 0 0 0;
       }
       &:last-child{
-        border-radius: 0 0 15px 0;
+        border-radius: 0 0 15px 15px;
+            @media (max-width: 860px) {
+    }
       }
       
       &-card{

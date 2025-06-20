@@ -39,6 +39,7 @@ const AuthLayOut = styled.section`
 display: grid;
 width: 100%;
 height: fit-content;
+align-items: start;
 .backhome{
   width: fit-content;
   height: fit-content;
@@ -82,7 +83,7 @@ height: fit-content;
       clip-path: polygon(0 0, 100% 0, 73% 100%, 0% 100%);
     }
     @media (max-width: 1024px) {
-      
+      align-items: start;
       display: grid;
       padding: 20px;
       gap: 50px;
@@ -98,10 +99,10 @@ height: fit-content;
         display: none;
       }
     }
-    @media (max-width: 399px) {
+    @media (max-width: 480px) {
       display: grid;
       padding: 20px;
-      gap: 50px;
+      gap: 0px;
       &::before{
           content: '';
         position: absolute;
@@ -124,6 +125,7 @@ height: fit-content;
         z-index: 50;
         img{
             width: 70%;
+            filter: invert(11%) sepia(38%) saturate(500%) hue-rotate(180deg) brightness(92%) contrast(98%);
         }
         @media (max-width: 1024px) {
           margin-top: -100px;
@@ -136,18 +138,29 @@ height: fit-content;
             filter: invert(100%) brightness(500%);
           }
         }
+
+        @media (max-width: 480px) {
+            font-size: 10px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 399px) {
+            font-size: 10px;
+            margin-top: 30px;
+        }
         
     }
     
     &-container{
         position: relative;
-        align-items: center;
+        align-items: start;
         display: grid;
         width: 80%;
         height: fit-content;
         border-radius: 5px;
         overflow: hidden;
         padding: 10px 0 25px 0;
+        
         &::before{
             content: '';
             position: absolute;
@@ -162,29 +175,26 @@ height: fit-content;
         }
         
         @media (max-width: 1024px) {
-          align-items: start;
-          margin-top: -1400px; 
           padding: 25px 12px;
-          width: 138%;
+          width: 100%;
           height: fit-content;
           }
           
-          @media (max-width: 480px) {
-            
+          @media (max-width: 480px) { 
+            padding: 15px 12px;
+        }
+          @media (max-width: 380px) {
             width: 100%;
-            margin-top: -350px; 
-            padding: 25px 12px;
-            
+            padding: 15px 12px;
         }
 
         &-group{
           width: 80%;
           height: fit-content;
-            align-self: baseline;
+            align-items: start;
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            align-self: baseline;
             z-index: 20;
             gap: 40px;
     
@@ -194,25 +204,29 @@ height: fit-content;
                 color: var(--text-dark);
                 cursor: pointer;
 
-                @media (max-width: 399px) {
-                    font-size: 16px;
-                    margin: 0;
-                }
-              }
-
-              @media (max-width: 480px) {
-                  width: 100%;
-                  font-size: 16px;
-                  margin: 0;
-              }
               @media (max-width: 1024px) {
                   width: 100%;
                   font-size: 16px;
                   margin: 0;
               }
+
+              @media (max-width: 480px) {
+                  font-size: 14px;
+                  margin: 0;
+              }
               
-        }
+              @media (max-width: 399px) {
+                    font-size: 11px;
+                    gap: 10px;
+                    margin:0;
+                    padding: 0;
+                }
+              }
+              
+            }
+
     }
+
     &-footer{
         display: grid;
         width: 100%;
@@ -223,6 +237,7 @@ height: fit-content;
         border-bottom: var(--bg-primary) 3px solid;
         a{
             color: #EC3337;
+            font-size: 12px;
         }
     }
 }
@@ -246,9 +261,9 @@ height: fit-content;
     }
     @media (max-width: 300px) {
         padding: 25px 0;
-        width: 70%;
+        width: 100%;
         margin: 0;
-      }
+    }
     
     
     .form{
@@ -269,6 +284,10 @@ height: fit-content;
 
         @media (max-width: 410px) {
             padding: 0 0;
+        }
+
+        @media (max-width: 380px) {
+          width: 100%;
         }
 
         
@@ -349,6 +368,10 @@ height: fit-content;
         padding: 5px;
         display: grid;
         width: 70%;
+        @media (max-width: 399px) {
+          font-size: 10px;
+          width: 100%;
+        }
     }
     &-input{
       align-items: start;

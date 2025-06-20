@@ -11,16 +11,6 @@ import { getImg } from "../../globalActions";
 
 export const AuthAdvisorLayout = () => {
 
-  // const dispatch = useDispatch();
-
-  // const lang = useSelector(state => state.langUI.lang);
-  // const { t, i18n } = useTranslation();
-
-  // useEffect(() => {
-  //   i18n.changeLanguage(lang);
-  //   dispatch(startChecking());
-  // }, [i18n, lang, dispatch]);
-
   return (
     <AdvisorLayOut>
         <img className="background" loading="lazy" src={getImg('jpg', 'asesores', 'webp')} alt="" />
@@ -88,6 +78,7 @@ height: fit-content;
       clip-path: polygon(0 0, 100% 0, 73% 100%, 0% 100%);
     }
     @media (max-width: 920px) {
+      align-items: start;
       display: grid;
       padding: 20px;
       gap: 50px;
@@ -103,10 +94,10 @@ height: fit-content;
         display: none;
       }
     }
-    @media (max-width: 399px) {
+    @media (max-width: 480px) {
       display: grid;
       padding: 20px;
-      gap: 50px;
+      gap: 0px;
       &::before{
           content: '';
         position: absolute;
@@ -132,13 +123,11 @@ height: fit-content;
             filter: invert(100%) brightness(500%);
         }
         @media (max-width: 780px) {
-          margin-top: -80px;
+          margin-top: 20px;
           width: fit-content;
           height: fit-content;
           img{
             width:80%;
-            
-            margin: auto;
             padding: 0;
           }
         }
@@ -147,7 +136,7 @@ height: fit-content;
     
     &-container{
         position: relative;
-        align-items: start;
+        align-items: center;
         display: grid;
         width: 70%;
         height: fit-content;
@@ -167,8 +156,15 @@ height: fit-content;
             
         }
 
+     @media (max-width: 1024px) {
+      align-items: start;
+      display: grid;
+      padding: 20px;
+      gap: 50px;
+    }
+
         @media (max-width: 480px) {
-          margin-top: -270px; 
+          margin-top: 10px; 
             padding: 25px 12px;
             width: 100%;
         }

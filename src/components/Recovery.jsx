@@ -186,6 +186,9 @@ const RecoverySection = styled.section`
   align-items: center;
   text-align: center;
   gap: 25px;
+  @media (max-width: 860px) {
+    
+  }
   .recoverysection {
     width: 100%;
     height: 100%;
@@ -193,6 +196,7 @@ const RecoverySection = styled.section`
     gap: 25px;
     color: var(--bg-tertiary);
     &-form {
+      width: 100%;
       display: grid;
       gap: 20px;
     }

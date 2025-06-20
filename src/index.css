@@ -50,3 +50,12 @@ a{
 
 }
 
+.custom-confirm-button{
+  background: var(--bg-primary);
+  border-radius: 7px;
+}
+.custom-cancel-button{
+  background: var(--bg-danger);
+  border-radius: 7px;
+}
+

@@ -14,6 +14,16 @@ export const startLogin = (email, password) => {
       { email, password },
       "POST"
     );
+
+  Swal.fire({
+    title: 'Iniciando sesión...',
+    text: 'Por favor espera',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
+  
     const body = await res.json();
 
     if (body.ok) {

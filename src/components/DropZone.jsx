@@ -487,7 +487,7 @@ export const DropZone = ({ name, type, id, setImage }) => {
 
 .preview-image {
   max-width: 100%;
-  max-height: 300px;
+  max-height: 150px;
   border-radius: 4px;
   display: block;
   margin: 0 auto;
