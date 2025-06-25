@@ -181,6 +181,7 @@ align-items: start;
           }
           
           @media (max-width: 480px) { 
+            margin-top: 20px;
             padding: 15px 12px;
         }
           @media (max-width: 380px) {
@@ -367,7 +368,7 @@ align-items: start;
         margin: auto;
         padding: 5px;
         display: grid;
-        width: 70%;
+        width: 80%;
         @media (max-width: 399px) {
           font-size: 10px;
           width: 100%;

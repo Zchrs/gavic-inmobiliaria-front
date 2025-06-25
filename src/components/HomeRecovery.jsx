@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 export const HomeRecovery = () => {
   return (
     <RecoveryHome>
-      <Link>Volver a login</Link>
+      <Link className="back" to={"/admin/auth/login"}>Volver a login</Link>
         <div className="recovery">
             <div className="recovery-logo">
                 <img src={getImg('svg', 'logo', 'svg')} alt="logo" />
@@ -54,5 +54,10 @@ margin: auto;
       filter: invert(1) brightness(500%);
     }
   }
+}
+.back{
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 `

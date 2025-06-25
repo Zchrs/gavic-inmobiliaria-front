@@ -18,7 +18,7 @@ export const AuthAdminLayout = () => {
 
   return (
     <AdminLayOut>
-        <Link to={"/"} className="adminlayout-container-group-a">Volver al inicio</Link>
+        <Link to={"/"} className="back">Volver al inicio</Link>
       <section className="adminlayout">
         <div className="adminlayout-container">
         <div className="adminlayout-logo">
@@ -51,7 +51,7 @@ form{
   display: grid;
   width: 100%;
   height: 100%;
-  min-height: 97vh;
+  min-height: 100vh;
   place-content: center;
   place-items: center;
   padding: 0 25px;
@@ -111,5 +111,12 @@ form{
   padding: 5px 15px;
   align-items: center;
   font-weight: 600;
+}
+.back{
+  position: absolute;
+  top: 10px;  
+  left: 10px;
+  
+  color: var(--text-tertiary);
 }
 `

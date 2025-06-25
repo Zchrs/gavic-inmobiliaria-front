@@ -62,8 +62,7 @@ height: fit-content;
     max-width: 1920px;
     height: 100%;
     min-height: 100vh;
-    align-items: center;
-    justify-content: space-between;
+    align-items: start;
     padding: 0 100px;
     gap: 100px;
     overflow: hidden;
@@ -136,7 +135,7 @@ height: fit-content;
     
     &-container{
         position: relative;
-        align-items: center;
+        align-items: start;
         display: grid;
         width: 70%;
         height: fit-content;
@@ -160,11 +159,10 @@ height: fit-content;
       align-items: start;
       display: grid;
       padding: 20px;
-      gap: 50px;
     }
 
         @media (max-width: 480px) {
-          margin-top: 10px; 
+          margin-top: 20px; 
             padding: 25px 12px;
             width: 100%;
         }
@@ -213,7 +211,6 @@ height: fit-content;
 .auth{
     animation: smooth .5s ease;
     position: relative;
-    margin: auto;
     gap: 25px;
     display: grid;
     width: 80%;
