@@ -119,6 +119,7 @@ export const UserDashboardLayout = () => {
     "/client/dashboard/statics": "Estadísticas",
     "/client/dashboard/properties": "Inmuebles",
     "/client/dashboard/settings": "Configuración",
+    "/client/dashboard/issues": "Reportar problemas",
   };
 
   const activeTitle = routeTitles[location.pathname];
@@ -164,13 +165,13 @@ const CliEnt = styled.section`
     border: 1px solid var(--bg-primary-semi);
     background: var(--trans-primary);
     overflow: hidden;
-
+    
     &-header {
       display: grid;
       position: relative;
       width: 15%;
       height: 100%;
-
+      
       @media (max-width: 860px) {
         position: fixed;
         top: 0px;
@@ -183,6 +184,7 @@ const CliEnt = styled.section`
     }
     &-content {
       display: grid;
+      align-items : start;
       width: 100%;
       height: 100%;
       padding: 25px;
@@ -194,6 +196,7 @@ const CliEnt = styled.section`
         width: 100%;
         height: fit-content;
         padding: 25px;
+        border: 1px solid var(--bg-primary-semi);
         background: var(--bg-tertiary);
         border-radius: 0 15px 0 0;
         h1 {

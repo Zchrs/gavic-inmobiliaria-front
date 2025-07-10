@@ -49,7 +49,8 @@ RegisterAdmin,
   Vision, 
   AdvisorDashboard,
   ClientDashboard,
-  SectionsComponent
+  SectionsComponent,
+  Issues
 } from "../../index";
 import { AdvisorLogin } from "../views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
@@ -62,6 +63,7 @@ import { startChecking, startCheckingAdmin, startCheckingAdvisor } from "../acti
 import { AuthHomeAdmin } from "../views/admin/auth/AuthHomeAdmin";
 import { RecoveryPasshordHome } from "../components/RecoveryPasshordHome";
 import { Recovery } from "../components/Recovery";
+import { UserProfile } from "../views/users/clients/profile/UserProfile";
 
 
 
@@ -155,10 +157,10 @@ export const AppRouter = () => {
       <>
       <Routes>
             <Route exact path="/*" element={<ClientDashboard />} />
-            <Route exact path="profile" element={<Reports />} />
-            <Route exact path="statics" element={<Statics />} />
+            <Route exact path="profile" element={<UserProfile />} />
             <Route exact path="properties" element={<Properties />} />
             <Route exact path="documents" element={<Clients />} />
+            <Route exact path="issues" element={<Issues/>} />
             <Route exact path="settings" element={<Settings/>} />
       </Routes>
       </>

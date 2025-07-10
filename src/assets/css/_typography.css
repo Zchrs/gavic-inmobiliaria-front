@@ -352,7 +352,14 @@
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 5.9rem;
-  /* color: var(--text-primary); */
+  color: var(--text-primary);
+  /* font-family: var(--font-secondary); */
+}
+.h2-semi-small {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 5.9rem;
+  color: var(--text-primary);
   /* font-family: var(--font-secondary); */
 }
 .h2-light {

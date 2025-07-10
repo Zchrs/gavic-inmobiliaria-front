@@ -327,7 +327,7 @@ const HoMe = styled.div`
           width: 41%;
           padding: 12px;
         }
-        @media (max-width: 480px) {
+        @media (max-width: 580px) {
           width: 100%;
           margin: auto;
           padding: 12px;
@@ -343,6 +343,9 @@ const HoMe = styled.div`
           display: grid;
           grid-template-columns: 75% 1fr;
           gap: 5px;
+          @media (max-width: 580px) {
+            grid-template-columns: 70% 1fr;
+          }
         }
       }
 

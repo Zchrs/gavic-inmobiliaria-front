@@ -52,6 +52,7 @@ import {
   AdvisorDashboardLayout,
   UserDashboardLayout,
   SectionsComponent,
+  Issues,
 } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -67,6 +68,7 @@ import { AuthAdminLayout } from "./layouts/AuthAdminLayout";
 import { PublicRoute, PublicRouteAdmin, PublicRouteAdvisor } from "./router/PublicRouter";
 import { HomeRecovery } from "./components/HomeRecovery";
 import { RecoveryPasshordHome } from "./components/RecoveryPasshordHome";
+import { UserProfile } from "./views/users/clients/profile/UserProfile";
 
 function App() {
   const isBlocked = (e) => {
@@ -128,9 +130,10 @@ function App() {
               }>
               
               <Route exact path="documents" element={<DetailSales />} />
-              <Route exact path="profile" element={<DetailSales />} />
+              <Route exact path="profile" element={<UserProfile />} />
               <Route exact path="statics" element={<Statics />} />
               <Route exact path="properties" element={<Properties />} />
+              <Route exact path="issues" element={<Issues/>} />
               <Route exact path="settings" element={<Settings/>} />
             </Route>
 

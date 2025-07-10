@@ -38,9 +38,9 @@ export const HeaderClient = () => {
                 <NavLink to="/client/dashboard">Panel</NavLink>
                 <NavLink to="documents">Documentos</NavLink>
                 <NavLink to="profile">Perfil</NavLink>
-                <NavLink to="statics">Estadísticas</NavLink>
                 <NavLink to="properties">Inmuebles</NavLink>
                 <NavLink to="settings">Configuración</NavLink>
+                <NavLink to="issues">Reportar problemas</NavLink>
                 <NavLink onClick={handleLogout}>Cerrar Sesión</NavLink>
             </div>
         </div>
