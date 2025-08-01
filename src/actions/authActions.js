@@ -36,6 +36,10 @@ export const startLogin = (email, password) => {
           id: body.user.id,
           name: body.user.name,
           lastname: body.user.lastname,
+          city: body.user.city,
+          phone: body.user.phone,
+          email: body.user.email,
+          address: body.user.address,
         })
       );
 
@@ -130,6 +134,10 @@ export const startChecking = () => {
           id: body.id,
           name: body.name,
           lastname: body.lastname,
+          city: body.city,
+          phone: body.phone,
+          email: body.email,
+          address: body.address,
           role: body.role,
         })
       );

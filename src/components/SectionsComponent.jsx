@@ -3,7 +3,9 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { AreaChart, GradientChart, SimpleChart } from "./MultiChart";
-import { BaseButton } from "./BaseButton";
+import { initialForm, useForm } from "../hooks/useForm";
+import { useValidations } from "../hooks/useValidations";
+import { BaseButton, BaseInput } from "../../index";
 import { CardUsers } from "./CardUsers";
 import { Pagination } from "react-bootstrap";
 import { clients } from "../../apiEmulated";
@@ -20,7 +22,7 @@ export const SectionsComponent = ({
   const user = useSelector((state) => state.auth.user);
   const advisor = useSelector((state) => state.authAdvisor.advisor);
   const admin = useSelector((state) => state.authAdmin.admin);
-
+  const { formRefs, validateFormListPropertyClient } = useValidations();
   const data = {
     series: {
       name: ["Enero", "Febrero", "Marzo"],
@@ -102,6 +104,11 @@ export const SectionsComponent = ({
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedData = clients.slice(startIndex, startIndex + itemsPerPage); // Corregido
 
+  const { form, handleChange, handleBlur } = useForm(
+    initialForm,
+    validateFormListPropertyClient
+  );
+
   return (
     <ComponentSections>
       {userAdvisor && (
@@ -141,6 +148,115 @@ export const SectionsComponent = ({
                 <strong>Teléfono</strong>
                 <hr />
                 <p>{advisor.phone}</p>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
+      {userClient && (
+        <div className={"sectionscomponent"}>
+          {user ? (
+            <div className={"sectionscomponent-general"}>
+              <div className="sectionscomponent-contain">
+                <div className="sectionscomponent-contain-info">
+                  <strong>Nombre</strong>
+                  <hr /> <p>{user.name}</p>
+                </div>
+                <div className="sectionscomponent-contain-info">
+                  <strong>Apellido</strong>
+                  <hr />
+                  <p>{user.lastname}</p>
+                </div>
+                <div className="sectionscomponent-contain-info">
+                  <strong>Email</strong>
+                  <hr />
+                  <p>{user.email}</p>
+                </div>
+                {/* <div className="sectionscomponent-contain-info">
+                  <strong>CC</strong>
+                  <hr />
+                  <p>{user.dnaId}</p>
+                </div> */}
+                <div className="sectionscomponent-contain-info">
+                  <strong>Dirección</strong>
+                  <hr />
+                  <p>{user.address}</p>
+                </div>
+                <div className="sectionscomponent-contain-info">
+                  <strong>Ciudad</strong>
+                  <hr />
+                  <p>{user.city}</p>
+                </div>
+                <div className="sectionscomponent-contain-info">
+                  <strong>Teléfono</strong>
+                  <hr />
+                  <p>{user.phone}</p>
+                </div>
+              </div>
+              <div className="sectionscomponent-general-errordata">
+                <h4>¿Algún error al registrar los datos?</h4>
+                <p>Llena el siguiente formulario con la información a corregir</p>
+                <form action="">
+                  <div>
+                    <BaseInput
+                      inputRef={formRefs.name}
+                      classs={"inputs normal"}
+                      placeholder="Nombre completo"
+                      name="name"
+                      id="name"
+                      value={form.name}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      required
+                    />
+                    {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+                  </div>
+                  <div>
+                    <BaseInput
+                      inputRef={formRefs.email}
+                      classs={"inputs normal"}
+                      placeholder="Correo electrónico"
+                      name="email"
+                      id="email"
+                      value={form.email}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      required
+                      isEmail
+                    />
+                    {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+                  </div>
+                  <div>
+                    <BaseInput
+                      inputRef={formRefs.message}
+                      classs={"inputs normal"}
+                      placeholder="Datos a corregir"
+                      name="message"
+                      id="message"
+                      value={form.message}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      required
+                      isTextarea
+                    />
+                    {/* {errors.name && <p className="warnings-form">{errors.name}</p>} */}
+                  </div>
+                 <BaseButton
+            // handleClick={handleNext}
+            classs={"button primary"}
+            colorbtnhoverprimary={"var(--bg-primary-semi)"}
+            filterprimary="brightness(0%) invert(0%)"
+            filterprimaryhover="brightness(0%) invert(0%)"
+            colorbtn={"var(--bg-primary)"}
+            width={"fit-content"}
+            colortextbtnprimary={"var(--text-tertiary)"}
+            colortextbtnhoverprimary={"var(--text-tertiary)"}
+            textLabel={true}
+            label={"Enviar"}
+          />
+                </form>
               </div>
             </div>
           ) : (
@@ -274,7 +390,7 @@ export const SectionsComponent = ({
         <div>
           {sales && (
             <div className="sectionscomponent">
-                            <div className="sectionscomponent-users">
+              <div className="sectionscomponent-users">
                 <div className="sectionscomponent-users-inside">
                   <div>
                     <h2>Reporte de propiedades</h2>
@@ -364,8 +480,6 @@ export const SectionsComponent = ({
                   </div>
                 </div>
               </div>
-
-
             </div>
           )}
         </div>
@@ -381,6 +495,7 @@ const ComponentSections = styled.section`
   width: 100%;
   height: 100%;
   .sectionscomponent {
+    align-items: start;
     display: grid;
     width: 100%;
     height: 100%;
@@ -392,6 +507,34 @@ const ComponentSections = styled.section`
       height: 100%;
       background: var(--bg-tertiary);
       padding: 25px;
+    }
+
+    &-general {
+      display: grid;
+      width: 100%;
+      gap: 15px;
+      &-errordata {
+        padding: 15px;
+        background: var(--bg-tertiary);
+        border-bottom: 2px solid var(--bg-primary-semi);
+        border-radius: 0 0 15px 0;
+        gap: 15px;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        @media (max-width: 860px) {
+          border-radius: 0 0 15px 15px;
+        }
+        h4 {
+          font-weight: 600;
+        }
+        form{
+          display: grid;
+          margin: auto;
+          width: 40%;
+          gap: 10px;
+        }
+      }
     }
 
     &-container {
@@ -440,7 +583,7 @@ const ComponentSections = styled.section`
       }
       @media (max-width: 860px) {
         grid-template-columns: 1fr;
-    }
+      }
     }
 
     &-services {

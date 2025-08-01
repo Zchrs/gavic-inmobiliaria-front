@@ -57,27 +57,24 @@ const TabsContainer = styled.div`
 position: relative;
 display: grid;
   width: 100%;
-  gap: 24px;
   height: 100%;
-  @media (max-width: 800px) {
-      gap: 5px;
-}
+
   `;
 
 const TabList = styled.div`
 top: 0;
 left: 0;
-position: absolute;
+position: relative;
   display: flex;
   width: fit-content;
   height: 35px;
-  gap: 8px;
+  gap: 5px;
   border-bottom: black 1px solid;
   @media (max-width: 826px) {
       width: 100%;
       display: grid;
       height: fit-content;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
     }
     `;
 
@@ -94,6 +91,13 @@ border-radius: 10px 10px 0 0;
 @media (max-width: 826px) {
     font-size: 13px;
     width: 100%;
+    border-radius: 0;
+    &:first-child{
+      border-radius: 10px 10px 0 0;
+    }
+    &:last-child{
+      border-radius: 0 0 10px 10px;
+    }
 }
 
 
@@ -105,13 +109,11 @@ border-radius: 10px 10px 0 0;
 
 const TabContent = styled.div`
 display: grid;
-margin-top: 35px;
 width: 100%;
 padding: 20px;
-background: #fff;
-@media (max-width: 520px) {
+background: var(--bg-tertiary);
+@media (max-width: 620px) {
+  background: transparent;
     padding: 0px;
-      margin-top: 200px;
-      /* border: black 1px solid; */
 }
 `;

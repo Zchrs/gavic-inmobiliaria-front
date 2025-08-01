@@ -35,13 +35,13 @@ export const HeaderClient = () => {
                 />
             </div>
             <div className="headerclient-menu">
-                <NavLink to="/client/dashboard">Panel</NavLink>
-                <NavLink to="documents">Documentos</NavLink>
-                <NavLink to="profile">Perfil</NavLink>
-                <NavLink to="properties">Inmuebles</NavLink>
-                <NavLink to="settings">Configuración</NavLink>
-                <NavLink to="issues">Reportar problemas</NavLink>
-                <NavLink onClick={handleLogout}>Cerrar Sesión</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : "headerclient-inactive"}`} to="/client/dashboard">Panel</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/documents">Documentos</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/profile">Perfil</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/properties">Inmuebles</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/settings">Configuración</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/issues">Reportar problemas</NavLink>
+                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/auth/client/login"onClick={handleLogout}>Cerrar Sesión</NavLink>     
             </div>
         </div>
     </ClientHeader>
@@ -81,8 +81,23 @@ const ClientHeader = styled.div`
           font-size: 13px;
           padding: 8px 0;
           border-bottom: var(--bg-primary-semi) 1px solid;
+          transition: all 0.3s ease;
         }
 
+    }
+    &-active{
+      text-align: center;
+      background: var(--bg-primary-semi);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    &-inactive{
+          color: var(--bg-tertiary);
+          font-weight: 300;
+          font-size: 13px;
+          padding: 8px 0;
+          border-bottom: var(--bg-primary-semi) 1px solid;
+          background: transparent;
     }
   }
   `

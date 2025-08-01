@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactApexChart from "react-apexcharts";
+import { LineChart, lineElementClasses } from '@mui/x-charts/LineChart';
 import styled from "styled-components";
 
 export const DonutChart = ({ width, height, type, serie  }) => {
@@ -204,7 +205,7 @@ export const SimpleChart = ({ series, labels, width, height }) => {
   );
 };
 
-export const ApexChart = ({ options, series }) => {
+export const ApexChart = ({ options, series, width }) => {
   const [state, setState] = useState({
     series: [44, 55, 41, 17, 15],
     options: {
@@ -258,7 +259,7 @@ export const ApexChart = ({ options, series }) => {
           options={options}
           series={series}
           type="donut"
-          width={380}
+          width={width}
         />
       </div>
       <div id="html-dist"></div>
@@ -514,11 +515,83 @@ export const AreaChart = ({
   );
 };
 
+export const ChartArea = ({ 
+  height = 300, 
+  series, 
+  labels, 
+  area = false, 
+  showMark = true, 
+  margin = { top: 20, bottom: 30, left: 40, right: 20 } 
+}) => {
+  const [width, setWidth] = useState(500); // Valor inicial (se ajustará dinámicamente)
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (chartRef.current) {
+        const containerWidth = chartRef.current.offsetWidth;
+        setWidth(containerWidth);
+      }
+    };
+
+    // Actualizar el ancho al montar y al cambiar el tamaño de la ventana
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={chartRef} 
+      style={{ width: "100%", overflow: "hidden" }} // Contenedor al 100%
+    >
+      <LineChart
+        height={height}
+        width={width} // Ahora el ancho se ajusta al contenedor
+        series={[
+          { 
+            data: series, 
+            area: area, 
+            showMark: showMark,
+            curve: "linear",
+          }
+        ]}
+        xAxis={[
+          { 
+            scaleType: "point", 
+            data: labels,
+            label: "Fechas",
+          }
+        ]}
+        yAxis={[{ label: "Cantidad" }]}
+        sx={{
+          [`& .${lineElementClasses.root}`]: {
+            fill: area ? "url(#area-gradient)" : "none",
+          },
+        }}
+        margin={margin}
+      >
+        {area && (
+          <defs>
+            <linearGradient id="area-gradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#3182CE" stopOpacity={0.8} />
+              <stop offset="100%" stopColor="#3182CE" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+        )}
+      </LineChart>
+    </div>
+  );
+};
+
 const CandleArea = styled.div`
   .apexcharts-toolbar {
     position: absolute;
     height: fit-content;
-    width: fit-content;
+    width: 100%;
     border-radius: 3px;
     right: 0;
     display: flex;
@@ -528,23 +601,24 @@ const CandleArea = styled.div`
       filter: brightness(0%);
     }
 }
+
 #chart{
   display: grid;
-  width: fit-content !important;
+  width: 100% !important;
   height: 160px !important;
   padding-bottom: 24px;
  
 }
 #areachart{
   display: grid;
-  width: fit-content !important;
+  width: 100% !important;
   height: 150px !important;
   padding-bottom: 24px;
 
 }
 #candlechart{
   display: grid;
-  width: fit-content !important;
+  width: 100% !important;
   height: 146px !important;
   padding-bottom: 24px;
 }
@@ -559,7 +633,7 @@ const CandleArea = styled.div`
     pointer-events: none;
     &-open{
       height: fit-content;
-      width: fit-content;
+      width: 100%;
       text-align: center;
 
     }
@@ -571,6 +645,7 @@ const CandleArea = styled.div`
     }
 }
 .apexcharts-legend{
+  display: grid !important;
   width: 100% !important;
   height: 100% !important;
   padding: 0 !important;
@@ -578,13 +653,14 @@ const CandleArea = styled.div`
   .chart-container {
     margin: 0;
     padding: 0;
-  width: fit-content !important;
+  width: 100% !important;
   height: fit-content !important;
   
 }
 
 .apexcharts-canvas{
   display: grid;
+  width: 100% !important;
     height: fit-content !important;
     background: transparent !important;
 }
@@ -594,15 +670,20 @@ const CandleArea = styled.div`
 const Chart = styled.div`
  #chart{
   display: grid;
-  width: fit-content !important;
+  width: 100%!important;
   height: 160px !important;
   padding-bottom: 24px;
 
 }
 
+#apexchartsdzxw2ezfj, #apexchartsrjpshbde{
+  display: grid !important;
+  width: 100% !important;
+}
+
 #areachart{
   display: grid;
-  width: fit-content !important;
+  width: 100% !important;
   height: fit-content!important;
   padding-bottom: 24px;
 
@@ -610,18 +691,18 @@ const Chart = styled.div`
 
 #candlechart{
   display: grid;
-  width: fit-content !important;
+  width: 100% !important;
   height: 146px !important;
   padding-bottom: 24px;
 }
 .apexcharts-theme-dark{
   display: grid;
-  width: fit-content !important;
+  width: 100% !important;
   height: fit-content !important;
 }
 .apexcharts-theme-light{
   display: grid;
-  width: fit-content !important;
+  width: 100% !important;
   height: fit-content !important;
 }
 
@@ -633,13 +714,21 @@ const Chart = styled.div`
   .chart-container {
     margin: 0;
     padding: 0;
-  width: fit-content !important;
+  width: 100% !important;
   height: fit-content !important;
   
 }
 
+.apexcharts-legend{
+  display: grid !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
 .apexcharts-canvas{
   display: grid;
+  width: 100% !important;
     height: fit-content !important;
     background: transparent !important;
 }

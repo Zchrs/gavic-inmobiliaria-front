@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { getImg } from "../../../globalActions";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RecentAdded, BaseInput, BaseButton } from "../../../index";
 import { medellin } from "../../sectors/dataSectors";
 import { ShowResultSearch } from "../../components/ShowResultSearch";
@@ -20,6 +20,10 @@ export const Home = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showFilterError, setShowFilterError] = useState(false);
   let searchRef = useRef(null);
+
+      useEffect(() => {
+        document.title = "Gavic Inmobiliaria - Home";
+      }, []);
 
   const handleSector = (e) => {
     setSelectedSector(e.target.value);

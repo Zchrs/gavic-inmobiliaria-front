@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components"
-import { AreaChart, GradientChart, SimpleChart } from "../../../components/MultiChart"
+import { AreaChart, ChartArea, GradientChart, SimpleChart } from "../../../components/MultiChart"
+import { LineChart } from "@mui/x-charts";
 // import { RandomQr } from "../../../components/RandomQr"
 
 
@@ -63,7 +65,7 @@ export const Statics = () => {
       ],
     },
     clients: {
-      data: [0, 1000, 3000, 3600, 4700, 5800, 9000, 9100, 9200, 9400],
+      data: [0, 1000, 3000, 3600, 4700, 5800, 9000, 9100, 9200, 9400, 10000, 11000, 12000, 13000, 14000, 15000],
       dates: [
         "2024-01-01",
         "2024-01-02",
@@ -75,6 +77,11 @@ export const Statics = () => {
         "2024-01-08",
         "2024-01-09",
         "2024-01-10",
+        "2024-01-11",
+        "2024-01-12",
+        "2024-01-13",
+        "2024-01-14", 
+        "2024-01-15",   
       ],
     },
   };
@@ -103,6 +110,8 @@ export const Statics = () => {
                       series={data.sales.data}
                       labels={data.sales.names}
                       width={"100%"}
+                      area
+                      showmark
                     />
                   </div>
                 </div>
@@ -111,17 +120,14 @@ export const Statics = () => {
                 <div className="statics-users">
                   
                     <div className="statics-users-inside">
-                      <div>
+                      <div className="statics-users-inside-chart">
                   <h2>Histórico de inmuebles</h2>
-                        <AreaChart
-                          dayColor={"#000"}
-                          daysColor={"#000"}
-                          theme={"dark"}
-                          series={[{ data: data.clients.data }]}
-                          labels={data.clients.dates}
-                          width={"300%"}
-                          height={"300px"}
-                          legendPosition={"right"}
+                        <ChartArea
+                          height={300}
+                          series={data.users.data}
+                          labels={data.users.dates}
+                          area={true}
+                          showmark={false}
                         />
                       </div>
                       
@@ -162,6 +168,9 @@ const StaTics = styled.section`
       width: 100%;
       height: 100%;
       gap: 14px;
+        @media (max-width: 480px) {
+    display: grid;
+  }
       &-card{
         display: grid;
         align-items: start;
@@ -225,12 +234,16 @@ const StaTics = styled.section`
     box-shadow: var(--ds-s);
     border-radius: 15px;
     padding: 25px;
-    justify-content: center;
     &-inside{
       display: flex;
       width: 100%;
       height: 100%;
       align-items: center;
+      &-chart{
+        display: grid;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 

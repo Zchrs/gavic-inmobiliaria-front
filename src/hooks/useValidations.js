@@ -18,6 +18,7 @@ export const useValidations = () => {
     state: useRef(null),
     city: useRef(null),
     address: useRef(null),
+    message: useRef(null),
     phone: useRef(null),
     area: useRef(null),
     phoneManager: useRef(null),
@@ -130,6 +131,12 @@ export const useValidations = () => {
       (val) => regexName.test(val.trim()), {
         required: "Debes ingresar el apellido",
         invalid: "El apellido debe tener solo letras"
+      }
+    );
+    errors.message = validateField('message', form.message, 
+      (val) => regexName.test(val.trim()), {
+        required: "Debes ingresar los datos a corregor",
+        invalid: "Solo se aceptan letras"
       }
     );
 
@@ -380,6 +387,12 @@ export const useValidations = () => {
 
   if ('lastname' in form) {
     errors.lastname = validateField('lastname', form.lastname, val => regexName.test(val.trim()), {
+      required: "Debes ingresar el apellido",
+      invalid: "El apellido debe tener solo letras"
+    });
+  }
+  if ('message' in form) {
+    errors.message = validateField('message', form.message, val => regexName.test(val.trim()), {
       required: "Debes ingresar el apellido",
       invalid: "El apellido debe tener solo letras"
     });

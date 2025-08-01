@@ -11,7 +11,7 @@ export const LoginAdmin = () => {
   return (
     <AdminLogin>
       <div className="login">
-        <form>
+        <form onSubmit={handleLoginAdmin}>
           <div>
             <BaseInput
               required
@@ -43,7 +43,6 @@ export const LoginAdmin = () => {
             />
           <div>
           </div>
-        </form>
           <BaseButton
             handleClick={handleLoginAdmin}
             classs={"button secondary"}
@@ -54,6 +53,7 @@ export const LoginAdmin = () => {
             hovercolorbtntextsecondary={"--bg-primary"}
             label="Iniciar sesión"
           />
+        </form>
       </div>
     </AdminLogin>
   );

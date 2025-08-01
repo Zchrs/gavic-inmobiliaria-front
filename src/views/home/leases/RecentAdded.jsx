@@ -24,42 +24,6 @@ export const RecentAdded = () => {
   const handleSetProductClick = (property) => {
     dispatch(selectedProperty(property));
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await dispatch(fetchRecentProperties());
-  //       const properties = response.payload || response || [];
-  
-  //       setRecentProperties(properties);
-  
-  //       // Guardar en localStorage
-  //       localStorage.setItem("propertiesRecent", JSON.stringify(properties));
-  //     } catch (error) {
-  //       console.error("Error fetching recent properties:", error);
-  //       setRecentProperties([]);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  
-  //   // Revisar si hay datos guardados en localStorage
-  //   const localData = localStorage.getItem("propertiesRecent");
-  //   if (localData) {
-  //     try {
-  //       const parsedData = JSON.parse(localData);
-  //       setRecentProperties(parsedData);
-  //     } catch (e) {
-  //       console.error("Error al parsear recentProperties desde localStorage:", e.message);
-  //       fetchData(); // si el parse falla, traemos de la API
-  //     }
-  //   } else {
-  //     fetchData(); // si no hay datos, traemos de la API
-  //   }
-  // }, [dispatch]);
-
-  // Resetear a página 1 cuando cambian las propiedades
   
   useEffect(() => {
     const init = async () => {

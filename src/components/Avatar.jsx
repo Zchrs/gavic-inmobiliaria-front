@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
-import { getFile, getImg } from "../../globalActions"
+import { getImg } from "../../globalActions"
 import { useDispatch, useSelector } from "react-redux";
 import { startLogout, startLogoutAdmin, startLogoutAdvisor } from "../actions/authActions";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,7 @@ export const Avatar = ({
             {advisor ? <strong className={nameSmall}>{advisor.name} {advisor.lastname}</strong> : <strong className={nameSmall}>Default name</strong>}
           </span>}
           {dropData && (<div className={classs}>
-              <button onClick={handleLogout}><i><img src={getFile('svg', 'off', 'svg')} alt="" /></i>Cerrar sesión</button>
+              <button onClick={handleLogout}><i><img src={getImg('svg', 'off', 'svg')} alt="" /></i>Cerrar sesión</button>
           </div>)}
       </div>
     </AvaTar>
@@ -73,6 +73,7 @@ const AvaTar = styled.div`
     width: 100%;
     height: 100%;
     z-index: 50;
+    overflow : hidden;
     @media (max-width: 920px) {
         display: flex;
     }
@@ -146,6 +147,7 @@ const AvaTar = styled.div`
             left: -192px;
         }
 
+
         button{
             display: flex;
             text-decoration: none;
@@ -189,7 +191,7 @@ const AvaTar = styled.div`
             img{
                 top: 0;
                 left: 0;
-                width: 18px;
+                width: 15px;
                 fill: #EC3337;
                 filter: grayscale(200%);
             }
@@ -234,6 +236,7 @@ const AvaTar = styled.div`
         button{
             display: flex;
             text-decoration: none;
+            height: fit-content;
             font-size: 14px;
             border: none;
             font-weight: 400;
@@ -260,6 +263,12 @@ const AvaTar = styled.div`
                 border: none;
                 outline: none;
             }
+        @media (max-width: 680px) {
+            
+            place-items: start;
+            align-self: start;
+            text-align: left;
+        }
 
         }
 
@@ -298,9 +307,15 @@ const AvaTar = styled.div`
     }
     &:hover .avatar-dinamyc{
         padding:10px 15px;
-        transform: translateY(1%);
+        transform: translateY(0%);
         transition: all ease .3s;
         left: 0;
+
+        @media (max-width: 680px) {
+           padding: 5px 3px;
+           height: fit-content;
+        }
+
     }
 
     &-box{

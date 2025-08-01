@@ -510,6 +510,9 @@ const Create = styled.div`
     
     @media (max-width: 680px) {
       grid-template-columns: 1fr;
+      background: var(--bg-tertiary);
+      padding: 10px;
+      width: 100%;
     }
   }
   .images {

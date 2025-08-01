@@ -12,6 +12,12 @@ export const getImg = (route, url, extension = 'svg') => {
       import.meta.url
     ).href;
   }
+export const getDocs = (route, url, extension = 'pdf') => {
+    return new URL(
+      `/src/documents/${route}/${url}.${extension}`,
+      import.meta.url
+    ).href;
+  }
 
   export const scrollTop = () =>{
     window.scrollTo({ top: 0, behavior: 'smooth' });

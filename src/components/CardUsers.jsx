@@ -1,267 +1,201 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { BaseButton } from "./BaseButton";
+import { BaseButton } from "../../index";
 import { useRef } from "react";
 
-// export const CardUsers = ({ columns, data }) => {
-//   return (
-//     <UsersCard>
-//         <div className="container">
 
-//             <div className="container-header">
-//                 {columns.map((column, index) => (
-//                     <div className="container-contain-inside" key={index}>{column}</div>
-//                   ))}
-//                   <div className="container-contain-inside">Eliminar</div>
-//             </div>
-//             <div className="container-grid">
-//             {data.map((row, rowIndex) => (
-//               <div  className="container-contain" key={rowIndex}>
-//                 {columns.map((column, colIndex) => (
-//                   <div className="container-contain-inside" key={colIndex}>{row[column]}</div>
-//                 ))}
-//                 <div className="container-inside">
-//                 <BaseButton
-//                   textLabel={true}
-//                   label="Eliminar"
-//                   classs={"button little-secondary-gradient"}
-//                 />
-//                 </div>
-//               </div>
-//             ))}
-//             </div>
-//         </div>
-//     </UsersCard>
-//   )
-// }
-
-export const CardUsers = ({ columns, data, approve, message }) => {
-  const containerRef = useRef(null);
+export const CardUsers = ({ columns, data, approve, message, erase, look, link, solved }) => {
+  const tableRef = useRef(null);
   let isDragging = false;
   let startX;
   let scrollLeft;
 
   const handleMouseDown = (e) => {
     isDragging = true;
-    startX = e.pageX - containerRef.current.offsetLeft;
-    scrollLeft = containerRef.current.scrollLeft;
-    containerRef.current.classList.add("dragging");
-    document.body.style.userSelect = "none"; // Desactiva la selección de texto
+    startX = e.pageX - tableRef.current.offsetLeft;
+    scrollLeft = tableRef.current.scrollLeft;
+    tableRef.current.classList.add("dragging");
+    document.body.style.userSelect = "none";
   };
 
   const handleMouseLeave = () => {
     isDragging = false;
-    containerRef.current?.classList.remove("dragging");
-    document.body.style.userSelect = ""; // Reactiva la selección de texto
+    tableRef.current?.classList.remove("dragging");
+    document.body.style.userSelect = "";
   };
 
   const handleMouseUp = () => {
     isDragging = false;
-    containerRef.current?.classList.remove("dragging");
-    document.body.style.userSelect = ""; // Reactiva la selección de texto
+    tableRef.current?.classList.remove("dragging");
+    document.body.style.userSelect = "";
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Ajusta la velocidad
-    containerRef.current.scrollLeft = scrollLeft - walk;
+    const x = e.pageX - tableRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    tableRef.current.scrollLeft = scrollLeft - walk;
   };
 
   return (
-    <UsersCard>
+    <UsersTable>
       <div
-        className="container"
-        ref={containerRef}
+        className="table-wrapper"
+        ref={tableRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}>
-                <div className="container-header">
-          {columns.map((column, index) => (
-            <div
-              className={`container-contain-inside 
-                ${column === "Rol" ? "column-role" : ""}
-                ${column === "Estado" ? "column-status" : ""}`}
-              key={index}
-            >
-              {column}
-            </div>
-          ))}
-          <div className="container-contain-inside">Acción</div>
-        </div>
-        <div className="container-grid">
-          {data.map((row, rowIndex) => (
-            <div className="container-contain" key={rowIndex}>
-              {columns.map((column, colIndex) => (
-                <div
-                  className={`container-contain-inside 
-                    ${column === "Rol" ? "column-role" : ""}
-                    ${column === "Estado" ? "column-status" : ""}`}
-                  key={colIndex}
+        onMouseMove={handleMouseMove}
+      >
+        <table>
+          <thead className="thead">
+            <tr>
+              {columns.map((column, idx) => (
+                <th 
+                  key={idx}
+                  className={`${column === "Problema" || column === "Rol" ? "column-role" : ""}
+                              ${column === "Estado" ? "column-status" : ""}`}
                 >
-                  {row[column]}
-                </div>
+                  {column}
+                </th>
               ))}
-              <div className="container-inside">
-                {message && (
-                  <BaseButton
-                    textLabel={true}
-                    label="Mensaje"
-                    classs={"button little-primary-gradient"}
-                  />
-                )}
-                {approve && (
-                  <BaseButton
-                    textLabel={true}
-                    label="Aprobar"
-                    classs={"button little-primary-gradient"}
-                  />
-                )}
-                <BaseButton
-                  textLabel={true}
-                  label="Eliminar"
-                  classs={"button little-secondary-gradient"}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {columns.map((column, colIndex) => (
+                  <td
+                    key={colIndex}
+                    className={`${column === "Problema" || column === "Rol" ? "column-role" : ""}
+                                ${column === "Estado" ? "column-status" : ""}`}
+                  >
+                    {row[column]}
+                  </td>
+                ))}
+                <td className="flex">
+                  {message && (
+                    <BaseButton textLabel label="Mensaje" classs="button little-primary-gradient" link={link} />
+                  )}
+                  {approve && (
+                    <BaseButton textLabel label="Aprobar" classs="button little-primary-gradient" link={link} />
+                  )}
+                  {erase && (
+                    <BaseButton textLabel label="Eliminar" classs="button primary" link={link} />
+                  )}
+                  {look && (
+                    <BaseButton
+                      textLabel
+                      label="Revisar"
+                      classs="button primary"
+                      colorbtn="var(--bg-danger)"
+                      colortextbtnprimary="var(--text-tertiary)"
+                      link={link}
+                    />
+                  )}
+                  {solved && (
+                    <BaseButton
+                      textLabel
+                      label="Solucionado"
+                      classs="button primary"
+                      colorbtn="var(--bg-primary)"
+                      colortextbtnprimary="var(--text-tertiary)"
+                      link={link}
+                    />
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </UsersCard>
+    </UsersTable>
   );
 };
-
 CardUsers.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   approve: PropTypes.bool,
   message: PropTypes.bool,
+  erase: PropTypes.bool,
+  look: PropTypes.bool,
+  link: PropTypes.bool,
+  solved: PropTypes.bool,
 };
 
-const UsersCard = styled.div`
-  display: grid;
-  .container {
-    display: grid;
-    align-content: start;
+const UsersTable = styled.div`
+display: grid;
+width: 100%;
+height: 100%;
+
+.table-wrapper {
+  max-width: 1920px;
+  height: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  cursor: grab;
+}
+
+.table-wrapper.dragging {
+  cursor: grabbing;
+}
+
+table {
     width: 100%;
-    border-radius: 5px;
-    gap: 2px;
+    max-width: 1920px;
     overflow: hidden;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    @media (max-width: 800px) {
-      width: 100%;
-      overflow: auto;
-      overflow-y: hidden;
-    }
-    &-header {
-      display: flex;
-      width: 100%;
-      min-width: 700px;
-      height: fit-content;
-      align-content: start;
-      background-color: #d4d4d4;
-      border-radius: 5px 5px 0 0;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 15px 0;
+    border-collapse: collapse;
+    background: var(--bg-tertiary);
+    border-radius: 10px ;
+  }
 
-      @media (max-width: 826px) {
-        margin-top: 40px;
-      }
-      @media (max-width: 520px) {
-        margin-top: 0px;
-      }
-    }
-    &-grid {
-      display: grid;
-      align-content: start;
-      gap: 1px;
-    }
-    &-contain {
-      display: flex;
-      align-items: center;
-      align-content: start;
-      height: fit-content;
-      background-color: #f1f1f1;
-      width: 100%;
 
-      &-inside {
-        height: fit-content;
-        position: relative;
-        align-items: center;
-        display: grid;
-        justify-content: left;
-        
-        width: 100%;
-        padding: 8px;
-
-        &:nth-child(1) {
-            word-break: break-all;
-          &::before {
-            display: none;
-          }
-        }
-        &:nth-child(2) {
-            word-break: break-all;
-        }
-        &:last-child {
-          justify-content: center;
-        }
-        &::before {
-          content: "";
-          position: absolute;
-          background: #d8d7d7;
-          width: 1px;
-          height: 250%;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          margin: auto;
-        }
-      }
-    }
-    &-inside {
-      position: relative;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      gap: 5px;
-      width: 100%;
-      padding: 8px;
-      @media (max-width: 1295px) {
-          display: grid;
-        }
-        @media (max-width: 900px) {
-            font-size: 10px;
-        }
-      &::before {
-        content: "";
-        position: absolute;
-        background: #d8d7d7;
-        width: 1px;
-        height: 300%;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        margin: auto;
-      }
-    }
+  tbody{
+    max-width: 1920px;
+    width: 100%;
+  }
+  thead{
+    display: contents;
+    border-radius: 10px 10px 0 0;
+    padding: 15px ;
   }
   
-  /* .column-role {
-    min-width: 55px; 
-    max-width: 55px; 
-    background: transparent;
-    
+  th, td {
+    padding: 5px;
+    text-align: left;
+    white-space: nowrap;
+    border-right: 1px solid #eae8e8;
+    border-left: 1px solid #eae8e8;
+    border-bottom: 1px solid #eae8e8;
   }
+  th{
+    background: var(--bg-secondary-soft);
+    padding: 15px 10px ;
+    &:first-child{
+      border-top-left-radius: 10px;
+      border-left: none;
+    }
+    &:last-child{
+      border-top-right-radius: 10px;
+      border-right: none;
+    }
+  }
+
+  .column-role {
+    min-width: 150px;
+  }
+
   .column-status {
-    min-width: 60px; 
-    max-width: 60px; 
-    background: transparent;
-    
-  } */
+    min-width: 120px;
+  }
+
+  .button {
+    margin-right: 0.5rem;
+  }
+.flex{
+  display: flex;
+  justify-content: center;
+}
 `;

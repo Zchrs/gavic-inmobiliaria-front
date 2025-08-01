@@ -28,7 +28,7 @@ export const authReducer = ( state = initialState, action ) => {
                 checking: false
             }
            
-        case types.authCheckingFInish:
+        case types.authCheckingFinish:
             return {
                 ...state,
                 checking: false

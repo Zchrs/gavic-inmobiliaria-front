@@ -407,7 +407,8 @@ const HomeAdmin = styled.section`
             border-radius: 5px 5px 15px 15px;
             width: 130%;
 
-            @media (max-width: 820px) {
+            @media (max-width: 720px) {
+              width: 100%;
               border-radius: 0;
             }
           }

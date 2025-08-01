@@ -54,6 +54,10 @@ const DashboardAdmin = styled.section`
       height: 50px;
       /* background: black; */
       z-index: 1000;
+      @media (max-width: 980px) {
+        height: fit-content;
+        
+      }
     }
     &-content{
       display: grid;

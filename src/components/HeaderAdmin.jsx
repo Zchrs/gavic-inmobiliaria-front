@@ -1,13 +1,18 @@
 /* eslint-disable no-unused-vars */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getImg, scrollTop } from "../../globalActions";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Avatar } from "./Avatar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { BaseButton } from "./BaseButton";
+import { startLogoutAdmin } from "../actions/authActions";
 
 export const HeaderAdmin = () => {
+  const admin = useSelector((state) => state.authAdmin.admin);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   let contador = 0;
   const showHideMenu = () => {
     let navMenu = document.getElementById("menu-admin");
@@ -74,15 +79,19 @@ export const HeaderAdmin = () => {
     showHideMenu();
   };
 
+    const handleLogout = () => {
+        dispatch(startLogoutAdmin());
+        navigate("/admin/auth/login");
+    };
 
 
   return (
     <AdminHeader>
       <div className="headeradmin">
         <div className="headeradmin-group">
-          <NavLink className="headeradmin-group-a">
-            <img  className="headeradmin-group-icons" src={getImg("svg", "settings", "svg")} alt="" />
-          </NavLink>
+          {/* <NavLink className="headeradmin-group-a">
+            <img  className="headeradmin-group-icons" src={getImg("svg", "think", "svg")} alt="" />
+          </NavLink> */}
           <NavLink 
           to={"/admin/dashboard"} 
           className={({ isActive }) =>
@@ -138,6 +147,17 @@ export const HeaderAdmin = () => {
               />
             </Link>
           </div>
+                    <div className="headeradmin-mobile-header-avatar">
+            <Avatar 
+              clas={"avatar"} 
+              classs={"avatar-dinamyc"}
+              dropData={true} 
+              avtsmall={true} 
+              img={"default-avatar"}
+              classWhite={"avatar black"} 
+              userAdmin={true}
+            />
+          </div>
           <div>
             <img
               className="headeradmin-mobile-header-menu"
@@ -146,25 +166,16 @@ export const HeaderAdmin = () => {
               alt=""
             />
           </div>
-          <div className="headeradmin-mobile-header-avatar">
-            <p>Default name</p>
-            <img
-              className="headeradmin-mobile-header-avatarimg"
-              onClick={handleFunctions}
-              src={getImg("jpg", "default", "jpg")}
-              alt=""
-            />
-          </div>
         </div>
         <div id="menu-admin" className="headeradmin-mobile-links">
           <Link onClick={handleFunctions} to={"/admin/dashboard"}>Inicio</Link>
           <Link onClick={handleFunctions} to={"properties"}>Propiedades</Link>
-          <Link onClick={handleFunctions}>Servicios</Link>
-          <Link onClick={handleFunctions} to={"users"}>Clientes</Link>
+          <Link onClick={handleFunctions} to={"sales"} >Reportes</Link>
           <Link onClick={handleFunctions} to={"statics"}>Estadísticas</Link>
-          <Link to={"comunications"} onClick={handleFunctions}>Finanzas</Link>
+          <Link onClick={handleFunctions} to={"users"}>Usuarios</Link>
+          <Link onClick={handleFunctions} to={"finances"}>Finanzas</Link>
           <Link onClick={handleFunctions} to={"comunications"}>Comunicaciones</Link>
-          <Link onClick={handleFunctions}>Listar servicios</Link>
+          <Link onClick={handleLogout} to={""}>Cerrar sesión</Link>
         </div>
       </div>
     </AdminHeader>
@@ -273,16 +284,29 @@ const AdminHeader = styled.header`
         z-index: 1000;
         &-header {
           width: 100%;
+          position: relative;
           background: var(--bg-tertiary);
           justify-content: space-between;
           align-items: center;
           display: flex;
-          padding: 10px;
+          padding: 15px 10px;
           gap: 10px;
           height: fit-content;
           border-radius: 10px;
           z-index: 1000;
           color: black;
+
+         &-btns{
+            display: flex;
+            position: absolute;
+            bottom: 70px;
+            padding: 0 50px;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+            align-items: center;
+            height: fit-content;
+          }
 
           &-menu {
             display: grid;
@@ -315,10 +339,27 @@ const AdminHeader = styled.header`
           z-index: 900;
           top: 50px;
           left: 0;
-          background: var(--bg-secondary);
+          background: var(--bg-secondary-semi);
           place-content: center;
           transform: translateX(-100%);
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 80%;
+            height: 90%;
+            /* background: var(--bg-secondary-light); */
+            border: 1px solid var(--bg-secondary-light);
+            opacity: 0.5;
+            z-index: -1;
+          }
           a {
+            display: grid;
+            padding: 10px 0;
             font-size: 25px;
             color: var(--text-tertiary);
           }
