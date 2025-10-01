@@ -57,6 +57,7 @@ import {
   VerifyCode,
   RecoveryPasshordHome,
   Recovery,
+  TyC,
 } from "../../index";
 import { AdvisorLogin } from "../views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
@@ -87,6 +88,7 @@ export const AppRouter = () => {
       <Route exact path="helpcenter" element={<HelpCenter />} />
       <Route exact path="contact" element={<Contact />} />
       <Route exact path="pqrs" element={<Pqrs />} />
+      <Route exact path="tyc" element={<TyC />} />
       <Route exact path="data-treatment" element={<DataTreathment />} />
       <Route
         exact
@@ -242,7 +244,21 @@ export const AuthAdminRouter = () => {
   );
 };
 
-export const RecoveryPasswordRouter = () => {
+export const RecoveryPasswordRouterAdvisor = () => {
+  return (
+    <Routes>
+      <Route exact path="/*" element={<Recovery />} />
+
+      <Route
+        exact
+        path="recovery-password"
+        element={<RecoveryPasshordHome />}
+      />
+      <Route exact path="recovery-send-code" element={<CheckOut />} />
+    </Routes>
+  );
+};
+export const RecoveryPasswordRouterClient = () => {
   return (
     <Routes>
       <Route exact path="/*" element={<Recovery />} />

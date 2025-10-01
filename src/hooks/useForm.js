@@ -602,6 +602,86 @@ export const useForm = (initialForm, validateForm) => {
 }
   };
 
+const handleSubmitIssues = async (e, submitClient = "client") => {
+  e.preventDefault();
+
+  // 1. Obtener el token correctamente (cambiar 'tokenUser' por 'token')
+  const token = localStorage.getItem('tokenUser') || sessionStorage.getItem('tokenUser');
+  
+  if (!token) {
+    await Swal.fire({
+      title: "Error de autenticación",
+      text: "Por favor inicie sesión nuevamente",
+      icon: "error"
+    });
+    return;
+  }
+
+  const formData = {
+    user_id: user.id,
+    fullname: form.fullname,
+    email: form.email,
+    title: form.title,
+    description: form.description,
+    img_url: form.img_url,
+    submitClient // Asegurar que este campo se envíe
+  };
+  debugger
+  setLoading(true);
+
+  try {
+    const result = await Swal.fire({
+      title: "Estás creando un reporte",
+      text: "Estás a punto de crear un reporte de un inmueble. ¿Deseas continuar?",
+      icon: "warning",
+      confirmButtonText: "Confirmar",
+    });
+
+    if (result.isConfirmed) {
+      // 2. Enviar el token en AMBOS headers
+      const response = await axios.post(
+        import.meta.env.VITE_APP_API_CREATE_ISSUE_REPORT_PROPERTIES_URL,
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+            "x-token": token // Header alternativo
+          }
+        }
+      );
+
+      // Manejo de respuesta exitosa
+      setLoading(false);
+      setResponse(true);
+      setForm(initialForm);
+      
+      await Swal.fire({
+        title: "¡Éxito!",
+        text: "Reporte creado correctamente",
+        icon: "success"
+      });
+    }
+  } catch (error) {
+    setLoading(false);
+    
+    let errorMessage = "Ocurrió un error al enviar el formulario";
+    if (error.response?.status === 401) {
+      errorMessage = "Sesión expirada - Por favor inicie sesión nuevamente";
+      // Limpiar token inválido
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
+      // Redirigir a login
+      // navigate('/login');
+    }
+
+    await Swal.fire({
+      title: "Error",
+      text: errorMessage,
+      icon: "error"
+    });
+  }
+};
   const deleteProperty = async (id) => {
     try {
       const result = await Swal.fire({
@@ -1389,6 +1469,7 @@ const handleVerifyCode = async (e, { email, code }) => {
     cities,
     city,
     hasManager, 
+    handleSubmitIssues,
     setHasManager,
     setCities,
     setSector,

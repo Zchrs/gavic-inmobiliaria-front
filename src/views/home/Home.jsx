@@ -5,13 +5,15 @@ import styled from "styled-components";
 import { getImg } from "../../../globalActions";
 import { useEffect, useRef, useState } from "react";
 import { RecentAdded, BaseInput, BaseButton } from "../../../index";
-import { medellin } from "../../sectors/dataSectors";
+import barrios from "../../sectors/dataSectors.json";
 import { ShowResultSearch } from "../../components/ShowResultSearch";
+import departamentos from "../../colombia/colombia.json";
 
 
 
 export const Home = () => {
   const [selectedSector, setSelectedSector] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedProperty, setSelectedProperty] = useState("");
   const [selectedCode, setSelectedCode] = useState("");
@@ -19,14 +21,23 @@ export const Home = () => {
   const [filters, setFilters] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
   const [showFilterError, setShowFilterError] = useState(false);
+  const [districtOptions, setDistrictOptions] = useState([]);
   let searchRef = useRef(null);
 
       useEffect(() => {
         document.title = "Gavic Inmobiliaria - Home";
       }, []);
 
+        const cities = departamentos.find(
+          (dep) => dep.departamento === "Antioquia"
+        )?.ciudades || [];
+
   const handleSector = (e) => {
     setSelectedSector(e.target.value);
+    setShowFilterError(false);
+  };
+  const handleCity = (e) => {
+    setSelectedCity(e.target.value);
     setShowFilterError(false);
   };
 
@@ -53,6 +64,7 @@ export const Home = () => {
 const handleSearch = () => {
   // Mapear correctamente los nombres de parámetros que espera el backend
   const filters = {
+    ...(selectedCity && { sector: selectedCity }),
     ...(selectedSector && { sector: selectedSector }),
     ...(selectedProperty && { type: selectedProperty }), // Cambiado a 'type' para el backend
     ...(selectedAction && { action: selectedAction }),
@@ -70,6 +82,7 @@ const handleSearch = () => {
 
   const hasSelectedFilters = () => {
     return (
+      selectedCity ||
       selectedSector ||
       selectedProperty ||
       selectedAction ||
@@ -108,6 +121,7 @@ const handleSearch = () => {
   const handleClearSearch = () => {
     setShowSearch(false);
     setFilters(null);
+    setSelectedCity("");
     setSelectedSector("");
     setSelectedBudget("");
     setSelectedProperty("");
@@ -132,6 +146,23 @@ const handleSearch = () => {
     }
   };
 
+useEffect(() => {
+  if (!selectedCity) {
+    setDistrictOptions([]);
+    return;
+  }
+
+  const ciudadSeleccionada = barrios.find(item => item.ciudad === selectedCity);
+  const barriosPorCiudad = ciudadSeleccionada?.barrios || [];
+
+  const formatted = barriosPorCiudad.map(barrio => ({
+    value: barrio,
+    label: barrio,
+  }));
+
+  setDistrictOptions(formatted);
+}, [selectedCity]);
+
   return (
     <HoMe>
       <div className="home">
@@ -154,6 +185,20 @@ const handleSearch = () => {
               </div>
             )}
 
+                            <BaseInput
+               required
+                  classs={"inputs normal"}
+                placeholder={"Ciudad"}
+                options={cities.map(ciudad => ({
+                  value: ciudad,  // El valor que se guardará (puede ser el nombre o un ID si lo tienes)
+                  label: ciudad   // Lo que se muestra en el dropdown
+                }))}
+                value={selectedCity}
+                onChange={ handleCity}
+                isSelect
+                id="city"
+                name="city"
+              />
             <BaseInput
               id={"sector"}
               isSelect
@@ -161,7 +206,7 @@ const handleSearch = () => {
               classs={"inputs normal"}
               height={"40px"}
               placeholder="Sector"
-              options={medellin}
+              options={districtOptions}
               name="budget"
               value={selectedSector}
               onChange={handleSector}

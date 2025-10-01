@@ -90,7 +90,6 @@ export const Statics = () => {
             <div className="statics">
                     <div className="statics-header">
                       <h2 className="statics-header-h2">Estadísticas</h2>
-      
                     </div>
               <div className="statics-container">
                 <div className="statics-container-card">

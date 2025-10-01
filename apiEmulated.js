@@ -27,7 +27,8 @@ export const leases = [
         1 parqueadero privado cubierto
         `,
         img: 'casa',
-        price: '$2,000,000.00',
+        price: '2,000,000.00',
+        address: 'Calle 34 # 34 54',
         previousPrice: '$2,500,000.00',
         sellingsText: 'Vendidos',
         sellings: '999',

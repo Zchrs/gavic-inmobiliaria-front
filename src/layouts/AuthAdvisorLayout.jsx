@@ -62,7 +62,7 @@ height: fit-content;
     max-width: 1920px;
     height: 100%;
     min-height: 100vh;
-    align-items: start;
+    align-items: center;
     padding: 0 100px;
     gap: 100px;
     overflow: hidden;
@@ -139,7 +139,7 @@ height: fit-content;
         display: grid;
         width: 70%;
         height: fit-content;
-        padding: 10px;
+        padding: 15px;
         border-radius: 5px;
         overflow: hidden;
         &::before{
@@ -161,14 +161,14 @@ height: fit-content;
       padding: 20px;
     }
 
-        @media (max-width: 480px) {
-          margin-top: 20px; 
+        @media (max-width: 680px) {
+          margin-top: -50px; 
             padding: 25px 12px;
             width: 100%;
         }
 
         &-group{
-          width: 80%;
+          width: 100%;
             align-self: baseline;
             margin: 0 auto;
             display: flex;
@@ -183,7 +183,7 @@ height: fit-content;
                 color: var(--text-dark);
                 cursor: pointer;
 
-                @media (max-width: 480px) {
+                @media (max-width: 680px) {
                   display: grid;
                   align-items: start;
                   width: 100%;
@@ -205,15 +205,13 @@ height: fit-content;
             color: #EC3337;
         }
     }
-}
 
-
-.auth{
+    &-auth{
     animation: smooth .5s ease;
     position: relative;
     gap: 25px;
     display: grid;
-    width: 80%;
+    width: 100%;
     height: fit-content;
     align-items: center;
     border-radius: 0 0 5px 5px;
@@ -231,13 +229,12 @@ height: fit-content;
     }
     
     
-    form{
+    &-form{
         position: relative;
         display: grid;
+        width: 100%;
         gap: 7px;
-        margin: 0;
-        align-items: start;
-        align-content: start;
+        margin: 0 auto;
 
         .a{
             width: fit-content;
@@ -337,6 +334,10 @@ height: fit-content;
       padding: 0;
     }
 }
+}
+
+
+
 
 
 @keyframes smooth {

@@ -12,8 +12,8 @@ const { formRefs, validateForm } = useValidations();
   );
 
   return (
-    <section className="auth">
-      <form className="form">
+    <section className="advisorlayout-auth">
+      <form className="advisorlayout-auth-form">
         <div>
           <BaseInput
           formRefs={formRefs.email}

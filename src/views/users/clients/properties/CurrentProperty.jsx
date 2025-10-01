@@ -14,26 +14,12 @@ export const CurrentProperty = () => {
                     <div className="clienhome-empty">
                       <Empty message="Aún no tienes una vivienda con nosotros." /> 
                     </div>: 
-                    <div>
-                        {/* <CardLeases
-                          key={myProperty.id}
-                          propertyRef={myProperty.ref}
-                          area={myProperty.area}
-                          quantityCloset={myProperty.closets}
-                          quantityRooms={myProperty.quantityBathrooms}
-                          location={myProperty.district || "Ubicación no disponible"}
-                          addToWish="addwishlist-red"
-                          img={myProperty.img || getImg('jpg', `casa`, 'webp')}
-                          sellingsText={true}
-                          priceText={true}
-                          price={myProperty.price || "Consultar"}
-                          productInfo={myProperty}
-                          boxFlex={true}
-                          classs="productcard background"
-                          jpg="true"
-                          title={myProperty.title || "Propiedad sin título"}
-                          thumbnails={myProperty.images || []}
-                        /> */}
+                    <div className="current-contain">
+                      <h2>Mi vivienda actual</h2>
+                      <div className="flex-s">
+                        <strong>Mi dirección:</strong>
+                        <p>{myProperty.address}</p>
+                      </div>
                         <div className="current-content">
                           {<img src={getImg('jpg', `${leases[0].img}`, 'webp')} alt="" />}
                         </div>
@@ -53,20 +39,27 @@ export const CurrentProperty = () => {
 const CurrEnt = styled.section`
 display: grid;
 width: 100%;
-height: 100%;
+height: fit-content;
 
 .current{
   display: grid;
   align-items: start;
   width: 100%;
-  height: 100%;
+  height: fit-content;
   gap: 10px;
-  padding: 50px;
+  padding: 50px 0 0 0;
 
+&-contain{
+  display: grid;
+  width: 80%;
+  height: fit-content;
+  gap: 10px;
+  margin: auto;
+}
 &-content{
   display: grid;
   width: 100%;
-  height: 100%;
+  height: fit-content;
   img{
     width: 100%;
     object-fit: cover;
@@ -77,6 +70,7 @@ height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
+  height: fit-content;
   gap: 10px;
   img{
     width: 100%;

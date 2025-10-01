@@ -51,8 +51,8 @@ const { formRefs, validateForm } = useValidations();
 
   return (
     <RegisterAdvisor>
-            <div className="auth">
-              <form className="form">
+            <div className="advisorlayout-auth">
+              <form className="advisorlayout-auth-form">
                 <BaseInput
                   isSelect
                   inputRef={formRefs.country}

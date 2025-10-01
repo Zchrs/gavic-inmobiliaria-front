@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useRoutesHome } from "../../index";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getImg } from "../../globalActions";
+import { getImg, scrollTop } from "../../globalActions";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -54,7 +54,9 @@ export const Footer = () => {
         }
       }, 0); // Delay necesario para asegurar que el DOM se haya cargado
     }
+    scrollTop()
   };
+
 
   return (
     <FooTer>
@@ -76,7 +78,7 @@ export const Footer = () => {
         <div className="footer-links">
           <h2 className="footer-links-h2">Legal</h2>
           {legalRoutes.map((route, index) => (
-            <Link className="footer-links-a" to={route.route} key={index}>
+            <Link onClick={scrollTop} className="footer-links-a" to={route.route} key={index}>
               {route.text}
             </Link>
           ))}
@@ -84,7 +86,7 @@ export const Footer = () => {
         <div className="footer-links">
           <h2 className="footer-links-h2">Ayuda</h2>
           {helpRoutes.map((route, index) => (
-            <Link className="footer-links-a" to={route.route} key={index}>
+            <Link onClick={scrollTop} className="footer-links-a" to={route.route} key={index}>
               {route.text}
             </Link>
           ))}

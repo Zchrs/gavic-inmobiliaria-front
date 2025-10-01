@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { RecoveryPasswordRouter } from "../router/AppRouter"
+import { RecoveryPasswordRouterAdvisor } from "../router/AppRouter"
 import { getImg } from "../../globalActions"
 import { Link } from "react-router-dom"
 
@@ -12,7 +12,7 @@ export const HomeRecovery = () => {
             <div className="recovery-logo">
                 <img src={getImg('svg', 'logo', 'svg')} alt="logo" />
             </div>
-            <RecoveryPasswordRouter />
+            <RecoveryPasswordRouterAdvisor />
         </div>
     </RecoveryHome>
   )

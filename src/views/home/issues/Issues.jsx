@@ -1,16 +1,28 @@
 import styled from "styled-components";
 import { BaseInput, BaseButton, MultiDropZone } from "../../../../index";
 import { useValidations } from "../../../hooks/useValidations";
-import { initialForm, useForm } from "../../../hooks/useForm";
+import { useForm } from "../../../hooks/useForm";
+import { useSelector } from "react-redux";
 
 export const Issues = () => {
   const { formRefs, validateForm } = useValidations();
+    const user = useSelector((state) => state.auth.user);
+
+  const initialForm = {
+    fullname: user.name + " " + user.lastname,
+    email: user.email,
+    title: "",
+    description: "",
+    img_url: [],
+  };
+
   const {
     form,
     handleChange,
     handleBlur,
     handleImagesChange,
     handleSetImages,
+    handleSubmitIssues,
   } = useForm(initialForm, validateForm);
   return (
     <IssUes>
@@ -81,7 +93,7 @@ export const Issues = () => {
             multiple
           />
           <BaseButton
-            //   handleClick={handleSubmitsAdmin}
+              handleClick={handleSubmitIssues}
             classs={"button secondary"}
             textLabel={true}
             colorbtn={"var(--bg-secondary)"}
