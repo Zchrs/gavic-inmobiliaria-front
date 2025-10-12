@@ -39,7 +39,6 @@ export const HeaderClient = () => {
                 <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/documents">Documentos</NavLink>
                 <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/profile">Perfil</NavLink>
                 <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/properties">Inmuebles</NavLink>
-                <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/settings">Configuración</NavLink>
                 <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/client/dashboard/issues">Reportar problemas</NavLink>
                 <NavLink className={({ isActive }) => `${isActive ? "headerclient-active" : ""}`} to="/auth/client/login"onClick={handleLogout}>Cerrar Sesión</NavLink>     
             </div>

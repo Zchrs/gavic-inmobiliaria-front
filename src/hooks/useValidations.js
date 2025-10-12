@@ -32,6 +32,7 @@ export const useValidations = () => {
     category: useRef(null),
     furnished: useRef(null),
     admon: useRef(null),
+    role: useRef(null),
     description: useRef(null),
     bedRoom: useRef(null),
     bathRoom: useRef(null),
@@ -110,6 +111,13 @@ export const useValidations = () => {
     errors.title = validateField('title', form.title, 
       (val) => regexName.test(val.trim()), {
         required: "Debes ingresar el nombre",
+        invalid: "El nombre debe tener solo letras"
+      }
+    );
+
+    errors.role = validateField('role', form.role, 
+      (val) => regexName.test(val.trim()), {
+        required: "Debes ingresar una opción",
         invalid: "El nombre debe tener solo letras"
       }
     );
@@ -361,6 +369,11 @@ export const useValidations = () => {
   if ('country' in form) {
     errors.country = validateField('country', form.country, null, {
       required: "Debes seleccionar el país"
+    });
+  }
+  if ('role' in form) {
+    errors.role = validateField('role', form.role, null, {
+      required: "Debes seleccionar una opción"
     });
   }
 

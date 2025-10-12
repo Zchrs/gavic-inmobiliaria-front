@@ -187,8 +187,8 @@ export const CardLeases = ({
           </div>
 
           <Link onClick={onClick} to={productLink} className="productcard-contain">
-            {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'webp') || defaultImage} alt="" />}
-            {/* {jpg && <img loading="lazy" src={img} alt="" />} */}
+            {/* {jpg && <img loading="lazy" src={getImg('jpg', `${img}`, 'webp') || defaultImage} alt="" />} */}
+            {jpg && <img loading="lazy" src={img} alt="" />}
           </Link>
         </div>
         {boxGrid && 

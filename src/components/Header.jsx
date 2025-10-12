@@ -211,6 +211,7 @@ export const Header = () => {
             className={({ isActive }) =>
               `${isActive ? "header-links-a-active" : "header-links-a"}`
             }
+            onClick={scrollTop}
             to={"/"}>
             <img
               className="header-links-img"
@@ -380,6 +381,7 @@ const HeaDer = styled.div`
     justify-content: space-between;
     display: flex;
     align-items: center;
+    transition: all ease .5s ;
     width: 100%;
 
     @media (max-width: 720px) {

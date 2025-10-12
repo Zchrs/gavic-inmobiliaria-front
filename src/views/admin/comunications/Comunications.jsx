@@ -9,12 +9,15 @@ export const Comunications = () => {
       { label: "Nuevos", content: <NewIssues id="current-property" /> },
       { label: "En revisión", content: <PendingIssues /> },
       { label: "Solucionados", content: <SolvedIssues /> },
+      { label: "Nuevos PQRS", content: <NewIssues id="current-property" /> },
+      { label: "PQRS en revisión", content: <PendingIssues /> },
+      { label: "PQRS solucionados", content: <SolvedIssues /> },
     ];
-    const [activeTab, setActiveTab] = useState("Actual");
+    const [activeTab, setActiveTab] = useState("Nuevos");
   return (
     <ComuniCations>
       <div className="comunications">
-        <h2 className="comunications-h2">Reporte de problemas: {activeTab}</h2>
+        <h2 className="comunications-h2">PQRS y problemas : {activeTab}</h2>
       
          <Tabs tabs={tabs} onTabChange={setActiveTab} />
         

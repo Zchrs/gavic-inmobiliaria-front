@@ -27,6 +27,7 @@ export const Register = () => {
     let phone = document.getElementById("phone");
     let password = document.getElementById("password");
     let address = document.getElementById("address");
+    let role = document.getElementById("role");
 
     if (!form.country) {
       country.style.cssText = "border: red 1px solid; border-radius: 10px;";
@@ -77,6 +78,12 @@ export const Register = () => {
       errors.address = "Debes ingresar tu dirección";
     }  else {
       address.style.cssText = "border: #34B0BE 1px solid;";
+    }
+    if (!form.role) {
+      role.style.cssText = "border: red 1px solid; border-radius: 10px;";
+      errors.role = "Debes ingresar una opción";
+    }  else {
+      role.style.cssText = "border: #34B0BE 1px solid;";
     }
 
 
@@ -232,16 +239,36 @@ export const Register = () => {
           />
           {/* {errors.email && <p className="warnings-form">{errors.email}</p>} */}
         </div>
-        <BaseInput
-          classs={"inputs normal"}
-          placeholder="Dirección de domicilio"
-          name="address"
-          id="address"
-          value={form.address}
-          onBlur={ handleBlur }
-          onChange={(e) => handleChange(e, 'client')}
-          required
-        />
+        <div className="grid-l">
+          <BaseInput
+            classs={"inputs normal"}
+            placeholder="Dirección de domicilio"
+            name="address"
+            id="address"
+            value={form.address}
+            onBlur={ handleBlur }
+            onChange={(e) => handleChange(e, 'client')}
+            required
+          />
+          <BaseInput
+           isSelect
+            height={"100%"}
+            width={"100%"}
+            classs={"inputs normal"}
+            id="role"
+            name="role"
+            placeholder="Rol"
+            value={form.role}
+            onChange={(e) => handleChange(e, 'client')}
+            onBlur={ handleBlur }
+            options={[
+                { value: "Arrendatario", label: "Arrendatario" },
+                { value: "Inquilino", label: "Inquilino" },
+              ]}
+            isSmallSelect={true}
+            required
+          />
+        </div>
         <BaseInput
           classs={"inputs normal"}
           placeholder="Contraseña"

@@ -1,12 +1,24 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useRoutesHome } from "../../index";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getImg, scrollTop } from "../../globalActions";
+import { getImg, scrollTop, scrollTopPadding } from "../../globalActions";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   const routes = useRoutesHome();
+
+   const location = useLocation();
+
+  useEffect(() => {
+    // Si hay un hash en la URL, hacer scroll al elemento
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
 
   const abtRoutes = useMemo(() => {
     const selectedNames = ["about", "targets", "mision", "vision", "values"]; // Nombres a incluir
@@ -17,9 +29,9 @@ export const Footer = () => {
 
   const lglRoutes = useMemo(() => {
     const selectedNames = [
+      "legal",
       "privacy policy",
       "data treathment",
-      "quality policy",
       "tyc",
     ]; // Nombres a incluir
     return routes.filter((route) => selectedNames.includes(route.name));
@@ -28,7 +40,7 @@ export const Footer = () => {
   const legalRoutes = lglRoutes;
 
   const hlpRoutes = useMemo(() => {
-    const selectedNames = ["contact", "helpcenter", "pqrs", "coverage"]; // Nombres a incluir
+    const selectedNames = ["coverage", "contact", "pqrs", "faq"]; // Nombres a incluir
     return routes.filter((route) => selectedNames.includes(route.name));
   }, [routes]);
 
@@ -56,6 +68,26 @@ export const Footer = () => {
     }
     scrollTop()
   };
+  const handleScrollToSectionPadding = (route) => {
+    // Extrae el hash (#mision, #vision, etc.)
+    const [path, hash] = route.split("#");
+
+    // Navega al path base si es necesario
+    if (path) {
+      navigate(path);
+    }
+
+    // Desplázate a la sección especificada por el hash
+    if (hash) {
+      setTimeout(() => {
+        const section = document.getElementById(hash);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 0); // Delay necesario para asegurar que el DOM se haya cargado
+    }
+    scrollTopPadding()
+  };
 
 
   return (
@@ -78,7 +110,7 @@ export const Footer = () => {
         <div className="footer-links">
           <h2 className="footer-links-h2">Legal</h2>
           {legalRoutes.map((route, index) => (
-            <Link onClick={scrollTop} className="footer-links-a" to={route.route} key={index}>
+            <Link onClick={handleScrollToSectionPadding} className="footer-links-a" to={route.route} key={index}>
               {route.text}
             </Link>
           ))}
@@ -95,21 +127,21 @@ export const Footer = () => {
           <h2 className="footer-links-h2">Síguenos</h2>
 
           <div className="footer-flex">
-            <Link className="footer-links-img">
+            <Link className="footer-links-img" to={"https://www.instagram.com/gavicinmobiliaria/?hl=es"} target="_blank">
               <img
                 loading="lazy"
                 src={getImg("svg", "instagram", "svg")}
                 alt="instagram-logo"
               />
             </Link>
-            <Link className="footer-links-img">
+            <Link className="footer-links-img" to={"https://www.facebook.com/share/16XNsfP1W5/"} target="_blank">
               <img
                 loading="lazy"
                 src={getImg("svg", "facebook", "svg")}
                 alt="facebook-logo"
               />
             </Link>
-            <Link className="footer-links-img">
+            {/* <Link className="footer-links-img">
               <img
                 loading="lazy"
                 src={getImg("svg", "linkedin", "svg")}
@@ -122,7 +154,7 @@ export const Footer = () => {
                 src={getImg("svg", "twitter", "svg")}
                 alt="twitter-logo"
               />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

@@ -8,8 +8,10 @@ export const PropertySale = () => {
       <div>
         <ItemsCategory 
         showSell={true} 
+        showSold={true} 
         action={"Venta"} 
-        showToAddWish = {false} />
+        showToAddWish = {false} 
+        />
       </div>
     </SaLe>
 )

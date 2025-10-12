@@ -22,7 +22,6 @@ import {
   DetailSales,
   Finances,
   ForRentPropertiesw,
-  HelpCenter,
   Home,
   HomeProperties,
   Immovables,
@@ -58,6 +57,7 @@ import {
   RecoveryPasshordHome,
   Recovery,
   TyC,
+  FaQ,
 } from "../../index";
 import { AdvisorLogin } from "../views/home/auth/AdvisorLogin";
 import { AdvisorRegister } from "../views/home/auth/AdvisorRegister";
@@ -85,10 +85,10 @@ export const AppRouter = () => {
       <Route exact path="advisor/register" element={<AdvisorLogin />} />
       <Route exact path="advisor/login" element={<AdvisorLogin />} />
       <Route exact path="coverage" element={<Coverage />} />
-      <Route exact path="helpcenter" element={<HelpCenter />} />
+      <Route exact path="faq" element={<FaQ />} />
       <Route exact path="contact" element={<Contact />} />
       <Route exact path="pqrs" element={<Pqrs />} />
-      <Route exact path="tyc" element={<TyC />} />
+      <Route exact path="legal" element={<TyC />} />
       <Route exact path="data-treatment" element={<DataTreathment />} />
       <Route
         exact

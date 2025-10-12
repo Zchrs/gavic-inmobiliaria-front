@@ -22,6 +22,9 @@ export const getDocs = (route, url, extension = 'pdf') => {
   export const scrollTop = () =>{
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  export const scrollTopPadding = () =>{
+    window.scrollTo({ top: 100, behavior: 'smooth' });
+  }
 
   export const formatPrice = (price) => {
     if (price === undefined || price === null) {

@@ -40,7 +40,6 @@ export const HeaderAdvisor = () => {
                 <NavLink to="finances">Finanzas</NavLink>
                 <NavLink to="sales">Ventas</NavLink>
                 <NavLink to="clients">Clientes</NavLink>
-                <NavLink to="settings">Configuración</NavLink>
                 <NavLink onClick={handleLogout}>Cerrar Sesión</NavLink>
             </div>
         </div>

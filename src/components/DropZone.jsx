@@ -185,6 +185,15 @@ export const DropZone = ({ name, type, id, setImage }) => {
   };
 
   const uploadToHostinger = async (file) => {
+
+      // Detectar entorno
+  const isProduction = import.meta.env.MODE === 'production';
+
+  // URLs según entorno
+  const UPLOAD_URL = isProduction
+    ? import.meta.env.VITE_APP_API_HOSTINGER_UPLOAD_URL // producción
+    : import.meta.env.VITE_APP_API_UPLOAD_IMAGE_PROPERTIES_URL; // desarrollo
+
     const formData = new FormData();
     formData.append('image', file);
 
@@ -193,7 +202,7 @@ export const DropZone = ({ name, type, id, setImage }) => {
       setUploadProgress(0);
 
       const response = await axios.post(
-        HOSTINGER_UPLOAD_URL,
+        UPLOAD_URL,
         formData,
         {
           headers: {

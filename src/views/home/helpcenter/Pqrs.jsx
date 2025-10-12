@@ -3,10 +3,12 @@ import { BaseButton, BaseInput, MultiDropZone } from "../../../../index";
 // import { useSelector } from "react-redux";
 import { useValidations } from "../../../hooks/useValidations";
 import { useForm } from "../../../hooks/useForm";
+import { useState } from "react";
+import { BaseCheckbox } from "../../../components/BaseCheckbox";
 
 export const Pqrs = () => {
   const { formRefs, validateForm } = useValidations();
-  // const user = useSelector((state) => state.auth.user);
+  const [showUploader, setShowUploader] = useState(false);
 
   const initialForm = {
     fullname: "",
@@ -23,8 +25,9 @@ export const Pqrs = () => {
     handleBlur,
     handleImagesChange,
     handleSetImages,
-    handleSubmitIssues,
+    handleSubmitPqrs,
   } = useForm(initialForm, validateForm);
+
   return (
     <PqRs>
       <div className="pqrs">
@@ -32,10 +35,9 @@ export const Pqrs = () => {
         <p>
           <strong>Haznos un pqrs:</strong> <br />
           Si tienes alguna pregunta, duda o reclamo sobre tu vivienda, por
-          favor, para nosotros es importante tu opinión. Por favor, completa el
-          siguiente formulario para que podamos ayudarte en la mayor brevedad
-          posible.
+          favor, completa el siguiente formulario para que podamos ayudarte lo antes posible.
         </p>
+
         <form className="pqrs-form">
           <BaseInput
             classs={"inputs normal"}
@@ -69,37 +71,37 @@ export const Pqrs = () => {
             name="phone"
             id="phone"
             value={form.phone}
-            onBlur={ handleBlur }
-            onChange={ handleChange }
+            onBlur={handleBlur}
+            onChange={handleChange}
             required
             isNumber
           />
 
-          
-            <BaseInput
-              classs={"inputs normal"}
-              placeholder="Correo electrónico"
-              name="email"
-              id="email"
-              value={form.email}
-              inputRef={formRefs.email}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              required
-              isEmail
-            />
-                            <BaseInput
-                              inputRef={formRefs.address}
-                              classs={"inputs normal"}
-                              placeholder="Dirección de residencia"
-                              name="address"
-                              id="address"
-                              onBlur={ handleBlur }
-                              onChange={ handleChange }
-                              value={form.address}
-                              required
-                            />
-          
+          <BaseInput
+            classs={"inputs normal"}
+            placeholder="Correo electrónico"
+            name="email"
+            id="email"
+            value={form.email}
+            inputRef={formRefs.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            required
+            isEmail
+          />
+
+          <BaseInput
+            inputRef={formRefs.address}
+            classs={"inputs normal"}
+            placeholder="Dirección de residencia"
+            name="address"
+            id="address"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={form.address}
+            required
+          />
+
           <BaseInput
             classs={"inputs normal"}
             placeholder="Petición, queja o reclamo"
@@ -110,15 +112,16 @@ export const Pqrs = () => {
             value={form.title}
             inputRef={formRefs.title}
             options={[
-                  { value: "Petición", label: "Petición" },
-                  { value: "Queja", label: "Queja" },
-                  { value: "Reclamo", label: "Reclamo" },
-                  { value: "Sugerencia", label: "Sugerencia" },
-                  { value: "Otro", label: "Otro" },
-                ]}
+              { value: "Petición", label: "Petición" },
+              { value: "Queja", label: "Queja" },
+              { value: "Reclamo", label: "Reclamo" },
+              { value: "Sugerencia", label: "Sugerencia" },
+              { value: "Otro", label: "Otro" },
+            ]}
             isSelect
             required
           />
+
           <BaseInput
             classs={"inputs normal"}
             placeholder="Descripción/detalles"
@@ -131,17 +134,37 @@ export const Pqrs = () => {
             isTextarea
             required
           />
-          <MultiDropZone
-            id="images"
-            name="img_url"
-            type="file"
-            setImages={handleSetImages}
-            onChange={handleImagesChange}
-            onBlur={handleBlur}
-            multiple
+
+
+          {/* <label className="checkbox-container">
+            <input
+              type="checkbox"
+              onChange={(e) => setShowUploader(e.target.checked)}
+            />
+            <span>Adjuntar imágenes</span>
+          </label> */}
+
+          <BaseCheckbox 
+            id={"check"}
+            label={"Adjuntar imágenes"}
+            valueChange={(e) => setShowUploader(e.target.checked)}
           />
+
+          {/* ✅ Solo se muestra si el checkbox está marcado */}
+          {showUploader && (
+            <MultiDropZone
+              id="images"
+              name="img_url"
+              type="file"
+              setImages={handleSetImages}
+              onChange={handleImagesChange}
+              onBlur={handleBlur}
+              multiple
+            />
+          )}
+
           <BaseButton
-            handleClick={handleSubmitIssues}
+            handleClick={handleSubmitPqrs}
             classs={"button secondary"}
             textLabel={true}
             colorbtn={"var(--bg-secondary)"}
@@ -179,10 +202,11 @@ const PqRs = styled.div`
     &-form {
       display: grid;
       gap: 15px;
-      width: 100%;
+      width: 50%;
       align-items: start;
       margin: auto;
-      justify-content: center;
+      /* justify-content: center; */
     }
   }
+
 `;

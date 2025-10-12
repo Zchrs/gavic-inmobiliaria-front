@@ -168,11 +168,29 @@ export const useRoutesDashAdvisors = () => {
   ];
 };
 export const useRoutesHome = () => {
-
+0          
   return [
     { name: "home", route: "/", text: "Inicio" },
-    { name: "tyc", route: "/tyc", text: "Términos y condiciones" },
-    { name: "about", route: "about/#about", text: "Sobre nosotros" },
+    { name: "tyc", route: "/legal/#tyc", text: "Términos y condiciones" },
+        {
+      name: "privacy policy",
+      route: "/legal/#privacy-policy",
+      text: "Política de privacidad",
+    },
+
+    {
+      name: "data treathment",
+      route: "/legal/#data-treatment",
+      text: "Tratamiento de datos",
+    },
+            {
+      name: "faq",
+      route: "/faq",
+      text: "Preguntas frecuentes",
+    },
+    { name: "quality policy", route: "/legal/#qap", text: "Política de calidad" },
+    
+    { name: "about", route: "/about/#about", text: "Sobre nosotros" },
     { name: "targets", route: "/about/#targets", text: "Objetivos generales" },
     { name: "vision", route: "/about/#vision", text: "Visión" },
     { name: "about us", route: "/about-us", text: "Sobre nosotros" },
@@ -186,28 +204,18 @@ export const useRoutesHome = () => {
     { name: "login", route: "/auth/client-login", text: "Iniciar sesión" },
     {
       name: "values",
-      route: "about/#values",
+      route: "/about/#values",
       text: "Valores",
     },
-    { name: "quality policy", route: "/about/#qap", text: "Política de calidad" },
     {
       name: "coverage",
-      route: "/#coverage",
+      route: "/coverage",
       text: "Cobertura",
     },
     { name: "helpcenter", route: "/helpcenter", text: "Centro de ayuda"},
     { name: "contact", route: "/contact", text: "Contacto" },
     { name: "pqrs", route: "/pqrs", text: "Haznos un pqrs" },
-    {
-      name: "privacy policy",
-      route: "/#privacy-policy",
-      text: "Política de privacidad",
-    },
-    {
-      name: "data treathment",
-      route: "/#data-treatment",
-      text: "Tratamiento de datos",
-    },
+
     {
       name: "superintendencia de industria y comercio",
       route: "/#superintendency-of-industria-and-commerce",

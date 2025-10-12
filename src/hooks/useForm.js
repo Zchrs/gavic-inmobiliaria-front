@@ -27,6 +27,7 @@ export const initialForm = {
   city: "",
   address: "",
   phone: "",
+  role: "",
   email: "",
   pass: "",
   password: "",
@@ -63,10 +64,7 @@ export const initialForm = {
   user_id: "",
   product_id: "",
   quantity: "1",
-
 };
-
-
 
 export const useForm = (initialForm, validateForm) => {
   // ---------------- variables de estado -----------------------
@@ -85,7 +83,7 @@ export const useForm = (initialForm, validateForm) => {
   const [city, setCity] = useState([]);
   const [checked, setChecked] = useState(false);
   const [hasManager, setHasManager] = useState(false);
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
   const user = useSelector((state) => state.auth.user);
   // ----------------- funciones form -------------------------
 
@@ -113,14 +111,14 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleCountryChange = (options) => {
-      if (!options) {
-        setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
-      } else {
-        setForm({
-          ...form,
-          country: options.target.value,
-        });
-      }
+    if (!options) {
+      setSelectedCountry(options.target.value); // Llama a la función proporcionada con el país seleccionado
+    } else {
+      setForm({
+        ...form,
+        country: options.target.value,
+      });
+    }
   };
 
   const handleClearCountry = (label, value) => {
@@ -138,11 +136,11 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-      setForm({
-        ...form,
-        [name]: value,
-          ...(name === "city" ? { district: "" } : {}),
-      });
+    setForm({
+      ...form,
+      [name]: value,
+      ...(name === "city" ? { district: "" } : {}),
+    });
 
     if (value === "email") {
       validateEmails(name);
@@ -152,46 +150,45 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleBlur = (e) => {
-      handleChange(e);
-      setErrors(validateForm(form));
+    handleChange(e);
+    setErrors(validateForm(form));
   };
 
   const handleStateChange = (e) => {
     const { value } = e.target;
-    const selectedDepartment = departamentos.find(dep => dep.departamento === value);
-    
+    const selectedDepartment = departamentos.find(
+      (dep) => dep.departamento === value
+    );
+
     if (selectedDepartment) {
       setCities(selectedDepartment.ciudades);
     } else {
       setCities([]);
     }
 
-    setForm(prev => ({ 
-      ...prev, 
+    setForm((prev) => ({
+      ...prev,
       state: value,
-      city: '' // Limpiar la ciudad cuando cambia el departamento
+      city: "", // Limpiar la ciudad cuando cambia el departamento
     }));
-  
   };
-  
+
   const handleCityChange = (e) => {
     const { value } = e.target;
-    const selectedCity = ciudades.find(cit => cit.ciudad === value);
-    
+    const selectedCity = ciudades.find((cit) => cit.ciudad === value);
+
     if (selectedCity) {
       setSector(selectedCity.barrios);
     } else {
       setSector([]);
     }
 
-    setForm(prev => ({ 
-      ...prev, 
+    setForm((prev) => ({
+      ...prev,
       state: value,
-      city: '' // Limpiar la ciudad cuando cambia el departamento
+      city: "", // Limpiar la ciudad cuando cambia el departamento
     }));
-  
   };
-
 
   const handleChecked = (e, checked) => {
     setChecked(e.target.checked);
@@ -203,17 +200,17 @@ export const useForm = (initialForm, validateForm) => {
   };
 
   const handleSetImages = (imageUrls) => {
-      setForm({
-        ...form,
-        img_url: imageUrls,
-      });
+    setForm({
+      ...form,
+      img_url: imageUrls,
+    });
   };
 
   const handleSetImage = (imageUrl) => {
-      setForm({
-        ...form,
-        image: imageUrl,
-      });
+    setForm({
+      ...form,
+      image: imageUrl,
+    });
   };
 
   const handleImagesChange = (e) => {
@@ -224,16 +221,15 @@ export const useForm = (initialForm, validateForm) => {
       img_url: imgUrls, // Guardar las URLs de las imágenes
     }));
   };
-  
+
   const handleImageChange = (e) => {
     const file = e.target.files;
-    const imageUrl =  URL.createObjectURL(file);
+    const imageUrl = URL.createObjectURL(file);
     setForm((form) => ({
       ...form,
       image: imageUrl, // Guardar las URLs de las imágenes
     }));
   };
-
 
   // formularios y estados del producto
 
@@ -349,7 +345,7 @@ export const useForm = (initialForm, validateForm) => {
       submitClient: submitClient,
     };
 
-    if (submitClient === "client"){
+    if (submitClient === "client") {
       if (formData.name === "") return;
       if (formData.city === "") return;
       if (formData.price === "") return;
@@ -367,21 +363,21 @@ export const useForm = (initialForm, validateForm) => {
       if (formData.clothing === "") return;
       if (formData.action === "") return;
 
-        if(hasManager == true){
-         if (formData.nameManager === "") return;
-         if (formData.docIdManager === "") return;
-         if (formData.emailManager === "") return;
-         if (formData.phoneManager === "") return;
-        }
-      
+      if (hasManager == true) {
+        if (formData.nameManager === "") return;
+        if (formData.docIdManager === "") return;
+        if (formData.emailManager === "") return;
+        if (formData.phoneManager === "") return;
+      }
+
       if (formData.phone === "") return;
       if (formData.lastname === "") return;
       if (formData.dnaId === "") return;
       if (formData.expDate === "") return;
       if (formData.email === "") return;
       if (formData.phone === "") return;
-    } 
-    
+    }
+
     if (submitClient === "admin") {
       if (formData.name === "") return;
       if (formData.city === "") return;
@@ -401,10 +397,10 @@ export const useForm = (initialForm, validateForm) => {
       if (formData.clothing === "") return;
       if (formData.action === "") return;
     }
-    
+
     if (!formData.image) {
       console.error("Selecciona 1 imagen");
-      return
+      return;
     }
 
     if (!Array.isArray(formData.img_url) || formData.img_url.length === 0) {
@@ -412,276 +408,353 @@ export const useForm = (initialForm, validateForm) => {
       return;
     }
 
-    
-
     setLoading(true);
 
     if (submitClient === "client") {
-    Swal.fire({
-      title: "Estás agregando un inmueble",
-      text: "¿Deseas agregar este inmueble?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Confirmar",
-      cancelButtonText: "Volver",
-      background: "#f0f0f0",
-      customClass: {
-        popup: "custom-popup",
-        title: "custom-title",
-        content: "custom-content",
-        confirmButton: "custom-confirm-button",
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        try {
-          const response = axios.post(
-            import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
-            formData, 
-            {
-              headers: {
-                "Content-type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          );
-
-          console.log(response);
-          setLoading(false);
-          setResponse(true);
-          setForm(initialForm);
-         
-
-          Swal.fire({
-            title: "¡Éxito!",
-            text: "Inmueble agregado correctamente.",
-            icon: "success",
-            showCancelButton: false,
-            confirmButtonText: "Volver",
-            background: "#f0f0f0",
-            customClass: {
-              popup: "custom-popup",
-              title: "custom-title",
-              content: "custom-content",
-              confirmButton: "custom-confirm-button",
-            },
-          });
-          // Manejar acciones adicionales si es necesario
-        } catch (error) {
-  console.error("Error al enviar el inmueble:", error);
-  setLoading(false);
-  Swal.fire({
-    title: "Error",
-    text: error.response?.data?.error || "Ocurrió un error al enviar el formulario",
-    icon: "error"
-  });
-}
-      } else return;
-    });
-  } else if (submitClient === "admin") {
-  const token = localStorage.getItem("tokenAdmin");
-  
-  // Alert de confirmación inicial
-  Swal.fire({
-    title: "Agregar inmueble",
-    text: "¿Confirmas que deseas registrar este inmueble?",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonText: "Sí, registrar",
-    cancelButtonText: "Volver para modificar",
-    background: "#f0f0f0",
-    reverseButtons: true,
-    customClass: {
-      popup: "custom-popup",
-      title: "custom-title",
-      content: "custom-content",
-      confirmButton: "custom-confirm-button",
-      cancelButton: "custom-cancel-button"
-    },
-    showLoaderOnConfirm: true,
-    preConfirm: async () => {
-      try {
-        const response = await axios.post(
-          import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
-          formData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json",
-              "x-token": token
-            }
-          }
-        );
-        
-        return response.data;
-      } catch (error) {
-        Swal.showValidationMessage(
-          `Error: ${error.response?.data?.error || error.message}`
-        );
-        return false;
-      }
-    },
-    allowOutsideClick: () => !Swal.isLoading()
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Respuesta exitosa
-      setLoading(false);
-      setResponse(true);
-      setForm(initialForm);
-      
       Swal.fire({
-        title: "¡Registro exitoso!",
-        html: `
-          <div style="text-align: center;">
-            <p>El inmueble <strong>${result.value.propertyRef}</strong> fue creado correctamente.</p>
-            <p>Tipo: ${result.value.createdBy === 'admin' ? 'Administrador' : 'Usuario'}</p>
-            ${result.value.qrCodeGenerated ? '<p>Código QR generado</p>' : ''}
-          </div>
-        `,
-        icon: "success",
-        confirmButtonText: "Aceptar",
+        title: "Estás agregando un inmueble",
+        text: "¿Deseas agregar este inmueble?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Volver",
         background: "#f0f0f0",
         customClass: {
-          popup: "custom-popup-success",
-          title: "custom-title-success",
-          htmlContainer: "custom-html-container"
-        },
-        willClose: () => {
-          // Redirigir o realizar acciones adicionales
-          // window.location.href = '/propiedades';
-        }
-      });
-    } else if (result.isDismissed) {
-      // Usuario canceló la operación
-      Swal.fire({
-        title: "Operación cancelada",
-        text: "El inmueble no fue registrado",
-        icon: "info",
-        confirmButtonText: "Entendido",
-        customClass:{
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
           confirmButton: "custom-confirm-button",
-        }
-      });
-    }
-  }).catch((error) => {
-    // Manejo de errores
-    setLoading(false);
-    
-    let errorMessage = "Ocurrió un error al procesar la solicitud";
-    if (error.response) {
-      errorMessage = error.response.data.error || 
-                    error.response.data.message || 
-                    `Error ${error.response.status}: ${error.response.statusText}`;
-    } else if (error.request) {
-      errorMessage = "No se recibió respuesta del servidor";
-    }
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          try {
+            const response = axios.post(
+              import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
+              formData,
+              {
+                headers: {
+                  "Content-type": "application/json",
+                  Accept: "application/json",
+                },
+              }
+            );
 
-    Swal.fire({
-      title: "Error",
-      html: `
+            console.log(response);
+            setLoading(false);
+            setResponse(true);
+            setForm(initialForm);
+
+            Swal.fire({
+              title: "¡Éxito!",
+              text: "Inmueble agregado correctamente.",
+              icon: "success",
+              showCancelButton: false,
+              confirmButtonText: "Volver",
+              background: "#f0f0f0",
+              customClass: {
+                popup: "custom-popup",
+                title: "custom-title",
+                content: "custom-content",
+                confirmButton: "custom-confirm-button",
+              },
+            });
+            // Manejar acciones adicionales si es necesario
+          } catch (error) {
+            console.error("Error al enviar el inmueble:", error);
+            setLoading(false);
+            Swal.fire({
+              title: "Error",
+              text:
+                error.response?.data?.error ||
+                "Ocurrió un error al enviar el formulario",
+              icon: "error",
+            });
+          }
+        } else return;
+      });
+    } else if (submitClient === "admin") {
+      const token = localStorage.getItem("tokenAdmin");
+
+      // Alert de confirmación inicial
+      Swal.fire({
+        title: "Agregar inmueble",
+        text: "¿Confirmas que deseas registrar este inmueble?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Sí, registrar",
+        cancelButtonText: "Volver para modificar",
+        background: "#f0f0f0",
+        reverseButtons: true,
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+        showLoaderOnConfirm: true,
+        preConfirm: async () => {
+          try {
+            const response = await axios.post(
+              import.meta.env.VITE_APP_API_CREATE_PROPERTY_URL,
+              formData,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                  "x-token": token,
+                },
+              }
+            );
+
+            return response.data;
+          } catch (error) {
+            Swal.showValidationMessage(
+              `Error: ${error.response?.data?.error || error.message}`
+            );
+            return false;
+          }
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            // Respuesta exitosa
+            setLoading(false);
+            setResponse(true);
+            setForm(initialForm);
+
+            Swal.fire({
+              title: "¡Registro exitoso!",
+              html: `
+          <div style="text-align: center;">
+            <p>El inmueble <strong>${
+              result.value.propertyRef
+            }</strong> fue creado correctamente.</p>
+            <p>Tipo: ${
+              result.value.createdBy === "admin" ? "Administrador" : "Usuario"
+            }</p>
+            ${result.value.qrCodeGenerated ? "<p>Código QR generado</p>" : ""}
+          </div>
+        `,
+              icon: "success",
+              confirmButtonText: "Aceptar",
+              background: "#f0f0f0",
+              customClass: {
+                popup: "custom-popup-success",
+                title: "custom-title-success",
+                htmlContainer: "custom-html-container",
+              },
+              willClose: () => {
+                // Redirigir o realizar acciones adicionales
+                // window.location.href = '/propiedades';
+              },
+            });
+          } else if (result.isDismissed) {
+            // Usuario canceló la operación
+            Swal.fire({
+              title: "Operación cancelada",
+              text: "El inmueble no fue registrado",
+              icon: "info",
+              confirmButtonText: "Entendido",
+              customClass: {
+                confirmButton: "custom-confirm-button",
+              },
+            });
+          }
+        })
+        .catch((error) => {
+          // Manejo de errores
+          setLoading(false);
+
+          let errorMessage = "Ocurrió un error al procesar la solicitud";
+          if (error.response) {
+            errorMessage =
+              error.response.data.error ||
+              error.response.data.message ||
+              `Error ${error.response.status}: ${error.response.statusText}`;
+          } else if (error.request) {
+            errorMessage = "No se recibió respuesta del servidor";
+          }
+
+          Swal.fire({
+            title: "Error",
+            html: `
         <div style="text-align: center; color: #721c24;">
           <p>${errorMessage}</p>
           <small>Por favor intente nuevamente</small>
         </div>
       `,
-      icon: "error",
-      confirmButtonText: "Reintentar",
-      cancelButtonText: "Cancelar",
-      showCancelButton: true,
-      background: "#f0f0f0",
-      customClass: {
-        popup: "custom-popup-error",
-        title: "custom-title-error",
-        htmlContainer: "custom-html-container-error"
-      }
-    }).then((retryResult) => {
-      if (retryResult.isConfirmed) {
-        handleSubmitProperty(event, "admin");
-      }
-    });
-  });
-}
+            icon: "error",
+            confirmButtonText: "Reintentar",
+            cancelButtonText: "Cancelar",
+            showCancelButton: true,
+            background: "#f0f0f0",
+            customClass: {
+              popup: "custom-popup-error",
+              title: "custom-title-error",
+              htmlContainer: "custom-html-container-error",
+            },
+          }).then((retryResult) => {
+            if (retryResult.isConfirmed) {
+              handleSubmitProperty(event, "admin");
+            }
+          });
+        });
+    }
   };
 
-const handleSubmitIssues = async (e, submitClient = "client") => {
-  e.preventDefault();
+  const handleSubmitIssues = async (e, submitClient = "client") => {
+    e.preventDefault();
 
-  // 1. Obtener el token correctamente (cambiar 'tokenUser' por 'token')
-  const token = localStorage.getItem('tokenUser') || sessionStorage.getItem('tokenUser');
-  
-  if (!token) {
-    await Swal.fire({
-      title: "Error de autenticación",
-      text: "Por favor inicie sesión nuevamente",
-      icon: "error"
-    });
-    return;
-  }
+    // 1. Obtener el token correctamente (cambiar 'tokenUser' por 'token')
+    const token =
+      localStorage.getItem("tokenUser") || sessionStorage.getItem("tokenUser");
 
-  const formData = {
-    user_id: user.id,
-    fullname: form.fullname,
-    email: form.email,
-    title: form.title,
-    description: form.description,
-    img_url: form.img_url,
-    submitClient // Asegurar que este campo se envíe
-  };
-  debugger
-  setLoading(true);
-
-  try {
-    const result = await Swal.fire({
-      title: "Estás creando un reporte",
-      text: "Estás a punto de crear un reporte de un inmueble. ¿Deseas continuar?",
-      icon: "warning",
-      confirmButtonText: "Confirmar",
-    });
-
-    if (result.isConfirmed) {
-      // 2. Enviar el token en AMBOS headers
-      const response = await axios.post(
-        import.meta.env.VITE_APP_API_CREATE_ISSUE_REPORT_PROPERTIES_URL,
-        formData, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-            "x-token": token // Header alternativo
-          }
-        }
-      );
-
-      // Manejo de respuesta exitosa
-      setLoading(false);
-      setResponse(true);
-      setForm(initialForm);
-      
+    if (!token) {
       await Swal.fire({
-        title: "¡Éxito!",
-        text: "Reporte creado correctamente",
-        icon: "success"
+        title: "Error de autenticación",
+        text: "Por favor inicie sesión nuevamente",
+        icon: "error",
+      });
+      return;
+    }
+
+    const formData = {
+      user_id: user.id,
+      fullname: form.fullname,
+      email: form.email,
+      title: form.title,
+      description: form.description,
+      img_url: form.img_url,
+      submitClient, // Asegurar que este campo se envíe
+    };
+    debugger;
+    setLoading(true);
+
+    try {
+      const result = await Swal.fire({
+        title: "Estás creando un reporte",
+        text: "Estás a punto de crear un reporte de un inmueble. ¿Deseas continuar?",
+        icon: "warning",
+        confirmButtonText: "Confirmar",
+      });
+
+      if (result.isConfirmed) {
+        // 2. Enviar el token en AMBOS headers
+        const response = await axios.post(
+          import.meta.env.VITE_APP_API_CREATE_ISSUE_REPORT_PROPERTIES_URL,
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+              "x-token": token, // Header alternativo
+            },
+          }
+        );
+
+        // Manejo de respuesta exitosa
+        setLoading(false);
+        setResponse(true);
+        setForm(initialForm);
+
+        await Swal.fire({
+          title: "¡Éxito!",
+          text: "Reporte creado correctamente",
+          icon: "success",
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+
+      let errorMessage = "Ocurrió un error al enviar el formulario";
+      if (error.response?.status === 401) {
+        errorMessage = "Sesión expirada - Por favor inicie sesión nuevamente";
+        // Limpiar token inválido
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
+        // Redirigir a login
+        // navigate('/login');
+      }
+
+      await Swal.fire({
+        title: "Error",
+        text: errorMessage,
+        icon: "error",
       });
     }
-  } catch (error) {
-    setLoading(false);
-    
-    let errorMessage = "Ocurrió un error al enviar el formulario";
-    if (error.response?.status === 401) {
-      errorMessage = "Sesión expirada - Por favor inicie sesión nuevamente";
-      // Limpiar token inválido
-      localStorage.removeItem('token');
-      sessionStorage.removeItem('token');
-      // Redirigir a login
-      // navigate('/login');
-    }
+  };
 
-    await Swal.fire({
-      title: "Error",
-      text: errorMessage,
-      icon: "error"
-    });
-  }
-};
+  const handleSubmitPqrs = async (e, submitClient = "client") => {
+    e.preventDefault();
+
+    const formData = {
+      fullname: form.fullname,
+      dnaId: form.dnaId,
+      phone: form.phone,
+      email: form.email,
+      address: form.address,
+      title: form.title,
+      description: form.description,
+      img_url: form.img_url,
+      submitClient, // Asegurar que este campo se envíe
+    };
+    debugger;
+    setLoading(true);
+
+    try {
+      const result = await Swal.fire({
+        title: "Estás creando un reporte",
+        text: "Estás a punto de crear un PQRS. ¿Deseas continuar?",
+        icon: "warning",
+        confirmButtonText: "Confirmar",
+      });
+
+      if (result.isConfirmed) {
+        // 2. Enviar el token en AMBOS headers
+        const response = await axios.post(
+          import.meta.env.VITE_APP_API_CREATE_PQRS_REPORT_URL,
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        // Manejo de respuesta exitosa
+        setLoading(false);
+        setResponse(true);
+        setForm(initialForm);
+
+        await Swal.fire({
+          title: "¡Éxito!",
+          text: "PQRS creado correctamente",
+          icon: "success",
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+
+      let errorMessage = "Ocurrió un error al enviar el formulario";
+      if (error.response?.status === 401) {0
+        errorMessage = "Sesión expirada - Por favor inicie sesión nuevamente";
+        // Limpiar token inválido
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
+        // Redirigir a login
+        // navigate('/login');
+      }
+
+      await Swal.fire({
+        title: "Error",
+        text: errorMessage,
+        icon: "error",
+      });
+    }
+  };
+
   const deleteProperty = async (id) => {
     try {
       const result = await Swal.fire({
@@ -887,9 +960,7 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
     try {
       const token = user.token;
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_API_POST_WISHLIST_URL}/${
-          form.product_id
-        }`,
+        `${import.meta.env.VITE_APP_API_POST_WISHLIST_URL}/${form.product_id}`,
         finalFormAddWishlist,
         {
           body: finalFormAddWishlist,
@@ -995,7 +1066,7 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
     }
     setLoading(false);
     setModal(true);
-  }; 
+  };
 
   const handleSubmitClient = async (e, label) => {
     const finalForm = {
@@ -1009,6 +1080,7 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
     if (!finalForm.phone) return;
     if (!finalForm.email) return;
     if (!finalForm.address) return;
+    if (!finalForm.role) return;
     if (!finalForm.password) return;
 
     e.preventDefault();
@@ -1053,7 +1125,7 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
               },
             })
             // (window.location.href =
-              // import.meta.env.VITE_APP_API_LOGIN_ADMIN_FRONT)
+            // import.meta.env.VITE_APP_API_LOGIN_ADMIN_FRONT)
           ),
         200
       );
@@ -1091,8 +1163,6 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
   };
 
   const handleSubmitsAdvisor = async (e) => {
-
-    
     const finalForm = {
       ...form,
     };
@@ -1113,7 +1183,10 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
     setLoading(true);
     try {
       helpHttp();
-      console.log("API URL:", import.meta.env.VITE_APP_API_REGISTER_ADVISORS_URL);
+      console.log(
+        "API URL:",
+        import.meta.env.VITE_APP_API_REGISTER_ADVISORS_URL
+      );
       const response = await axios.post(
         import.meta.env.VITE_APP_API_REGISTER_ADVISORS_URL,
         finalForm,
@@ -1179,7 +1252,10 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
     setLoading(true);
     try {
       helpHttp();
-      console.log("API URL:", import.meta.env.VITE_APP_API_REQUEST_RECOVERY_CODE);
+      console.log(
+        "API URL:",
+        import.meta.env.VITE_APP_API_REQUEST_RECOVERY_CODE
+      );
       const response = await axios.post(
         import.meta.env.VITE_APP_API_REGISTER_URL,
         finalForm,
@@ -1266,104 +1342,41 @@ const handleSubmitIssues = async (e, submitClient = "client") => {
     setModal(true);
   };
 
-   const handleChangePassword = async (e) => {
-  e.preventDefault();
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
 
-  if (!form.password || !form.rePassword) return;
+    if (!form.password || !form.rePassword) return;
 
-  const finalForm = {
-    email: form.email,
-    password: form.password,
-  };
+    const finalForm = {
+      email: form.email,
+      password: form.password,
+    };
 
-  debugger;
+    debugger;
 
-  setErrors(validateForm);
-  setLoading(true);
+    setErrors(validateForm);
+    setLoading(true);
 
-  try {
-    const response = await axios.post(
-      import.meta.env.VITE_APP_API_RESET_PASSWORD,
-      finalForm,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_APP_API_RESET_PASSWORD,
+        finalForm,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
 
-    console.log(response.data);
-    setResponse(true);
-    setForm(initialForm);
-    setLoading(false);
+      console.log(response.data);
+      setResponse(true);
+      setForm(initialForm);
+      setLoading(false);
 
-    Swal.fire({
-      title: "¡Hecho!",
-      html: `Contraseña cambiada correctamente`,
-      icon: "success",
-      background: "#f0f0f0",
-      customClass: {
-        popup: "custom-popup",
-        title: "custom-title",
-        content: "custom-content",
-        confirmButton: "custom-confirm-button",
-        cancelButton: "custom-cancel-button",
-      },
-    }).then(() => {
-      navigate("/advisor/auth/login"); // ✅ Redirige después del éxito
-    });
-  } catch (error) {
-    console.error(error);
-    Swal.fire({
-      title: "¡Error!",
-      html: `Error al cambiar la contraseña`,
-      icon: "warning",
-      background: "#f0f0f0",
-      customClass: {
-        popup: "custom-popup",
-        title: "custom-title",
-        content: "custom-content",
-        confirmButton: "custom-confirm-button",
-        cancelButton: "custom-cancel-button",
-      },
-    });
-  } finally {
-    setLoading(false);
-    setModal(true);
-  }
-};
-
-const handleRequestCode = async (e) => {
-  e.preventDefault();
-
-  const finalForm = { ...form };
-  if (!finalForm.email) return false;
-
-  setErrors(validateForm);
-  setLoading(true);
-
-  try {
-    const response = await axios.post(
-      import.meta.env.VITE_APP_API_REQUEST_RECOVERY_CODE,
-      { email: finalForm.email }, // solo necesitas enviar el email
-      {
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-
-    console.log(response);
-    setLoading(false);
-    setResponse(true);
-
-    setTimeout(() => {
-      setResponse(false);
       Swal.fire({
         title: "¡Hecho!",
-        html: `Código enviado a: <b>${finalForm.email}</b>`,
+        html: `Contraseña cambiada correctamente`,
         icon: "success",
         background: "#f0f0f0",
         customClass: {
@@ -1373,41 +1386,14 @@ const handleRequestCode = async (e) => {
           confirmButton: "custom-confirm-button",
           cancelButton: "custom-cancel-button",
         },
+      }).then(() => {
+        navigate("/advisor/auth/login"); // ✅ Redirige después del éxito
       });
-    }, 200);
-
-    return true; // ✅ Éxito
-  } catch (error) {
-    console.error("Error al solicitar el código:", error);
-    setLoading(false);
-    return false; // ❌ Fallo
-  }
-};
-
-const handleVerifyCode = async (e, { email, code }) => {
-  if (e?.preventDefault) e.preventDefault();
-
-  setErrors("");
-  setMessage("");
-
-  if (!/^\d{6}$/.test(code)) {
-    setErrors("El código debe tener 6 dígitos numéricos.");
-    return;
-  }
-
-  try {
-    const res = await fetch(import.meta.env.VITE_APP_API_VERIFY_CODE, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, code }),
-    });
-
-    const result = await res.json();
-
-    if (!res.ok) {
+    } catch (error) {
+      console.error(error);
       Swal.fire({
         title: "¡Error!",
-        html: result?.error || "Código inválido o expirado.",
+        html: `Error al cambiar la contraseña`,
         icon: "warning",
         background: "#f0f0f0",
         customClass: {
@@ -1418,44 +1404,133 @@ const handleVerifyCode = async (e, { email, code }) => {
           cancelButton: "custom-cancel-button",
         },
       });
+    } finally {
+      setLoading(false);
+      setModal(true);
+    }
+  };
+
+  const handleRequestCode = async (e) => {
+    e.preventDefault();
+
+    const finalForm = { ...form };
+    if (!finalForm.email) return false;
+
+    setErrors(validateForm);
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_APP_API_REQUEST_RECOVERY_CODE,
+        { email: finalForm.email }, // solo necesitas enviar el email
+        {
+          headers: {
+            "Content-type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+
+      console.log(response);
+      setLoading(false);
+      setResponse(true);
+
+      setTimeout(() => {
+        setResponse(false);
+        Swal.fire({
+          title: "¡Hecho!",
+          html: `Código enviado a: <b>${finalForm.email}</b>`,
+          icon: "success",
+          background: "#f0f0f0",
+          customClass: {
+            popup: "custom-popup",
+            title: "custom-title",
+            content: "custom-content",
+            confirmButton: "custom-confirm-button",
+            cancelButton: "custom-cancel-button",
+          },
+        });
+      }, 200);
+
+      return true; // ✅ Éxito
+    } catch (error) {
+      console.error("Error al solicitar el código:", error);
+      setLoading(false);
+      return false; // ❌ Fallo
+    }
+  };
+
+  const handleVerifyCode = async (e, { email, code }) => {
+    if (e?.preventDefault) e.preventDefault();
+
+    setErrors("");
+    setMessage("");
+
+    if (!/^\d{6}$/.test(code)) {
+      setErrors("El código debe tener 6 dígitos numéricos.");
       return;
     }
 
-    Swal.fire({
-      title: "¡Hecho!",
-      html: "¡Código correcto!",
-      icon: "success",
-      background: "#f0f0f0",
-      customClass: {
-        popup: "custom-popup",
-        title: "custom-title",
-        content: "custom-content",
-        confirmButton: "custom-confirm-button",
-        cancelButton: "custom-cancel-button",
-      },
-    });
+    try {
+      const res = await fetch(import.meta.env.VITE_APP_API_VERIFY_CODE, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code }),
+      });
 
-    setMessage("Código verificado.");
-    return true;
-  } catch (err) {
-    console.error(err);
-    Swal.fire({
-      title: "¡Error!",
-      html: "Código inválido o expirado.",
-      icon: "warning",
-      background: "#f0f0f0",
-      customClass: {
-        popup: "custom-popup",
-        title: "custom-title",
-        content: "custom-content",
-        confirmButton: "custom-confirm-button",
-        cancelButton: "custom-cancel-button",
-      },
-    });
-    return false;
-  }
-};
+      const result = await res.json();
 
+      if (!res.ok) {
+        Swal.fire({
+          title: "¡Error!",
+          html: result?.error || "Código inválido o expirado.",
+          icon: "warning",
+          background: "#f0f0f0",
+          customClass: {
+            popup: "custom-popup",
+            title: "custom-title",
+            content: "custom-content",
+            confirmButton: "custom-confirm-button",
+            cancelButton: "custom-cancel-button",
+          },
+        });
+        return;
+      }
+
+      Swal.fire({
+        title: "¡Hecho!",
+        html: "¡Código correcto!",
+        icon: "success",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+      });
+
+      setMessage("Código verificado.");
+      return true;
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        title: "¡Error!",
+        html: "Código inválido o expirado.",
+        icon: "warning",
+        background: "#f0f0f0",
+        customClass: {
+          popup: "custom-popup",
+          title: "custom-title",
+          content: "custom-content",
+          confirmButton: "custom-confirm-button",
+          cancelButton: "custom-cancel-button",
+        },
+      });
+      return false;
+    }
+  };
 
   return {
     form,
@@ -1468,7 +1543,8 @@ const handleVerifyCode = async (e, { email, code }) => {
     departamentos,
     cities,
     city,
-    hasManager, 
+    hasManager,
+    handleSubmitPqrs,
     handleSubmitIssues,
     setHasManager,
     setCities,

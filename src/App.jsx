@@ -8,7 +8,6 @@ import {
   Contact,
   Coverage,
   DataTreathment,
-  HelpCenter,
   Immovables,
   Mision,
   Pqrs,
@@ -53,6 +52,8 @@ import {
   UserDashboardLayout,
   SectionsComponent,
   Issues,
+  TyC,
+  FaQ,
 } from "../index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -101,10 +102,11 @@ function App() {
               <Route exact path="advisor/register" element={<AdvisorLogin />} />
               <Route exact path="advisor/login" element={<AdvisorLogin />} />
               <Route exact path="coverage" element={<Coverage />} />
-              <Route exact path="helpcenter" element={<HelpCenter />} />
+              <Route exact path="faq" element={<FaQ />} />
               <Route exact path="contact" element={<Contact />} />
               <Route exact path="pqrs" element={<Pqrs />} />
               <Route exact path="privacy-policy" element={<PrivPoly />} />
+              <Route exact path="legal" element={<TyC />} />
               <Route exact path="data-treatment" element={<DataTreathment />} />
               <Route
                 exact

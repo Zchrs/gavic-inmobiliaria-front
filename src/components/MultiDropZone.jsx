@@ -124,9 +124,9 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
   const fileInputRef = useRef(null);
 
   // Configuración para Hostinger
-  const HOSTINGER_UPLOAD_URL = 'https://gavicinmobiliaria.com/upload-multi.php';
+
   const MAX_FILE_SIZE = 30 * 1024 * 1024; // 30MB
-  const MAX_FILES = 4;
+  const MAX_FILES = 10;
 
   const handleDragEvents = (e) => {
     e.preventDefault();
@@ -177,52 +177,102 @@ export const MultiDropZone = ({ id, setImages, name, type }) => {
     uploadToHostinger(files);
   };
 
-  const uploadToHostinger = async (files) => {
-    const formData = new FormData();
-    files.forEach((file, index) => {
-      formData.append(`images[${index}]`, file);
-    });
+  // const uploadToHostinger = async (files) => {
+  //   const formData = new FormData();
+  //   files.forEach((file, index) => {
+  //     formData.append(`images[${index}]`, file);
+  //   });
 
-    try {
-      setUploadStatus('uploading');
-      setUploadProgress(0);
+  //   try {
+  //     setUploadStatus('uploading');
+  //     setUploadProgress(0);
 
-      const response = await axios.post(
-        HOSTINGER_UPLOAD_URL,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            setUploadProgress(percentCompleted);
-          }
-        }
-      );
+  //     const response = await axios.post(
+  //       if
+  //       HOSTINGER_UPLOAD_URL,
+  //       formData,
+  //       {
+  //         headers: {
+  //           'Content-Type': 'multipart/form-data'
+  //         },
+  //         onUploadProgress: (progressEvent) => {
+  //           const percentCompleted = Math.round(
+  //             (progressEvent.loaded * 100) / progressEvent.total
+  //           );
+  //           setUploadProgress(percentCompleted);
+  //         }
+  //       }
+  //     );
 
-      if (response.data && response.data.success && response.data.imageUrls) {
-        setImages(response.data.imageUrls);
-        setUploadStatus('success');
-        console.log(response.data.imageUrls);
-      } else {
-        throw new Error(response.data.error || 'Error en la subida');
-      }
-    } catch (error) {
-      console.error('Error al subir a Hostinger:', error);
-      setUploadStatus('error');
-      setErrorMessage(error.response?.data?.error || error.message || 'Error al subir las imágenes');
-      setDropzoneFiles([]);
-    }
-  };
+  //     if (response.data && response.data.success && response.data.imageUrls) {
+  //       setImages(response.data.imageUrls);
+  //       setUploadStatus('success');
+  //       console.log(response.data.imageUrls);
+  //     } else {
+  //       throw new Error(response.data.error || 'Error en la subida');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error al subir a Hostinger:', error);
+  //     setUploadStatus('error');
+  //     setErrorMessage(error.response?.data?.error || error.message || 'Error al subir las imágenes');
+  //     setDropzoneFiles([]);
+  //   }
+  // };
 
   const handleRemoveImage = (indexToRemove) => {
     const updatedFiles = dropzoneFiles.filter((_, i) => i !== indexToRemove);
     setDropzoneFiles(updatedFiles);
     setImages(updatedFiles.map(file => URL.createObjectURL(file)));
   };
+
+  const uploadToHostinger = async (files) => {
+  // Detectar entorno
+  const isProduction = import.meta.env.MODE === 'production';
+
+  // URLs según entorno
+  const UPLOAD_URL = isProduction
+    ? import.meta.env.VITE_APP_API_HOSTINGER_UPLOAD_URL // producción
+    : import.meta.env.VITE_APP_API_UPLOAD_IMAGES_PROPERTIES_URL; // desarrollo
+
+  const formData = new FormData();
+  files.forEach((file, index) => {
+    formData.append(`img_url`, file);
+  });
+
+  try {
+    setUploadStatus('uploading');
+    setUploadProgress(0);
+
+    const response = await axios.post(UPLOAD_URL, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+      },
+    });
+
+    if (response.data?.success && response.data?.imageUrls) {
+      setImages(response.data.imageUrls);
+      setUploadStatus('success');
+      console.log('Imágenes subidas:', response.data.imageUrls);
+    } else {
+      throw new Error(response.data.error || 'Error en la subida');
+    }
+  } catch (error) {
+    console.error('Error al subir las imágenes:', error);
+    setUploadStatus('error');
+    setErrorMessage(
+      error.response?.data?.error ||
+        error.message ||
+        'Error al subir las imágenes'
+    );
+    setDropzoneFiles([]);
+  }
+};
 
   const triggerFileInput = () => {
     fileInputRef.current?.click();

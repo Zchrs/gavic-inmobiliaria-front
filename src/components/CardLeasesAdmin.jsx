@@ -86,10 +86,10 @@ export const CardLeasesAdmin = ({
         </div>
         <div className="productcard-btns">
           <div>
-            {delBtn && (<BaseButton handleClick={onDelete}  classs={'button delete'} textLabel={true} label={"Borrar producto"} />)}
+            {delBtn && (<BaseButton handleClick={onDelete}  classs={'button delete'} textLabel={true} label={"Borrar Inmueble"} />)}
           </div>
           <div>
-            {uptBtn && (<BaseButton handleClick={onUpdate} classs={'button update'} textLabel={true} label={"Actualizar producto"} />)}
+            {uptBtn && (<BaseButton handleClick={onUpdate} classs={'button update'} textLabel={true} label={"Actualizar Inmueble"} />)}
           </div>
         </div>
           <div>
@@ -97,11 +97,30 @@ export const CardLeasesAdmin = ({
          <div>
           <div>
           {sold && <h2 className="productcard__title">¿Vendido?</h2>}
-            {sold && (<BaseButton handleClick={onMoveSold} classs={'button full-outline'} textLabel={true} label={"Mover a vendidos"} />)}
+            {sold && (<BaseButton 
+            handleClick={onMoveSold} 
+            classs={'button primary'} 
+            textLabel={true} 
+            label={"Mover a vendidos"} 
+              colorbtn={"var(--bg-secondary)"}
+              colortextbtnprimary={"black"}
+              colorbtnhoverprimary={"var(--bg-primary-tr)"}
+              colortextbtnhoverprimary={"white"} 
+            />)}
           </div>
           <div>
           {rented && <h2 className="productcard__title">¿Arrendado?</h2>}
-            {rented && (<BaseButton handleClick={onMoveRented} classs={'button full-outline'} textLabel={true} label={"Mover a arrendadas"} />)}
+            {rented && (
+              <BaseButton 
+              handleClick={onMoveRented} 
+              classs={'button primary'} 
+              textLabel={true} 
+              label={"Mover a arrendadas"}
+              colorbtn={"var(--bg-secondary)"}
+              colortextbtnprimary={"black"}
+              colorbtnhoverprimary={"var(--bg-primary-tr)"}
+              colortextbtnhoverprimary={"white"} 
+              />)}
           </div>
           <div>
           {pendingSale && <h2 className="productcard__title">Pendiente por aprobar</h2>}

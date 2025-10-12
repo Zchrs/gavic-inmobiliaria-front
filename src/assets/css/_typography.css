@@ -430,7 +430,7 @@
   font-size: 3rem;
   font-weight: 400;
   line-height: 5.9rem;
-  color: var(--text-dark);
+  /* color: var(--text-dark); */
   font-family: var(--font-primary);
 
 }
@@ -440,8 +440,8 @@
   font-size: 5rem;
   font-weight: 300;
   line-height: 7rem;
-  color: var(--text-primary);
-  font-family: var(--font-secondary);
+  /* color: var(--text-primary); */
+  font-family: var(--font-primary);
 }
 
 .h1-regular {

@@ -121,7 +121,7 @@ export const HeaderAdmin = () => {
           }>Finanzas</NavLink>
           <NavLink to={"comunications"} className={({ isActive }) =>
             `${isActive ? "headeradmin-group-a-active" : "headeradmin-group-a"}`
-          }>Comunicaciones</NavLink>
+          }>Pqrs y problemas</NavLink>
         </div>
         <div className="headeradmin-group">
           <Avatar 
