@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { Pagination } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { clients } from "../../../../apiEmulated";
 import { Loader, CardUsers, Empty } from "../../../../index"
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { clients } from "../../../../apiEmulated";
 
 
-export const PendingIssues = () => {
-    const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
+export const Pqrs = () => {
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
         const columns = ["Nombre", "Correo", "Problema", "Rol", "Estado"];
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
@@ -17,13 +17,40 @@ export const PendingIssues = () => {
   
     const startIndex = (currentPage - 1) * itemsPerPage;
     const selectedData = clients.slice(startIndex, startIndex + itemsPerPage); // Corregido
+
+      // useEffect(() => {
+      //   const init = async () => {
+      //     if (getPqrs.length > 0) return; // ya cargado en Redux
+    
+      //     setLoading(true);
+      //     try {
+      //       const localData = localStorage.getItem("properties");
+      //       if (localData) {
+      //         const parsedData = JSON.parse(localData);
+      //         dispatch({
+      //           type: types.propertyView, // o types.propertyView
+      //           payload: parsedData,
+      //         });
+      //       } else {
+      //         const response = await dispatch(fetchPqrs());
+              
+      //       }
+      //     } catch (error) {
+      //       console.error("Error fetching recent properties:", error);
+      //     } finally {
+      //       setLoading(false);
+      //     }
+      //   };
+    
+      //   init();
+      // }, [dispatch]);
+      const getPqrs = [];
   
-    const getIssues = [];
   return (
-    <div id="pending-issues">
+    <div id="pqrs">
        {loading ? (
                     <Loader />
-                  ) : getIssues.length === 0 ? (
+                  ) : getPqrs.length === 0 ? (
                     <div className="addrecent-empty">
                       <Empty message="No hay propiedades añadidas recientemente" />
                       </div>

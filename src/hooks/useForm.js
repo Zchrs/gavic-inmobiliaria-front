@@ -252,6 +252,7 @@ export const useForm = (initialForm, validateForm) => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
+
         try {
           const formData = new FormData();
           formData.append("name", form.name);
@@ -307,6 +308,7 @@ export const useForm = (initialForm, validateForm) => {
           setLoading(false);
           throw error.response?.data || error.message;
         }
+        
       } else {
         return;
       }

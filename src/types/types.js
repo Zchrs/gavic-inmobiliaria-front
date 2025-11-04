@@ -27,6 +27,14 @@ export const types = {
     advisorStartTokenRenew: '[auth] Start token renew',
     advisorLogout: '[auth] Logout',
         
+    // types para el estado de pqrs
+    pqrsView: `[looking], looking start`,
+    pqrsViewedFinish: `[viewed], viewed out`,
+    STORAGED_PQRS: `[storaged], storaged`,
+    SELECTED_PQRS: `[selected], product selected`,
+    REMOVE_PQRS: `[remove], deleted`,
+    UPDATE_PQRS: `[update], Updated`,
+    setFilteredPqrs: `[filtered], filtered success`,
 
     // types para el estado de productos
     propertyView: `[looking], looking start`,
@@ -37,6 +45,8 @@ export const types = {
     UPDATE_PROPERTY: `[update], Updated`,
     propertyViewedFinish: `[finish], viewed finish`,
     setFilteredProperties: `[filtered], filtered success`,
+
+    codeRegisterAdmin: `[looking], looking code admin start`,
 
     CHANGE_LANG: 'CHANGE_LANG',
 

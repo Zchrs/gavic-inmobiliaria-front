@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { NewIssues, SolvedIssues, PendingIssues, Tabs } from "../../../../index";
 import styled from "styled-components"
+import { Pqrs } from "../issues/Pqrs";
 
 
 export const Comunications = () => {
@@ -9,7 +10,7 @@ export const Comunications = () => {
       { label: "Nuevos", content: <NewIssues id="current-property" /> },
       { label: "En revisión", content: <PendingIssues /> },
       { label: "Solucionados", content: <SolvedIssues /> },
-      { label: "Nuevos PQRS", content: <NewIssues id="current-property" /> },
+      { label: "Nuevos PQRS", content: <Pqrs id="current-pqrs" /> },
       { label: "PQRS en revisión", content: <PendingIssues /> },
       { label: "PQRS solucionados", content: <SolvedIssues /> },
     ];
